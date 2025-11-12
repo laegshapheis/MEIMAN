@@ -1,0 +1,112 @@
+import { UTSAndroid } from "io.dcloud.uts";
+import Context from 'android.content.Context';
+import Application from "android.app.Application";
+import DeviceIdentifier from "com.github.gzuliyujiang.oaid.DeviceIdentifier";
+import DeviceID from "com.github.gzuliyujiang.oaid.DeviceID";
+import IGetter from "com.github.gzuliyujiang.oaid.IGetter";
+import Exception from 'java.lang.Exception';
+import Build from 'android.os.Build'
+import Bundle from 'android.os.Bundle'
+/* import ActivityResultContracts from 'androidx.activity.result.contract.ActivityResultContracts'
+import ActivityResultLauncher from 'androidx.activity.result.ActivityResultLauncher'
+import ActivityResultCallback from 'androidx.activity.result.ActivityResultCallback' */
+import { OptionsCallBack, DeviceInfo, ResultInfo } from '../interface.uts'
+
+class CustomClass extends IGetter {
+	private options : OptionsCallBack;
+
+	constructor(options : OptionsCallBack) {
+		super();
+		this.options = options;
+	}
+
+	override onOAIDGetComplete(result : string) {
+		const results = new Map<string, any>()
+		results.set("OAID/AAID", result)
+		const res : ResultInfo = {
+			msg: "success",
+			code: 200,
+			data: results,
+		};
+		this.options.success?.(res)
+	}
+
+	override onOAIDGetError(error : Exception) {
+		// 处理错误
+		this.options.fail?.({
+			msg: `"OAID/AAID: ":\n onOAIDGetError`,
+			code: 100
+		})
+	}
+}
+
+export class DeviceldManage {	
+	private context : Context = UTSAndroid.getAppContext() as Context;
+	// private resultLauncher : ActivityResultLauncher<string> | null = null;
+	public obtainDeviceId(options : OptionsCallBack) {
+		let activity = UTSAndroid.getAppContext() as Application
+		// this.resultLauncher = activity.registerForActivityResult(new ActivityResultContracts.RequestPermission(), context);
+		// this.resultLauncher?.launch(Manifest.permission.READ_PHONE_STATE)!;
+		try {
+			const result = new Map<string, any>()
+			const imei = DeviceIdentifier.getIMEI(this.context);
+			if (imei == "") {
+				result.set("IMEI", "DID/IMEI/MEID获取失败")
+			} else {
+				result.set("IMEI", DeviceIdentifier.getIMEI(this.context))
+			}
+			result.set("AndroidID", DeviceIdentifier.getAndroidID(this.context))
+			result.set("PseudoID", DeviceIdentifier.getPseudoID())
+			result.set("GUID", DeviceIdentifier.getGUID(this.context))
+			result.set("supportedOAID", DeviceID.supportedOAID(this.context))
+			result.set("OAID", DeviceIdentifier.getOAID(this.context))
+			const res : ResultInfo = {
+				msg: "success",
+				code: 200,
+				data: result,
+			}
+			/* console.log('result', result) */
+			options.success?.(res)
+		} catch (e) {
+			console.log('obtainDeviceId', e)
+			options.fail?.({
+				msg: `${'getDeviceInfo'}:\n`,
+				code: 100
+			})
+		}
+
+	}
+	public getClientId(options : OptionsCallBack) {
+		const result = new Map<string, any>()
+		const clientId = DeviceIdentifier.getClientId()
+		if (clientId == "") {
+			result.set("ClientId", "ClientId获取失败")
+		} else {
+			result.set("ClientId", DeviceIdentifier.getClientId())
+		}
+		const res : ResultInfo = {
+			msg: "success",
+			code: 200,
+			data: result,
+		}
+		options.success?.(res)
+	}
+
+	public getOAID(options : OptionsCallBack) {
+		const customObject = new CustomClass(options);
+		DeviceID.getOAID(this.context, customObject);
+	}
+
+	public obtainDeviceInfo(options : OptionsCallBack) {
+		const result = new Map<string, any>()
+		result.set("BrandModel", Build.BRAND)
+		result.set("Manufacturer", Build.MANUFACTURER)
+		result.set("SystemVersion", Build.VERSION.RELEASE + " (Level " + Build.VERSION.SDK_INT)
+		const res : ResultInfo = {
+			msg: "success",
+			code: 200,
+			data: result,
+		}
+		options.success?.(res)
+	}
+}

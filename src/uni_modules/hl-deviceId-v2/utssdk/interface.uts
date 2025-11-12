@@ -1,0 +1,31 @@
+/**
+ * interface.uts
+ * uts插件接口定义文件，按规范定义接口文件可以在HBuilderX中更好的做到语法提示
+ */
+
+export type OptionsCallBack = {
+	success ?: (res : any) => void
+	fail ?: (res : any) => void
+	complete ?: (res : any) => void
+}
+
+export type DeviceInfo = {
+	IMEI : string;
+	AndroidID : string;
+	WidevineID : string;
+	PseudoID : string;
+	GUID : string;
+	supportedOAID : string;
+	OAID : string;
+	ClientId : string;
+}
+
+export type ResultInfo = {
+	msg : string;
+	code : number;
+	data : any;
+}
+
+// #ifdef APP-ANDROID
+export * from './app-android/DeviceldManage';
+// #endif

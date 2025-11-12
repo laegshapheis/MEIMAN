@@ -1,0 +1,1064 @@
+{
+  "pages": [
+    {
+      "path": "pages/launch/index",
+      "style": {
+        "navigationBarTitleText": "",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/lang/lang",
+      "style": {
+        "navigationBarTitleText": "语言设置",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/account/record",
+      "style": {
+        "navigationBarTitleText": "奖励与收益明细",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/version_update/download",
+      "style": {
+        "navigationBarTitleText": "版本更新",
+        "enablePullDownRefresh": false,
+        "navigationBarBackgroundColor": "",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/service/service",
+      "style": {
+        "navigationBarTitleText": "客服",
+        "enablePullDownRefresh": false,
+        "navigationBarBackgroundColor": "",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/website/website",
+      "style": {
+        "navigationBarTitleText": "公司官网",
+        "enablePullDownRefresh": false,
+        "navigationBarBackgroundColor": "",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/invite/detail",
+      "style": {
+        "navigationBarTitleText": "邀请好友",
+        "enablePullDownRefresh": false,
+        "navigationBarBackgroundColor": "",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/invite/index",
+      "style": {
+        "navigationBarTitleText": "邀请好友",
+        "enablePullDownRefresh": false,
+        "navigationBarBackgroundColor": "",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/invite/content",
+      "style": {
+        "navigationBarTitleText": "邀请好友",
+        "enablePullDownRefresh": false,
+        "navigationBarBackgroundColor": "",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/login/index",
+      "style": {
+        "navigationBarTitleText": "",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/register/email_code",
+      "style": {
+        "navigationBarTitleText": "邮箱验证码",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/forgot/email",
+      "style": {
+        "navigationBarTitleText": "忘记密码",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/register/index",
+      "style": {
+        "navigationBarTitleText": "",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/forgot/phone",
+      "style": {
+        "navigationBarTitleText": "忘记密码",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/login_pwd/email_reset",
+      "style": {
+        "navigationBarTitleText": "邮箱重置密码",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/pay_pwd/email_reset",
+      "style": {
+        "navigationBarTitleText": "邮箱重置支付密码",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/login_pwd/pwd_reset",
+      "style": {
+        "navigationBarTitleText": "修改登录密码",
+        "enablePullDownRefresh": false,
+        "navigationBarTextStyle": "white",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/miyao/verification",
+      "style": {
+        "navigationBarTitleText": "我的密钥",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/login_pwd/miyao_reset",
+      "style": {
+        "navigationBarTitleText": "使用密钥重置密码",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/pay_pwd/pwd_update",
+      "style": {
+        "navigationBarTitleText": "设置支付密码",
+        "enablePullDownRefresh": false,
+        "navigationBarTextStyle": "white",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/pay_pwd/miyao_reset",
+      "style": {
+        "navigationBarTitleText": "重置支付密码",
+        "enablePullDownRefresh": false,
+        "navigationBarTextStyle": "white",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/certification/index",
+      "style": {
+        "navigationBarTitleText": "实名认证",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/address/index",
+      "style": {
+        "navigationBarTitleText": "地址列表",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/address/update",
+      "style": {
+        "navigationBarTitleText": "添加地址",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/login_pwd/reset_success",
+      "style": {
+        "navigationBarTitleText": "找回密码",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/miyao/show",
+      "style": {
+        "navigationBarTitleText": "查看密钥",
+        "enablePullDownRefresh": false,
+        "navigationBarTextStyle": "white",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/miyao/copy",
+      "style": {
+        "navigationBarTitleText": "我的密钥",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/vip/membership_level",
+      "style": {
+        "navigationBarTitleText": "会员等级",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/vip/vip_card_purchase",
+      "style": {
+        "navigationBarTitleText": "会员卡购买",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/vip/vip_card_record",
+      "style": {
+        "navigationBarTitleText": "会员卡购买记录",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/vip/team_level",
+      "style": {
+        "navigationBarTitleText": "团队等级",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/vip/team_level_record",
+      "style": {
+        "navigationBarTitleText": "团队奖励",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "首页",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/version_update/index",
+      "style": {
+        "navigationBarTitleText": "版本升级",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/product/product_list",
+      "style": {
+        "navigationBarTitleText": "产品项目",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/product/product_detail",
+      "style": {
+        "navigationBarTitleText": "投资详情",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/product/product_buy",
+      "style": {
+        "navigationBarTitleText": "确认投资",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/product/pin_tuan_detail",
+      "style": {
+        "navigationBarTitleText": "拼团详情",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/product/pin_tuan_buy",
+      "style": {
+        "navigationBarTitleText": "拼团详情",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/product/pin_tuan_ji_lu",
+      "style": {
+        "navigationBarTitleText": "团购记录",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white",
+        "disableSwipeBack": true
+      }
+    },
+    {
+      "path": "pages/product/product_equity_detail",
+      "style": {
+        "navigationBarTitleText": "认购详情",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/equity/agreement",
+      "style": {
+        "navigationBarTitleText": "查看合约",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white",
+        "disableSwipeBack": true
+      }
+    },
+    {
+      "path": "pages/equity/limit_order",
+      "style": {
+        "navigationBarTitleText": "限价交易",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/equity/market_order",
+      "style": {
+        "navigationBarTitleText": "市价交易",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/equity/order",
+      "style": {
+        "navigationBarTitleText": "我的订单",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/other_view/tou_zi_he_tong",
+      "style": {
+        "navigationBarTitleText": "投资合同",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white",
+        "disableSwipeBack": true
+      }
+    },
+    {
+      "path": "pages/other_view/dian_zi_qian_ming",
+      "style": {
+        "navigationBarTitleText": "电子签名",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/product/invest",
+      "style": {
+        "navigationBarTitleText": "我的投资",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white",
+        "disableSwipeBack": true
+      }
+    },
+    {
+      "path": "pages/dai_kuan/dai_kuan",
+      "style": {
+        "navigationBarTitleText": "无忧易贷",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/store/list",
+      "style": {
+        "navigationBarTitleText": "积分商城",
+        "navigationStyle": "custom",
+         "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/store/detail",
+      "style": {
+        "navigationBarTitleText": "商品详情",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+         "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/store/exchange_money",
+      "style": {
+        "navigationBarTitleText": "积分兑现金",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+         "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/store/exchange_lottery",
+      "style": {
+        "navigationBarTitleText": "积分兑盲盒抽奖",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+         "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/store/exchange",
+      "style": {
+        "navigationBarTitleText": "兑换商品",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+         "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/store/exchange_logs",
+      "style": {
+        "navigationBarTitleText": "兑换商品记录",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+         "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/store/exchange_money_logs",
+      "style": {
+        "navigationBarTitleText": "积分兑现金记录",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+         "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/store/exchange_lottery_logs",
+      "style": {
+        "navigationBarTitleText": "积分兑盲盒抽奖记录",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+         "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/account/detail",
+      "style": {
+        "navigationBarTitleText": "账户详情",
+        "enablePullDownRefresh": false,
+        "navigationBarTextStyle": "white",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/dai_kuan/dai_kuan_ji_lu",
+      "style": {
+        "navigationBarTitleText": "贷款记录",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/dai_kuan/dai_kuan_he_tong_show",
+      "style": {
+        "navigationBarTitleText": "贷款合同",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/dai_kuan/dai_kuan_he_tong",
+      "style": {
+        "navigationBarTitleText": "合同详情",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white",
+        "disableSwipeBack": true
+      }
+    },
+    {
+      "path": "pages/dai_kuan/dai_kuan_huan_kuan",
+      "style": {
+        "navigationBarTitleText": "申请还款",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/dai_kuan/dai_kuan_ti_qian",
+      "style": {
+        "navigationBarTitleText": "提前还款",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/dai_kuan/huan_kuan_ji_lu",
+      "style": {
+        "navigationBarTitleText": "还款记录",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/checkin/index",
+      "style": {
+        "navigationBarTitleText": "签到",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/checkin/record",
+      "style": {
+        "navigationBarTitleText": "签到记录",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/lottery/index",
+      "style": {
+        "navigationBarTitleText": "活动专区",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/lottery/record",
+      "style": {
+        "navigationBarTitleText": "抽奖记录",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+
+    {
+      "path": "pages/profile/index",
+      "style": {
+        "navigationBarTitleText": "个人中心",
+        "enablePullDownRefresh": false,
+        "navigationBarBackgroundColor": "",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/profile/coupon_package",
+      "style": {
+        "navigationBarTitleText": "券包",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+
+    {
+      "path": "pages/recharge/index",
+      "style": {
+        "navigationBarTitleText": "在线充值",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/product/agreement",
+      "style": {
+        "navigationBarTitleText": "项目投资协议",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "disableSwipeBack": true
+      }
+    },
+    {
+      "path": "pages/recharge/record",
+      "style": {
+        "navigationBarTitleText": "充值记录",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+
+    {
+      "path": "pages/transfer/index",
+      "style": {
+        "navigationBarTitleText": "我要转账",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+
+    {
+      "path": "pages/transfer/record",
+      "style": {
+        "navigationBarTitleText": "转账记录",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+
+    {
+      "path": "pages/withdraw/index",
+      "style": {
+        "navigationBarTitleText": "我要提现",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+
+    {
+      "path": "pages/withdraw/record",
+      "style": {
+        "navigationBarTitleText": "提现记录",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+
+    {
+      "path": "pages/wallet/index",
+      "style": {
+        "navigationBarTitleText": "提现管理",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+
+    {
+      "path": "pages/wallet/type",
+      "style": {
+        "navigationBarTitleText": "选择钱包",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+
+    {
+      "path": "pages/wallet/edit",
+      "style": {
+        "navigationBarTitleText": "提现管理",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+
+    {
+      "path": "pages/yuebao/index",
+      "style": {
+        "navigationBarTitleText": "余额宝",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white",
+        "disableSwipeBack": true
+      }
+    },
+    {
+      "path": "pages/yuebao/calc",
+      "style": {
+        "navigationBarTitleText": "余额宝复利计算器",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+
+    {
+      "path": "pages/yuebao/transfer",
+      "style": {
+        "navigationBarTitleText": "余额宝",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+
+    {
+      "path": "pages/transaction_detail/index",
+      "style": {
+        "navigationBarTitleText": "交易明细",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+
+    {
+      "path": "pages/team_record/index",
+      "style": {
+        "navigationBarTitleText": "团队记录",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+
+    {
+      "path": "pages/coupon/voucher", 
+      "style": {
+        "navigationBarTitleText": "现金券",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+
+    {
+      "path": "pages/coupon/interest_rate",
+      "style": {
+        "navigationBarTitleText": "加息券",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+
+    {
+      "path": "pages/coupon/transfer",
+      "style": {
+        "navigationBarTitleText": "转让加息券",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+
+    {
+      "path": "pages/coupon/vip_experience",
+      "style": {
+        "navigationBarTitleText": "VIP体验券",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+
+    {
+      "path": "pages/calc/index",
+      "style": {
+        "navigationBarTitleText": "计算器",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+
+    {
+      "path": "pages/guide/index",
+      "style": {
+        "navigationBarTitleText": "知识学堂",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+
+    {
+      "path": "pages/news_list/index",
+      "style": {
+        "navigationBarTitleText": "新闻资讯",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+
+    {
+      "path": "pages/about/new_details",
+      "style": {
+        "navigationBarTitleText": "资讯详情",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+
+    {
+      "path": "pages/about/videoview",
+      "style": {
+        "navigationBarTitleText": "视频详情",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+
+    {
+      "path": "pages/about/article_info",
+      "style": {
+        "navigationBarTitleText": "页面详情",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/service/service2",
+      "style": {
+        "navigationBarTitleText": "客服",
+        "enablePullDownRefresh": false,
+        "navigationBarBackgroundColor": "#090502",
+        "navigationBarTextStyle": "white"
+      }
+    },
+
+    {
+      "path": "pages/about/pageview",
+      "style": {
+        "navigationBarTitleText": "页面详情",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/equity/index",
+      "style": {
+        "navigationBarTitleText": "股权中心",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white",
+        "disableSwipeBack": true
+      }
+    },
+    {
+      "path": "pages/equity/purchase",
+      "style": {
+        "navigationBarTitleText": "交易",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/equity/release",
+      "style": {
+        "navigationBarTitleText": "质押",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/equity/contract",
+      "style": {
+        "navigationBarTitleText": "合约",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/equity/trade",
+      "style": {
+        "navigationBarTitleText": "交易",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white",
+        "disableSwipeBack": true
+      }
+    },
+    {
+      "path": "pages/services/index",
+      "style": {
+        "navigationBarTitleText": "服务",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/activity/index",
+      "style": {
+        "navigationBarTitleText": "集卡活动",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+         "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/activity/lottery",
+      "style": {
+        "navigationBarTitleText": "集卡活动抽奖",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+         "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/activity/exchange_record",
+      "style": {
+        "navigationBarTitleText": "集卡活动兑换记录",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+         "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/activity/card_record",
+      "style": {
+        "navigationBarTitleText": "集卡活动记录",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+         "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/activity/rules",
+      "style": {
+        "navigationBarTitleText": "集卡规则",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+         "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/task/index",
+      "style": {
+        "navigationBarTitleText": "任务市场",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/task/record",
+      "style": {
+        "navigationBarTitleText": "盲盒奖品记录",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/task/lottery_record",
+      "style": {
+        "navigationBarTitleText": "盲盒抽奖次数记录",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/task/task-rewards",
+      "style": {
+        "navigationBarTitleText": "任务奖励",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/promotion/level_detail",
+      "style": {
+        "navigationBarTitleText": "推广等级",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#fff",
+    "backgroundColor": "#fff"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#99C2FF",
+    "selectedColor": "#FFF",
+    "backgroundColor": "#06F",
+    "fontSize": "12px",
+    "height": "56px",
+    "iconWidth": "24px",
+    "borderRadius": "20rpx",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "static/images/common/navBar/index.png",
+        "selectedIconPath": "static/images/common/navBar/index_select.png"
+      },
+      {
+        "pagePath": "pages/product/product_list",
+        "text": "投资",
+        "iconPath": "static/images/common/navBar/order.png",
+        "selectedIconPath": "static/images/common/navBar/order_select.png"
+      },
+      {
+        "pagePath": "pages/service/service",
+        "text": "客服",
+        "iconPath": "static/images/common/navBar/service.png",
+        "selectedIconPath": "static/images/common/navBar/service_select.png"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "iconPath": "static/images/common/navBar/my.png",
+        "selectedIconPath": "static/images/common/navBar/my_select.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "easycom": {
+    "autoscan": true,
+    "custom": {
+      "fui-(.*)": "@/components/firstui/fui-$1/fui-$1.vue",
+      "^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue"
+    }
+  }
+}

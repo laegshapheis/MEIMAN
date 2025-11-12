@@ -1,0 +1,136 @@
+import DeviceIdentifier from "com.github.gzuliyujiang.oaid.DeviceIdentifier";
+import IRegisterCallback from "com.github.gzuliyujiang.oaid.IRegisterCallback";
+import { UTSAndroid } from "io.dcloud.uts";
+import { OptionsCallBack, DeviceInfo, ResultInfo } from '../interface.uts'
+
+
+import Context from 'android.content.Context';
+import Application from "android.app.Application";
+import DeviceID from "com.github.gzuliyujiang.oaid.DeviceID";
+import IGetter from "com.github.gzuliyujiang.oaid.IGetter";
+import Exception from 'java.lang.Exception';
+import Build from 'android.os.Build'
+import Bundle from 'android.os.Bundle'
+
+class RegisterCallback extends IRegisterCallback {
+	constructor() {
+		super();
+	}
+	override onComplete(clientId : String, error : Exception) {
+
+	}
+}
+
+export class AppHookProxy implements UTSAndroidHookProxy {
+	override onCreate(application : Application) {
+		//当前应用是否 取得用户同意隐私协议
+		android.util.Log.e("AppHookProxy", "AppHookProxy--onCreate---")
+		if (UTSAndroid.isPrivacyAgree()) {
+			android.util.Log.e("AppHookProxy", "AppHookProxy--onCreate---isPrivacyAgree")
+			//onCreate 初始化SDK
+			let activity = UTSAndroid.getAppContext() as Application
+			DeviceIdentifier.register(activity);
+		}
+	}
+}
+
+
+export function textFun() {
+	console.log('sdf')
+}
+
+const mContext : Context = UTSAndroid.getAppContext() as Context;
+
+export function obtainDeviceId(options : OptionsCallBack) {
+	let activity = UTSAndroid.getAppContext() as Application
+	try {
+		const result = new Map<string, any>()
+		const imei = DeviceIdentifier.getIMEI(mContext);
+		if (imei == "") {
+			result.set("IMEI", "DID/IMEI/MEID获取失败")
+		} else {
+			result.set("IMEI", DeviceIdentifier.getIMEI(mContext))
+		}
+		result.set("AndroidID", DeviceIdentifier.getAndroidID(mContext))
+		result.set("PseudoID", DeviceIdentifier.getPseudoID())
+		result.set("GUID", DeviceIdentifier.getGUID(mContext))
+		result.set("supportedOAID", DeviceID.supportedOAID(mContext))
+		result.set("OAID", DeviceIdentifier.getOAID(mContext))
+		const res : ResultInfo = {
+			msg: "success",
+			code: 200,
+			data: result,
+		}
+		/* console.log('result', result) */
+		options.success?.(res)
+	} catch (e) {
+		console.log('obtainDeviceId', e)
+		options.fail?.({
+			msg: `${'getDeviceInfo'}:\n`,
+			code: 100
+		})
+	}
+
+}
+
+export function getClientId(options : OptionsCallBack) {
+	const result = new Map<string, any>()
+	const clientId = DeviceIdentifier.getClientId()
+	if (clientId == "") {
+		result.set("ClientId", "ClientId获取失败")
+	} else {
+		result.set("ClientId", DeviceIdentifier.getClientId())
+	}
+	const res : ResultInfo = {
+		msg: "success",
+		code: 200,
+		data: result,
+	}
+	options.success?.(res)
+}
+
+export function getOAID(options : OptionsCallBack) {
+	const customObject = new CustomClass(options);
+	DeviceID.getOAID(mContext, customObject);
+}
+
+export function obtainDeviceInfo(options : OptionsCallBack) {
+	const result = new Map<string, any>()
+	result.set("BrandModel", Build.BRAND)
+	result.set("Manufacturer", Build.MANUFACTURER)
+	result.set("SystemVersion", Build.VERSION.RELEASE + " (Level " + Build.VERSION.SDK_INT)
+	const res : ResultInfo = {
+		msg: "success",
+		code: 200,
+		data: result,
+	}
+	options.success?.(res)
+}
+
+class CustomClass extends IGetter {
+	private options : OptionsCallBack;
+
+	constructor(options : OptionsCallBack) {
+		super();
+		this.options = options;
+	}
+
+	override onOAIDGetComplete(result : string) {
+		const results = new Map<string, any>()
+		results.set("OAID/AAID", result)
+		const res : ResultInfo = {
+			msg: "success",
+			code: 200,
+			data: results,
+		};
+		this.options.success?.(res)
+	}
+
+	override onOAIDGetError(error : Exception) {
+		// 处理错误
+		this.options.fail?.({
+			msg: `"OAID/AAID: ":\n onOAIDGetError`,
+			code: 100
+		})
+	}
+}

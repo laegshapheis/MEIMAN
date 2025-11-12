@@ -1,0 +1,154 @@
+:root {
+  --theme-color: #2A877C;
+}
+
+.bg-main {
+  background-image: url('@/static/images/bg/main.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-main1 {
+  background-image: url('@/static/images/bg/main1.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-main2 {
+  background-image: url('@/static/images/bg/main2.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-main3 {
+  background-image: url('@/static/images/bg/main3.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-main4 {
+  background-image: url('@/static/images/bg/main4.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-main5 {
+  background-image: url('@/static/images/bg/main5.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.bg-main6 {
+  background-image: url('@/static/images/bg/main6.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.bg-main7 {
+  background-image: url('@/static/images/bg/main7.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.bg-main8 {
+  background-image: url('@/static/images/bg/main8.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-task {
+  background-image: url('@/static/images/task/task_bg.png');
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: 100% auto;
+  background-color: #01091C;
+}
+
+
+.bg-vip-card {
+  background-image: url('@/static/images/bg/vip_card_top.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.bg-vip-card-bg {
+  background-image: url('@/static/images/profile/bgVip_card_bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.bg-account-section {
+  background-image: url('@/static/images/profile/account_bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.bg-card3{
+  background: linear-gradient(180deg, #4481E9 0%, #0A57BB 100%);
+  box-shadow: 0 8px 0 0 #9AEEDE inset;
+}
+
+.bg-card {
+  background: linear-gradient(180deg, #3A250F 0%, #1D140B 100%);
+}
+
+.bg-card1 { 
+  background: #EBF6F0;
+}
+.bg-page {
+  background: #EBF6F0;
+}
+.bg-card2 {
+  background: linear-gradient(180deg, #4481E9 0%, #0A57BB 100%);
+  box-shadow: 0 0 100px 9px rgba(65, 138, 152, 0.10) inset;
+}
+
+.bg-pay-card {
+  background: linear-gradient(90deg, #EFB04842 0%, #EFB04800 100%);
+}
+
+::v-deep {
+  .uni-modal {
+   background-color: theme('colors.neutral.showModal.bgColor') !important;
+   .uni-modal__title {
+     color: theme('colors.neutral.showModal.titleColor') !important;
+   }
+   .uni-modal__btn:active {
+     background-color: transparent !important;
+   }
+   .uni-modal__bd {
+     color: theme('colors.neutral.showModal.textColor') !important;
+   }
+   .uni-modal__footer {
+     background-color: theme('colors.neutral.showModal.bgColor') !important;
+     color: theme('colors.neutral.showModal.textColor') !important;
+   }
+  }
+  .uv-line {
+   background-color: theme('colors.neutral.showModal.bgColor') !important;
+  }
+  .uni-tabbar-bottom .uni-tabbar {
+    border-top-left-radius: 24rpx !important;
+    border-top-right-radius: 24rpx !important;
+    overflow: hidden;
+  }
+}
+.bg-tuiguang-card{
+  background-image: url('@/static/images/tuiguangIcon/card_bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.bg-page1 {
+  background: linear-gradient(to bottom, #B3B3B3 0%, #1E1B1A 30%, #1E1B1A 100%);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.bg-page2 {
+  background: linear-gradient(to bottom, #1D4880 0%, #1E1B1A 30%, #1E1B1A 100%);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.bg-page3 {
+  background: linear-gradient(to bottom, #805C1D 0%, #1E1B1A 30%, #1E1B1A 100%);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.bg-page4 {
+  background: linear-gradient(to bottom, #461D80 0%, #1E1B1A 30%, #1E1B1A 100%);
+  background-repeat: no-repeat;
+  background-size: cover;
+}

@@ -1,0 +1,38 @@
+// 引用 iOS 原生平台 api
+import { UIDevice } from "UIKit";
+import { Bundle } from "Foundation"
+import { OptionsCallBack, DeviceInfo, ResultInfo } from '../interface.uts'
+/**
+ * 定义获取设备标识事件工具类
+ */
+class DeviceIdentifier {
+	static keychainKey : string = DeviceIdentifier.getBundleIdentifier();
+	// 获取包名信息
+	static getBundleIdentifier() : string {
+		let bundleIdentifier = Bundle.main.bundleIdentifier
+		if (bundleIdentifier != null) {
+			return bundleIdentifier! + ".uniqueidentifier"
+		} else {
+			return ""
+		}
+	}
+	static getUniqueDeviceIdentifierAsString() : string {
+		let uuid = UIDevice.current.identifierForVendor!.uuidString
+		return uuid
+	}
+}
+
+/**
+ 获取设备id
+*/
+export function getDeviceId(callback : OptionsCallBack){
+	// 返回数据
+	const res : ResultInfo = {
+		code: 200,
+		msg: "success",
+		deviceId: DeviceIdentifier.getUniqueDeviceIdentifierAsString()
+	};
+	callback.success?.(res);
+}
+
+export function obtainDeviceId(options : OptionsCallBack) {}
