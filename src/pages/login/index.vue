@@ -1,5 +1,5 @@
 <template>
-  <layout :isNav="false" bgType="bg-main3">
+  <layout :isNav="false" bgType="bg-main1">
     <view class="justify-end absolute top-0 right-0 mx-[24rpx] mt-[16rpx]">
       <wk-language-selector plain />
     </view>
@@ -9,8 +9,8 @@
         <text class="text-neutralr text-3xl font-medium">
           登入你的账号
         </text>
-        <text @click="toRegister" class="text-neutral-regular text-base mt-[16rpx]">
-          没有账号？<text class="text-neutral-regular text-base">创建账号</text>
+        <text @click="toRegister" class="text-base mt-[16rpx]" style="color: rgba(37, 44, 47, 0.75);">
+          没有账号？<text class="text-neutral-regular text-black underline">创建账号</text>
         </text>
       </view>
       <view class="box-border mt-[48rpx] px-[32rpx]">

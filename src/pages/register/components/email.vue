@@ -5,6 +5,7 @@
       <view class="z-20 relative">
         <wk-email-input
           v-model="formData.email"
+          style="border: none;border-radius: 32rpx;"
           :placeholder="$t('register.inputEmail')"
         />
       </view>
@@ -12,6 +13,7 @@
       <!-- 密码输入框 -->
       <view>
         <wk-password-input
+          style="border: none;border-radius: 32rpx;"
           v-model="formData.password"
           :placeholder="$t('register.inputPassword')"
         />
@@ -20,6 +22,7 @@
       <!-- 确认密码输入框 -->
       <view>
         <wk-password-input
+          style="border: none;border-radius: 32rpx;"
           v-model="formData.confirmPassword"
           :placeholder="$t('register.reInputPassword')"
         />
@@ -29,6 +32,7 @@
        <view>
         <wk-input
           v-model="formData.yaoqingren"
+          style="border: none;border-radius: 32rpx;"
           maxlength="8"
           @input="handleInputInviteCode"
           :placeholder="$t('register.inputInviteCode')"

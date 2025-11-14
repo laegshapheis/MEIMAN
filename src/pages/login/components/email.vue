@@ -6,7 +6,7 @@
         <wk-email-input
           v-model="formData.username"
           placeholder="请输入邮箱号"
-          style="border: none;"
+          style="border: none;border-radius: 32rpx;"
           bgColor="#FFFFFF"
         />
       </view>
@@ -15,7 +15,7 @@
         <wk-password-input
           v-model="formData.password"
           placeholder="请输入密码"
-          style="border: none;"
+          style="border: none;border-radius: 32rpx;"
           bgColor="#FFFFFF"
         />
       </view>

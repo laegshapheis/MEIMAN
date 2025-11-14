@@ -1,9 +1,9 @@
 <template>
-    <layout navTitle="修改登录密码"  bgType="bg-main"> 
+    <layout navTitle="修改登录密码"  bgType="bg-main1"> 
           <view class="p-[32rpx]">
         <view>
           <view>
-            <view class="mb-[10rpx] text-base text-neutral font-medium">原登录密码</view>
+            <view class="mb-[10rpx] text-base text-neutral-regular font-medium">原登录密码</view>
             <view 
           class="flex flex-row items-center justify-between">
           <wk-input
@@ -12,11 +12,12 @@
             type="password"
             maxlength="16"
             placeholder="请输入登录密码"
+            style="border: none;border-radius: 32rpx;"
           ></wk-input>
         </view>
           </view>
           <view class="mt-[24rpx]">
-            <view class="mb-[10rpx] text-base text-neutral font-medium">新登录密码</view>
+            <view class="mb-[10rpx] text-base text-neutral-regular font-medium">新登录密码</view>
             <view 
           class="flex flex-row items-center justify-between">
         
@@ -26,11 +27,12 @@
             type="password"
             maxlength="16"
             placeholder="请输入新登录密码"
+            style="border: none;border-radius: 32rpx;"
           ></wk-input>
         </view>
           </view>
           <view class="mt-[24rpx]">
-            <view class="mb-[10rpx] text-base text-neutral font-medium">确认密码</view>
+            <view class="mb-[10rpx] text-base text-neutral-regular font-medium">确认密码</view>
             <view 
           class="flex flex-row items-center justify-between">
     
@@ -40,6 +42,7 @@
             type="password"
             maxlength="16"
             placeholder="请输入确认密码"
+            style="border: none;border-radius: 32rpx;"
           ></wk-input>
         </view>
           </view>

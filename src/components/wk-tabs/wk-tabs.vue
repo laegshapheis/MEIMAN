@@ -54,7 +54,7 @@ const attrs = useAttrs();
 const props = defineProps({
   bottomBorderColor: {
     type: String,
-    default: '#06f',
+    default: '#010101',
   },
   itemStyle: {
     type: Object,
@@ -87,7 +87,7 @@ const props = defineProps({
   },
   lineColor: {
     type: String,
-    default: '#06f',
+    default: '#010101',
   },
   lineHeight: {
     type: String,
@@ -174,7 +174,7 @@ const buttonItemStyle = computed(() => ({
   border-top-right-radius: 24rpx;
 }
 :deep(.uv-tabs__wrapper__nav) {
-  border-bottom: 2px solid #06F;
+  border-bottom: 2px solid #010101;
 }
 
 :deep(.button-mode .uv-tabs__wrapper__nav) {

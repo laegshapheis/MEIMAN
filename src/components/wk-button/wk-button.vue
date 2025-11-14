@@ -38,7 +38,7 @@ const props = defineProps({
   },
   backgroundColor: {
     type: String,
-    default: neutral.buttonBg,
+    default: neutral.theme,
   },
   shadow: {
     type: String,
@@ -73,8 +73,8 @@ const buttonStyle = computed(() => {
       fontSize: "28rpx",
     },
     normal: {
-      height: "92rpx",
-      fontSize: "32rpx",
+      height: "102rpx",
+      fontSize: "36rpx",
     },
     large: {
       height: "102rpx",

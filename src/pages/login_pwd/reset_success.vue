@@ -1,5 +1,5 @@
 <template>
-  <layout navTitle="重置密码" bgType="bg-main">
+  <layout navTitle="重置密码" bgType="bg-main1">
     <view class="p-[32rpx]">
       <view class="flex flex-col justify-center items-center mb-[48rpx]">
         <image
@@ -11,7 +11,7 @@
       </view>
       <wk-stroke-bg shadow>
         <view
-          class="text-center px-[16rpx] py-[32rpx] rounded-[24rpx] flex flex-col justify-center items-center"
+          class="text-center px-[16rpx] py-[32rpx] rounded-[24rpx] flex flex-col justify-center items-center bg-[#F5F8FD]"
         >
           <view class="text-neutral-regular text-base">您的临时登录密码</view>
           <view class="flex flex-row justify-center items-center my-[32rpx]">
@@ -20,7 +20,7 @@
             </text>
           </view>
           <view
-            class="h-[64rpx] w-[160rpx] flex flex-row justify-center items-center border border-neutral-theme border-solid rounded-[16rpx]"
+            class="h-[64rpx] w-[160rpx] flex flex-row justify-center items-center border border-[#06F]/50 border-solid rounded-full"
           >
             <image
               class="w-[36rpx] h-[36rpx]"

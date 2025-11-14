@@ -1,5 +1,5 @@
 <template>
-  <layout navTitle="邮箱验证码" bgType="bg-main3">
+  <layout navTitle="邮箱验证码" bgType="bg-main1">
     <template #navRight>
       <view class="rounded-full px-[24rpx] py-[8rpx]">
       <text

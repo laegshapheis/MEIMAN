@@ -1,16 +1,16 @@
 <template>
-    <layout navTitle="创建账号" bgType="bg-main">
+    <layout navTitle="创建账号" bgType="bg-main1">
       <!-- <template #navRight>
         <wk-language-selector color="#252C2F" plain />
       </template> -->
       <!-- <logo class="mt-[48rpx]"/> -->
        <!-- <wk-stroke-bg shadow borderRadius="24rpx" class="mx-[32rpx] mt-[48rpx]"> -->
         <view class="flex flex-col justify-center items-center px-[32rpx]">
-          <text class="text-neutral-white text-3xl">
+          <text class="text-neutral-black text-3xl">
             欢迎创建你的账号
           </text>
-          <text @click="toLogin" class="text-neutral-regular text-base mt-[16rpx]">
-            已有账号？<text class="text-neutral-regular text-base underline">去登录</text>
+          <text @click="toLogin" class="text-base mt-[16rpx]" style="color: rgba(37, 44, 47, 0.75);">
+            已有账号？<text class="text-neutral-black text-base underline">去登录</text>
           </text>
         </view>
         <view class="box-border mt-[48rpx] px-[32rpx]">

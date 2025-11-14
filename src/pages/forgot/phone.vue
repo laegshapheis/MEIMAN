@@ -1,5 +1,5 @@
 <template>
-  <layout navTitle="重置登录密码" bgType="bg-main3">
+  <layout navTitle="重置登录密码" bgType="bg-main1">
     <!-- <template #navRight>
       <wk-language-selector color="#252C2F" plain />
     </template> -->

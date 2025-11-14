@@ -9,7 +9,7 @@
             :type="getInputType(field)"
             :placeholder="field.placeholder"
             @input="(value) => handleInput(value, field)"
-            style="border: none;"
+            style="border: none;border-radius: 32rpx;"
             bgColor="#FFFFFF"
           >
           <template v-slot:prefix>
@@ -26,6 +26,7 @@
                 ref="countryCodePicker"
                 :flagIcon="field.icon"
                 @change="handleCountryChange"
+                style="background: #F5F8FD;border-radius: 16rpx;padding: 16rpx 8rpx;"
               />
             </view>
             

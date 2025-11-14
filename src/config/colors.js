@@ -1,6 +1,6 @@
 export const neutral = {
   DEFAULT: '#010101', // 默认字体白色
-  theme: '#06f', // 主题色
+  theme: '#2935CC', // 主题色
   regular: '#252C2F', // 常规字体
   secondary: 'rgba(37, 44, 47, 0.75)', // 次要字体
   light: 'rgba(37, 44, 47, 0.75)', // 轻量字体
