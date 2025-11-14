@@ -1,15 +1,15 @@
 <template>
   <view class="relative flex flex-col mt-[32rpx]">
-    <view class="flex flex-row items-center flex-1 gap-[24rpx] flex-shrink-0">
+    <view class="flex flex-row items-center flex-1 justify-between">
       <view
         v-for="item in rightList"
         :key="item"
         @click="goToPath(item.path, item.type)"
-        class="h-[192rpx] w-[224rpx] item-bg flex flex-col py-[16rpx] justify-center items-center rounded-[24rpx]"
-        style="border: 1px solid rgba(255, 255, 255, 0.05);background: rgba(255, 255, 255, 0.05);backdrop-filter: blur(8px);"
+        class="h-[112rpx] w-[186rpx]  flex flex-col p-[16rpx] justify-center items-center rounded-[32rpx]"
+        style="backdrop-filter: blur(10px);background: rgba(255, 255, 255, 0.75);"
       >
-        <image :src="item.icon" class="w-[96rpx] h-[96rpx]" mode="heightFix" />
-        <view class="text-[#FFFFFF] text-center mt-[16rpx]">
+        <image :src="item.icon" class="w-[40rpx] h-[32.8rpx]" mode="widthFix" />
+        <view class="text-neutral-black text-center">
           <text class="font-[400] text-base" style="line-height: 44rpx;">{{ item.title }}</text>
         </view>
       </view>

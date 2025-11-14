@@ -1,13 +1,13 @@
 <template>
   <view
-    class="relative gab-[16rpx] rounded-[8rpx] flex flex-col items-center"
+    class="relative gab-[32rpx] flex flex-col items-center bg-white rounded-[32rpx] py-[16rpx] px-[32rpx]"
+    style="border: 1px solid #B9DCFF;"
     @click="handleClick"
   >
-    <view class="flex items-center justify-center rounded-full w-[112rpx] h-[112rpx]"
-    style="background: #195295">
-      <image class="w-[48rpx] h-[48rpx]" :src="icon" mode="widthFix" />
+    <view class="flex items-center justify-center w-[48rpx] h-[28rpx] py-[6rpx] px-[8rpx]">
+      <image :src="icon" mode="widthFix" />
     </view>
-    <view class="mt-[16rpx] text-neutral-white text-sm" style="font-weight: 600;">{{
+    <view class="mt-[16rpx] text-neutral-black text-sm" style="font-weight: 600;">{{
       title
     }}</view>
   </view>

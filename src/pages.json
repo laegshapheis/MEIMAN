@@ -50,9 +50,6 @@
       "path": "pages/website/website",
       "style": {
         "navigationBarTitleText": "公司官网",
-        "enablePullDownRefresh": false,
-        "navigationBarBackgroundColor": "",
-        "navigationStyle": "custom",
         "navigationBarTextStyle": "white"
       }
     },

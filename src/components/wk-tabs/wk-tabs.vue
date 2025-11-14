@@ -142,7 +142,7 @@ const computedActiveStyle = computed(() => ({
   color: "#fff",
   // border: "4rpx solid #252628",
   fontWeight: "bold",
-  backgroundColor: "#06F",
+  backgroundColor: "#000000",
   ...props.activeStyle,
 }));
 

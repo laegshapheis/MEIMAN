@@ -3,8 +3,8 @@
     class="mb-[20rpx] w-full box-border px-[32rpx] flex items-center"
   >
     <view 
-    style="background: rgba(25, 82, 149, 0.25)"
-    class="w-full flex flex-row items-center justify-between rounded-full py-[0rpx] px-[16rpx]">
+    style="background: rgba(255, 255, 255, 0.75)"
+    class="w-full flex flex-row items-center justify-between rounded-[24rpx] py-[0rpx] px-[16rpx]">
       <image
         class="w-[48rpx] h-[48rpx] mr-[16rpx]"
         src="/static/images/index/notice.svg"
@@ -17,7 +17,7 @@
           scrollable
           :speed="20"
           :fontSize="14"
-          color="#FFFFFF90"
+          color="#010101"
           :text="content"
           @click="open"
         ></uni-notice-bar>

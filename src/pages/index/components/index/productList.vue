@@ -3,7 +3,7 @@
     <view
       class="relative box-border flex flex-row items-center justify-between pb-[32rpx] px-[32rpx]"
     >
-      <text class="text-xl font-bold text-white">产品严选</text>
+      <text class="text-2xl text-neutral-black">产品严选</text>
       <view @click="goToProductList" class="flex flex-row items-center leading-6">
         <!-- <text class="text-base text-[#B676FF] font-medium mr-[6rpx]"
           >查看全部</text
@@ -13,84 +13,78 @@
           size="14"
           color="#B676FF"
         ></uv-icon> -->
-        <image src="/static/images/index/index_right.svg" class="w-[96rpx] h-[96rpx]" mode="widthFix"></image>
+        <image src="/static/images/index/index_right.svg" class="w-[48rpx] h-[48rpx]" mode="widthFix"></image>
       </view>
     </view>
-    <scroll-view
-      scroll-x="true"
-      class="w-full"
-      :show-scrollbar="false"
-      style="white-space: nowrap;"
-    >
-      <view class="flex flex-row gap-[16rpx] box-border px-[32rpx]">
+    <view class="w-full">
+      <view class="flex flex-col gap-[20rpx] box-border px-[32rpx]">
         <view
           v-for="item in list"
           :key="item.id"
-          :class="['flex-shrink-0 px-[24rpx] py-[24rpx] box-border rounded-[24rpx] gradient-border', list.length === 1 ? 'w-full' : 'w-[640rpx]']"
+          class="w-full px-[24rpx] py-[24rpx] box-border rounded-[24rpx] gradient-border"
         >
           <!-- First row: Title -->
-          <view class="mb-[8rpx] overflow-hidden">
-            <text class="text-white block" style="font-size: 24px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+          <view class="mb-[8rpx] flex flex-row items-center gap-[20rpx]">
+            <!-- Image -->
+            <view class="w-[240rpx] h-[136rpx] overflow-hidden rounded-[24rpx] relative bg-white"
+            :style="{ aspectRatio: '30/17' }">
+              <image
+                :src="item.pic"
+                class="w-full"
+                mode="widthFix"
+              ></image>
+            </view>
+            <text class="text-neutral-black" style="font-size: 30rpx; font-weight: 500; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical;">
               {{ item.title }}
             </text>
           </view>
 
           <!-- Second row: Subtitle -->
-          <view class="mb-[24rpx]">
+          <!-- <view class="mb-[24rpx]">
             <text class="text-sm text-gray-300">{{ item.category_name }}</text>
-          </view>
+          </view> -->
+          <view class="w-full bg-[#F5F8FD] pt-[16rpx] mt-[40rpx] rounded-[32rpx]">
+              <!-- Third row: Key metrics -->
+              <view class="flex flex-row justify-between items-center px-[36rpx] mb-[20rpx] text-neutral-black">
+                <!-- Investment days -->
+                <view class="flex flex-col items-center">
+                  <text class="text-sm text-neutral-secondary">
+                      投资天数
+                  </text>
+                  <text class="text-2xl font-bold mb-[4rpx]">
+                    {{ item.shijian * item.cycle }} 
+                    <text class="text-sm">{{ item.hkfs == 2 ? "小时" : "天" }}</text>
+                  </text>
+                </view>
 
-          <!-- Third row: Key metrics -->
-          <view class="flex flex-row justify-between items-center mb-[32rpx] text-white">
-            <!-- Investment days -->
-            <view class="flex flex-col items-center item_card">
-              <text class="text-sm">
-                  投资天数
-              </text>
-              <text class="text-2xl font-bold mb-[4rpx]">
-                {{ item.shijian * item.cycle }} 
-                <text class="text-sm">{{ item.hkfs == 2 ? "小时" : "天" }}</text>
-              </text>
-            </view>
+                <!-- Minimum investment amount -->
+                <view class="flex flex-col items-center">
+                  <text class="text-sm text-neutral-secondary">起投金额</text>
+                  <text :class="getAmountFontSize(item.qtje)" class="font-bold mb-[4rpx]">
+                    {{ item.qtje == item.zgje ? item.qtje : item.qtje }}
+                    <text class="text-sm">{{ symbolStore.code }}</text>
+                  </text>
+                </view>
 
-            <!-- Minimum investment amount -->
-            <view class="flex flex-col items-center item_card">
-              <text class="text-sm">起投金额</text>
-              <text :class="getAmountFontSize(item.qtje)" class="font-bold mb-[4rpx]">
-                {{ item.qtje == item.zgje ? item.qtje : item.qtje }}
-                <text class="text-sm">{{ symbolStore.code }}</text>
-              </text>
-            </view>
+                <view class="flex flex-col items-center">
+                  <text class="text-sm text-neutral-secondary">日利率</text>
+                  <text class="text-2xl font-bold mb-[4rpx]">
+                    {{ item.jyrsy }}
+                    <text class="text-sm">%</text>
+                  </text>
+                </view>
+              </view>
 
-            <view class="flex flex-col items-center item_card">
-              <text class="text-sm">日利率</text>
-              <text class="text-2xl font-bold mb-[4rpx]">
-                {{ item.jyrsy }}
-                <text class="text-sm">%</text>
-              </text>
-            </view>
-          </view>
-
-          <!-- Fourth row: Image and CTA button -->
-          <view class="flex flex-row items-end justify-between">
-            <!-- Image -->
-            <view class="w-[320rpx] h-[180rpx] overflow-hidden rounded-[16rpx] relative" style="aspect-ratio: 16/9;border: 1px solid #FFFFFF30">
-              <image
-                :src="item.pic"
-                style="width: 100%; height: 100%; object-fit: contain; object-position: center;"
-              ></image>
-            </view>
-
-            <!-- CTA button -->
-            <view class="rounded-full bg-[#000000] flex items-center justify-center px-[32rpx] py-[16rpx]" @click="goToProductDetail(item.id)">
-                <text class="text-sm text-white">去投资</text>
-                <uv-icon name="arrow-right" size="14" color="#FFFFFF" class="ml-[8rpx]"></uv-icon>
-            </view>
+              <!-- Fourth row: Image and CTA button -->
+                <!-- CTA button -->
+                <view class="rounded-full bg-[#000000] flex items-center justify-center px-[32rpx] py-[16rpx]" @click="goToProductDetail(item.id)">
+                    <text class="text-sm text-white">去投资</text>
+                    <uv-icon name="arrow-right" size="10" color="#FFFFFF" class="ml-[8rpx]"></uv-icon>
+                </view>
           </view>
         </view>
-        <view class="w-[32rpx] flex-shrink-0" v-if="list.length > 1"></view>
       </view>
-    </scroll-view>
+    </view>
   <!-- </wk-stroke-bg> -->
 </template>
 
@@ -167,17 +161,9 @@ const goToProductDetail = async (id) => {
 }
 
 .gradient-border {
-  border-radius: 24px;
+  border-radius: 32rpx;
   border: 1px solid  rgba(255, 255, 255, 0.30);
-  background: rgba(255, 255, 255, 0.01);
-  backdrop-filter: blur(12px);
+  background: #FFFFFF;
+  backdrop-filter: blur(12px)
 }
-
-.item_card {
-  border-radius: 12px;
-  border: 0.5px solid rgba(255, 255, 255, 0.10);
-  background: rgba(255, 255, 255, 0.10);
-  padding: 8px 16px;
-}
-
 </style>

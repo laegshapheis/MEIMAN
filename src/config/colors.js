@@ -2,7 +2,7 @@ export const neutral = {
   DEFAULT: '#010101', // 默认字体白色
   theme: '#2935CC', // 主题色
   regular: '#252C2F', // 常规字体
-  secondary: 'rgba(37, 44, 47, 0.75)', // 次要字体
+  secondary: 'rgba(37, 44, 47, 0.50)', // 次要字体
   light: 'rgba(37, 44, 47, 0.75)', // 轻量字体
   placeholder: '#252C2F75', // 输入框占位符
   disabled: '#C0C4CC', // 禁用状态

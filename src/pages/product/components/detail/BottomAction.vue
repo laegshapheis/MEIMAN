@@ -3,14 +3,11 @@
     class="fixed bottom-0 left-0 right-0 flex flex-col items-center justify-center"
   >
     <view
-      class="bg-[#06F] py-[16rpx] px-[32rpx] box-border flex flex-col w-full items-center justify-center rounded-t-[48rpx]"
+      class="bg-[#000] py-[16rpx] px-[32rpx] box-border rounded-t-[48rpx] flex flex-col w-full items-center justify-center"
       v-if="productview.ismake == 1 && productview.ismake2 == 1"
       >
-      <wk-button
-        :isShowShadow="false"
-        backgroundColor="transparent"
-        borderRadius="720rpx"
-        class="flex flex-row w-full h-[100rpx] items-center justify-center text-xl"
+      <view
+        class="flex flex-row w-full h-[100rpx] items-center justify-center bg-transparent rounded-[720rpx]"
         v-if="productview.presale == 0"
       >
         <view class="flex flex-col items-center text-sm justify-center text-[#FFFFFF]">
@@ -56,9 +53,9 @@
             </view>
           </uv-count-down>
         </view>
-      </wk-button>
+      </view>
     </view>
-    <view v-else class="bg-neutral-bottomBtnBg py-[16rpx] pt-[0] w-full box-border rounded-t-[48rpx] overflow-hidden">
+    <view v-else class="bg-neutral-bottomBtnBg py-[16rpx] pt-[0] w-full box-border overflow-hidden">
       <view
         class="text-[#000] text-base text-center mb-[10rpx] bg-[#9AEEDE] w-full h-[76rpx]"
         style="line-height: 76rpx;"

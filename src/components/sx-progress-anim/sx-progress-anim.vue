@@ -76,7 +76,7 @@ const props = defineProps({
   }
   .progress-item-anim {
     // box-shadow: inset 0rpx 2rpx 8rpx #ffffff;
-    background: linear-gradient(90deg, #4EB2FE 0%, #0479FE 100%);
+    background: linear-gradient(270deg,  #2935CC -8.49%, #98EDFB 100%);
   }
   .progress-s {
     animation-delay: 1s;

@@ -1,7 +1,7 @@
 <template>
-  <view  class="py-[16rpx] flex flex-row items-center justify-between fixed top-0 left-0 right-0 z-10"
-  style="background: linear-gradient(180deg, #011531 0%, #011B3D 100%); padding-top: calc(16rpx + var(--status-bar-height));">
-    <image src="/static/images/index/logo.png" class="w-[214rpx] h-[74rpx]" mode="widthFix" />
+  <view  class="py-[16rpx] flex flex-row items-center justify-between mb-[16rpx]"
+  style="padding-top: calc(16rpx + var(--status-bar-height));">
+    <image src="/static/images/index/logo.png" class="w-[151.6rpx] h-[48rpx]" mode="widthFix" />
     <view>
       <image @click="handleShopIcon" src="/static/images/index/shoping.svg" class="w-[72rpx] h-[72rpx]" mode="widthFix" />
       <image @click="handleQiandao" src="/static/images/index/qiandao.svg" class="w-[72rpx] h-[72rpx] ml-[16rpx]" mode="widthFix" />

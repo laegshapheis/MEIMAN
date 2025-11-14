@@ -4,17 +4,13 @@
     :refresher="true"
     ref="layoutRef"
     @onRefresh="handleRefresh"
-    bgType="bg-main1"
+    bgType="bg-main3"
     @onScroll="handleScroll"
   >
     <view class="pt-[16rpx] relative">
       <view>
         <view class="h-[var(--status-bar-height)] bg-transparent"></view>
         <home-header :isAuth="isAuth" class="px-[32rpx]" />
-        <view class="flex flex-col items-start justify-start px-[32rpx] mt-[210rpx]">
-          <image  src="/static/images/index/index_title.png" class="w-[314rpx] h-[74rpx]" mode="widthFix" />
-          <view class="text-sm text-white my-[20rpx]">天空，不再只是风景，让我们飞越城市的下一个维度。</view>
-        </view>
 
         <!-- 系统公告 -->
         <system-notice
@@ -25,9 +21,17 @@
           @open="handleOpenNotice"
         />
 
+
+        <!-- <view class="flex flex-col items-start justify-start px-[32rpx] mt-[210rpx]">
+          <image  src="/static/images/index/index_title.png" class="w-[314rpx] h-[74rpx]" mode="widthFix" />
+          <view class="text-sm text-white my-[20rpx]">天空，不再只是风景，让我们飞越城市的下一个维度。</view>
+        </view> -->
+
+        
+
         <!-- 功能导航 -->
         <view
-          :class="`flex flex-row items-center justify-between gap-2 rounded-32] mx-[32rpx] px-[32rpx] py-[24rpx] mb-[32rpx]`"
+          :class="`flex flex-row items-center justify-between mx-[32rpx] mb-[48rpx] mt-[32rpx]`"
         >
           <template v-for="(item, index) in functionList" :key="index">
             <function-item
@@ -136,6 +140,11 @@ const functionList = computed(() => {
       title: "行业前景",
     },
     {
+      path: routes.articleInfo + `?id=35`,
+      icon: "/static/images/index/website.svg",
+      title: "公司资质",
+    },
+    {
       path: routes.articleInfo + `?id=64`,
       icon: "/static/images/index/baozhang.svg",
       title: "安全保障",
@@ -143,14 +152,14 @@ const functionList = computed(() => {
   ];
 
   // 根据 website_switch 配置决定是否显示公司官网
-  const websiteSwitch = getPermission("website_switch");
-  if (websiteSwitch == 1) {
-    list.splice(2, 0, {
-      path: routes.website,
-      icon: "/static/images/index/website.svg",
-      title: "公司官网",
-    });
-  }
+  // const websiteSwitch = getPermission("website_switch");
+  // if (websiteSwitch == 1) {
+  //   list.splice(2, 0, {
+  //     path: routes.website,
+  //     icon: "/static/images/index/website.svg",
+  //     title: "公司资质",
+  //   });
+  // }
 
   return list;
 });
