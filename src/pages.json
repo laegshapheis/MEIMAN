@@ -1020,13 +1020,13 @@
   },
   "tabBar": {
     "custom": true,
-    "color": "#99C2FF",
-    "selectedColor": "#FFF",
-    "backgroundColor": "#06F",
+    "color": "#CBD4DB",
+    "selectedColor": "#2A6ED4",
+    "backgroundColor": "#FFF",
     "fontSize": "12px",
     "height": "56px",
     "iconWidth": "24px",
-    "borderRadius": "20rpx",
+    "borderRadius": "0px",
     "list": [
       {
         "pagePath": "pages/index/index",

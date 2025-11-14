@@ -122,8 +122,8 @@
    background-color: theme('colors.neutral.showModal.bgColor') !important;
   }
   .uni-tabbar-bottom .uni-tabbar {
-    border-top-left-radius: 24rpx !important;
-    border-top-right-radius: 24rpx !important;
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
     overflow: hidden;
   }
 }
