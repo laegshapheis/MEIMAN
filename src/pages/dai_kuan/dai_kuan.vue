@@ -14,7 +14,7 @@
 
     <view class="px-page-x pt-page-y pb-[150rpx]">
       <view
-        class="rounded-[32rpx] h-[244rpx] bg-card3"
+        class="rounded-[48rpx] h-[244rpx] bg-card3"
       >
         <view
           class="flex flex-row h-full items-center justify-around px-[48rpx]"
@@ -41,10 +41,10 @@
       <!-- 内容区域 => 开始 -->
       <wk-stroke-bg  
         shadow
-        class="mt-[32rpx] p-[32rpx] rounded-[16rpx]">
+        class="mt-[32rpx] p-[32rpx] rounded-[48rpx]">
         <view class="text-lg text-neutral font-medium">贷款金额</view>
         <view
-          class="h-[112rpx] bg-black/5 border-[length:1rpx] border-black/10 border-solid rounded-[24rpx] mt-[24rpx] px-[24rpx]"
+          class="h-[112rpx] bg-black/5 rounded-[24rpx] mt-[24rpx] px-[24rpx]"
         >
           <input
             type="number"

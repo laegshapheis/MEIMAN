@@ -25,13 +25,13 @@
       <view class="mt-[28rpx]">
         <view class="flex flex-row items-center justify-between">
           <text class="text-neutral text-lg font-medium">提前还款金额</text>
-          <text class="text-neutral-theme text-base font-medium"
+          <text class="text-neutral-theme text-base"
             >投资余额 {{ amount }} {{ symbolStore.code }}</text
           >
         </view>
 
         <view class="flex flex-row items-center justify-between mt-[36rpx]">
-          <text class="text-neutral text-base font-medium">还款编号 {{ contractNo }}</text>
+          <text class="text-neutral text-base">还款编号 {{ contractNo }}</text>
         </view>
 
         <view

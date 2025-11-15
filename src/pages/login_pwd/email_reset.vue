@@ -13,6 +13,7 @@
                 leftIcon=""
                 v-model="formData.email_mask"
                 placeholder="请输入邮箱"
+                style="border: none;border-radius: 720rpx;"
                 readonly
                 class="w-full"
               />
@@ -43,6 +44,7 @@
             placeholder="请输入验证码"
             :maxlength="6"
             leftIcon="/static/images/base/verify.svg"
+            style="border: none;border-radius: 720rpx;"
           />
         </view>
           </view>
@@ -60,6 +62,7 @@
             maxlength="16"
             leftIcon=""
             placeholder="请输入新登录密码"
+            style="border: none;border-radius: 720rpx;"
           ></wk-input>
         </view>
           </view>
@@ -77,6 +80,7 @@
             maxlength="16"
             placeholder="请输入确认密码"
             leftIcon=""
+            style="border: none;border-radius: 720rpx;"
           ></wk-input>
         </view>
           </view>

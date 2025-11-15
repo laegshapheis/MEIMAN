@@ -27,7 +27,7 @@
     <template v-slot:suffix>
       <view v-if="type === 'password'" @click="handleShowPassword">
         <uv-icon
-          :color="'#252C2F'"
+          :color="'#252C2F50'"
           v-if="!showPassword"
           class="w-[40rpx] h-[40rpx] ml-[10rpx]"
           name="eye"
@@ -36,7 +36,7 @@
         />
         <uv-icon
           v-else
-          :color="'#252C2F'"
+          :color="'#252C2F50'"
           size="35rpx"
           class="w-[40rpx] h-[40rpx] ml-[10rpx]"
           name="eye-off-outline"
