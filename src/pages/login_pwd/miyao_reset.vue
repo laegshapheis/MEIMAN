@@ -13,6 +13,7 @@
               v-model="old_password"
               maxlength="12"
               type="number"
+              style="border: none;border-radius: 720rpx;"
               placeholder="请输入12位密钥"
             ></wk-input>
           </view>
@@ -27,6 +28,7 @@
             @input="(val) => passKey(val, 'b')"
             v-model="new_password"
             type="password"
+            style="border: none;border-radius: 720rpx;"
             maxlength="16"
             placeholder="请输入新登录密码"
           ></wk-input>
@@ -42,6 +44,7 @@
             @input="(val) => passKey(val, 'c')"
             v-model="password"
             type="password"
+            style="border: none;border-radius: 720rpx;"
             maxlength="16"
             placeholder="请输入确认密码"
           ></wk-input>

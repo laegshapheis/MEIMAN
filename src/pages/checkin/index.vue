@@ -36,7 +36,7 @@
           class="flex flex-col items-center rounded-[48rpx] p-[32rpx] w-[312rpx] mx-auto box-border"
           style="
             border: 1rpx solid #FFFFFF;
-            background: linear-gradient(110deg, #FFF 6.48%, #FFDABD 83.04%);
+            background: linear-gradient(144deg, rgba(224, 213, 255, 0.50) 5.38%, rgba(212, 247, 255, 0.50) 90.45%), linear-gradient(180deg, #F4ECFF 0%, #FFF 51.44%, #D6EEFF 95.67%);
           "
         >
           <text class="text-black text-base font-medium">已经签到</text>
@@ -50,7 +50,7 @@
             <wk-button
               class=""
               backgroundColor="transparent"
-              style="background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), linear-gradient(110deg, #7D5A44 6.48%, #D5AD8D 83.04%);border-radius: 48rpx;"
+              style="background: linear-gradient(93deg, #AE91FC 2.34%, #636EFF 58.39%, #2BBFF1 112.31%);border-radius: 48rpx;"
               color="#FFFFFF"
               @submit="() => signToday()"
               v-if="!isSigned(data.selDay)"
@@ -65,26 +65,25 @@
               @submit="() => {}"
               >已签到</wk-button
             >
-
-
           </view>
         </view>
       </view>
-      <view class="text-white text-xl font-semibold mt-[32rpx] text-center">{{
+      <view class="text-black text-xl font-semibold mt-[52rpx] text-center">{{
         data.date
       }}</view>
+      <view class="text-[#868B90] text-base mt-[16rpx] text-center">未签到日期可点击对应日历补签</view>
       <view class="relative z-20 qd-tab-box mt-[16rpx]">
         <view class="qd-item-box">
           <view
             v-for="day in data.days"
             :key="day"
             :class="[
-              'flex flex-col items-center justify-center p-[8rpx] text-lg rounded-[24rpx] border border-solid ',
+              'flex flex-col items-center justify-center p-[8rpx] text-lg py-[0rpx]',
             ]"
-            :style="getDayStyle(day)"
+            :style="{ ...getDayStyle(day), height: '112rpx' }"
             @click="handleDay(day)"
           >
-            <image
+            <!-- <image
               v-if="isSigned(day)"
               class="w-[56rpx] h-[56rpx] mb-[10rpx]"
               src="/static/images/index/qd-xing-xing.svg"
@@ -95,8 +94,18 @@
               class="w-[56rpx] h-[56rpx] mb-[10rpx]"
               src="/static/images/index/star_gray.svg"
               mode="widthFix"
-            ></image>
+            ></image> -->            
+            <view
+              :class="['text-black font-bold']"
+              >{{ day }}</view
+            >
             <image
+              src="/static/images/index/check.svg"
+              mode="widthFix"
+              class="w-[24rpx] h-[24rpx] mt-[4rpx]"
+              v-if="isSigned(day)">
+            </image>
+            <!-- <image
               src="/static/images/index/buqian.svg"
               mode="widthFix"
               class="w-[48rpx] h-[48rpx]"
@@ -108,40 +117,34 @@
                 data.member_resign_switch == 1
               "
             >
-              </image 
-            >
-            <image
-              src="/static/images/index/check.svg"
-              mode="widthFix"
-              class="w-[24rpx] h-[24rpx] mt-[4rpx]"
-              v-else-if="isSigned(day)"
-              ></image
-            >
-            <view
-              :class="[isSigned(day) ? 'text-white font-bold' : 'text-white font-bold']"
-              v-else
-              >{{ day }}</view
-            >
+              </image> -->
+              <text class="text-sm font-bold text-[#E53935]" v-if="
+                data.finish &&
+                day >= data.resign_from_day &&
+                day < data.selDay &&
+                !isSigned(day) &&
+                data.member_resign_switch == 1
+              ">补签</text>
           </view>
         </view>
         
       </view>
 
       <view
-        class="mt-[32rpx] bg-[#201A11E5] rounded-[24rpx] p-[24rpx] border border-solid border-[#FFFFFF20]"
+        class="mt-[32rpx] bg-white rounded-[24rpx] p-[24rpx]"
         v-if="data.lxqiandao == 0 && data.dayarr.length !== 0"
       >
         <template v-if="data.member_resign_switch == 1">
           <view class="flex flex-row" @click="alertTips"
-            ><text class="mr-[8rpx] font-medium text-white text-lg">补签规则</text>
+            ><text class="mr-[8rpx] font-medium text-black text-lg">补签规则</text>
             <uv-icon
               size="32rpx"
-              color="#FFFFFF60"
+              color="#6E7B89"
               name="question-circle"
             ></uv-icon
           ></view>
-          <view class="w-full h-[1rpx] bg-[#FFFFFF26] mt-[16rpx]"></view>
-          <view class="text-white text-base mt-[16rpx]">
+          <view class="w-full h-[1rpx] bg-[transparent] mt-[16rpx]"></view>
+          <view class="text-[#6E7B89] text-base mt-[16rpx]">
             当前账号累计可以补签{{ data.resign_times }}次(每月最多补签{{
               data.max_resign_times
             }}次)
@@ -150,14 +153,14 @@
       </view>
 
       <view
-        class="mt-[32rpx] rounded-[24rpx] py-[24rpx] border border-solid border-[#FFFFFF20] bg-[#201A11E5]"
+        class="mt-[32rpx] rounded-[24rpx] py-[24rpx] bg-white"
         v-if="data.lxqiandao == 0 && data.dayarr.length !== 0"
       >
         <template v-if="data.member_resign_switch == 1">
           <view class="flex flex-row px-[24rpx]" @click="alertTips"
-            ><text class="mr-[8rpx] font-medium text-white text-lg">连续签到奖励</text>
+            ><text class="mr-[8rpx] font-medium text-black text-lg">连续签到奖励</text>
             </view>
-          <view class="w-full h-[1rpx] bg-[#FFFFFF]/40 mt-[16rpx]"></view>
+          <view class="w-full h-[1rpx] bg-[transparent] mt-[16rpx]"></view>
         </template>
 
         <scroll-view :scroll-y="true">
@@ -172,10 +175,9 @@
                 <image src="/static/images/user/qiandao_rewards.svg" mode="widthFix" class="w-[48rpx] h-[48rpx] mr-[16rpx]"/>
             </view>
             <view>
-              <view class="text-white text-sm font-medium">连签 {{ item.days }} 天</view>
+              <view class="text-black text-sm font-medium">连签 {{ item.days }} 天</view>
               <view 
-                class="text-sm font-bold ml-[8rpx]"
-                style="background: linear-gradient(110deg, #FFF 6.48%, #FFDABD 83.04%); -webkit-background-clip: text; background-clip: text; color: transparent;"
+                class="text-sm font-bold ml-[8rpx] text-neutral-theme"
                 >
                 <text v-if="item.sort == 1">+{{ item.reward }} {{ symbolStore.code }} 投资奖励</text>
                 <text v-if="item.sort == 2">+{{ item.reward }} 股权</text>
@@ -380,16 +382,31 @@ const canResign = (day) => {
 
 const getDayStyle = (day) => {
   if (isSigned(day)) {
-    // 正常签到样式
+    // 已签到样式
     return {
-      border: '1px solid rgba(255, 255, 255, 0.15)',
-      background: 'linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), linear-gradient(110deg, #7D5A44 6.48%, #D5AD8D 83.04%)',
+      borderRadius: 'var(--radius-card-m, 12px)',
+      border: '1px solid var(--color-text-default-disabled, rgba(37, 44, 47, 0.30))',
+      background: 'linear-gradient(180deg, #FBF3FF 0%, #EBF5FD 100%)',
+      boxShadow: '0 4px 4px 0 rgba(255, 255, 255, 0.25) inset',
+    };
+  } else if (
+    data.finish &&
+    day >= data.resign_from_day &&
+    day < data.selDay &&
+    !isSigned(day) &&
+    data.member_resign_switch == 1
+  ) {
+    // 补签样式
+    return {
+      borderRadius: 'var(--radius-card-m, 12px)',
+      border: '1px dashed #E53935',
+      background: 'rgba(255, 255, 255, 0.50)',
     };
   } else {
-    // 默认样式
+    // 未签到样式
     return {
-      border: '1px solid rgba(255, 255, 255, 0.125)',
-      background: 'rgba(0, 0, 0, 0.5)',
+      borderRadius: 'var(--radius-card-m, 12px)',
+      background: 'rgba(0, 0, 0, 0.10)',
     };
   }
 };

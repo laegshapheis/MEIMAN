@@ -4,7 +4,7 @@
     :refresher="true"
     @onRefresh="handleRefresh"
     navTitle="中奖记录"
-    bgType="bg-main"
+    bgType="bg-main5"
     
     @reachBottom="getPaginationList"
   >
@@ -14,6 +14,15 @@
           :list="typeList"
           :isButton="true"
           @change="changeType"
+          :activeStyle="{
+            background: '#FFFFFF25',
+            color: '#20242A',
+          }"
+          :inactiveStyle="{
+            background: 'transparent',
+            color: '#252C2F',
+            border: 'none'
+          }"
         ></wk-tabs>
       </view>
 

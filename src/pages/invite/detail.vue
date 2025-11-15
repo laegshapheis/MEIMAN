@@ -1,7 +1,7 @@
 <template>
   <layout
     navTitle="邀请好友"
-    bgType="bg-main3"
+    bgType="bg-main"
     ref="layoutRef"
     :refresher="true"
     @onRefresh="handleRefresh"
@@ -33,7 +33,7 @@
           </view>
         </view>
         <view
-          class="bg-[#FBFBFB] rounded-[16rpx] w-[360rpx] h-[360rpx] box-border mt-[32rpx]"
+          class="rounded-[16rpx] w-[360rpx] h-[360rpx] box-border mt-[32rpx]"
         >
           <view
             class="w-full h-full flex flex-col justify-center items-center mt-[5rpx]"
@@ -109,7 +109,7 @@
       css="background: #fff; box-sizing: border-box; position: relative; width: 750rpx; height: 100%; position: relative;"
     >
       <l-painter-image
-        src="/static/images/bg/main3.png"
+        src="/static/images/bg/main.png"
         css="position: absolute; top: 0; left: 0; z-index: -1;width: 100%; height: 100%;"
       />
       <l-painter-view

@@ -15,22 +15,21 @@
       <!-- start 列表 -->
       <view class="flex flex-col mb-[48rpx]">
         <wk-stroke-bg
-          class="rounded-[8rpx] flex flex-col min-h-[200rpx] p-[32rpx] mb-[24rpx] relative"
+          class="rounded-[24rpx] flex flex-col min-h-[200rpx] p-[32rpx] mb-[24rpx] relative"
           v-for="item in dataList"
-          bgColor="#201A11E5"
-          style="border: 1px solid rgba(255, 255, 255, 0.30);border-radius: 24rpx;"
+          bgColor="#FFFFFF"
           :key="item.id"
         >
           <view class="flex flex-col">
             <view class="flex flex-row justify-between mt-[16rpx]">
-              <text class="text-lg text-white font-medium">{{ item.moneylog_notice }}</text>
-              <text class="text-2xl font-semibold linegradient_text">{{
+              <text class="text-lg text-black font-medium">{{ item.moneylog_notice }}</text>
+              <text class="text-2xl font-semibold text-[#FF6135]">{{
                   item.moneylog_status + "" + item.moneylog_money
                 }}</text> 
             </view>
             
             <view class="flex flex-row justify-between mt-[16rpx]">
-              <text class="text-base text-white/50">{{
+              <text class="text-base text-[#6E7B89]">{{
                 item.created_at
               }}</text>
               
@@ -42,15 +41,15 @@
 
             <view class="flex flex-row justify-between items-center leading-5">
               <view class="flex flex-col items-start">
-                <text class="text-base text-white/50">原有股权</text>
-                <text class="text-lg font-bold mt-[8rpx] text-white">{{
+                <text class="text-base text-[#6E7B89]">原有股权</text>
+                <text class="text-lg font-bold mt-[8rpx] text-neutral-black">{{
                   item.moneylog_yuanamount
                 }}</text>
               </view>
 
               <view class="flex flex-col items-start">
-                <text class="text-base text-white/50">现有股权</text>
-                <text class="text-lg font-bold mt-[8rpx]  text-white">{{
+                <text class="text-base text-[#6E7B89]">现有股权</text>
+                <text class="text-lg font-bold mt-[8rpx]  text-neutral-black">{{
                   item.moneylog_houamount
                 }}</text>
                 
@@ -64,16 +63,16 @@
 
             <view class="flex flex-row justify-between items-center leading-5">
               <view class="flex flex-col items-start">
-                <text class="text-base text-white/50">原有积分</text>
-                <text class="text-lg font-bold mt-[8rpx] text-white">{{
+                <text class="text-base text-[#6E7B89]">原有积分</text>
+                <text class="text-lg font-bold mt-[8rpx] text-neutral-black">{{
                   item.moneylog_yuanamount
                 }}</text>
                 
               </view>
 
               <view class="flex flex-col items-start">
-                <text class="text-base text-white/50">现有积分</text>
-                <text class="text-lg font-bold mt-[8rpx] text-white">{{
+                <text class="text-base text-[#6E7B89]">现有积分</text>
+                <text class="text-lg font-bold mt-[8rpx] text-neutral-black">{{
                   item.moneylog_houamount
                 }}</text>
                 
@@ -87,15 +86,15 @@
 
             <view class="flex flex-row justify-between items-center leading-5">
               <view class="flex flex-col items-start">
-                <text class="text-base text-white/50">原有贷款额度</text>
-                <text class="text-lg font-bold mt-[8rpx] text-white">{{
+                <text class="text-base text-[#6E7B89]">原有贷款额度</text>
+                <text class="text-lg font-bold mt-[8rpx] text-neutral-black">{{
                   item.moneylog_yuanamount
                 }}</text>
               </view>
 
               <view class="flex flex-col items-start">
-                <text class="text-base text-white/50">现有贷款额度</text>
-                <text class="text-lg font-bold mt-[8rpx] text-white">{{
+                <text class="text-base text-[#6E7B89]">现有贷款额度</text>
+                <text class="text-lg font-bold mt-[8rpx] text-neutral-black">{{
                   item.moneylog_houamount
                 }}</text>
               </view>
@@ -108,16 +107,16 @@
 
             <view class="flex flex-row justify-between items-center leading-5">
               <view class="flex flex-col items-start">
-                <text class="text-base text-white/50">原有推广奖励</text>
-                <text class="text-lg font-bold mt-[8rpx] text-white">{{
+                <text class="text-base text-[#6E7B89]">原有推广奖励</text>
+                <text class="text-lg font-bold mt-[8rpx] text-neutral-black">{{
                   item.moneylog_yuanamount
                 }}</text>
                 
               </view>
 
               <view class="flex flex-col items-start">
-                <text class="text-base text-white/50">现有推广奖励</text>
-                <text class="text-lg font-bold mt-[8rpx] text-white">{{
+                <text class="text-base text-[#6E7B89]">现有推广奖励</text>
+                <text class="text-lg font-bold mt-[8rpx] text-neutral-black">{{
                   item.moneylog_houamount
                 }}</text>
                 
@@ -150,15 +149,15 @@
 
             <view class="flex flex-row justify-between items-center leading-5">
               <view class="flex flex-col items-start">
-                <text class="text-base text-white/50">原有投资金额</text>
-                <text class="text-lg font-bold mt-[8rpx] text-white">{{
+                <text class="text-base text-[#6E7B89]">原有投资金额</text>
+                <text class="text-lg font-bold mt-[8rpx] text-neutral-black">{{
                   item.moneylog_yuanamount
                 }}</text>
               </view>
 
               <view class="flex flex-col items-start">
-                <text class="text-base text-white/50">现有投资金额</text>
-                <text class="text-lg font-bold mt-[8rpx] text-white">{{
+                <text class="text-base text-[#6E7B89]">现有投资金额</text>
+                <text class="text-lg font-bold mt-[8rpx] text-neutral-black">{{
                   item.moneylog_houamount
                 }}</text>
               </view>
@@ -190,15 +189,15 @@
 
             <view class="flex flex-row justify-between items-center leading-5">
               <view class="flex flex-col items-start">
-                <text class="text-base text-white/50">原有提现金额</text>
-                <text class="text-lg font-bold mt-[8rpx] text-white">{{
+                <text class="text-base text-[#6E7B89]">原有提现金额</text>
+                <text class="text-lg font-bold mt-[8rpx] text-neutral-black">{{
                   item.moneylog_yuanamount
                 }}</text>
               </view>
 
               <view class="flex flex-col items-start">
-                <text class="text-base text-white/50">现有提现金额</text>
-                <text class="text-lg font-bold mt-[8rpx] text-white">{{
+                <text class="text-base text-[#6E7B89]">现有提现金额</text>
+                <text class="text-lg font-bold mt-[8rpx] text-neutral-black">{{
                   item.moneylog_houamount
                 }}</text>
               </view>
@@ -249,15 +248,15 @@
 
             <view class="flex flex-row justify-between items-center leading-5">
               <view class="flex flex-col items-start">
-                <text class="text-base text-white/50">原有提现金额</text>
-                <text class="text-lg font-bold mt-[8rpx] text-white">{{
+                <text class="text-base text-[#6E7B89]">原有提现金额</text>
+                <text class="text-lg font-bold mt-[8rpx] text-neutral-black">{{
                   item.moneylog_yuanamount
                 }}</text>
               </view>
 
               <view class="flex flex-col items-start">
-                <text class="text-base text-white/50">现有提现金额</text>
-                <text class="text-lg font-bold mt-[8rpx] text-white">{{
+                <text class="text-base text-[#6E7B89]">现有提现金额</text>
+                <text class="text-lg font-bold mt-[8rpx] text-neutral-black">{{
                   item.moneylog_houamount
                 }}</text>
               </view>

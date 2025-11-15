@@ -3,7 +3,7 @@
     v-if="isEmpty"
     :is-empty="true"
     icon="/static/images/profile/wallet_usdt_icon.svg"
-    add-text="添加 USDT"
+    add-text="添加USDT钱包地址"
     @click="$emit('edit')"
     class="usdt-bg2"
   />

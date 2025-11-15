@@ -3,7 +3,7 @@
     <view class="mt-[24rpx]">
       <view class="">
         <wk-stroke-bg 
-          bgColor="#9AEEDE"
+          bgColor="#98EDFB"
           v-if="type == 0"
           shadow
           borderRadius="0"

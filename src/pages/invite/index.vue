@@ -13,7 +13,7 @@
           class="w-[240rpx] h-[240rpx]"
           mode="widthFix"
         ></image>
-        <text class="text-base text-neutral mt-[48rpx]"
+        <text class="text-base text-[#252C2F75] mt-[48rpx]"
           >请根据对方的手机系统进行邀请</text
         >
       </view>
@@ -32,6 +32,7 @@
                 <text class="text-sm text-gray-500 mt-[8rpx] block">{{ os.description }}</text>
               </view>
             </view>
+            <view class="h-[1px] bg-black/10 w-full my-[16rpx]"></view>
             <view class="flex gap-[16rpx] w-full">
               <wk-button
                 class="flex-1"

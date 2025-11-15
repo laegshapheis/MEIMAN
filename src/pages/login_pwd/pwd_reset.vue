@@ -12,7 +12,7 @@
             type="password"
             maxlength="16"
             placeholder="请输入登录密码"
-            style="border: none;border-radius: 32rpx;"
+            style="border: none;border-radius: 720rpx;"
           ></wk-input>
         </view>
           </view>
@@ -27,7 +27,7 @@
             type="password"
             maxlength="16"
             placeholder="请输入新登录密码"
-            style="border: none;border-radius: 32rpx;"
+            style="border: none;border-radius: 720rpx;"
           ></wk-input>
         </view>
           </view>
@@ -42,7 +42,7 @@
             type="password"
             maxlength="16"
             placeholder="请输入确认密码"
-            style="border: none;border-radius: 32rpx;"
+            style="border: none;border-radius: 720rpx;"
           ></wk-input>
         </view>
           </view>
