@@ -5,11 +5,11 @@
     </view>
 
     <view class="flex flex-col justify-center mt-[21rpx] px-[32rpx] py-[24rpx] rounded-[48rpx] 
-    bg-[#E5F0FF] border-[length:1rpx] border-solid border-[#06F]">
-      <view class="flex flex-row items-center justify-end grow-1">
+    bg-white">
+      <view class="flex flex-row items-center justify-end grow-1 bg-black/5 rounded-full">
         <uv-input
           maxlength="8"
-          class="bg-[#FFFFFF] mx-[16rpx] rounded-[32rpx] w-[40%] h-[80rpx] font-bold"
+          class="mx-[16rpx] rounded-[32rpx] w-[40%] h-[80rpx] font-bold"
           v-model="USDTInput"
           type="number"
           placeholder="请输入"
@@ -24,20 +24,20 @@
           inputAlign="left"
           :color="$colors.DEFAULT"
         />
-        <view class="flex flex-row items-center gap-[8rpx] bg-[#06F] rounded-[32rpx] px-[16rpx] py-[8rpx] text-white">
+        <view class="flex flex-row items-center gap-[8rpx] bg-white rounded-[32rpx] px-[16rpx] py-[8rpx] text-neutral mr-[16rpx]">
           <image class="w-[32rpx] h-[32rpx]" src="/static/images/profile/usdt_icon.png" mode="widthFix" />
           <text class="text-base">{{ symbolStore.exchangeUsdtLabel }}</text>
         </view>
       </view>
 
-      <view class="flex flex-row items-center justify-center mx-[10rpx] w-full my-[12rpx]">
-        <image src="/static/images/user/exchange_icon.svg" mode="widthFix" class="w-full h-[64rpx]" />
+      <view class="flex flex-row items-center justify-center mx-[10rpx] w-full my-[-12rpx]">
+        <image src="/static/images/user/exchange_icon.svg" mode="widthFix" class="w-[64rpx] h-[64rpx]" />
       </view>
 
-      <view class="flex flex-row items-center justify-start grow-1">
+      <view class="flex flex-row items-center justify-start grow-1 bg-black/5 rounded-[16rpx]">
         <uv-input
           maxlength="8"
-          class="bg-[#FFFFFF] mx-[16rpx] rounded-[360rpx] w-[40%] h-[80rpx] font-bold"
+          class="mx-[16rpx] rounded-[360rpx] w-[40%] h-[80rpx] font-bold"
           v-model="CNYInput"
           type="number"
           placeholder="请输入"
@@ -53,7 +53,7 @@
           inputAlign="left"
         />
         
-        <view class="flex flex-row items-center gap-[8rpx] bg-[#06F] rounded-[32rpx] px-[16rpx] py-[8rpx] text-white">
+        <view class="flex flex-row items-center gap-[8rpx] bg-white rounded-[32rpx] px-[16rpx] py-[8rpx] text-neutral mr-[16rpx]">
           <image class="w-[32rpx] h-[32rpx]" src="/static/images/profile/cny_icon.png" mode="widthFix" />
           <text class="text-base">CNY</text>
         </view>

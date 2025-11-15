@@ -206,7 +206,7 @@
               <view class="pb-[32rpx]">
                 <wk-stroke-bg class="flex flex-col" v-if="result.list.length > 0">
                   <view class="flex flex-col">
-                    <view class="flex flex-row justify-between bg-neutral-theme rounded-[360rpx] px-[32rpx] py-[16rpx]">
+                    <view class="flex flex-row justify-between bg-neutral-theme rounded-[24rpx] px-[32rpx] py-[16rpx]">
                       <text class="text-lg text-white">总计本息</text>
                       <text class="text-lg text-white font-bold">{{
                         result.zongshouyi
@@ -219,8 +219,9 @@
                       >
                     </view>
                     
+                    <view class="border-solid border-[length:1rpx] border-neutral-divider p-[0px] mt-[24rpx] rounded-[24rpx]">
                     <view
-                      class="grid grid-cols-4 justify-center items-center mt-[24rpx] gap-4 py-[20rpx] text-base border-solid border-[length:1rpx] border-neutral-divider rounded-t-[24rpx] px-[32rpx] bg-[#F3F5FC]"
+                      class="grid grid-cols-4 justify-center items-center  gap-4 py-[20rpx] text-base  rounded-t-[24rpx] px-[32rpx] bg-[#F3F5FC]"
                     >
                       <text class="text-left">收款日期</text>
                       <text class="text-center">收回本金</text>
@@ -229,7 +230,7 @@
                     </view>
 
                     <view
-                      class="grid grid-cols-4 gap-4 py-[32rpx] text-base text-neutral-regular justify-center items-start border-solid border border-neutral-divider border-[length:1rpx] px-[32rpx]"
+                      class="grid grid-cols-4 gap-4 py-[32rpx] text-base text-neutral-regular justify-center items-start border-solid border border-neutral-divider border-[length:1rpx] border-x-0 border-b-0 px-[32rpx]"
                       v-for="(item, index) in result.list"
                       :key="index"
                     >
@@ -242,13 +243,14 @@
                     </view>
                     
                     <view
-                      class="grid grid-cols-4 gap-4 py-[32rpx] px-[32rpx] border-solid border-[length:1rpx] border-neutral-divider text-base"
+                      class="grid grid-cols-4 gap-4 py-[32rpx] px-[32rpx] text-base"
                       :style="{borderBottomLeftRadius: '24rpx', borderBottomRightRadius: '24rpx', backgroundColor: '#F3F5FC'}"
                     >
                       <text class="text-left">总计</text>
                       <text class="text-center">{{ result.money }}</text>
                       <text class="text-center">{{ result.sumnum }}</text>
                       <text class="text-right">0</text>
+                    </view>
                     </view>
                   </view>
                 </wk-stroke-bg>

@@ -163,7 +163,7 @@
                 :class="[
                   'flex flex-col items-center',
                   currentLevel == item.level
-                    ? 'bg-[#06F] border-[length:2rpx] border-solid border-white/10 px-[24rpx] rounded-full text-base'
+                    ? 'bg-neutral border-[length:2rpx] border-solid border-white/10 px-[24rpx] rounded-full text-base'
                     : 'bg-[transparent] border-[length:2rpx] border-solid border-white/10 px-[24rpx] rounded-full text-base',
                 ]"
               >

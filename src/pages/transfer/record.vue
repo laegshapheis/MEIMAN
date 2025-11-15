@@ -88,9 +88,9 @@
 
           <view class="flex flex-col mt-[24rpx]">
             <view
-              class="flex flex-row text-base leading-5 text-neutral-regular"
+              class="flex flex-row text-base leading-5 text-neutral-regular justify-between items-center pb-[16rpx] border-b border-solid border-b-neutral-divider border-x-0 border-t-0"
             >
-              <text>转出金额：</text>
+              <text class="text-neutral-secondary">转出金额：</text>
               <text class="text-neutral-theme">
                 {{
                   item.istype == 0
@@ -109,17 +109,17 @@
             </view>
 
             <view
-              class="flex flex-row text-base leading-5 text-neutral-regular"
+              class="flex flex-row text-base leading-5 text-neutral-regular py-[16rpx] justify-between items-center"
             >
-              <text>转出时间：</text>
-              <text>{{ item.created_at }}</text>
+              <text class="text-neutral-secondary">转出时间：</text>
+              <text class="text-neutral-regular">{{ item.created_at }}</text>
             </view>
 
             <view
-              class="flex flex-row text-base leading-5"
-              v-if="item.status == -1"
+              class="flex flex-row text-base leading-5 justify-between items-start py-[16rpx] border-t border-solid border-t-neutral-divider border-x-0 border-b-0"
+              v-if="true || item.status == -1"
             >
-              <text class="whitespace-nowrap">取消原因：</text>
+              <text class="whitespace-nowrap text-neutral-secondary">取消原因：</text>
               <text
                 class="text-neutral-error"
                 v-if="item.status == -1 && item.zhuanuserid > 0"

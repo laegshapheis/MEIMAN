@@ -111,9 +111,9 @@
           </view>
 
           <view class="flex flex-col mt-[24rpx] text-neutral-regular">
-            <view class="flex flex-row text-base leading-6">
-              <text>提现金额：</text>
-              <text>
+            <view class="flex flex-row justify-between items-center text-base leading-6 pb-[16rpx] border-b border-solid border-b-neutral-divider border-x-0 border-t-0">
+              <text class="text-neutral-secondary">提现金额：</text>
+              <text class="text-neutral-regular">
                 {{
                   (item.amount * 100 + item.fee * 100) / 100 +
                   ` ${symbolStore.code}`
@@ -122,41 +122,41 @@
             </view>
             <view
               v-if="item.istype !== 0 && item.istype !== 3"
-              class="flex flex-row text-base leading-6"
+              class="flex flex-row text-base leading-6 justify-between items-center py-[16rpx] border-b border-solid border-b-neutral-divider border-x-0 border-t-0"
             >
-              <text>提现手续费：</text>
-              <text v-if="symbolStore.value == 'USDT'">
+              <text class="text-neutral-secondary">提现手续费：</text>
+              <text class="text-neutral-regular" v-if="symbolStore.value == 'USDT'">
                 {{
                   item.istype == 4 ? item.fee + " USDT" : item.feeCNY + " CNY"
                 }}
               </text>
-              <text v-else>
+              <text class="text-neutral-regular" v-else>
                 {{
                   item.istype == 4 ? item.feeCNY + " USDT" : item.fee + " CNY"
                 }}
               </text>
             </view>
 
-            <view class="flex flex-row text-base leading-6">
-              <text>到账金额：</text>
+            <view class="flex flex-row text-base leading-6 justify-between items-center py-[16rpx] border-b border-solid border-b-neutral-divider border-x-0 border-t-0">
+              <text class="text-neutral-secondary">到账金额：</text>
               <!-- istype 0 提现余额划转可用余额 4 USDT钱包提现 3 zz -->
               <text class="text-neutral-theme">
                 {{ handleGetAmount(item) }}
               </text>
             </view>
 
-            <view class="flex flex-row text-base leading-6">
-              <text>提现时间：</text>
-              <text>{{ item.created_at }}</text>
+            <view class="flex flex-row text-base leading-6 justify-between items-center py-[16rpx] border-b border-solid border-b-neutral-divider border-x-0 border-t-0">
+              <text class="text-neutral-secondary">提现时间：</text>
+              <text class="text-neutral-regular">{{ item.created_at }}</text>
             </view>
 
-            <view class="flex flex-row text-base leading-6">
-              <text>订单编号：</text>
-              <text>{{ item.id }}</text>
+            <view class="flex flex-row text-base leading-6 py-[16rpx] justify-between items-center">
+              <text class="text-neutral-secondary">订单编号：</text>
+              <text class="text-neutral-regular">{{ item.id }}</text>
             </view>
 
             <view
-              class="flex flex-row text-base leading-6"
+              class="flex flex-row text-base leading-6 justify-between items-center py-[16rpx] border-t border-solid border-t-neutral-divider border-x-0 border-b-0"
               v-if="item.status == -1"
             >
               <text class="whitespace-nowrap">取消原因：</text>

@@ -43,6 +43,10 @@
             :list="tabList"
             @change="handleChangeTab"
             :current="currentIndex"
+            :inactiveStyle="{
+              border: '0px solid #00000010',
+              backgroundColor: 'transparent',
+            }"
           />
         </view>
       </template>

@@ -43,6 +43,10 @@
           :isButton="true"
           :current="currentIndex"
           @change="handleChangeTab"
+          :inactiveStyle="{
+            border: '0px solid #00000010',
+            backgroundColor: 'transparent',
+          }"
           />
       </view>
     </template>

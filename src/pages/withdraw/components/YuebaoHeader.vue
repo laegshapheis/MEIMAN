@@ -18,7 +18,7 @@
       >
         <text class="text-white text-[30rpx] font-medium text-right">闲置资金再添利</text>
         <view class="flex flex-row items-center ml-[5rpx]"
-          ><uv-icon size="30rpx" :color="$colors.theme" name="arrow-right"></uv-icon
+          ><uv-icon size="30rpx" color="white" name="arrow-right"></uv-icon
         ></view>
       </view>
     </view>

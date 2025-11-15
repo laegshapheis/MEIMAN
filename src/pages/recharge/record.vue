@@ -64,6 +64,7 @@
         <wk-stroke-bg
           size="small"
           class="flex flex-col mb-[24rpx]"
+          borderRadius="24rpx"
           v-for="item in dataList"
           :key="item.id"
         >
@@ -92,9 +93,9 @@
           </view>
 
           <view class="flex flex-col mt-[24rpx] text-neutral-regular">
-            <view class="flex flex-row text-base leading-5">
-              <text>充值金额：</text>
-              <text>
+            <view class="flex flex-row justify-between items-center text-base leading-5 pb-[16rpx] border-b border-solid border-b-neutral-divider border-x-0 border-t-0">
+              <text class="text-neutral-secondary">充值金额：</text>
+              <text class="text-neutral-regular">
                 <!-- 银联充值 -->
                 <template
                   v-if="
@@ -123,25 +124,25 @@
               </text>
             </view>
 
-            <view class="flex flex-row text-base leading-5">
-              <text>到账金额：</text>
-              <text class="text-neutral-theme"
+            <view class="flex flex-row justify-between items-center text-base leading-5 py-[16rpx] border-b border-solid border-b-neutral-divider border-x-0 border-t-0">
+              <text class="text-neutral-secondary">到账金额：</text>
+              <text class="text-neutral-regular"
                 >{{ item.amount }} {{ symbolStore.code }}</text
               >
             </view>
 
-            <view class="flex flex-row text-base leading-5">
-              <text>充值时间：</text>
-              <text>{{ item.created_at }}</text>
+            <view class="flex flex-row justify-between items-center text-base leading-5 py-[16rpx] border-b border-solid border-b-neutral-divider border-x-0 border-t-0">
+              <text class="text-neutral-secondary">充值时间：</text>
+              <text class="text-neutral-regular">{{ item.created_at }}</text>
             </view>
 
-            <view class="flex flex-row text-base leading-5">
-              <text>订单编号：</text>
-              <text>{{ item.ordernumber }}</text>
+            <view class="flex flex-row  justify-between items-center text-base leading-5 py-[16rpx]">
+              <text class="text-neutral-secondary">订单编号：</text>
+              <text class="text-neutral-regular">{{ item.ordernumber }}</text>
             </view>
 
             <view
-              class="flex flex-row text-base leading-5"
+              class="flex flex-row justify-between items-center text-base leading-5 py-[16rpx] border-t border-solid border-t-neutral-divider border-x-0 border-b-0"
               v-if="item.status == -1"
             >
               <text class="whitespace-nowrap">取消原因：</text>

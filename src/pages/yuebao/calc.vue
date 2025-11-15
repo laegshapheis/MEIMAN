@@ -119,7 +119,7 @@
             <view class="pb-[32rpx]">
               <wk-stroke-bg class="flex flex-col" v-if="result.list.length > 0">
                 <view class="flex flex-col">
-                  <view class="flex flex-row justify-between bg-neutral-theme rounded-[360rpx] px-[32rpx] py-[16rpx]">
+                  <view class="flex flex-row justify-between bg-neutral-theme rounded-[24rpx] px-[32rpx] py-[16rpx]">
                     <text class="text-lg text-white">总计本息</text>
                     <text class="text-lg text-white font-bold">{{
                       result.total_interest
@@ -142,7 +142,7 @@
                   </view>
 
                   <view
-                    class="grid grid-cols-4 gap-4 py-[32rpx] text-base text-neutral-regular justify-center items-start border-solid border border-neutral-divider px-[32rpx]"
+                    class="grid grid-cols-4 gap-4 py-[32rpx] text-base text-neutral-regular justify-center items-start border-solid border border-[length:1rpx] border-neutral-divider border-b-0 px-[32rpx]"
                     v-for="(item, index) in result.list"
                     :key="index"
                     :style="{borderBottomLeftRadius: index === result.list.length - 1 ? '24rpx' : '0rpx', borderBottomRightRadius: index === result.list.length - 1 ? '24rpx' : '0rpx', backgroundColor: index === result.list.length - 1 ? '#F3F5FC' : 'transparent'}"

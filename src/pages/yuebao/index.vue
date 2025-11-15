@@ -126,10 +126,10 @@
       </view>
       <!-- end 顶部汇总信息 -->
       <wk-stroke-bg
-        class="rounded-[24rpx] flex flex-row justify-between items-center p-[16rpx] mt-[24rpx]"
+        class="rounded-[24rpx] flex flex-row justify-between items-center px-[16rpx] py-[8rpx] mt-[24rpx]"
       >
         <view
-          class="flex flex-col items-center bg-[#06F] rounded-[24rpx] p-[16rpx]"
+          class="flex flex-col items-center bg-neutral-theme rounded-[24rpx] p-[16rpx]"
         >
           <text class="text-lg font-bold text-white">
             {{ yuebaoInfo.ratduodeli }}%</text

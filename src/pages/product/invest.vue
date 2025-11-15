@@ -39,15 +39,15 @@
         :list="tabs" 
         :scrollable="false" 
         @change="handleTabChange"
-        className="bg-[#FFFFFF] rounded-[24rpx] border-[length:1rpx] border-solid border-black/10"
+        className="bg-[#FFFFFF] rounded-full border-[length:1rpx] border-solid border-black/10"
         :activeStyle="{
             color: '#FFFFFF',
             fontSize: '32rpx',
             textAlign: 'center',
             fontWeight: 500,
             border: '0px solid #000',
-            background: '#06F',
-            borderRadius: '16rpx',
+            background: $colors.DEFAULT,
+            borderRadius: '360rpx',
           }"
           :inactiveStyle="{
             color: '#252C2F',
