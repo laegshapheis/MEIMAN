@@ -1,7 +1,7 @@
 <template>
   <layout
-    navTitle="会员"
-    bgType="bg-main7"
+    navTitle=""
+    :bgType="bgType"
     ref="layoutRef"
     mode="white"
     :refresher="true"
@@ -20,7 +20,7 @@
       <z-swiper-item v-for="(item, index) in vip_icons" :key="index" :custom-style="{width:'276rpx'}">
         <view class="flex justify-center items-center">
           <image
-            class="h-[226rpx] w-[226rpx]"
+            class="h-[200rpx] w-[240rpx]"
             :class="[
               index === activeIndex
                 ? 'opacity-100 scale-[1.2]'
@@ -31,21 +31,21 @@
           >
           </image>
         </view>
+        
       </z-swiper-item>
     </z-swiper>
-    <!-- <view class="px-[32rpx]">
-      <image
-        src="/static/images/user/vip_icon_line.png"
-        mode="widthFix"
-        class="w-full h-[66rpx]"
-      />
-    </view> -->
+
+    <view class="px-[32rpx] -mt-[180rpx] mb-[32rpx]">
+          <image
+            :src="`/static/images/user/vip/line_${activeIndex}.png`"
+            mode="widthFix"
+            class="w-full h-[97px]"
+          />
+    </view>
+    
     <view class="px-[32rpx] pb-[24rpx] box-border w-full -mt-[20rpx]">
-      <view class="rounded-[32rpx] relative p-[32rpx] mt-[16rpx] bg-vip-card" style="border:none;">
+      <view class="rounded-[32rpx] relative p-[32rpx] mt-[16rpx]" :style="`background: ${cardBackground};`">
         <view class="flex flex-col">
-          <view class="mb-[10rpx] flex flex-row items-center justify-center py-[26rpx] gradient-text ">
-              {{ level }}
-          </view>
           <!-- <view
             class="mb-[10rpx] text-neutral-white text-base flex flex-row items-center justify-between"
           >
@@ -54,6 +54,22 @@
               {{ " " + single_recharge_amount + " " }} {{ symbolStore.code }}
             </text>
           </view> -->
+          <view
+            class="mb-[10rpx] text-white/50 text-base flex flex-row items-center justify-between"
+            style="border-bottom: 1rpx solid #FFFFFF1A;"
+          >
+            <text>您当前的等级</text>
+            <view
+              class="text-neutral-white text-base flex-row items-center justify-between pb-[16rpx]"
+            >
+              <image
+                src="/static/images/vip/vip_icon.svg"
+                mode="widthFix"
+                class="w-[32rpx] h-[32rpx] mr-[4rpx]"
+              />
+              {{ level }}
+            </view>
+          </view>
           <view
             class="mb-[10rpx] text-neutral-white text-base flex flex-row items-center justify-between pb-[16rpx]"
             style="border-bottom: 1rpx solid #FFFFFF1A;"
@@ -122,13 +138,13 @@
             </view>
             <view
               v-if="config.member_next == 1"
-              class="mt-[16rpx] text-neutral-white rounded-full py-1 px-2 text-sm bg-[#B38156]/20"
+              class="mt-[16rpx] text-neutral-white rounded-full py-1 px-2 text-sm bg-[#FFFFFF]/20"
             >
               <text class="flex-1 text-sm">单个一级会员需投资</text>
-              <text class="text-sm mx-[4rpx]">{{
+              <text class="text-sm mx-[4rpx] text-[#98EDFB]">{{
                 invite_min_invest_amount
               }}</text>
-              <text class="text-sm mr-[4rpx]">{{
+              <text class="text-sm mr-[4rpx] text-[#98EDFB]">{{
                 symbolStore.code
               }} </text>
               <text class="flex-1 text-sm">才能成为有效人数</text>
@@ -172,8 +188,7 @@
         </view>
         <view v-if="list.length !== 0" class="w-full">
           <view
-            class="flex flex-col p-[32rpx] mb-[32rpx] rounded-[24rpx]"
-            style="border: 1rpx solid rgba(224, 194, 160, 0.40);background: rgba(32, 26, 17, 0.90);"
+            class="flex flex-col p-[32rpx] mb-[32rpx] rounded-[24rpx] bg-[#FFFFFF]"
             v-for="item in mylevel && mylevel === lastlevel
               ? [list[list.length - 1]]
               : list"
@@ -197,10 +212,10 @@
                     :style="`width: ${
                       reward.labelWidth ? reward.labelWidth : '220rpx'
                     }`"
-                    class="text-white text-base flex flex-row items-center"
+                    class="text-[#8C3400CC] text-base flex flex-row items-center"
                     @click="reward.action && reward.action()"
                   >
-                    <text class="text-white/50">{{ reward.label }}</text>
+                    <text class="text-[#8C3400CC]">{{ reward.label }}</text>
                     <uv-icon
                       v-if="reward.labelIcon"
                       class="w-[30rpx] h-[30rpx] ml-[4rpx]"
@@ -210,10 +225,10 @@
                     />
                   </view>
                   <view class="flex flex-col flex-1 text-right justify-end">
-                    <text class="text-white text-base font-medium">
+                    <text class="text-[#8C3400CC] text-base font-medium">
                       {{ reward.value(item, config) }}
                     </text>
-                    <text class="text-base text-white">
+                    <text class="text-base text-[#8C3400CC]">
                       {{ reward.descKey ? config[reward.descKey] : "" }}
                     </text>
                   </view>
@@ -228,41 +243,44 @@
                 ></view>
               </template>
             </view>
-            <view class="p-[32rpx] rounded-[16rpx] bg-[#FFFFFF]/10 mt-[48rpx]">
+            <view class="p-[32rpx] rounded-[16rpx] bg-[#F0EAE2] mt-[48rpx]">
               <view
-                class="text-base font-medium text-center text-neutral-white"
+                class="text-base font-medium text-center text-[#8C3400CC]"
                 v-if="mylevel && mylevel === lastlevel"
               >
                 恭喜您已达到最高等级！
               </view>
               <template v-else>
-                <view class="mb-[16rpx] text-neutral-black text-base title-bg flex items-center justify-center -mt-[52rpx] w-[470rpx] h-[48rpx] mx-auto">
+                <view class="mb-[16rpx] text-neutral-black text-base flex">
                   同时满足以下2个条件即可升级
                 </view>
-                <view class="flex items-center justify-between"
+                <view class="flex items-center"
                 style="border-bottom: 0.5px dashed rgba(255, 255, 255, 0.50);">
-                  <text class="text-white/50 text-base font-medium px-[8rpx] py-[4rpx] rounded-[8rpx]">条件1</text>
-                  <view class="text-white/80">
+                  <text class="text-[#8C3400CC] text-base font-medium px-[8rpx] py-[4rpx] rounded-[8rpx]"
+                  style="background: linear-gradient(0deg, #FFF2E6 0%, #FFF2E6 100%), #FD9227;">条件1</text>
+                  <view class="text-[#8C3400CC]">
                     <text class="text-base font-medium ml-[20rpx]">个人累计投资</text>
                     <text class="ml-1.5 text-base font-medium">
                       {{ item.selfmoney }} {{ symbolStore.code }}</text>
                   </view>
                   
                 </view>
-                <view class="flex items-center justify-between mt-2.5" v-if="config.member_next == 1" 
+                <view class="flex items-center mt-2.5" v-if="config.member_next == 1" 
                 style="border-bottom: 0.5px dashed rgba(255, 255, 255, 0.50);">
                   <text
-                    class="text-white/50 text-base font-medium px-[8rpx] py-[4rpx] rounded-[8rpx]">条件2</text>
-                  <view class="text-white/80">
+                    class="text-[#8C3400CC] text-base font-medium px-[8rpx] py-[4rpx] rounded-[8rpx]"
+                    style="background: linear-gradient(0deg, #FFF2E6 0%, #FFF2E6 100%), #FD9227;">条件2</text>
+                  <view class="text-[#8C3400CC]">
                   <text class="text-base font-medium ml-[20rpx]">直推一级有效人数</text>
                     <text class="ml-1.5 text-base font-medium">
                       {{ item.inte }} 人</text>
                   </view>
                 </view>
-                <view class="flex items-center justify-between mt-2.5" v-if="config.member_single_recharge_amount == 1"
+                <view class="flex items-center mt-2.5" v-if="config.member_single_recharge_amount == 1"
                 style="border-bottom: 0.5px dashed rgba(255, 255, 255, 0.50);">
-                  <text class="text-white/50 text-base font-medium px-[8rpx] py-[4rpx] rounded-[8rpx]">条件2</text>
-                  <view class="text-white/80">
+                  <text class="text-[#8C3400CC] text-base font-medium px-[8rpx] py-[4rpx] rounded-[8rpx]"
+                  style="background: linear-gradient(0deg, #FFF2E6 0%, #FFF2E6 100%), #FD9227;">条件2</text>
+                  <view class="text-[#8C3400CC]">
                     <text class="text-base font-medium ml-[20rpx]">单笔充值</text>
                     <text class="ml-1.5 text-base font-medium">
                       {{ item.single_recharge_amount }} {{ symbolStore.code }}</text>
@@ -476,8 +494,25 @@ onLoad(() => {
 });
 
 const bgType = computed(() => {
-  return `bg-vip${activeIndex.value}`;
+  const index = activeIndex.value + 1; // activeIndex从0开始，图片从01开始
+  return `bg-vip-bg${String(index).padStart(2, '0')}`;
 });
+
+// 根据activeIndex动态计算背景渐变
+const cardBackground = computed(() => {
+  const gradients = {
+    0: 'linear-gradient(180deg, #2755ED 0%, #3C6BEC 100%)',
+    1: 'linear-gradient(180deg, #0071BD 0%, #008ED4 100%)',
+    2: 'linear-gradient(180deg, #EF4200 0%, #F07800 100%)',
+    3: 'linear-gradient(180deg, #E31F2A 0%, #E34418 100%)',
+    4: 'linear-gradient(180deg, #002DF3 0%, #0079F2 100%)',
+    5: 'linear-gradient(128deg, rgba(20, 149, 255, 0.28) 6.32%, rgba(0, 45, 112, 0.00) 45.17%, rgba(56, 100, 219, 0.33) 85.54%), linear-gradient(180deg, #101B5E 0.13%, #000E38 96.99%)',
+    6: 'linear-gradient(128deg, rgba(173, 20, 255, 0.28) 6.32%, rgba(0, 5, 58, 0.00) 45.17%, rgba(203, 56, 219, 0.33) 85.54%), linear-gradient(180deg, #2B105E 0.13%, #0D0038 96.99%)',
+    7: 'linear-gradient(227deg, rgba(255, 178, 45, 0.00) 19.29%, rgba(5, 94, 145, 0.40) 100.94%), linear-gradient(127deg, rgba(33, 58, 255, 0.58) 6.37%, rgba(0, 5, 58, 0.00) 53.67%, rgba(87, 49, 255, 0.68) 102.83%), linear-gradient(180deg, #2B105E 0.13%, #0D0038 96.99%)'
+  };
+  return gradients[activeIndex.value] || gradients[0];
+});
+
 // 修改切换处理函数
 const onChange = (swiper) => {
   activeIndex.value = swiper.activeIndex;
@@ -525,14 +560,15 @@ const onChange = (swiper) => {
   color: theme('colors.neutral.DEFAULT');
 }
 .gradient-text {
-  background: linear-gradient(110deg, #FFF 6.48%, #FFDABD 83.04%);
+  background: linear-gradient(110deg, #897D5B 6.48%, #C7A487 83.04%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 .btn-bg{
-  background: linear-gradient(263deg, #FFC894 14.63%, #F4DCC0 84.72%);
-  color:#321300;
+  background: transparent;
+  border: 1rpx solid #FFFFFF;
+  color:#FFFFFF;
 }
 .title-bg {
   background: url('/static/images/bg/title_bg.png') no-repeat center center;

@@ -22,46 +22,52 @@
           <text class="gradient-text text-xl font-medium">{{ item.name }}</text>
         </view>
         <view
-          class="px-[32rpx] py-[24rpx] flex-col flex rounded-[24rpx] bg-[#201A11E5] border border-[length:1rpx] border-solid border-[#E0C2A0]/40"
+          class="px-[32rpx] py-[24rpx] flex-col flex rounded-[24rpx] bg-[#F6FAFE]"
         >
-          <text class="text-white text-lg font-medium mb-[10rpx]">升级条件</text>
-          <view class="w-full h-[1px] bg-[#E8EBF033] mt-[16rpx]"></view>
-          <view class="w-full flex flex-row basis-0 flex-wrap">
+          <text class="text-neutral-black text-lg font-medium mb-[10rpx]">升级条件</text>
+          <view class="w-full flex flex-col basis-0 flex-wrap">
             <template v-for="val in dataList" :key="val.value">
               <view
                 v-if="config[val.auth] === 1"
-                class="flex flex-col w-[49%] mb-[10rpx] py-[16rpx] relative box-border"
+                class="flex flex-row mb-[10rpx] py-[16rpx] items-center justify-between"
+                style="border-bottom: 1px solid #00000010;"
               >
-                <view class="text-white/60 text-base text-nowrap"
+                <view class="text-neutral-black/70 text-base "
                   >{{ val.labelKey ? item[val.labelKey] : val.label }}({{ val.unit }})</view
                 >
-                <view class="mt-[10rpx] text-lg font-bold text-white">
+                <view class="text-lg font-bold text-neutral-black">
                   {{ item[val.value] }}
                 </view>
-                <view class="w-full h-[1px] bg-[#E8EBF033] mt-[16rpx]"></view>
               </view>
             </template>
           </view>
+        </view>
+
+        <view class="bg-white rounded-[24rpx] p-[32rpx] mt-[32rpx]">
           <view class="w-full mt-[20rpx]">
-            <view class="text-neutral-white text-lg font-medium mb-[20rpx]">奖励制度</view>
+            <view class="text-neutral-black text-lg font-medium mb-[20rpx]">奖励制度</view>
             <view
               class="rounded-[24rpx] box-border p-[32rpx] mb-[16rpx] bg-[#FFFFFF]/5"
             >
               <template v-for="val in rewardsList" :key="val.label">
+                
                 <view class="mt-[10rpx]" v-if="config[val.auth] === 1">
                   <view class="flex flex-row items-center">
-                    <text class="text-base text-white/80">{{ val.label }}</text>
+                    <view class="h-[10rpx] w-[10rpx] bg-[#010101] rounded-full mr-[8rpx]"></view>
+                    <text class="text-base text-neutral-black/70">{{ val.label }}</text>
                     <text class="text-neutral-error ml-[10rpx] text-base">{{
                       val.filterValue(item[val.value])
                     }}</text>
                   </view>
                   <view
-                    class="gradient-text text-sm mt-[5rpx]"
+                    class="flex flex-row text-[#2935CC] text-sm mt-[5rpx]"
                     v-if="val.desc"
-                    >{{ val.desc }}</view
+                    >
+                    <view class="h-[10rpx] w-[10rpx] bg-[#010101] rounded-full mr-[8rpx] flex-shrink-0 mt-[10rpx]"></view>
+                    {{ val.desc }}</view
                   >
                   <view
-                    class="text-neutral-warning text-sm mt-[5rpx]"
+                    class="text-neutral-black/70 text-sm mt-[5rpx]"
                     v-if="val.descKey"
                     >{{ config[val.descKey] }}</view
                   >
@@ -71,9 +77,8 @@
           </view>
           <text
             v-if="config.teams_salarydata"
-            class="gradient-text text-sm mt-[5rpx]"
-            >{{ config.teams_salarydata }}</text
-          >
+            class="text-neutral-black/70 text-sm mt-[5rpx]"
+            >{{ config.teams_salarydata }}</text>
         </view>
       </view>
     </view>
