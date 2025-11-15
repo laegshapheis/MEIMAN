@@ -46,7 +46,7 @@
               v-if="isshow"
               size="small"
               color="#010101"
-              backgroundColor="#F5F8FD"
+              backgroundColor="#98EDFB"
               class="shadow-btn-bg flex-1 rounded-[24rpx]"
               @submit="handleRedeem(item)"
             >

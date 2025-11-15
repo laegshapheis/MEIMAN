@@ -1,17 +1,18 @@
 <template>
   <layout
     :isNav="true"
-    bgType="bg-main3"
+    bgType="bg-main4"
     ref="layoutRef"
     :refresher="true"
     @onRefresh="handleRefresh"
     navTitle="任务奖励"
     @navLeftClick="handleNavLeftClick"
     :isNavLeftBack="true"
+    mode="white"
   >
     <!-- 已获取奖励 -->
     <view class="px-[32rpx] pt-[32rpx]">
-      <view class="text-neutral-theme text-[32rpx] font-semibold mb-[24rpx] w-full text-center">
+      <view class="text-neutral-white text-[32rpx] font-semibold mb-[24rpx] w-full text-center">
         已获取奖励
       </view>
       
@@ -57,7 +58,7 @@
           <!-- 顶部标题和奖励金额 -->
           <view class="flex flex-row items-center mb-[16rpx] justify-between">
             <view class="flex flex-row items-center justify-center">
-              <image src="@/static/images/task_invite.svg" class="w-[48rpx] h-[48rpx] mr-[16rpx]"/>
+              <image src="@/static/images/task/task_invite.svg" class="w-[48rpx] h-[48rpx] mr-[16rpx]"/>
               <text class="text-neutral-theme text-sm font-semibold">{{ task.name }}</text>
             </view>
             <view v-if="task.now_value >= task.target_value" class="text-[#00C851] text-[24rpx]">
@@ -112,7 +113,7 @@
           <view class="flex flex-row items-center justify-between mb-[16rpx]">
             <view class="flex flex-row items-center justify-center">
               <view class="rounded-full flex items-center justify-center">
-                <image src="@/static/images/task_invite.svg" class="w-[48rpx] h-[48rpx] mr-[16rpx]"/>
+                <image src="@/static/images/task/task_invite.svg" class="w-[48rpx] h-[48rpx] mr-[16rpx]"/>
               </view>
               <text class="text-neutral-theme text-sm font-semibold">{{ task.name }}</text>
             </view>
@@ -167,7 +168,7 @@
           <view class="flex flex-row items-center justify-between mb-[16rpx]">
             <view class="flex flex-row items-center">
               <view class="w-[48rpx] h-[48rpx] rounded-full flex items-center justify-center mr-[16rpx]">
-                <image src="@/static/images/task_team.svg" class="w-[48rpx] h-[48rpx]"/>
+                <image src="@/static/images/task/task_team.svg" class="w-[48rpx] h-[48rpx]"/>
               </view>
               <text class="text-neutral-theme text-sm font-semibold">{{ task.name }}</text>
             </view>
@@ -210,7 +211,7 @@
           <view class="flex flex-row items-center justify-between mb-[16rpx]">
             <view class="flex items-center justify-center">
               <view class="rounded-full flex items-center justify-center">
-                <image src="@/static/images/task_invite.svg" class="w-[48rpx] h-[48rpx] mr-[16rpx]"/>
+                <image src="@/static/images/task/task_invite.svg" class="w-[48rpx] h-[48rpx] mr-[16rpx]"/>
               </view>
               <text class="text-neutral-theme text-sm font-semibold">{{ task.name }}</text>
             </view>
@@ -264,7 +265,7 @@
           <view class="flex flex-row items-center justify-between mb-[16rpx]">
             <view class="flex flex-row items-center">
               <view class="w-[48rpx] h-[48rpx] rounded-full flex items-center justify-center mr-[16rpx]">
-                <image src="@/static/images/task_team.svg" class="w-[48rpx] h-[48rpx]"/>
+                <image src="@/static/images/task/task_team.svg" class="w-[48rpx] h-[48rpx]"/>
               </view>
               <text class="text-neutral-theme text-sm font-semibold">{{ task.name }}</text>
             </view>
@@ -319,7 +320,7 @@
           <view class="flex flex-row items-center justify-between mb-[16rpx]">
             <view class="flex flex-row items-center">
               <view class="w-[48rpx] h-[48rpx] rounded-full flex items-center justify-center mr-[16rpx]">
-                <image src="@/static/images/task_invest.svg" class="w-[48rpx] h-[48rpx]"/>
+                <image src="@/static/images/task/task_invest.svg" class="w-[48rpx] h-[48rpx]"/>
               </view>
               <text class="text-neutral-theme text-sm font-semibold">{{ task.name }}</text>
             </view>
@@ -380,7 +381,7 @@
           <view class="flex flex-row items-center justify-between mb-[16rpx]">
             <view class="flex flex-row items-center">
               <view class="w-[48rpx] h-[48rpx] rounded-full flex items-center justify-center mr-[16rpx]">
-                <image src="@/static/images/task_invest.svg" class="w-[48rpx] h-[48rpx]"/>
+                <image src="@/static/images/task/task_invest.svg" class="w-[48rpx] h-[48rpx]"/>
               </view>
               <text class="text-neutral-theme text-sm font-semibold">{{ task.name }}</text>
             </view>
@@ -437,7 +438,7 @@
           <view class="flex flex-row items-center justify-between mb-[16rpx]">
             <view class="flex flex-row items-center">
               <view class="rounded-full flex items-center justify-center">
-                <image src="@/static/images/task_team.svg" class="w-[48rpx] h-[48rpx] mr-[16rpx]"/>
+                <image src="@/static/images/task/task_team.svg" class="w-[48rpx] h-[48rpx] mr-[16rpx]"/>
                 <text class="text-neutral-theme text-sm font-semibold">{{ task.name }}</text>
               </view>
             </view>

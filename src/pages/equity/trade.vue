@@ -56,10 +56,8 @@
           class="border-b border-neutral pb-[36rpx] mb-[24rpx]"
         >
           <!-- 订单信息 -->
-          <view class="mb-[12rpx]">
-            <text class="text-neutral-regular text-base mr-[10rpx]"
-              >卖家账号</text
-            >
+          <view class="mb-[12rpx] flex flex-row items-center">
+            <image src="/static/images/user/logo.png" class="w-[48rpx] h-[48rpx] rounded-full mr-[10rpx]"></image>
             <text class="text-neutral text-base">{{ item.username }}</text>
           </view>
           <view class="mb-[12rpx]">
@@ -68,23 +66,23 @@
             </text>
             <text class="text-neutral text-base">{{ item.bianhao }}</text>
           </view>
-          <view class="mb-[12rpx]">
+          <!-- <view class="mb-[12rpx]">
             <text class="text-neutral-regular text-base mr-[10rpx]">数量 </text>
             <text class="text-neutral text-base">{{ item.number }} 个</text>
-          </view>
-          <view class="mb-[12rpx]">
+          </view> -->
+          <!-- <view class="mb-[12rpx]">
             <text class="text-neutral-regular text-base mr-[10rpx]">单价 </text>
             <text class="text-neutral text-base"
               >{{ item.buyprice }} {{ symbolStore.code }}</text
             >
-          </view>
+          </view> -->
           <view class="mb-[12rpx]">
             <text class="text-neutral-regular text-base mr-[10rpx]">总价 </text>
             <text class="text-neutral text-base"
               >{{ item.buyprice * item.number }} {{ symbolStore.code }}</text
             >
           </view>
-          <view class="mb-[12rpx]">
+          <!-- <view class="mb-[12rpx]">
             <text class="text-neutral-regular text-base mr-[10rpx]"
               >手续费
             </text>
@@ -93,15 +91,15 @@
                 item.feetip
               }})</text
             >
-          </view>
+          </view> -->
           <view class="mt-[12rpx]">
             <text class="text-neutral-regular text-base mr-[10rpx]"
               >挂单时间
             </text>
             <text class="text-neutral text-base">{{ item.selltime }}</text>
           </view>
-          <!-- <view class="w-full h-[2rpx] bg-neutral-divider my-[32rpx]"></view> -->
-          <!-- <view
+          <view class="w-full h-[2rpx] bg-neutral-divider my-[32rpx]"></view>
+          <view
             class="flex flex-row items-center justify-between"
           >
             <view class="flex flex-col items-start justify-end">
@@ -120,11 +118,13 @@
             </view>
             <view class="flex flex-col items-start">
               <text class="text-neutral text-lg font-bold mb-[12rpx]"
-                >{{ item.fee || 0 }} {{ symbolStore.code }}</text
+                >{{ item.extmoney }} {{ symbolStore.code }}</text
               >
-              <text class="text-base text-neutral-regular">手续费</text>
+              <text class="text-base text-neutral-regular">{{
+                item.feetip
+              }}</text>
             </view>
-          </view> -->
+          </view>
           <wk-button
             height="77rpx"
             v-if="item.show == 1"
