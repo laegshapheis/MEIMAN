@@ -55,15 +55,15 @@
         </view>
       </view>
     </view>
-    <view v-else class="bg-neutral-bottomBtnBg py-[16rpx] pt-[0] w-full box-border overflow-hidden">
+    <view v-else class="py-[16rpx] pt-[0] w-full box-border overflow-hidden">
       <view
-        class="text-[#000] text-base text-center mb-[10rpx] bg-[#9AEEDE] w-full h-[76rpx]"
+        class="text-[#000] text-base text-center bg-[#98EDFB] w-full h-[76rpx] rounded-t-[48rpx]"
         style="line-height: 76rpx;"
         v-if="type == 'apply'"
       >
         参与成功即可奖励投资金额的 {{ productview.joining }}%
       </view>
-      <view class="px-[32rpx] pt-[16rpx]">
+      <view class="px-[32rpx] pt-[16rpx] bg-neutral-bottomBtnBg">
         <wk-button
           @submit="$emit('submit')"
           :fontSize="btnText && btnText.length > 20 ? '24rpx' : '32rpx'"
