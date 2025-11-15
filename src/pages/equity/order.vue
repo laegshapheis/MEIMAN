@@ -117,9 +117,9 @@
           >
             <wk-button
               size="small"
-              color="#06F"
-              plain
+              color="#000"
               class="flex-1 rounded-[24rpx]"
+              backgroundColor="#98EDFB"
               @submit="open_play_pass(item.id)"
               >取消交易</wk-button
             >

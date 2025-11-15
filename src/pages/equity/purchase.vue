@@ -28,13 +28,10 @@
       >
         <view class="mb-[24rpx]">
           <wk-button-tabs
-            className="w-full rounded-[24rpx] border-[length:1rpx] border-solid border-black/10"
+            className="w-full rounded-full bg-[#F5F8FD] border-[length:1rpx] border-solid border-black/10"
             :list="tabList"
             :scrollable="false"
             @change="changeType"
-            :activeStyle="{
-              color: '#FFFFFF'
-            }"
           />
         </view>
         <uv-form
@@ -63,7 +60,7 @@
               <text class="text-neutral text-base">个</text>
             </template> -->
           </uv-form-item>
-          <view class="w-full h-[1rpx] bg-white/10 my-[16rpx]"></view>
+          <view class="w-full h-[1rpx] bg-black/10 my-[16rpx]"></view>
           <uv-form-item :label="(type == 'xian_jia' ? '自定义价格(' : '股权价格(') + symbolStore.code + ')'">
             <uv-input
               v-model="model[type].input_pric"
@@ -87,7 +84,7 @@
           </uv-form-item>
           <view
             v-if="type == 'xian_jia'"
-            class="w-full h-[1rpx] bg-white/10 my-[16rpx]"
+            class="w-full h-[1rpx] bg-black/10 my-[16rpx]"
           ></view>
 
           <uv-form-item
@@ -120,7 +117,7 @@
               <uv-icon name="arrow-right" color="#010101" size="14"></uv-icon>
             </template>
           </uv-form-item>
-          <view class="w-full h-[1rpx] bg-white/10 my-[16rpx]"></view>
+          <view class="w-full h-[1rpx] bg-black/10 my-[16rpx]"></view>
           <uv-form-item label="手续费">
             <view class="w-full text-right">
               <text class="text-base text-neutral font-semibold"
@@ -128,7 +125,7 @@
               >
             </view>
           </uv-form-item>
-          <view class="w-full h-[1rpx] bg-white/10 my-[16rpx]"></view>
+          <view class="w-full h-[1rpx] bg-black/10 my-[16rpx]"></view>
           <uv-form-item label="总价格">
             <view class="w-full text-right">
               <text class="text-base text-neutral font-semibold"
@@ -139,9 +136,10 @@
         </uv-form>
       </wk-stroke-bg>
       <view
-        class="text-base leading-6 mt-[32rpx] p-[24rpx] border border-solid border-white/80 rounded-[24rpx]"
+        class="text-base leading-6 mt-[32rpx] bg-white p-[24rpx] rounded-[24rpx]"
+        style="border: 1rpx solid #00000020;"
       >
-        <CommonTips color="rgba(255, 255, 255, 0.80)" :content="content"></CommonTips>
+        <CommonTips color="#252C2F" :content="content"></CommonTips>
       </view>
     </view>
     <!-- 按钮 -->
