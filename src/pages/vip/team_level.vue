@@ -1,15 +1,26 @@
 <template>
   <layout
     navTitle="团队等级"
-    bgType="bg-main7"
+    bgType="bg-white"
     ref="layoutRef"
     :refresher="true"
-    mode="white"
+    :mode="activeIndex < 7 ? 'black' : 'white'"
     @onRefresh="handleRefresh"
   >
+    <!-- 动态背景层 -->
+    <view 
+      class="fixed inset-0"
+      :style="{
+        zIndex: 1,
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }"
+    ></view>
     <z-swiper
       ref="swiperRef"
-      class="my-[16rpx] h-[402rpx]"
+      class="my-[16rpx] h-[320rpx] relative z-10"
       v-model="vip_icons"
       @slideChange="onChange"
       slidesPerView="auto"
@@ -17,10 +28,10 @@
       :spaceBetween="-30"
       grabCursor
     >
-      <z-swiper-item v-for="(item, index) in vip_icons" :key="index" :custom-style="{width:'402rpx'}">
+      <z-swiper-item v-for="(item, index) in vip_icons" :key="index" :custom-style="{width:'320rpx'}">
         <view class="flex flex-col justify-end items-center relative">
           <image
-            class="w-[320rpx] h-[320rpx] mt-[80rpx]"
+            class="w-[240rpx] h-[208rpx] mt-[80rpx]"
             :class="[
               index === activeIndex
                 ? 'opacity-100 scale-[1]'
@@ -33,99 +44,106 @@
         </view>
       </z-swiper-item>
     </z-swiper>
-    <!-- <view class="px-[32rpx]">
-      <image
-        src="/static/images/user/vip_icon_line.png"
-        mode="widthFix"
-        class="w-full h-[66rpx]"
-      />
-    </view> -->
-    <view class="relative px-[32rpx] pb-[24rpx] box-border w-full z-10 mt-[100rpx]">
+    <view class="px-[32rpx] -mt-[60rpx] mb-[32rpx] relative z-10">
+          <image
+            :src="lineImage"
+            mode="widthFix"
+            class="w-full"
+          />
+    </view>
+    <view class="relative pb-[24rpx] box-border w-full z-10">
       <view
-        class="rounded-[32rpx] box-border relative p-[32rpx] pt-[0] flex flex-col justify-between" style="
-        border: 0.5px solid #FFE7CA;
-        background: linear-gradient(131deg, #7E7771 -5.2%, #4C4439 21.59%, #382D1F 44.33%, #5B5348 105.18%);"
+        class="rounded-[32rpx] box-border relative p-[32rpx] mx-[32rpx] flex flex-col justify-between"
+        :style="{ background: cardBackgroundGradient }"
       >
         <view
-          class="mb-[16rpx] flex flex-col w-full items-center py-[8rpx]"
-          style="background: url('/static/images/user/vip/vip_title_bg.png') no-repeat center center;background-size: auto 100%;"
+          class="mb-[16rpx] flex flex-row w-full items-center justify-between"
         >
-          <text class="text-sm gradient-text">当前等级</text>
-          <view class="text-base gradient-text">
+          <text class="text-base text-neutral-white">您当前的等级</text>
+          <view class="text-lg flex flex-row items-center text-neutral-white">
+            <image
+              :src="levelIcon"
+              mode="widthFix"
+              class="w-[48rpx] h-[48rpx] mr-[4rpx]"
+            />
             {{ Currentlevel.agentname }}
           </view>
         </view>
         <view
-          class="mb-[32rpx] rounded-[16rpx] box-border p-[28rpx] flex flex-row w-full items-center justify-between"
+          class="mb-[32rpx] bg-white/20 rounded-[16rpx] box-border p-[10rpx] flex flex-row w-full items-center justify-between"
         >
-          <view class="text-sm text-white/75 text-center">
+          <view class="text-sm text-white/70">
             温馨提示：如果各项数据都显示已达标，等级却没有更新，请点击
-            <text class="gradient-text">“我的团队”</text>
+            “我的团队”
             即可更新等级状态
+
           </view>
         </view>
         <view class="flex flex-row justify-between">
           <view
             @click="navigateTo(routes.promoRecord)"
-            class="px-[32rpx] py-[10rpx] rounded-[66rpx] border-[length:2rpx] border-solid border-[#E8EBF0] bg-[transparent]"
+            class="px-[32rpx] py-[10rpx] rounded-[66rpx] border-[length:2rpx] border-solid border-[#FFF] bg-[transparent]"
           >
-            <text class="text-base text-[#E8EBF0]">我的团队</text>
+            <text class="text-base text-neutral-white">我的团队</text>
           </view>
           <view
             @click="openTips"
-            class="px-[32rpx] py-[10rpx] mx-[16rpx] rounded-[66rpx] border-[length:2rpx] border-solid border-[#E8EBF0] bg-[transparent]"
+            class="px-[32rpx] py-[10rpx] mx-[16rpx] rounded-[66rpx] border-[length:2rpx] border-solid border-[#FFF] bg-[transparent]"
           >
-            <text class="text-base text-[#E8EBF0]">规则说明</text>
+            <text class="text-base text-neutral-white">规则说明</text>
           </view>
           <view
             @click="jumpJiangli"
-            class="px-[32rpx] py-[10rpx] rounded-[66rpx] border-[length:2rpx] border-solid border-[#E8EBF0] bg-[transparent]"
+            class="px-[32rpx] py-[10rpx] rounded-[66rpx] border-[length:2rpx] border-solid border-[#FFF] bg-[transparent]"
           >
-            <text class="text-base text-[#E8EBF0]">查看奖励</text>
+            <text class="text-base text-neutral-white">查看奖励</text>
           </view>
         </view>
       </view>
-      <view
-        class="text-lg font-medium flex flex-row items-center my-[48rpx] justify-center"
-      >
-        <image
-          class="w-[24rpx] h-[24rpx]"
-          src="/static/images/user/hy_level.svg"
-          mode="widthFix"
-        />
-        <text class="gradient-text mx-2 text-xl"> 升级评估 </text>
-        <image
-          class="w-[24rpx] h-[24rpx]"
-          src="/static/images/user/hy_level.svg"
-          mode="widthFix"
-        />
-      </view>
-      <view class="flex-col fb-align-center">
+
+      <view class="bg-[#F6FAFE] rounded-t-[32rpx] p-[32rpx] mt-[32rpx]">
         <view
-          v-if="list.length && lastteams === list[list.length - 1]['id']"
-          class="text-neutral-warning text-xl font-medium mb-[20rpx] text-center"
+          class="text-lg font-medium flex flex-row items-center my-[48rpx] mt-[16rpx] justify-center"
         >
-          您已升级到最高等级！
+          <image
+            class="w-[24rpx] h-[24rpx]"
+            src="/static/images/user/hy_level_black.svg"
+            mode="widthFix"
+          />
+          <text class="mx-2 text-xl"> 升级评估 </text>
+          <image
+            class="w-[24rpx] h-[24rpx]"
+            src="/static/images/user/hy_level_black.svg"
+            mode="widthFix"
+          />
         </view>
-        <view class="flex flex-col w-full">
-          <template v-for="item in teamLevelItems" :key="item.title">
-            <teamLevelItem
-              v-if="config[item.configKey] == 1"
-              :title="item.titleKey ? nextlevel[item.titleKey] : item.title"
-              :unit="item.unit"
-              :levelReq="nextlevel[item.levelReqKey]"
-              :levelGap="
-                nextlevel[item.levelReqKey] > Currentlevel[item.currentValueKey]
-                  ? (nextlevel[item.levelReqKey] * 100 -
-                      Currentlevel[item.currentValueKey] * 100) /
-                    100
-                  : '已达标'
-              "
-              :currentValue="Currentlevel[item.currentValueKey]"
-            />
-          </template>
+        <view class="flex-col fb-align-center">
+          <view
+            v-if="list.length && lastteams === list[list.length - 1]['id']"
+            class="text-neutral-warning text-xl font-medium mb-[20rpx] text-center"
+          >
+            您已升级到最高等级！
+          </view>
+          <view class="flex flex-col w-full">
+            <template v-for="item in teamLevelItems" :key="item.title">
+              <teamLevelItem
+                v-if="config[item.configKey] == 1"
+                :title="item.titleKey ? nextlevel[item.titleKey] : item.title"
+                :unit="item.unit"
+                :levelReq="nextlevel[item.levelReqKey]"
+                :levelGap="
+                  nextlevel[item.levelReqKey] > Currentlevel[item.currentValueKey]
+                    ? (nextlevel[item.levelReqKey] * 100 -
+                        Currentlevel[item.currentValueKey] * 100) /
+                      100
+                    : '已达标'
+                "
+                :currentValue="Currentlevel[item.currentValueKey]"
+              />
+            </template>
+          </view>
         </view>
-      </view>
+    </view>
     </view>
     <!-- 规则弹出层 -->
     <wk-modal ref="wkPopupRef" title="说明">
@@ -324,6 +342,46 @@ const handleRefresh = async () => {
 };
 const bgType = computed(() => {
   return `bg-team-vip${activeIndex.value}`;
+});
+// 根据activeIndex计算背景图片路径
+const backgroundImage = computed(() => {
+  const index = activeIndex.value;
+  if (index >= 0 && index <= 3) {
+    return '/static/images/user/vip/team_00.png';
+  } else if (index >= 4 && index <= 6) {
+    return '/static/images/user/vip/team_01.png';
+  } else if (index === 7) {
+    return '/static/images/user/vip/team_02.png';
+  } else if (index === 8) {
+    return '/static/images/user/vip/team_03.png';
+  } else if (index === 9) {
+    return '/static/images/user/vip/team_04.png';
+  }
+  // 默认背景
+  return '/static/images/user/vip/team_00.png';
+});
+// 根据activeIndex计算卡片背景渐变
+const cardBackgroundGradient = computed(() => {
+  const index = activeIndex.value;
+  if (index >= 0 && index <= 3) {
+    return 'linear-gradient(180deg, #002DF3 0%, #0079F2 100%)';
+  } else if (index >= 4 && index <= 6) {
+    return 'linear-gradient(180deg, #0183C0 0%, #008ED4 100%)';
+  } else if (index === 7) {
+    return 'linear-gradient(128deg, rgba(20, 149, 255, 0.28) 6.32%, rgba(0, 45, 112, 0.00) 45.17%, rgba(56, 100, 219, 0.33) 85.54%), linear-gradient(180deg, #101B5E 0.13%, #000E38 96.99%)';
+  } else if (index === 8) {
+    return 'linear-gradient(128deg, rgba(173, 20, 255, 0.28) 6.32%, rgba(0, 5, 58, 0.00) 45.17%, rgba(203, 56, 219, 0.33) 85.54%), linear-gradient(180deg, #2B105E 0.13%, #0D0038 96.99%)';
+  } else if (index === 9) {
+    return 'linear-gradient(227deg, rgba(255, 178, 45, 0.00) 19.29%, rgba(5, 94, 145, 0.40) 100.94%), linear-gradient(127deg, rgba(33, 58, 255, 0.58) 6.37%, rgba(0, 5, 58, 0.00) 53.67%, rgba(87, 49, 255, 0.68) 102.83%), linear-gradient(180deg, #2B105E 0.13%, #0D0038 96.99%)';
+  }
+  // 默认渐变
+  return 'linear-gradient(180deg, #002DF3 0%, #0079F2 100%)';
+});
+// 根据activeIndex计算line图片路径（确保索引在0-9范围内）
+const lineImage = computed(() => {
+  const index = Math.min(Math.max(activeIndex.value, 0), 9);
+  const paddedIndex = String(index).padStart(2, '0');
+  return `/static/images/user/vip/team_line_${paddedIndex}.png`;
 });
 const onChange = (swiper) => {
   activeIndex.value = swiper.activeIndex;
