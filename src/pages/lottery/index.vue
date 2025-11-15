@@ -1,12 +1,12 @@
 <template>
-  <layout navTitle="幸运大抽奖" bgType="bg-main5" mode="white">
+  <layout navTitle="幸运大抽奖" bgType="bg-main5" mode="black">
 
     <template v-slot:navRight>
       <view
         class="flex flex-row w-full items-center justify-end bg-black/10 px-[16rpx] py-[4rpx] rounded-[24rpx]"
         @click="goLotteryRecord()"
       >
-        <text class="text-base mr-[2rpx] text-white">中奖记录</text>
+        <text class="text-sm mr-[2rpx] text-black">中奖记录</text>
       </view>
     </template>
 
@@ -14,24 +14,24 @@
     <view class="lottery-container">
       <view class="flex flex-col justify-center items-center relative z-10 px-[32rpx] relative h-[400rpx]">
         <!-- <text class="text-[3em] font-bold">幸运大抽奖</text> -->
-        <image
+        <!-- <image
           class="w-[390rpx] mt-[200rpx] z-0"
           src="/static/images/index/lottery_title_icon.png"
           mode="widthFix"
-        ></image>
+        ></image> -->
         <image
-          class="w-[702rpx] absolute top-0 left-[36rpx] z-1"
+          class="w-[702rpx] absolute -top-[46rpx] left-[36rpx] z-1"
           src="/static/images/index/lottery_title_bg.png"
           mode="widthFix"
         ></image>
       </view>
-      <view class="flex justify-center items-center relative z-10 -top-[40rpx] left-[10rpx]">
+      <view class="flex justify-center items-center relative z-10 -top-[100rpx] left-[10rpx] z-0">
         <view class="ci_shu text-neutral-black rounded-b-[0rpx]">今日剩余抽奖次数：{{ remain_count }}</view>
       </view>
       <view class="grid-container relative -mt-[150rpx]">
-        <image src="/static/images/index/bg_lottery.png" class="absolute top-0 left-0 w-full h-[822rpx]" ></image>
+        <image src="/static/images/index/bg_lottery.png" class="absolute top-0 left-0 w-full h-[858rpx]" ></image>
         <!-- 奖项1 -->
-         <view class="grid-container-inner relative top-[140rpx]">
+         <view class="grid-container-inner relative top-[110rpx] left-[10rpx]">
           <view
             v-for="(item, index) in prizes"
             :key="index"
@@ -71,9 +71,9 @@
       </view>
       <view
         v-if="lottery_jifen_switch == 1"
-        class="z-10 relative px-[32rpx] py-[20rpx] bg-[#252C2F40] inline-block rounded-full absolute top-[230rpx] left-[50%] translate-x-[-50%]"
+        class="z-10 relative px-[32rpx] py-[20rpx] inline-block rounded-full absolute top-[185rpx] left-[50%] translate-x-[-50%]"
       >
-        <view class="text-white">可用积分 <text class="ml-[8rpx]">{{ user_jifen }}</text></view>
+        <view class="text-black text-sm">可用积分 <text class="ml-[8rpx]">{{ user_jifen }}</text></view>
       </view>
       <view class="w-full flex justify-center items-center" v-if="false">
         <view @click="goLotteryRecord" class="look_log">查看中奖记录</view>
@@ -123,12 +123,12 @@
       </view>
     </view>
 
-    <fui-modal :buttons="[]" :boxRadius="0" width="400" :show="zjShow">
+    <fui-modal :buttons="[]" :boxRadius="0" width="400" :show="zjShow" background="linear-gradient(0deg, #FFF 77.57%, #D9CDFF 100%)">
       <view class="zj_box">
         <image class="zj_img" :src="zjObj.img" mode="widthFix"></image>
         <view class="zj_str">{{ zjObj.name }}</view>
-        <wk-button @click="zjShow = false" class="w-full"
-          >确认</wk-button
+        <wk-button @click="zjShow = false" class="w-full" backgroundColor="#FE3355"
+          >我知道了</wk-button
         >
       </view>
     </fui-modal>
@@ -437,13 +437,13 @@ onShow(() => {
   }
 }
 .ci_shu {
-  background: #FFFFFF;
+  background: #FFC63C;
   border-radius: 24rpx;
   border-bottom-right-radius: 0px;
   border-bottom-left-radius: 0px;
   min-width: 300rpx;
   display: inline-block;
-  color: #F68A0C;
+  color: #010101;
   font-size: 24rpx;
   text-align: center;
   padding: 20rpx 28rpx;
@@ -522,16 +522,16 @@ onShow(() => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 128rpx;
-  height: 128rpx;
+  width: 120rpx;
+  height: 120rpx;
   overflow: hidden;
-  border: 6rpx solid #FFFFFF20;
+  border: 6rpx solid transparent;
   border-radius: 24rpx;
-  background: #ffffff;
+  background: #00000049;
 }
 
 .grid-item.highlight {
-  border-color: #06F; /* 高亮显示的样式 */
+  border-color: #FFF7AB; /* 高亮显示的样式 */
 }
 
 .prize-image {
@@ -545,12 +545,12 @@ onShow(() => {
   left: 0;
   text-align: center;
   width: 100%;
-  background: #F5F8FD;
+  background: #00000050;
   height: 38rpx;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #010101;
+  color: #FFFFFF;
   font-weight: 500;
   font-size: 20rpx;
   overflow: hidden;
@@ -596,7 +596,7 @@ onShow(() => {
 .rule-bg {
   padding: 0 32rpx;
   padding-bottom: 24rpx;
-  background: linear-gradient(#F24941 0%, #F24841 100%);
+  background: #FFE3A5;
   padding-top: 260rpx;
 }
 .rule_box {
@@ -609,7 +609,7 @@ onShow(() => {
   background-repeat: no-repeat;
   border-radius: 32rpx;
   overflow: hidden;
-  background: #B52E02;
+  background: #FF7C22;
   .rule_box_title {
     color: #FFFFFF80;
     display: inline-block;
@@ -635,7 +635,7 @@ onShow(() => {
   flex-direction: column;
   padding: 0 24rpx;
   box-sizing: border-box;
-  background: #FFFFFF;
+  // background: #FFFFFF;
   
   // border-radius: 16rpx;
   border-radius: 0px;
@@ -666,6 +666,8 @@ onShow(() => {
     // background:theme('colors.neutral.cardBg') !important;
     border-radius: 24rpx !important;
     // border: 1px solid rgba(255, 255, 255, 0.10) !important;
+    // 方法2：通过深度选择器设置渐变色背景（如果使用此方法，需要移除 background prop）
+    // background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
 }
 
 // 小卡片样式
@@ -697,7 +699,7 @@ onShow(() => {
   align-items: center;
   border-radius: 360px;
   border: 0.5px solid #f6d875;
-  background: linear-gradient(0deg, #ff8a33 0%, #ff4a4a 51.8%), #ff4a4a;
+  background: linear-gradient(0deg, #FFEACC 0%, #FFE3A5 51.8%), #FFE3A5;
   background-blend-mode: soft-light, normal, normal;
 }
 

@@ -3,7 +3,7 @@
     ref="layoutRef"
     navTitle="商品详情"
     bgType="bg-main"
-    
+    navBgColor="#FFFFFF"
     :refresher="true"
     @onRefresh="handleRefresh"
   >
@@ -38,7 +38,7 @@
       mode="widthFix"
     ></image>
     <view class="p-[32rpx] pb-[150rpx]">
-      <wk-stroke-bg shadow class="flex flex-col rounded-[8rpx] p-[16rpx]">
+      <wk-stroke-bg shadow class="flex flex-col rounded-[32rpx] p-[16rpx]">
         
         <view class="flex flex-row justify-between items-center">
           <view class="flex flex-row items-center">
@@ -57,7 +57,7 @@
         <view class="text-xl text-neutral font-medium mt-[33rpx]">{{ product_name }}</view>
       </wk-stroke-bg>
       <wk-stroke-bg shadow
-        class="bg-white flex flex-row justify-between items-center p-[16rpx] mt-[24rpx] rounded-[8rpx]"
+        class="bg-white flex flex-row justify-between items-center p-[16rpx] mt-[24rpx] rounded-[32rpx]"
       >
         <view class="">兑换数量</view>
         <view class="flex flex-row items-center">

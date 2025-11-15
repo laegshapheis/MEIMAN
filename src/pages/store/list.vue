@@ -111,7 +111,7 @@
               class="rounded-[16rpx] overflow-hidden"
             >
               <image
-                class="w-full h-[342rpx] bg-black/10"
+                class="w-full h-[331rpx] bg-black/10 rounded-[16rpx] overflow-hidden"
                 :src="item.image"
                 mode="aspectFit"
               ></image>
