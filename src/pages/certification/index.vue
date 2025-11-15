@@ -72,7 +72,7 @@
         <view class="mb-[44rpx] bg-white p-[32rpx] rounded-[48rpx]" style="border: 1rpx solid #00000020;">
           <view class="text-black text-base mb-[24rpx]">实名信息</view>
           <view class="flex flex-row justify-between">
-            <view class="text-neutral-secondary text-base mb-[10rpx]"
+            <view class="text-neutral-regular text-base mb-[10rpx]"
               >真实姓名</view>
               <view v-if="certificate_stae == 5 || certificate_stae == 3">
             <text class="text-neutral-regular text-lg font-bold">{{ user_name }}</text>
@@ -80,7 +80,7 @@
           </view>
           <view class="h-[1rpx] bg-neutral-divider w-full my-[16rpx]"></view>
           <view class="flex flex-row justify-between">
-            <view class="text-neutral-secondary text-base mb-[10rpx]"
+            <view class="text-neutral-regular text-base mb-[10rpx]"
               >身份证号码</view
             >
             <view v-if="certificate_stae == 5 || certificate_stae == 3">
