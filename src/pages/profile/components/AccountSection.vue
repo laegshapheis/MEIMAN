@@ -25,12 +25,13 @@
           </view>
         </view>
       </view>
-      <view class="w-full h-[1rpx] bg-[#FFF]/20"></view>
+      <!-- <view class="w-full h-[1rpx] bg-[#FFF]/20"></view> -->
       <!-- 汇率信息 -->
-       <view style="backdrop-filter: blur(8px);background: rgba(0, 0, 0, 0.50);">
+       <view>
         <view
         v-if="openCards > 0"
-        class="px-[32rpx] py-[16rpx] relative flex flex-row items-center justify-center text-base text-[#9AEEDE]"
+        class="px-[32rpx] py-[4rpx] relative flex flex-row items-center justify-center text-base text-white/60"
+        style="background:linear-gradient(90deg, rgba(255, 255, 255, 0.00) 0%, rgba(255, 255, 255, 0.20) 47.6%, rgba(255, 255, 255, 0.00) 100%);"
       >
         <view class="flex flex-row justify-center items-center">
           <text>实时汇率</text>
@@ -46,7 +47,7 @@
         </view>
       </view>
 
-      <view class="w-full h-[1rpx] bg-[#FFF]/20"></view>
+      <!-- <view class="w-full h-[1rpx] bg-[#FFF]/20"></view> -->
 
       <!-- 账户信息 -->
       <view class="relative">
@@ -60,7 +61,7 @@
                 class="flex flex-row items-center"
                 @click="$emit('onTips', 0)"
               >
-                <text class="text-sm text-white mb-[4rpx]">可用余额({{ symbol }})</text>
+                <text class="text-sm text-white/60 mb-[4rpx]">可用余额({{ symbol }})</text>
                 <text class="ml-[5rpx]"
                   ><uv-icon
                     size="24rpx"
@@ -81,7 +82,7 @@
                 class="flex flex-row items-center"
                 @click="$emit('onTips', 1)"
               >
-                <text class="text-sm text-white mb-[4rpx]">提现余额({{ symbol }})</text>
+                <text class="text-sm text-white/60 mb-[4rpx]">提现余额({{ symbol }})</text>
                 <text class="ml-[5rpx]"
                   ><uv-icon
                     size="24rpx"
@@ -104,7 +105,7 @@
                 class="flex flex-row items-center"
                 @click="$emit('onTips', 4)"
               >
-                <text class="text-sm text-white mb-[4rpx]">累计收益({{ symbol }})</text>
+                <text class="text-sm text-white/60 mb-[4rpx]">累计收益({{ symbol }})</text>
                 <text class="text-sm ml-[5rpx]"
                   ><uv-icon
                     size="24rpx"
@@ -126,7 +127,7 @@
                 class="flex flex-row items-center"
                 @click="$emit('onTips', 999)"
               >
-                <text class="text-sm text-white mb-[4rpx]">任务质押({{ symbol }})</text>
+                <text class="text-sm text-white/60 mb-[4rpx]">任务质押({{ symbol }})</text>
                 <text class="ml-[5rpx]"
                   ><uv-icon
                     size="24rpx"
@@ -148,7 +149,7 @@
                 class="flex flex-row items-center"
                 @click="$emit('onTips', 5)"
               >
-                <text class="text-sm text-white mb-[4rpx]">我的积分</text>
+                <text class="text-sm text-white/60 mb-[4rpx]">我的积分</text>
                 <text class="ml-[5rpx]"
                   ><uv-icon
                     size="24rpx"
@@ -163,14 +164,14 @@
               </view>
             </view>
           </view>
-          <view class="w-full h-[1rpx] bg-[#FFF]/20"></view>
+          <!-- <view class="w-full h-[1rpx] bg-[#FFF]/20"></view> -->
         </view>
       </view>
        </view>
       
     </view>
     <!-- 充值菜单 -->
-    <view class="rounded-[8rpx] grid grid-cols-2 gap-[16rpx] p-[24rpx]">
+    <view class="rounded-[24rpx] rounded-bottom-[0rpx] grid grid-cols-2 gap-[16rpx] p-[24rpx] bg-white">
       <template v-for="item in menus" :key="item.icon_url">
         <view
           @click="$emit('onNavTo', item)"
@@ -183,7 +184,7 @@
             mode="widthFix"
           ></image>
           <text
-            class="text-white font-medium relative z-1 text-base ml-[16rpx]"
+            class="text-neutral-theme font-medium relative z-1 text-base ml-[16rpx]"
             >{{ item.title }}</text
           >
         </view>

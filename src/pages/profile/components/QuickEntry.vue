@@ -13,7 +13,7 @@
             mode="widthFix"
           />
         </view>
-        <text class="text-white text-sm font-medium">{{ item.title }}</text>
+        <text class="text-[#0C55B3] text-sm font-medium">{{ item.title }}</text>
       </view>
     </template>
   </view>
@@ -23,6 +23,7 @@
     class="mt-[24rpx] rounded-[32rpx] bg-[#1A283D] flex flex-row justify-between 
     flex-grow items-center px-[24rpx] pl-[40rpx] h-[112rpx]"
     @click="goDetailHandle"
+    style="background: linear-gradient(180deg, rgba(136, 191, 255, 0.42) 0%, rgba(136, 191, 255, 0.10) 20.38%, rgba(255, 255, 255, 0.29) 37.46%, #FFF 100%);"
   >
     <view class="flex flex-row justify-center items-center">
       <image
@@ -30,28 +31,33 @@
         class="w-[48rpx] h-[48rpx] mr-[10rpx]"
         mode="widthFix"
       />
-      <text class="relative z-10 text-base font-medium text-white"
+      <text class="relative z-10 text-base font-medium text-neutral"
         >股权中心</text
       >
     </view>
     <view class="text-base flex flex-row items-center">
-      <view class="text-white flex-shrink-0 text-base mr-[8rpx]"
+      <view class="text-neutral flex-shrink-0 text-base mr-[8rpx]"
         >今日股价:
       </view>
-      <view
-        class="text-[#FF050E] font-medium mt-[4rpx] flex-shrink-0 text-base"
-        >{{ userInfo.quote }}</view
-      >
-      <image
-        class="mt-[10rpx] w-[12rpx] h-[12rpx] ml-[8rpx]"
-        src="/static/images/profile/gujia_r.svg"
-        mode="widthFix"
-      />
-      <image
-        class="w-[52rpx] h-[52rpx] ml-[8rpx]"
-        src="/static/images/profile/gujia_i.svg"
-        mode="widthFix"
-      />
+
+      <view class="flex flex-row items-center bg-[#E4262C] rounded-[16rpx] px-[16rpx] py-[8rpx]">
+        <image
+          class="mt-[4rpx] w-[12rpx] h-[12rpx] mr-[8rpx]"
+          src="/static/images/profile/gujia_r.svg"
+          mode="widthFix"
+        />
+        
+        <view
+          class="text-white font-medium mt-[4rpx] flex-shrink-0 text-base"
+          >{{ userInfo.quote }}</view
+        >
+        
+        <image
+          class="w-[52rpx] h-[52rpx] ml-[8rpx]"
+          src="/static/images/profile/gujia_i.svg"
+          mode="widthFix"
+        />
+      </view>
     </view>
   </view>
 

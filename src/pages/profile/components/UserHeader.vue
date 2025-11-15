@@ -13,63 +13,65 @@
       ></image>
       <view class="grow flex flex-col ml-[20rpx] mt-[8rpx]">
         <view class="flex flex-row items-center font-bold">
-          <text class="text-[30rpx] text-white">{{
+          <text class="text-[30rpx] text-neutral">{{
             showData ? (userInfo.isreal ? userInfo.realname : "未实名") : "***"
           }}</text>
-          <text v-if="userInfo.show_mobile_switch && showData" class="max-w-[330rpx] truncate ml-[12rpx] text-lg text-white/80">{{
+          <text v-if="userInfo.show_mobile_switch && showData" class="max-w-[330rpx] truncate ml-[12rpx] text-lg text-neutral">{{
             userInfo.mobile
           }}</text>
           <view @click="handleShowData" class="ml-[12rpx]">
             <uv-icon
               v-if="showData"
               name="eye"
-              color="#fff"
+              :color="$colors.DEFAULT"
               size="38rpx"
             ></uv-icon>
             <uv-icon
               v-else
               name="eye-off-outline"
-              color="#fff"
+              :color="$colors.DEFAULT"
               size="38rpx"
             ></uv-icon>
           </view>
         </view>
         <view class="mt-[8rpx] flex flex-row items-center min-w-[125rpx]">
           <text
-            class="pr-[16rpx] leading-5 text-center rounded-[16rpx] text-sm text-white whitespace-nowrap"
+            class="pr-[16rpx] leading-5 text-center rounded-[16rpx] text-sm text-neutral whitespace-nowrap"
             >ID:{{ showData ? userInfo.invicode : maskInviteCode(userInfo.invicode) }}</text
           >
           
         </view>
         <view
             class="flex flex-row items-center"
+            
+          >
+          <view class="flex flex-row items-center rounded-[108rpx] bg-[#F3F5FC] py-[4rpx] px-[8rpx]"
             @click="$emit('onTips', 2)"
             v-if="openCards > 0 && userInfo.become_agent_switch == 1"
           >
-          <view class="flex flex-row items-center rounded-[108rpx] bg-black/10 py-[4rpx] px-[8rpx]">
             <text
-              class="mr-[4rpx] text-sm leading-5 text-white/80 whitespace-nowrap"
+              class="mr-[4rpx] text-sm leading-5 text-neutral whitespace-nowrap"
               >{{ userInfo.agentname }}</text
             >
             <uv-icon
               size="24rpx"
-              color="#9AEEDE"
+              color="#98EDFB"
               name="question-circle"
             ></uv-icon>
           </view>
             
             <view
                 v-if="openCards > 0"
-                class="flex flex-row items-center ml-[10rpx] rounded-[108rpx] bg-black/10 py-[4rpx] px-[8rpx]"
+                class="flex flex-row items-center ml-[10rpx] rounded-[108rpx] bg-[#F3F5FC] py-[4rpx] px-[8rpx]"
                 @click="$emit('onTips', 10)"
               >
                 <text
-                  class="mr-[4rpx] text-sm leading-5 text-white/80 whitespace-nowrap"
+                  class="mr-[4rpx] text-sm leading-5 text-neutral whitespace-nowrap"
                   >{{ userInfo.teams }}</text
                 >
                 <uv-icon
                   size="24rpx"
-                  color="#9AEEDE"
+                  color="#98EDFB"
                   name="question-circle"
                 ></uv-icon>
             </view>

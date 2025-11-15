@@ -1,7 +1,7 @@
 <template>
-  <view class="mt-[32rpx] flex flex-col justify-between bg-[#1A283D] 
+  <view class="mt-[32rpx] flex flex-col justify-between bg-white 
   border border-[length:1rpx] border-solid border-[#FFFFFF]/20 rounded-[32rpx]">
-    <view class="text-white text-xl px-[32rpx] py-[24rpx]" style="border-bottom: 1rpx solid #FFFFFF20;">
+    <view class="text-neutral text-xl px-[32rpx] py-[24rpx]" style="border-bottom: 1rpx solid #FFFFFF20;">
       <text>常用功能</text>
     </view>
     <view
@@ -18,7 +18,7 @@
           <view
             class="flex items-center justify-center w-[160rpx] mt-[32rpx]"
           >
-          <view class="flex items-center w-[108rpx] h-[108rpx] justify-center rounded-full bg-[#FFFFFF]/5">
+          <view class="flex items-center w-[108rpx] h-[108rpx] justify-center rounded-[24rpx] bg-[#E9F3FF]">
           <image
               class="w-[48rpx] h-[48rpx]"
               :src="item.icon_url"
@@ -26,7 +26,7 @@
             ></image>
           </view>
           </view>
-          <text class="text-base leading-6 mt-[12rpx] text-white">{{
+          <text class="text-base leading-6 mt-[12rpx] text-neutral">{{
             item.title
           }}</text>
         </view>

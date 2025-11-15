@@ -1,6 +1,6 @@
 <template>
   <view
-    class="overflow-hidden relative z-20 rounded-[32rpx] border-[length: 1rpx] bg-vip-card-bg"
+    class="overflow-hidden relative z-20 rounded-[32rpx] border-[length: 0rpx] bg-vip-card-bg"
   >
     <!-- <image
       src="/static/images/profile/vip_bg.png"
@@ -8,15 +8,15 @@
       class="w-[350rpx] h-[342rpx] absolute top-0 left-0"
     ></image> -->
     <!-- VIP等级 -->
-     <view class="border border-[length:1rpx] border-solid border-[#FFFFFF] rounded-[32rpx]" style="background: rgba(34, 36, 38, 0.10);backdrop-filter: blur(10px);">
+     <view class="border border-[length:1rpx] border-solid border-[#FFFFFF] rounded-[32rpx]" style="backdrop-filter: blur(10px);border-top: 1rpx solid rgba(255, 255, 255, 0.26)">
       <image
         src="/static/images/profile/vipCard_icon.png"
         mode="widthFix"
         class="w-[64rpx] h-[48rpx] mb-[35rpx] ml-[34rpx] mt-[27rpx]"
       ></image>
       <view
-          class="rounded-b-[24rpx] rounded-r-[0rpx] absolute top-0 right-0 flex flex-row items-center justify-center bg-[#000]/50 ml-[12rpx] text-neutral-regular px-[16rpx] py-[8rpx]"
-          style="border-radius: 0 0 0 12px;backdrop-filter: blur(8px)"
+          class="rounded-b-[24rpx] rounded-r-[0rpx] absolute top-0 right-0 flex flex-row items-center justify-center  ml-[12rpx] text-neutral-regular px-[16rpx] py-[8rpx]"
+          style="background: rgba(20, 132, 251, 0.66);border-radius: 0 0 0 12px;backdrop-filter: blur(8px)"
           @click="$emit('onTips', 9)"
         >
           <image
@@ -40,12 +40,12 @@
             mode="widthFix"
             class="w-[80rpx] h-[27rpx] absolute top-[32rpx] left-[32rpx]"
           ></image> -->
-          <view class="text-base text-white">会员成长值</view>
+          <view class="text-base text-[#19316899]">会员成长值</view>
           <view class="flex flex-row items-center mt-[10rpx]">
-            <text class="text-base text-[#FF9058] font-bold">{{
+            <text class="text-base text-[#193168] font-bold">{{
               userInfo.buymoney
             }}</text>
-            <text class="text-base text-white/60 font-bold"
+            <text class="text-base text-[#252C2F]/30 font-bold"
               >/{{ userInfo.serlfmoney }}</text
             >
           </view>
@@ -56,7 +56,7 @@
             :showText="false"
             :percentage="growthProgress"
             inactiveColor="rgba(255,255,255,0.30)"
-            activeColor="#FF9058"
+            activeColor="#2935CC"
           ></uv-line-progress>
         </view>
       </view>
@@ -66,12 +66,12 @@
         class="flex flex-col justify-between flex-1 ml-[24rpx]"
       >
         <view class="flex flex-col mb-[10rpx]">
-          <view class="text-base text-white">达标人数</view>
+          <view class="text-base text-[#19316899]">直推人数</view>
           <view class="flex flex-row items-center mt-[10rpx]">
-            <text class="text-base text-[#FF9058] font-bold">{{
+            <text class="text-base text-[#193168] font-bold">{{
               userInfo.number
             }}</text>
-            <text class="text-base text-white/60 font-bold"
+            <text class="text-base text-[#252C2F]/30 font-bold"
               >/{{ userInfo.selfnumber }}</text
             >
           </view>
@@ -82,17 +82,17 @@
             :showText="false"
             :percentage="qualifiedProgress"
             inactiveColor="rgba(255,255,255,0.30)"
-            activeColor="#FF9058"
+            activeColor="#2935CC"
           ></uv-line-progress>
         </view>
       </view>
     </view>
-    <view class="w-full h-[1rpx] mt-[35rpx] bg-[#FFFFFF]/30"></view>
+    <view class="w-full h-[1rpx] mt-[35rpx]"></view>
     <!-- 其他菜单 -->
-    <view class="flex flex-row justify-center gap-[24rpx] py-[12rpx]" style="background: rgba(34, 36, 38, 0.10);backdrop-filter: blur(10px);">
+    <view class="flex flex-row justify-center gap-[24rpx] p-[16rpx] rounded-[32rpx]" style="background: #fff;backdrop-filter: blur(10px);">
       <template v-for="item in menus" :key="item.title">
         <view
-          class="px-[24rpx] py-[16rpx] rounded-[16rpx] flex-1"
+          class="px-[24rpx] py-[16rpx] rounded-[16rpx] flex-1 bg-[#F9F3E9]"
         >
           <view
             @click="$emit('onNavTo', item)"
@@ -105,11 +105,11 @@
                 class="w-[40rpx] h-[40rpx]"
               ></image>
               <text
-                class="text-base font-medium ml-[8rpx] text-white"
+                class="text-base font-medium ml-[8rpx] text-neutral"
                 >{{ item.title }}</text
               >
             </view>
-            <uv-icon name="arrow-right" size="23rpx" color="#fff"></uv-icon>
+            <uv-icon name="arrow-right" size="23rpx" :color="$colors.DEFAULT"></uv-icon>
           </view>
         </view>
       </template>

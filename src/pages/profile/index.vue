@@ -1,7 +1,7 @@
 <template>
   <layout
     :isNav="false"
-    bgType="bg-[#031023]"
+    bgType="bg-profile"
     ref="layoutRef"
     :refresher="true"
     @onRefresh="handleRefresh"
@@ -11,7 +11,7 @@
   >
     <view class="px-[32rpx] relative box-border w-full flex flex-col">
       <view class="h-[var(--status-bar-height)] bg-transparent"></view>
-      <image src="/static/images/profile/profile_top_bg.png" mode="widthFix" class="w-full h-[458rpx] absolute -top-[80rpx] left-0"></image>
+      <!-- <image src="/static/images/profile/profile_top_bg.png" mode="widthFix" class="w-full h-[458rpx] absolute -top-[80rpx] left-0"></image> -->
       <!-- 用户信息头部 -->
       <UserHeader
         :openCards="openCards"
