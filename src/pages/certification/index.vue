@@ -122,7 +122,7 @@
           <view class="flex flex-col mb-[24rpx]">
             <view class="text-neutral-regular text-base mb-[10rpx]">真实姓名</view>
             <view 
-              class="flex flex-row items-center justify-between rounded-[24rpx] border-[length:1rpx] border-solid border-neutral-divider">
+              class="flex flex-row items-center justify-between rounded-[32rpx]">
         
           <wk-input
             class="text-regular text-base font-medium"
@@ -138,7 +138,7 @@
           <view class="flex flex-col">
             <view class="text-neutral-regular text-base mb-[10rpx]">身份证号码</view>
             <view 
-          class="flex flex-row items-center justify-between rounded-[24rpx] border-[length:1rpx] border-solid border-neutral-divider">
+          class="flex flex-row items-center justify-between rounded-[32rpx] ">
         
           <wk-input
             class="text-neutral/80 text-base font-medium"

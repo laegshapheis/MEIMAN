@@ -1,6 +1,6 @@
 <template>
   <view
-    class="overflow-hidden relative z-20 rounded-[32rpx] border-[length: 0rpx] bg-vip-card-bg"
+    class="relative z-20 rounded-[32rpx] border-[length: 0rpx] bg-[url('/static/images/profile/vip_bg.png')] bg-no-repeat bg-contain bg-bottom box-border"
   >
     <!-- <image
       src="/static/images/profile/vip_bg.png"
@@ -8,7 +8,7 @@
       class="w-[350rpx] h-[342rpx] absolute top-0 left-0"
     ></image> -->
     <!-- VIP等级 -->
-     <view class="border border-[length:1rpx] border-solid border-[#FFFFFF] rounded-[32rpx]" style="backdrop-filter: blur(10px);border-top: 1rpx solid rgba(255, 255, 255, 0.26)">
+     <view class="overflow-hidden bg-vip-card-bg mx-[8rpx] border border-[length:1rpx] border-solid border-[#FFFFFF] rounded-[32rpx]" style="backdrop-filter: blur(10px);border-top: 1rpx solid rgba(255, 255, 255, 0.26)">
       <image
         src="/static/images/profile/vipCard_icon.png"
         mode="widthFix"
@@ -87,7 +87,9 @@
         </view>
       </view>
     </view>
-    <view class="w-full h-[1rpx] mt-[35rpx]"></view>
+    <view class="w-full h-[1rpx] mt-[70rpx]"></view>
+    </view>
+    <view class="mt-[-35rpx]">
     <!-- 其他菜单 -->
     <view class="flex flex-row justify-center gap-[24rpx] p-[16rpx] rounded-[32rpx]" style="background: #fff;backdrop-filter: blur(10px);">
       <template v-for="item in menus" :key="item.title">

@@ -1,7 +1,8 @@
 <template>
   <view
-    class="rounded-[32rpx] border-[length: 1rpx] border border-solid border-[#FFFFFF]/20 bg-account-section"
+    class="relative rounded-[32rpx] border-[length: 1rpx] border border-solid border-[#FFFFFF]/20 bg-account-section"
   >
+  <image src="/static/images/profile/account_bg.png" mode="widthFix" class="w-[324rpx] h-[274rpx] absolute top-0 right-0"></image>
     <!-- 账户信息 -->
     <view>
       <view
