@@ -1,5 +1,5 @@
 export default {
-  apiUrlList: ["http://api.chuanghui.qiongyue.com"], // 固定接口地址
+  apiUrlList: ["https://apikyt.exchange666.site"], // 固定接口地址
   jsonUrlList: [
     // "https://lingufeng.oss-cn-hongkong.aliyuncs.com/cnybaseurl.json?v=" +
     //   Date.parse(new Date()),
