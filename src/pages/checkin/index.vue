@@ -212,7 +212,7 @@
     >
       <view
         class="flex flex-col relative bg-[#050505] rounded-[48rpx] p-[48rpx] w-full box-border"
-      style="background: linear-gradient(144deg, rgba(224, 213, 255, 0.50) 5.38%, rgba(212, 247, 255, 0.50) 90.45%), linear-gradient(180deg, #F4ECFF 0%, #FFF 51.44%, #D6EEFF 95.67%)"
+        style="background: linear-gradient(144deg, rgba(224, 213, 255, 0.50) 5.38%, rgba(212, 247, 255, 0.50) 90.45%), linear-gradient(180deg, #F4ECFF 0%, #FFF 51.44%, #D6EEFF 95.67%)"
       >
         <view class="left-0 w-full flex flex-row justify-center">
           <image
@@ -234,17 +234,15 @@
     </uv-overlay>
 
     <!-- 规则弹出层 -->
-    <wk-modal ref="wkPopupRef" title="说明" titleColor="#FFF" :showClose="false" bgColor="#050505" borderRadius="32rpx">
+    <wk-modal ref="wkPopupRef" title="说明" :showClose="false" borderRadius="32rpx">
       <uv-parse
         :show-img-menu="false"
         :content="strings"
-        container-style="white-space: pre-wrap;color: #FFF;background: #050505;border:none;padding:0;"
+        container-style="white-space: pre-wrap;color: #010101;border:none;padding:0;"
       ></uv-parse>
-      <view class="flex flex-row justify-center bg-[#050505] pt-[32rpx] px-[32rpx]">
+      <view class="flex flex-row justify-center pt-[32rpx] px-[32rpx]">
         <wk-button 
           class="w-full"
-          backgroundColor="transparent" 
-          style="background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), linear-gradient(110deg, #7D5A44 6.48%, #D5AD8D 83.04%);border-radius: 48rpx;"
           color="#FFFFFF"
           @submit="wkPopupRef.close()">
           确认
