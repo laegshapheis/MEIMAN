@@ -212,6 +212,7 @@
     >
       <view
         class="flex flex-col relative bg-[#050505] rounded-[48rpx] p-[48rpx] w-full box-border"
+      style="background: linear-gradient(144deg, rgba(224, 213, 255, 0.50) 5.38%, rgba(212, 247, 255, 0.50) 90.45%), linear-gradient(180deg, #F4ECFF 0%, #FFF 51.44%, #D6EEFF 95.67%)"
       >
         <view class="left-0 w-full flex flex-row justify-center">
           <image
@@ -223,12 +224,12 @@
         <view
           class="flex flex-col items-center justify-center mt-[40rpx] mb-[40rpx]"
         >
-          <text class="text-2xl text-white">签到成功</text>
+          <text class="text-2xl text-black">签到成功</text>
           <text class="text-2xl text-white mt-[10rpx]">{{
             data.qian_dao_msg
           }}</text>
         </view>
-        <wk-button @submit="showModal = false" backgroundColor="transparent" style="background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), linear-gradient(110deg, #7D5A44 6.48%, #D5AD8D 83.04%);border-radius: 48rpx;"> 我知道了 </wk-button>
+        <wk-button @submit="showModal = false" backgroundColor="linear-gradient(90deg, #AE91FC 0%, #636EFF 49.52%, #2BBFF1 96.63%)" style="background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), linear-gradient(110deg, #7D5A44 6.48%, #D5AD8D 83.04%);border-radius: 48rpx;"> 我知道了 </wk-button>
       </view>
     </uv-overlay>
 
