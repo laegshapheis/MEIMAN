@@ -147,12 +147,12 @@ const menus = computed(() => [
     redirect: routes.lottery,
     switch: "lottery_switch",
   },
-  {
-    title: "任务奖励",
-    icon_url: "/static/images/profile/icon_v2/task_reward_icon.svg",
-    redirect: routes.taskRewards,
-    switch: "task_module_switch",
-  },
+  // {
+  //   title: "任务奖励",
+  //   icon_url: "/static/images/profile/icon_v2/task_reward_icon.svg",
+  //   redirect: routes.taskRewards,
+  //   switch: "task_module_switch",
+  // },
 ]);
 
 defineEmits(["onNavTo"]);
