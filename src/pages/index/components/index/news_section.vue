@@ -27,7 +27,7 @@
             <text class="text-neutral-secondary text-sm mt-[16rpx]">{{ item.created_at }}</text>
           </view>
           <view class="rounded-full bg-[#000000] absolute right-0 bottom-0 flex items-center justify-center pl-[32rpx] pr-[16rpx] py-[8rpx]" @click="goToProductDetail(item.id)">
-                    <text class="text-sm text-white">去投资</text>
+                    <text class="text-sm text-white">查看详情</text>
                     <uv-icon name="arrow-right" size="10" color="#FFFFFF" class="ml-[8rpx]"></uv-icon>
             </view>
         </view>
