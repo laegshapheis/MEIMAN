@@ -39,6 +39,9 @@
 
       <!-- 团队，股权 -->
       <QuickEntry v-if="openCards > 0" :userInfo="userInfo" :isequity="isequity" :permissionStore="permissionStore" @onNavTo="navTo" />
+      
+      <!-- 游戏入口区域 -->
+      <GameEntry :userInfo="userInfo" @onRealname="handleRealname" />
       <!-- 推广等级 -->
       <view 
         v-if="promotion_level_switch"
@@ -202,6 +205,7 @@ import VipInfo from "./components/VipInfo.vue";
 import VipCard from "./components/vipCard.vue";
 import AccountSection from "./components/AccountSection.vue";
 import QuickEntry from "./components/QuickEntry.vue";
+import GameEntry from "./components/GameEntry.vue";
 import CommonMenu from "./components/CommonMenu.vue";
 import SecurityCenter from "./components/SecurityCenter.vue";
 import ProductModal from "./components/ProductModal.vue";

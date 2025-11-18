@@ -181,6 +181,49 @@
       }
     },
     {
+      "path": "pages/golden_egg/index",
+      "style": {
+        "navigationBarTitleText": "砸金蛋",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/golden_egg/records",
+      "style": {
+        "navigationBarTitleText": "中奖记录",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/guess_number/index",
+      "style": {
+        "navigationBarTitleText": "猜数字游戏",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/guess_number/detail",
+      "style": {
+        "navigationBarTitleText": "场次详情",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/guess_number/records",
+      "style": {
+        "navigationBarTitleText": "投注记录",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
       "path": "pages/pay_pwd/miyao_reset",
       "style": {
         "navigationBarTitleText": "重置支付密码",

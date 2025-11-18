@@ -624,7 +624,7 @@ onShow(() => {
     font-size: 28rpx;
     line-height: 1.6;
     padding-bottom: 20rpx;
-    color: #FFFFFF80;
+    color: #FFFFFF;
   }
 }
 .zj_box {

@@ -53,6 +53,11 @@
   background-size: cover;
 }
 
+.bg-egg {
+  background-image: url('@/static/images/bg/bg_egg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 .bg-vip-bg01 {
   background-image: url('@/static/images/user/vip/vip_bg01.png');
   background-repeat: no-repeat;
@@ -209,4 +214,8 @@
   background: linear-gradient(to bottom, #461D80 0%, #1E1B1A 30%, #1E1B1A 100%);
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.bg-guess-number {
+  background: linear-gradient(173deg, rgba(255, 206, 127, 0.69) 2.18%, rgba(255, 38, 56, 0.00) 24.15%), linear-gradient(153deg, rgba(255, 100, 57, 0.83) 10.75%, rgba(255, 47, 97, 0.83) 40.16%), #FE3845;
 }

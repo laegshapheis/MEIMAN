@@ -238,4 +238,14 @@ export const routes = {
   couponPackage: "/pages/profile/coupon_package",
   // 推广等级详情页面
   promotionLevelDetail: "/pages/promotion/level_detail",
+  // 砸金蛋首页
+  goldenEggIndex: "/pages/golden_egg/index",
+  // 砸金蛋中奖记录页面
+  goldenEggRecords: "/pages/golden_egg/records",
+  // 猜数字游戏首页
+  guessNumber: "/pages/guess_number/index",
+  // 猜数字游戏详情页面
+  guessNumberDetail: "/pages/guess_number/detail",
+  // 猜数字游戏投注记录页面
+  guessNumberRecords: "/pages/guess_number/records",
 };
