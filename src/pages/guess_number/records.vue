@@ -161,7 +161,7 @@
 
         <!-- 中奖人数 -->
         <view v-if="betDetail" class="text-center mb-[32rpx]">
-          <text class="text-base text-[#999]">共 <text class="text-[#FF3C28] font-bold">{{ betDetail.current_participants }}</text> 人中奖</text>
+          <text class="text-base text-[#999]">共 <text class="text-[#FF3C28] font-bold">{{ betDetail.winning_user_count }}</text> 人中奖</text>
         </view>
 
         <!-- 中奖结果 -->
