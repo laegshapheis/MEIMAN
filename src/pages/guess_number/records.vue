@@ -91,15 +91,9 @@
               <view
                 v-for="(num, idx) in record.winning_numbers"
                 :key="idx"
-                class="w-[48rpx] h-[48rpx] rounded-full flex items-center justify-center"
-                :class="num == record.selected_number ? 'bg-[#FF6B4A]' : 'bg-[#F0F0F0]'"
+                class="w-[48rpx] h-[48rpx] rounded-full flex items-center justify-center bg-[#FF0004]"
               >
-                <text 
-                  class="text-[24rpx] font-bold"
-                  :class="num == record.selected_number ? 'text-white' : 'text-[#999]'"
-                >
-                  {{ num }}
-                </text>
+                <text class="text-[24rpx] font-bold text-white">{{ num }}</text>
               </view>
             </view>
           </view>
@@ -328,7 +322,7 @@ const getStatusClass = (color) => {
   const classMap = {
     0: 'bg-[#EDFFF0] text-[#4AA10C]',
     1: 'bg-[#EFEFEF] text-black/50',
-    2: 'bg-[#FFF1EA] text-[##FF4610]',
+    2: 'bg-[#FFF1EA] text-[#FF4610]',
   };
   return classMap[color] || 'bg-[#F5F5F5] text-[#999]';
 };
