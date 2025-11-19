@@ -136,10 +136,10 @@ onLoad(async () => {
 
     if (isLoggedIn) {
       uni.switchTab({
-        url: routes.storeList,
+        url: routes.index,
         fail: () => {
           uni.redirectTo({
-            url: routes.storeList
+            url: routes.index
           });
         }
       });
