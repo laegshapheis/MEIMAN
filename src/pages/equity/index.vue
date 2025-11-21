@@ -50,8 +50,6 @@
             </view>
             <uv-icon name="arrow-right" :color="$colors.DEFAULT" size="14"></uv-icon>
           </view>
-          <view 
-          class="w-full h-[1rpx] bg-black/10"></view>
         </view>
       </view>
     </view>

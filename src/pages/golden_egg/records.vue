@@ -2,7 +2,7 @@
   <layout
     ref="layoutRef"
     navTitle="获奖记录"
-    bgType="bg-main1"
+    bgType="bg-main5"
     :refresher="true"
     @onRefresh="handleRefresh"
     @reachBottom="getPaginationList"
@@ -16,6 +16,15 @@
           :isButton="true"
           @change="handleTypeChange"
           :scrollable="true"
+          :activeStyle="{
+            background: '#FFFFFF25',
+            color: '#20242A',
+          }"
+          :inactiveStyle="{
+            background: 'transparent',
+            color: '#252C2F',
+            border: 'none'
+          }"
         />
       </view>
     </template>
@@ -26,19 +35,18 @@
           v-for="(item, index) in recordList"
           :key="index"
           class="flex flex-row items-center mb-[24rpx]"
-          bgColor="#171717"
         >
           <view
-            class="w-[106rpx] h-[128rpx] flex justify-center items-center mr-[20rpx] rounded-[8rpx]"
+            class="w-[138rpx] h-[138rpx] flex justify-center items-center mr-[20rpx] rounded-[8rpx]"
           >
             <image
-              class="w-full h-auto rounded-[8rpx]"
+              class="w-[138rpx] h-[138rpx] rounded-[8rpx]"
               :src="item.reward_img"
-              mode="widthFix"
+              mode="aspectFill"
             ></image>
           </view>
           <view class="flex-1 flex flex-col">
-            <text class="text-[28rpx] text-white mb-[8rpx] font-medium">{{
+            <text class="text-[28rpx] text-neutral mb-[8rpx] font-medium">{{
               item.reward_name
             }}</text>
             <text class="text-sm text-neutral-regular mt-[8rpx]">{{
