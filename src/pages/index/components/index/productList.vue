@@ -78,7 +78,7 @@
               <!-- Fourth row: Image and CTA button -->
                 <!-- CTA button -->
                 <view class="rounded-full bg-[#000000] flex items-center justify-center px-[32rpx] py-[16rpx]" @click="goToProductDetail(item.id)">
-                    <text class="text-sm text-white">去投资</text>
+                    <text class="text-sm text-white">查看详情</text>
                     <uv-icon name="arrow-right" size="10" color="#FFFFFF" class="ml-[8rpx]"></uv-icon>
                 </view>
           </view>

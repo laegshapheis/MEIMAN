@@ -55,7 +55,7 @@
             >
             <uv-icon
               size="24rpx"
-              color="#98EDFB"
+              color="#2935CC"
               name="question-circle"
             ></uv-icon>
           </view>
@@ -71,7 +71,7 @@
                 >
                 <uv-icon
                   size="24rpx"
-                  color="#98EDFB"
+                  color="#2935CC"
                   name="question-circle"
                 ></uv-icon>
             </view>

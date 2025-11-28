@@ -230,6 +230,7 @@ export default {
         height: 120rpx;
         z-index: 100;
         overflow: hidden;
+        border: 1px solid #FFFFFF;
 
         image {
           display: block;

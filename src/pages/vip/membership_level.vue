@@ -23,8 +23,8 @@
             class="h-[200rpx] w-[240rpx]"
             :class="[
               index === activeIndex
-                ? 'opacity-100 scale-[1.2]'
-                : 'opacity-50 scale-[1]',
+                ? 'opacity-100 scale-[1]'
+                : 'opacity-50 scale-[0.8]',
             ]"
             :src="item"
             mode="widthFix"
