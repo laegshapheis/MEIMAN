@@ -684,7 +684,7 @@ export const transferCoupon = (data) => {
 // 下载合约 url
 export const downloadContractApi2 = (data) => {
   return requestApi({
-    url: '/api/v2/product/downloadContract?contract_no=' + data.contract_no,
+    url: '/api/v2/equity/downloadContract?contract_no=' + data.contract_no,
     method: 'get',
   });
 };
@@ -704,5 +704,13 @@ export const getPromotionLevel = (data) => {
     url: '/api/v2/promotionLevel/index',
     method: 'GET',
     data
+  });
+};
+
+// 下载合约 url
+export const downloadContractProductApi = (data) => {
+  return requestApi({
+    url: '/api/v2/product/downloadContract?contract_no=' + data.contract_no,
+    method: 'get',
   });
 };

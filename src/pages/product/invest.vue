@@ -321,7 +321,7 @@ import {
   download as downloadApi,
 } from "@/api/invest";
 import { cacheManager } from "@/utils/cacheManager";
-import { downloadContractApi2 } from "@/api/user";
+import { downloadContractProductApi } from "@/api/user";
 import { usePermissionStore } from "@/stores/permission";
 
 const { hasPermission } = usePermissionStore();
@@ -545,7 +545,7 @@ const handleDownload = async (item) => {
   try {
     downType.value = hasPermission("pdf_download_type") ? 1 : 0;
     if (downType.value == 1) {
-    const result = await downloadContractApi2({
+    const result = await downloadContractProductApi({
       contract_no: item.contract_no
     });
     console.log("result123", result);
