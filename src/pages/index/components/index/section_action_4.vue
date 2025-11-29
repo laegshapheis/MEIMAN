@@ -8,7 +8,7 @@
         class="h-[112rpx] w-[186rpx]  flex flex-col p-[16rpx] justify-center items-center rounded-[32rpx]"
         style="backdrop-filter: blur(10px);background: rgba(255, 255, 255, 0.75);"
       >
-        <image :src="item.icon" class="w-[40rpx] h-[32.8rpx]" mode="widthFix" />
+        <image :src="item.icon" class="w-[64rpx] h-[64rpx]" mode="widthFix" />
         <view class="text-neutral-black text-center">
           <text class="font-[400] text-base" style="line-height: 44rpx;">{{ item.title }}</text>
         </view>

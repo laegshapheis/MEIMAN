@@ -4,8 +4,8 @@
     style="border: 1px solid #B9DCFF;"
     @click="handleClick"
   >
-    <view class="flex items-center justify-center w-[48rpx] h-[28rpx] py-[6rpx] px-[8rpx]">
-      <image :src="icon" mode="widthFix" />
+    <view class="flex items-center justify-center w-[48rpx] h-[48rpx]">
+      <image :src="icon" class="w-[48rpx] h-[48rpx]" mode="widthFix" />
     </view>
     <view class="mt-[16rpx] text-neutral-black text-sm" style="font-weight: 600;">{{
       title

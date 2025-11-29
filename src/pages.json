@@ -294,24 +294,24 @@
         "navigationBarTextStyle": "white"
       }
     },
-    {
-      "path": "pages/vip/vip_card_purchase",
-      "style": {
-        "navigationBarTitleText": "会员卡购买",
-        "enablePullDownRefresh": false,
-        "navigationStyle": "custom",
-        "navigationBarTextStyle": "white"
-      }
-    },
-    {
-      "path": "pages/vip/vip_card_record",
-      "style": {
-        "navigationBarTitleText": "会员卡购买记录",
-        "enablePullDownRefresh": false,
-        "navigationStyle": "custom",
-        "navigationBarTextStyle": "white"
-      }
-    },
+    // {
+    //   "path": "pages/vip/vip_card_purchase",
+    //   "style": {
+    //     "navigationBarTitleText": "会员卡购买",
+    //     "enablePullDownRefresh": false,
+    //     "navigationStyle": "custom",
+    //     "navigationBarTextStyle": "white"
+    //   }
+    // },
+    // {
+    //   "path": "pages/vip/vip_card_record",
+    //   "style": {
+    //     "navigationBarTitleText": "会员卡购买记录",
+    //     "enablePullDownRefresh": false,
+    //     "navigationStyle": "custom",
+    //     "navigationBarTextStyle": "white"
+    //   }
+    // },
     {
       "path": "pages/vip/team_level",
       "style": {
@@ -953,14 +953,14 @@
         "disableSwipeBack": true
       }
     },
-    {
-      "path": "pages/services/index",
-      "style": {
-        "navigationBarTitleText": "服务",
-        "navigationStyle": "custom",
-        "navigationBarTextStyle": "white"
-      }
-    },
+    // {
+    //   "path": "pages/services/index",
+    //   "style": {
+    //     "navigationBarTitleText": "服务",
+    //     "navigationStyle": "custom",
+    //     "navigationBarTextStyle": "white"
+    //   }
+    // },
     {
       "path": "pages/activity/index",
       "style": {

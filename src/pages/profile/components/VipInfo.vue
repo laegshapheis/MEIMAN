@@ -1,22 +1,34 @@
 <template>
-  <view
-    class="relative z-20 rounded-[32rpx] border-[length: 0rpx] bg-[url('/static/images/profile/vip_bg.png')] bg-no-repeat bg-contain bg-bottom box-border"
-  >
-    <!-- <image
-      src="/static/images/profile/vip_bg.png"
-      mode="widthFix"
-      class="w-[350rpx] h-[342rpx] absolute top-0 left-0"
-    ></image> -->
-    <!-- VIP等级 -->
-     <view class="overflow-hidden bg-vip-card-bg mx-[8rpx] border border-[length:1rpx] border-solid border-[#FFFFFF] rounded-[32rpx]" style="backdrop-filter: blur(10px);border-top: 1rpx solid rgba(255, 255, 255, 0.26)">
-      <image
-        src="/static/images/profile/vipCard_icon.png"
+  <view class="relative z-20 rounded-[32rpx] vip-card-border-wrapper">
+    <view
+      class="relative rounded-[32rpx] bg-vip-card-bg border-[length: 0rpx] bg-no-repeat bg-contain bg-bottom box-border vip-card-inner"
+    >
+      <!-- <image
+        src="/static/images/profile/vip_bg.png"
         mode="widthFix"
-        class="w-[64rpx] h-[48rpx] mb-[35rpx] ml-[34rpx] mt-[27rpx]"
-      ></image>
+        class="w-[350rpx] h-[342rpx] absolute top-0 left-0"
+      ></image> -->
+      <!-- VIP等级 -->
+       <view class="overflow-hidden pb-[32rpx] mx-[8rpx]">
+      
+      <view class="flex flex-row items-center mb-[35rpx] mt-[36rpx]">
+        <image
+          src="/static/images/profile/vipCard_icon.png"
+          mode="widthFix"
+          class="w-[80rpx] h-[32rpx] ml-[34rpx]"
+        ></image>
+        <!-- 查看会员详情按钮 -->
+        <view
+            class="bg-white/50 rounded-full px-[24rpx] py-[8rpx] self-start pt-[0rpx] ml-[8rpx]"
+            @click="handleNavToMembershipLevel"
+          >
+            <text class="text-[#193168] text-sm">查看等级详情</text>
+        </view>
+      </view>
+        
       <view
-          class="rounded-b-[24rpx] rounded-r-[0rpx] absolute top-0 right-0 flex flex-row items-center justify-center  ml-[12rpx] text-neutral-regular px-[16rpx] py-[8rpx]"
-          style="background: rgba(20, 132, 251, 0.66);border-radius: 0 0 0 12px;backdrop-filter: blur(8px)"
+          class="absolute top-0 right-0 flex flex-row items-center justify-center  ml-[12rpx] text-neutral-regular px-[16rpx] py-[8rpx]"
+          style="background: rgba(20, 132, 251, 0.66);border-radius: 0 12px 0 12px;backdrop-filter: blur(8px)"
           @click="$emit('onTips', 9)"
         >
           <image
@@ -28,13 +40,13 @@
             userInfo.level
           }}</text>
           <uv-icon size="24rpx" color="#fff" name="question-circle"></uv-icon>
-    </view>
+      </view>
     <!-- 成长值 -->
     <view
       class=" px-[34rpx] box-border rounded-[8rpx] flex flex-row justify-between"
     >
       <view class="flex flex-col justify-between flex-[2]">
-        <view class="flex flex-col mb-[10rpx]">
+        <view class="flex flex-row items-center justify-between mb-[10rpx]">
           <!-- <image
             src="/static/images/profile/vip_growth.png"
             mode="widthFix"
@@ -60,64 +72,9 @@
           ></uv-line-progress>
         </view>
       </view>
-      
-      <view
-        v-if="userInfo.selfnumber > 0"
-        class="flex flex-col justify-between flex-1 ml-[24rpx]"
-      >
-        <view class="flex flex-col mb-[10rpx]">
-          <view class="text-base text-[#19316899]">直推人数</view>
-          <view class="flex flex-row items-center mt-[10rpx]">
-            <text class="text-base text-[#193168] font-bold">{{
-              userInfo.number
-            }}</text>
-            <text class="text-base text-[#252C2F]/30 font-bold"
-              >/{{ userInfo.selfnumber }}</text
-            >
-          </view>
-        </view>
-        <view class="w-full">
-          <uv-line-progress
-            height="12rpx"
-            :showText="false"
-            :percentage="qualifiedProgress"
-            inactiveColor="rgba(255,255,255,0.30)"
-            activeColor="#2935CC"
-          ></uv-line-progress>
-        </view>
-      </view>
     </view>
-    <view class="w-full h-[1rpx] mt-[70rpx]"></view>
     </view>
-    <view class="mt-[-35rpx]">
-    <!-- 其他菜单 -->
-    <view class="flex flex-row justify-center gap-[24rpx] p-[16rpx] rounded-[32rpx]" style="background: #fff;backdrop-filter: blur(10px);">
-      <template v-for="item in menus" :key="item.title">
-        <view
-          class="px-[24rpx] py-[16rpx] rounded-[16rpx] flex-1 bg-[#F9F3E9]"
-        >
-          <view
-            @click="$emit('onNavTo', item)"
-            class="flex flex-row items-center justify-between"
-          >
-            <view class="flex flex-row items-center mr-[20rpx]">
-              <image
-                :src="item.icon"
-                mode="widthFix"
-                class="w-[40rpx] h-[40rpx]"
-              ></image>
-              <text
-                class="text-base font-medium ml-[8rpx] text-neutral"
-                >{{ item.title }}</text
-              >
-            </view>
-            <uv-icon name="arrow-right" size="23rpx" :color="$colors.DEFAULT"></uv-icon>
-          </view>
-        </view>
-      </template>
     </view>
-     </view>
-   
   </view>
 </template>
 
@@ -133,7 +90,14 @@ const props = defineProps({
   },
 });
 
-defineEmits(["onTips", "onNavTo"]);
+defineEmits(["onTips"]);
+
+// 导航到会员等级页面
+const handleNavToMembershipLevel = () => {
+  uni.navigateTo({
+    url: routes.membershipLevel
+  });
+};
 
 const menus = computed(() => [
   {
@@ -144,15 +108,15 @@ const menus = computed(() => [
     icon: vipIcons.find((item) => item.id === props.userInfo.levelid)?.icon,
     tip: 9,
   },
-  {
-    title: "团队等级",
-    icon: teamIcons.find((item) => item.id === props.userInfo.teams_levelid)
-      ?.icon,
-    switch: "team_level_entry_switch",
-    redirect: routes.teamLevel,
-    type: 1,
-    desc: props.userInfo.teams,
-  },
+  // {
+  //   title: "团队等级",
+  //   icon: teamIcons.find((item) => item.id === props.userInfo.teams_levelid)
+  //     ?.icon,
+  //   switch: "team_level_entry_switch",
+  //   redirect: routes.teamLevel,
+  //   type: 1,
+  //   desc: props.userInfo.teams,
+  // },
 ]);
 
 const growthProgress = computed(() => {
@@ -171,5 +135,15 @@ const qualifiedProgress = computed(() => {
 <style lang="scss" scoped>
 .vip-level-bg {
   background: linear-gradient(90deg, #ebd0b1 0%, #d0a36e 100%);
+}
+
+.vip-card-border-wrapper {
+  padding: 4rpx;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, #DAF1FF 100%);
+}
+
+.vip-card-inner {
+  width: 100%;
+  height: 100%;
 }
 </style>

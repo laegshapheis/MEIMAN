@@ -225,7 +225,7 @@
           class="flex flex-col items-center justify-center mt-[40rpx] mb-[40rpx]"
         >
           <text class="text-2xl text-black">签到成功</text>
-          <text class="text-2xl text-white mt-[10rpx]">{{
+          <text class="text-2xl text-[#FF6135] mt-[10rpx]">{{
             data.qian_dao_msg
           }}</text>
         </view>
