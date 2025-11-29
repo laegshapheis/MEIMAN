@@ -42,9 +42,9 @@
         
         <view class="space-y-[12rpx]">
           <view v-for="(condition, index) in currentLevelInfo.conditions" :key="index" class="flex items-center justify-between mb-[10rpx]">
-            <text class="text-[#FFDBC2] text-base"><text class="text-[#FFDBC2] text-[24rpx] mr-[12rpx]">•</text>{{ condition }}</text>
+            <text class="text-[#FFDBC2] text-base"><text class="text-[#FFDBC2] text-[24rpx] mr-[12rpx]">•</text>{{ condition.condition }}</text>
             <view class="px-[16rpx] py-[4rpx] rounded-[16rpx] border-[#FFDBC233] border-[length:2rpx] border-solid">
-              <text class="text-[#FFDBC2] text-base">{{promotionData.data.user.promotion_level === currentLevelInfo.level ? '已达成' : '未达成'}}</text>
+              <text class="text-[#FFDBC2] text-base">{{ condition.is_finish === 1 ? '已达成' : '未达成' }}</text>
             </view>
           </view>
         </view>
@@ -53,7 +53,7 @@
       <view class="bg-tuiguang-card rounded-[24rpx] p-[32rpx] border-[#D5D5D8] border-[length:1rpx] border-solid">
         <view class="flex items-center justify-center">
           <text class="text-[#FFDBC2] text-[24rpx] mr-[16rpx]">★</text>
-          <text class="text-[#FFDBC2] text-[36rpx] font-semibold">奖励说明</text>
+          <text class="text-[#FFDBC2] text-[36rpx] font-semibold">奖励说明1</text>
           <text class="text-[#FFDBC2] text-[24rpx] ml-[16rpx]">★</text>
         </view>
 
