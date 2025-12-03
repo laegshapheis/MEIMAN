@@ -24,7 +24,7 @@
               mode="aspectFit"
             />
           </view>
-          <text class="text-neutral text-base">幸运转盘</text>
+          <text class="text-neutral text-base">超级转盘</text>
         </view>
         
         <view class="flex flex-col items-center" @click="handleGameClick(routes.guessNumber)">
