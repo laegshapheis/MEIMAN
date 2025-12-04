@@ -1,25 +1,20 @@
 <template>
   <view
     class="box_view"
-    :style="{ height: divce_height + 'px', width: divce_widht + 'px', paddingTop: iStatusBarHeight + 'px' }"
+    :style="{
+      height: divce_height + 'px',
+      width: divce_widht + 'px',
+      paddingTop: iStatusBarHeight + 'px',
+    }"
   >
-    <!-- Loading状态 -->
-    <view v-if="loading" class="loading-container">
-      <view class="loading-spinner"></view>
-      <text class="loading-text">正在加载客服页面...</text>
-    </view>
-    
-    <!-- Web-view内容 -->
-    <view v-else class="webview-container" :style="{ height: fram_height - 56 + 'px', width: divce_widht + 'px' }">
-      <web-view
-        v-if="url"
-        :update-title="false"
-        webview-styles
-        :fullscreen="true"
-        :style="{ height: fram_height - 56 + 'px', width: divce_widht + 'px' }"
-        :src="url"
-      ></web-view>
-    </view>
+    <web-view
+      v-if="url"
+      :update-title="false"
+      webview-styles
+      :fullscreen="true"
+      :style="{ height: fram_height - 56 + 'px', width: divce_widht + 'px' }"
+      :src="url"
+    ></web-view>
   </view>
 </template>
 
@@ -151,7 +146,11 @@ export default {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>
