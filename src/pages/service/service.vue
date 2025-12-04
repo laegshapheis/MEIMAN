@@ -10,14 +10,16 @@
     </view>
     
     <!-- Web-view内容 -->
-    <web-view
-      v-else
-      :update-title="false"
-      webview-styles
-      :fullscreen="true"
-      :style="{ height: fram_height - 56 + 'px', width: divce_widht + 'px' }"
-      :src="url"
-    ></web-view>
+    <view v-else class="webview-container" :style="{ height: fram_height - 56 + 'px', width: divce_widht + 'px' }">
+      <web-view
+        v-if="url"
+        :update-title="false"
+        webview-styles
+        :fullscreen="true"
+        :style="{ height: fram_height - 56 + 'px', width: divce_widht + 'px' }"
+        :src="url"
+      ></web-view>
+    </view>
   </view>
 </template>
 
@@ -118,9 +120,9 @@ export default {
   /* width: 100px; */
   background-color: #fff;
 }
-.box_view {
-  position: relative;
-  z-index: 10;
+
+.webview-container {
+  width: 100%;
 }
 
 /* Loading样式 */
