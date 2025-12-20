@@ -10,7 +10,7 @@
     class="bg-black fixed inset-0 flex flex-col items-center h-full w-full"
     scroll-y
   >
-  <view class="relative w-full h-[1630rpx] overflow-hidden z-10 top-[-200rpx]">
+  <view class="relative w-full h-[1630rpx] overflow-hidden z-10">
       <c-lottie
         style="transform: translate3d(0, 0, 0); will-change: transform"
         class="absolute inset-0"
@@ -161,33 +161,33 @@ const menuItems = ref([
     icon: "/static/images/home/icon-1.png",
     title: "产品中心",
     path: routes.productList,
-    positionClass: "top-[160rpx] left-1/2 transform -translate-x-1/2 animate-top-in",
+    positionClass: "top-[360rpx] left-1/2 transform -translate-x-1/2 animate-top-in",
   },
   {
     isAuth: true,
     icon: "/static/images/home/icon-7.png",
     title: "任务中心",
     type: "group",
-    positionClass: "top-[450rpx] left-[0rpx] animate-left-in",
+    positionClass: "top-[650rpx] left-[0rpx] animate-left-in",
   },
   {
     isAuth: true,
     icon: "/static/images/home/icon-4.png",
     title: "关于美满",
     path: routes.about,
-    positionClass: "top-[450rpx] right-[0rpx] animate-right-in",
+    positionClass: "top-[650rpx] right-[0rpx] animate-right-in",
   },
   {
     icon: "/static/images/home/icon-4.png",
     title: "新闻资讯",
     path: routes.newsList,
-    positionClass: "top-[720rpx] left-[100rpx] animate-bottom-left-in",
+    positionClass: "top-[920rpx] left-[100rpx] animate-bottom-left-in",
   },
   {
     icon: "/static/images/home/icon-3.png",
     title: "个人中心",
     path: routes.profile,
-    positionClass: "top-[720rpx] right-[100rpx] animate-bottom-right-in",
+    positionClass: "top-[920rpx] right-[100rpx] animate-bottom-right-in",
   },
 ]);
 
@@ -196,19 +196,19 @@ const groupMenuItems = ref([
     icon: "/static/images/home/icon-10.png",
     title: "答题奖励",
     path: '',
-    positionClass: "top-[160rpx] left-1/2 transform -translate-x-1/2 animate-top-in",
+    positionClass: "top-[360rpx] left-1/2 transform -translate-x-1/2 animate-top-in",
   },
   {
     icon: "/static/images/home/icon-2.png",
     title: "任务奖励",
     path: '',
-    positionClass: "top-[450rpx] left-[0rpx] animate-left-in",
+    positionClass: "top-[650rpx] left-[0rpx] animate-left-in",
   },
   {
     icon: "/static/images/home/icon-6.png",
     title: "每日签到",
     path: routes.checkIn,
-    positionClass: "top-[450rpx] right-[0rpx] animate-right-in",
+    positionClass: "top-[650rpx] right-[0rpx] animate-right-in",
   },
 ]);
 
