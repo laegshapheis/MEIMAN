@@ -11,7 +11,7 @@
             注册
           </view> -->
           <text
-            class="text-[#010101] text-base underline"
+            class="text-neutral-theme text-base underline"
             @click="jumpToPage(routes.forgot)"
             >重置密码</text
           >
@@ -186,7 +186,7 @@ const confirmLogin = async (captcha_id) => {
       // 清除所有接口数据缓存
       cacheManager.clearAllCache();
       if (res.save_mi_yao === 1) {
-        uni.switchTab({
+        uni.redirectTo({
           url: routes.index,
         });
       } else {

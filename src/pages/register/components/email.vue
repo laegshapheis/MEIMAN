@@ -44,8 +44,6 @@
       </view>
       <!-- 注册按钮 -->
       <wk-button
-      class="mt-[24rpx]"
-      size="large"
         @submit="handleRegister"
       >
         {{ $t("register.registerBtn") }}

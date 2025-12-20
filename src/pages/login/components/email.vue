@@ -28,14 +28,14 @@
           注册
         </view> -->
         <text
-          class="text-[#010101] text-base underline"
+          class="text-neutral-theme text-base underline"
           @click="toPage(routes.forgotEmail + '?email=' + formData.username)"
         >
           重置密码
         </text>
       </view>
       <!-- 登录按钮 -->
-      <wk-button class="mt-[8rpx]" size="large" @submit="handleLogin">
+      <wk-button size="small" @submit="handleLogin">
         登录
       </wk-button>
     </view>
@@ -188,7 +188,7 @@ const confirmLogin = async (captcha_id) => {
         key: "app_token",
         data: res.token,
       });
-      uni.switchTab({
+      uni.redirectTo({
         url: routes.index,
       });
     } else if (res.status === 2) {

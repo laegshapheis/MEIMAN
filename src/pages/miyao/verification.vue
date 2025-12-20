@@ -78,7 +78,7 @@ const jumpApp = async () => {
 
   // 请求成功后的处理
   if (res.status == 0) {
-    uni.switchTab({
+    uni.redirectTo({
       url: routes.index,
     });
   } else if (res.status == 2) {

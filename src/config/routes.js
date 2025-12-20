@@ -1,6 +1,8 @@
 export const routes = {
+  // 动画首页
+  home: '/pages/home/index',
   // 首页
-  index: "/pages/index/index",
+  index: "/pages/home/index",
   // 关于页面
   about: "/pages/about/about",
   // 客服页面

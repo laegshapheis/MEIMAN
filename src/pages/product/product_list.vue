@@ -1,6 +1,7 @@
 <template>
   <layout
-    :isNav="false"
+    :isNav="true"
+    navTitle="产品中心"
     ref="layoutRef"
     :refresher="true"
     @onRefresh="handleRefresh"
@@ -39,6 +40,7 @@
         <view class="px-[20rpx]">
           <wk-tabs
             :list="tabs"
+            mode="card"
             @change="handleTabChange"
             :defaultIndex="current"
           />
@@ -47,7 +49,7 @@
           <wk-tabs
             v-if="subTabs.length > 0"
             :list="subTabs"
-            :isButton="true"
+            mode="button"
             @change="handleSubTabChange"
             :defaultIndex="subCurrent"
             :inactiveStyle="{

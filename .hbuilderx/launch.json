@@ -1,0 +1,12 @@
+{
+    "version" : "1.0",
+    "configurations" : [
+        {
+            "bundleId" : "com.abd.im.app",
+            "certificateFile" : "/Users/lucas/Documents/z14/z14.p12",
+            "certificateProfileFile" : "/Users/lucas/Documents/z14/z14.mobileprovision",
+            "runSignStatus" : 1,
+            "type" : "uni-app:app-ios"
+        }
+    ]
+}

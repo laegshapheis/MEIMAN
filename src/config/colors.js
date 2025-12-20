@@ -1,12 +1,12 @@
 export const neutral = {
-  DEFAULT: '#010101', // 默认字体白色
-  theme: '#2935CC', // 主题色
-  regular: '#252C2F', // 常规字体
-  secondary: 'rgba(37, 44, 47, 0.50)', // 次要字体
-  light: 'rgba(37, 44, 47, 0.75)', // 轻量字体
-  placeholder: '#252C2F75', // 输入框占位符
+  DEFAULT: '#fff', // 默认字体白色
+  theme: '#B676FF', // 主题色
+  regular: '#fff', // 常规字体
+  secondary: 'rgba(255, 255, 255, 0.80)', // 次要字体
+  light: 'rgba(255, 255, 255, 0.75)', // 轻量字体
+  placeholder: 'rgba(255, 255, 255, 0.75)', // 输入框占位符
   disabled: '#C0C4CC', // 禁用状态
-  primary: '#2D2929', // 主色调
+  primary: '#B676FF', // 主色调
   primaryAssist: '#F5F8FD', // 辅助主色调
   grey: '#053978',
   warning: '#2A877C',
@@ -18,7 +18,7 @@ export const neutral = {
   secondaryColor: '#B676FF',
   inputBg2: '#130D08',
   // 底部按钮背景
-  bottomBtnBg: '#FFFFFF',
+  bottomBtnBg: 'linear-gradient(90deg, #4EB2FE 0%, #0479FE 100%)',
   // 输入框
   inputBg: '#FFFFFF',
   inputBorder: 'transparent',

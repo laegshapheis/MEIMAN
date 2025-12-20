@@ -127,7 +127,7 @@ const onFinish = async (value) => {
       key: "app_token",
       data: res.token,
       success() {
-        uni.switchTab({
+        uni.redirectTo({
           url: routes.index,
         });
       },

@@ -1,13 +1,13 @@
 <template>
   <layout
-    :isNav="false"
+    :isNav="true"
     bgType="bg-profile"
     ref="layoutRef"
     :refresher="true"
     @onRefresh="handleRefresh"
-    navTitle=""
+    navTitle="个人中心"
     @navLeftClick="handleNavLeftClick"
-    :isNavLeftBack="false"
+    :isNavLeftBack="true"
   >
     <view class="px-[32rpx] relative box-border w-full flex flex-col">
       <view class="h-[var(--status-bar-height)] bg-transparent"></view>

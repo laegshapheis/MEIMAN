@@ -1,132 +1,375 @@
 <template>
-  <view>
-    <!-- 常规模式 -->
+  <view :class="['wk-tabs', `wk-tabs--${mode}`, customClass]">
     <uv-tabs
-      v-if="!isButton"
-      :customStyle="customStyle"
-      :itemStyle="itemStyle"
-      :lineColor="lineColor"
-      :lineHeight="lineHeight"
-      :lineFullWidth="lineFullWidth"
+      :class="tabsClass"
+      :customStyle="mergedCustomStyle"
+      :itemStyle="mergedItemStyle"
+      :lineColor="computedLineColor"
+      :lineHeight="computedLineHeight"
+      :lineWidth="computedLineWidth"
+      :lineFullWidth="computedLineFullWidth"
       :list="list"
-      :activeColor="activeColor"
-      :showBottomBorder="false"
+      :activeStyle="mergedActiveStyle"
+      :inactiveStyle="mergedInactiveStyle"
+      :showBottomBorder="computedShowBottomBorder"
       :bottomBorderColor="bottomBorderColor"
-      :inactiveColor="inactiveColor"
-      :activeStyle="{
-        fontSize: '32rpx',
-        color: '#FFFFFF',
-        fontWeight: '600',
-        ...props.activeStyle,
-      }"
-      :inactiveStyle="{
-        fontSize: '32rpx',
-        color: 'rgba(37, 44, 47, 0.75)',
-        ...props.inactiveStyle,
-      }"
       :current="current"
+      :scrollable="scrollable"
       @change="handleChange"
       v-bind="attrs"
-    >
-    </uv-tabs>
-
-    <!-- 按钮模式 -->
-    <uv-tabs
-      v-else
-      class="button-mode"
-      :itemStyle="buttonItemStyle"
-      lineColor="transparent"
-      :activeStyle="computedActiveStyle"
-      :inactiveStyle="computedInactiveStyle"
-      :list="list"
-      :current="current"
-      @change="handleChange"
-      v-bind="attrs"
-    >
-    </uv-tabs>
+    />
   </view>
 </template>
 
-<script setup>
-import { ref, computed, watch, useAttrs, getCurrentInstance } from "vue";
-const current = ref(0);
-const attrs = useAttrs();
-const props = defineProps({
-  bottomBorderColor: {
-    type: String,
-    default: '#010101',
-  },
-  itemStyle: {
-    type: Object,
-    default: () => ({
+<script>
+const MODE_PRESETS = {
+  normal: {
+    lineColor: "#010101",
+    lineHeight: "4rpx",
+    lineWidth: 40,
+    lineFullWidth: false,
+    showBottomBorder: false,
+    customStyle: {},
+    itemStyle: {
       fontSize: "32rpx",
       height: "76rpx",
       minWidth: "150rpx",
-    }),
+    },
+    activeStyle: {
+      fontSize: "32rpx",
+      color: "#FFFFFF",
+      fontWeight: "600",
+    },
+    inactiveStyle: {
+      fontSize: "32rpx",
+      color: "rgba(37, 44, 47, 0.75)",
+    },
   },
-  defaultIndex: {
-    type: Number,
-    default: 0,
+
+  underline: {
+    lineColor: "#010101",
+    lineHeight: "76rpx",
+    lineWidth: "100%",
+    lineFullWidth: true,
+    showBottomBorder: false,
+    customStyle: {},
+    itemStyle: {
+      fontSize: "32rpx",
+      height: "76rpx",
+      minWidth: "150rpx",
+    },
+    activeStyle: {
+      fontSize: "32rpx",
+      color: "#FFFFFF",
+      fontWeight: "600",
+    },
+    inactiveStyle: {
+      fontSize: "32rpx",
+      color: "rgba(37, 44, 47, 0.75)",
+    },
+  },
+
+  button: {
+    lineColor: "transparent",
+    lineHeight: 0,
+    lineWidth: 0,
+    lineFullWidth: false,
+    showBottomBorder: false,
+    customStyle: {
+      background: "#1C0D89",
+      borderRadius: "24px",
+    },
+    itemStyle: {
+      padding: "0 4rpx",
+      height: "auto",
+      minWidth: "auto",
+    },
+    activeStyle: {
+      borderRadius: "100rpx",
+      padding: "12rpx 32rpx",
+      fontSize: "28rpx",
+      color: "#fff",
+      fontWeight: "bold",
+      background: "url(/static/images/component/tabs/tabBtnAc.png) center/cover no-repeat",
+    },
+    inactiveStyle: {
+      borderRadius: "100rpx",
+      padding: "12rpx 32rpx",
+      fontSize: "28rpx",
+      color: "rgba(255, 255, 255, 0.60)",
+      backgroundColor: "transparent",
+    },
+  },
+
+  capsule: {
+    lineColor: "#010101",
+    lineHeight: "100%",
+    lineWidth: "100%",
+    lineFullWidth: true,
+    showBottomBorder: false,
+    customStyle: {
+      background: "rgba(255, 255, 255, 0.1)",
+      borderRadius: "100rpx",
+      padding: "4rpx",
+      border: "0.5px solid rgba(255, 255, 255, 0.25)",
+    },
+    itemStyle: {
+      height: "64rpx",
+      padding: "0 32rpx",
+    },
+    activeStyle: {
+      fontSize: "28rpx",
+      color: "#FFFFFF",
+      fontWeight: "600",
+    },
+    inactiveStyle: {
+      fontSize: "28rpx",
+      color: "rgba(255, 255, 255, 0.6)",
+    },
+  },
+
+  pill: {
+    lineColor: "#299DF6",
+    lineHeight: "100%",
+    lineWidth: "100%",
+    lineFullWidth: true,
+    customStyle: {
+      background: "#000",
+      borderRadius: "200rpx",
+      padding: "6rpx",
+    },
+    itemStyle: {
+      height: "56rpx",
+      padding: "0 40rpx",
+    },
+    activeStyle: {
+      fontSize: "28rpx",
+      color: "#FFFFFF",
+      fontWeight: "400",
+    },
+    inactiveStyle: {
+      fontSize: "28rpx",
+      color: "rgba(255, 255, 255, 0.5)",
+    },
+  },
+
+  card: {
+    lineColor: "transparent",
+    lineHeight: 0,
+    lineWidth: 0,
+    lineFullWidth: false,
+    showBottomBorder: false,
+    customStyle: {
+    },
+    itemStyle: {
+      height: "auto",
+      padding: "0 8rpx",
+    },
+    activeStyle: {
+      padding: "16rpx 48rpx",
+      fontSize: "28rpx",
+      color: "#FFFFFF",
+      fontWeight: "600",
+      background: "url(/static/images/component/tabs/tabActive.png) center/100% 100% no-repeat",
+      borderRadius: "16rpx",
+    },
+    inactiveStyle: {
+      padding: "16rpx 48rpx",
+      fontSize: "28rpx",
+      color: "rgba(255, 255, 255, 0.6)",
+      background: "url(/static/images/component/tabs/tabIn.png) center/100% 100% no-repeat",
+      borderRadius: "16rpx",
+    },
+  },
+
+  ghost: {
+    lineColor: "transparent",
+    lineHeight: 0,
+    lineWidth: 0,
+    lineFullWidth: false,
+    showBottomBorder: false,
+    customStyle: {},
+    itemStyle: {
+      height: "auto",
+      padding: "0 16rpx",
+    },
+    activeStyle: {
+      padding: "12rpx 24rpx",
+      fontSize: "28rpx",
+      color: "#299DF6",
+      fontWeight: "600",
+      backgroundColor: "rgba(41, 157, 246, 0.1)",
+      borderRadius: "12rpx",
+    },
+    inactiveStyle: {
+      padding: "12rpx 24rpx",
+      fontSize: "28rpx",
+      color: "rgba(0, 0, 0, 0.5)",
+      backgroundColor: "transparent",
+      borderRadius: "12rpx",
+    },
+  },
+
+  text: {
+    lineColor: "transparent",
+    lineHeight: 0,
+    lineWidth: 0,
+    lineFullWidth: false,
+    showBottomBorder: false,
+    customStyle: {},
+    itemStyle: {
+      height: "auto",
+      padding: "0 24rpx",
+    },
+    activeStyle: {
+      fontSize: "32rpx",
+      color: "#010101",
+      fontWeight: "bold",
+    },
+    inactiveStyle: {
+      fontSize: "28rpx",
+      color: "rgba(0, 0, 0, 0.4)",
+    },
+  },
+};
+
+export { MODE_PRESETS };
+</script>
+
+<script setup>
+import { ref, computed, watch, useAttrs } from "vue";
+
+const current = ref(0);
+const attrs = useAttrs();
+
+const props = defineProps({
+  mode: {
+    type: String,
+    default: "underline",
+    validator: (value) => Object.keys(MODE_PRESETS).includes(value),
   },
   list: {
     type: Array,
     default: () => [],
   },
-  // 是否使用按钮模式
-  isButton: {
-    type: Boolean,
-    default: false,
+  defaultIndex: {
+    type: Number,
+    default: 0,
   },
-  // 常规模式的样式配置
-  customStyle: {
-    type: Object,
-    default: () => ({
-      fontSize: "32rpx",
-      fontWeight: "semibold",
-    }),
-  },
-  lineColor: {
-    type: String,
-    default: '#010101',
-  },
-  lineHeight: {
-    type: String,
-    default: "76rpx",
-  },
-  lineFullWidth: {
+  scrollable: {
     type: Boolean,
     default: true,
   },
-  activeColor: {
+  customClass: {
     type: String,
-    default: "#252628",
+    default: "",
   },
-  inactiveColor: {
+  tabsClass: {
     type: String,
-    default: "rgba(37, 44, 47, 0.75)",
+    default: "",
   },
-  // 按钮模式激活状态样式
+  customStyle: {
+    type: Object,
+    default: () => ({}),
+  },
+  itemStyle: {
+    type: Object,
+    default: () => ({}),
+  },
   activeStyle: {
     type: Object,
     default: () => ({}),
   },
-  // 按钮模式未激活状态样式
   inactiveStyle: {
     type: Object,
     default: () => ({}),
   },
+  lineColor: {
+    type: String,
+    default: "",
+  },
+  lineHeight: {
+    type: [String, Number],
+    default: "",
+  },
+  lineWidth: {
+    type: [String, Number],
+    default: "",
+  },
+  lineFullWidth: {
+    type: Boolean,
+    default: undefined,
+  },
+  showBottomBorder: {
+    type: Boolean,
+    default: undefined,
+  },
+  bottomBorderColor: {
+    type: String,
+    default: "#010101",
+  },
+  activeColor: {
+    type: String,
+    default: "",
+  },
+  inactiveColor: {
+    type: String,
+    default: "",
+  },
 });
-
-const { proxy } = getCurrentInstance();
-const $colors = proxy.$colors;
 
 const emit = defineEmits(["change"]);
 
+const currentPreset = computed(() => MODE_PRESETS[props.mode]);
+
+const mergedCustomStyle = computed(() => ({
+  ...currentPreset.value.customStyle,
+  ...props.customStyle,
+}));
+
+const mergedItemStyle = computed(() => ({
+  ...currentPreset.value.itemStyle,
+  ...props.itemStyle,
+}));
+
+const mergedActiveStyle = computed(() => {
+  const preset = { ...currentPreset.value.activeStyle };
+  if (props.activeColor) preset.color = props.activeColor;
+  return { ...preset, ...props.activeStyle };
+});
+
+const mergedInactiveStyle = computed(() => {
+  const preset = { ...currentPreset.value.inactiveStyle };
+  if (props.inactiveColor) preset.color = props.inactiveColor;
+  return { ...preset, ...props.inactiveStyle };
+});
+
+const computedLineColor = computed(() => 
+  props.lineColor || currentPreset.value.lineColor
+);
+
+const computedLineHeight = computed(() => 
+  props.lineHeight !== "" ? props.lineHeight : currentPreset.value.lineHeight
+);
+
+const computedLineWidth = computed(() => 
+  props.lineWidth !== "" ? props.lineWidth : currentPreset.value.lineWidth
+);
+
+const computedLineFullWidth = computed(() => 
+  props.lineFullWidth !== undefined ? props.lineFullWidth : currentPreset.value.lineFullWidth
+);
+
+const computedShowBottomBorder = computed(() => 
+  props.showBottomBorder !== undefined ? props.showBottomBorder : currentPreset.value.showBottomBorder
+);
+
 const handleChange = (item) => {
   const index = props.list.findIndex((i) => i.id === item.id);
-  current.value = index;
+  current.value = index >= 0 ? index : 0;
   emit("change", item, index);
 };
+
 watch(
   () => props.defaultIndex,
   (newVal) => {
@@ -134,50 +377,79 @@ watch(
   },
   { immediate: true }
 );
-// 计算按钮模式激活状态的样式
-const computedActiveStyle = computed(() => ({
-  padding: "8rpx 24rpx",
-  borderRadius: "100rpx",
-  fontSize: "28rpx",
-  color: "#fff",
-  // border: "4rpx solid #252628",
-  fontWeight: "bold",
-  backgroundColor: "#000000",
-  ...props.activeStyle,
-}));
-
-// 计算按钮模式未激活状态的样式
-const computedInactiveStyle = computed(() => ({
-  borderRadius: "100rpx",
-  padding: "8rpx 24rpx",
-  fontSize: "28rpx",
-  color: "#252C2F",
-  backgroundColor: "rgba(255, 255, 255, 0.05)",
-  border: "1px solid #00000010",
-  ...props.inactiveStyle,
-}));
-
-const buttonItemStyle = computed(() => ({
-  padding: "0 8rpx",
-  ...props.itemStyle,
-  minWidth: "auto",
-}));
 </script>
+
 <style lang="scss" scoped>
-:deep(.uv-tabs__wrapper__nav__item) {
-  z-index: 10;
-}
-:deep(.uv-tabs__wrapper__nav__line) {
-  height: 100%;
-  border-radius: 0;
-  border-top-left-radius: 24rpx;
-  border-top-right-radius: 24rpx;
-}
-:deep(.uv-tabs__wrapper__nav) {
-  border-bottom: 2px solid #010101;
+.wk-tabs {
+  :deep(.uv-tabs__wrapper__nav__item) {
+    z-index: 10;
+  }
 }
 
-:deep(.button-mode .uv-tabs__wrapper__nav) {
-  border-bottom: none;
+.wk-tabs--underline {
+  :deep(.uv-tabs__wrapper__nav__line) {
+    height: 100%;
+    border-radius: 100rpx;
+  }
+  :deep(.uv-tabs__wrapper__nav) {
+    border-radius: 100rpx;
+    border: 0.5px solid rgba(255, 255, 255, 0.25);
+    background: #000;
+    backdrop-filter: blur(4px);
+  }
+}
+
+.wk-tabs--capsule {
+  :deep(.uv-tabs__wrapper__nav__line) {
+    height: 100%;
+    border-radius: 100rpx;
+  }
+  :deep(.uv-tabs__wrapper__nav) {
+    border-radius: 100rpx;
+  }
+}
+
+.wk-tabs--pill {
+  overflow: visible;
+  padding: 4rpx;
+  margin: -4rpx;
+  
+  :deep(.uv-tabs) {
+    overflow: visible;
+  }
+  :deep(.uv-tabs__wrapper) {
+    overflow: visible;
+  }
+  :deep(.uv-tabs__wrapper__scroll-view-wrapper) {
+    overflow: visible !important;
+  }
+  :deep(.uv-tabs__wrapper__scroll-view) {
+    overflow: visible !important;
+  }
+  :deep(.uv-tabs__wrapper__nav) {
+    border-radius: 200rpx;
+    overflow: visible;
+  }
+  :deep(.uv-tabs__wrapper__nav__item) {
+    overflow: visible;
+  }
+  :deep(.uv-tabs__wrapper__nav__line) {
+    border-radius: 360rpx;
+    border: 2px solid rgba(255, 255, 255, 0.50);
+    background: #299DF6;
+    box-sizing: border-box;
+    bottom: 0 !important;
+    height: calc(100% - 4rpx) !important;
+    top: 2rpx;
+  }
+}
+
+.wk-tabs--button,
+.wk-tabs--card,
+.wk-tabs--ghost,
+.wk-tabs--text {
+  :deep(.uv-tabs__wrapper__nav) {
+    border-bottom: none !important;
+  }
 }
 </style>

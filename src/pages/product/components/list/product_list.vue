@@ -1,6 +1,7 @@
 <template>
   <view class="w-full px-[32rpx] box-border" v-if="list.length > 0">
     <wk-stroke-bg
+      mode="img-card2-big"
       shadow
       class="rounded-[24rpx] pb-[32rpx] mb-[24rpx]"
       v-for="item in list"

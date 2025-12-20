@@ -2,17 +2,17 @@
   <view>
     <!-- 显示当前选择的国家区号 -->
     <view
-      class="flex flex-row items-center justify-center"
+      class="flex flex-row items-center justify-center bg-white/10 p-[6rpx] rounded-[8rpx]"
       @click="showCountryCodePopup"
     >
-      <text class="text-base font-bold text-[#252C2F]"
+      <text class="text-base font-bold text-white"
         >+{{ selectedCountry.code }}</text
       >
       <uv-icon
         v-if="!isPopupOpen"
         name="arrow-down"
         size="11"
-        color="#252C2F"
+        color="white"
         class="mx-[5rpx]"
       />
       <uv-icon
@@ -35,27 +35,27 @@
       @close="handlePopupClose"
     >
       <view
-        class="max-h-[70vh] bg-[#FFFFFF]"
+        class="max-h-[70vh] bg-[#1F197D]"
       >
         <view
           class="px-[24rpx] flex justify-between items-center py-[24rpx] border-b border-neutral-divider"
         >
-          <text class="text-base font-medium text-[#010101]">{{
+          <text class="text-base font-medium text-white">{{
             popupTitle
           }}</text>
           <text
-            class="text-base text-[#010101]"
+            class="text-base text-neutral-light"
             @click="countryCodePopup.close()"
             >{{ closeText }}</text
           >
         </view>
         <view class="px-[24rpx] py-[16rpx]">
           <uv-input
-            :color="$colors.DEFAULT"
-            :placeholder-style="`color: ${$colors.regular}`"
+            color="white"
+            :placeholder-style="`color: ${$colors.light}`"
             class="h-[66rpx] text-white"
             prefixIcon="search"
-            :prefixIconStyle="`color: ${$colors.regular}` "
+            :prefixIconStyle="`color: ${$colors.light}` "
             v-model="searchCountry"
             :placeholder="searchPlaceholder"
           />
@@ -70,7 +70,7 @@
             <view
               class="flex flex-row items-center justify-between w-full py-[20rpx]"
             >
-              <text class="flex-1 text-[#010101]">{{
+              <text class="flex-1 text-white">{{
                 country.name
               }}</text>
               <text class="text-neutral-regular">+{{ country.code }}</text>

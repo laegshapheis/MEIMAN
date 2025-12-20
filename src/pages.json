@@ -10,6 +10,15 @@
       }
     },
     {
+      "path": "pages/home/index",
+      "style": {
+        "navigationBarTitleText": "",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+         "navigationBarTextStyle": "white"
+      }
+    },
+    {
       "path": "pages/lang/lang",
       "style": {
         "navigationBarTitleText": "语言设置",
@@ -1057,42 +1066,6 @@
     "navigationBarTitleText": "uni-app",
     "navigationBarBackgroundColor": "#fff",
     "backgroundColor": "#fff"
-  },
-  "tabBar": {
-    "custom": true,
-    "color": "#CBD4DB",
-    "selectedColor": "#2A6ED4",
-    "backgroundColor": "#FFF",
-    "fontSize": "12px",
-    "height": "56px",
-    "iconWidth": "24px",
-    "borderRadius": "0px",
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "text": "首页",
-        "iconPath": "static/images/common/navBar/index.png",
-        "selectedIconPath": "static/images/common/navBar/index_select.png"
-      },
-      {
-        "pagePath": "pages/product/product_list",
-        "text": "投资",
-        "iconPath": "static/images/common/navBar/order.png",
-        "selectedIconPath": "static/images/common/navBar/order_select.png"
-      },
-      {
-        "pagePath": "pages/service/service",
-        "text": "客服",
-        "iconPath": "static/images/common/navBar/service.png",
-        "selectedIconPath": "static/images/common/navBar/service_select.png"
-      },
-      {
-        "pagePath": "pages/profile/index",
-        "iconPath": "static/images/common/navBar/my.png",
-        "selectedIconPath": "static/images/common/navBar/my_select.png",
-        "text": "我的"
-      }
-    ]
   },
   "easycom": {
     "autoscan": true,

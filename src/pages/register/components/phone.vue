@@ -5,7 +5,7 @@
     <view class="flex flex-row w-full items-center justify-center mt-[32rpx]">
         <view class="flex flex-row items-center justify-center">
           <uv-checkbox-group v-model="yhxy">
-              <uv-checkbox name="1" label="" size="13"></uv-checkbox>
+              <uv-checkbox name="1" label="" size="13" :activeColor="$colors.theme"></uv-checkbox>
           </uv-checkbox-group>
           <view class="text-sm flex flex-row items-center justify-center text-neutral">
             <text>阅读并同意</text>
@@ -140,7 +140,7 @@ const confirmRegister = async (captcha_id) => {
               url: routes.miYao,
             });
           } else {
-            uni.switchTab({
+            uni.redirectTo({
               url: routes.index,
             });
           }

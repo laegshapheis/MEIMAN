@@ -3,9 +3,12 @@
     <!-- <template #navRight>
       <wk-language-selector color="#252C2F" plain />
     </template> -->
-    <view class="flex flex-col mt-[64rpx]">
+    <wk-stroke-bg mode="img-card" class="mx-[32rpx] mt-[48rpx]">
       <!-- <logo class="my-[48rpx]"/> -->
-      <view class="px-[32rpx]">
+       <view class="text-neutral-white text-lg mt-[16rpx] text-center flex flex-col justify-center items-center py-[32rpx]">
+        请输入你的的手机号与密钥
+      </view>
+      <view class="box-border mt-[24rpx]">
         <CommonForm
           class="mb-[16rpx]"
           :fields="fields"
@@ -33,7 +36,7 @@
           </wk-button>
         </view>
       </view>
-    </view>
+    </wk-stroke-bg>
 
     <!-- 验证码滑块 -->
     <slider-verify
@@ -83,7 +86,7 @@ const fields = computed(() => [
     name: "miyao",
     type: "number",
     placeholder: "请输入12位密钥",
-    icon: "/static/images/base/miyao.svg",
+    icon: "/static/images/base/invite.svg",
     maxlength: 12,
     regexp: commonRegex,
   },

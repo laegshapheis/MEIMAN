@@ -1,11 +1,11 @@
 <template>
   <view class="slider-verify-box" v-if="isShow">
     <view class="verifyBox">
-      <view class="slider-title text-[#010101] font-bold"
+      <view class="slider-title text-white font-bold"
         >图形验证</view
       >
       <view class="slide-content">
-        <view class="slide-tips text-[#252C2F]/75">拖动下方滑块完成拼图</view>
+        <view class="slide-tips text-neutral-secondary">拖动下方滑块完成拼图</view>
         <view class="slider-pintu">
           <image
             id="pintuImg"
@@ -37,15 +37,15 @@
               @change="startMove"
             ></movable-view
           ></movable-area>
-          <view class="huadao text-[#010101] text-lg">拖动左边滑块完成上方拼图</view>
+          <view class="huadao text-neutral-theme text-lg">拖动左边滑块完成上方拼图</view>
         </view>
       </view>
       <view class="slider-btn-group">
-        <view class="slider-btn text-[#252C2F]/50" @tap="closeSlider"
+        <view class="slider-btn text-neutral-secondary" @tap="closeSlider"
           >关闭</view
         >
         <view
-          class="slider-btn slide-btn-refresh text-[#0066FF]"
+          class="slider-btn slide-btn-refresh text-neutral-regular"
           @tap="refreshVerify"
           >刷新</view
         >
@@ -191,7 +191,8 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #FFFFFF;
+  background: url("/static/images/component/card/cardBig.png") no-repeat center center;
+  background-size: 100% 100%;
   border-radius: 24rpx;
 
   .slider-title {
@@ -254,7 +255,7 @@ export default {
 
 .slider-movearea {
   position: relative;
-  height: 110rpx;
+  height: 96rpx;
   width: 100%;
   display: flex;
   padding: 0 10rpx;
@@ -262,18 +263,20 @@ export default {
   flex-direction: column;
   justify-content: center;
   margin: 20rpx auto;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: #0C052F;
   border-radius: 99rpx;
   movable-area {
-    height: 80upx;
+    height: 96rpx;
     width: 100%;
+    display: flex;
+    align-items: center;
     
     movable-view {
-      width: 80upx;
-      height: 80upx;
+      width: 80rpx;
+      height: 80rpx;
       border-radius: 50%;
       background-color: transparent;
-      background-image: url("/static/images/sliderVerify/slider.svg");
+      background-image: url("/static/images/sliderVerify/slider.png");
       background-repeat: no-repeat;
       background-size: 100% 100%;
       background-position: center;
@@ -285,14 +288,13 @@ export default {
 
 .huadao {
   width: 100%;
-  height: 100rpx;
-  line-height: 100rpx;
+  height: 96rpx;  
+  line-height: 96rpx;
   border-radius: 99rpx;
   text-align: center;
   box-sizing: border-box;
   padding-left: 30rpx;
   position: absolute;
-  top: 7rpx;
   left: 0;
   z-index: 99;
   // border: 1px solid #2A877C;
@@ -303,7 +305,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top: 1rpx solid #F5F8FD;
+  border-top: 1rpx solid #0C052F;
 
   .slider-btn {
     flex: 1;
@@ -316,7 +318,7 @@ export default {
     }
   }
   .slide-btn-refresh {
-    border-left: 1rpx solid #F5F8FD;
+    border-left: 1rpx solid #0C052F;
   }
 }
 

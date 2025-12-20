@@ -3,7 +3,7 @@
   @click="handleSwitchLanguage"
   :class="[
     'flex-shrink-0 flex flex-row items-center rounded-full px-[18rpx] py-[10rpx]',
-    plain ? 'bg-white text-[#010101] border border-white border-solid' : 'text-neutral-theme bg-[#4E4244]',
+    plain ? 'bg-[#202337] text-white border-[length:0.5px] border-[rgba(255, 255, 255, 0.20)] border-solid' : 'text-neutral-theme bg-[#4E4244]',
   ]"
 >
   <image
@@ -17,7 +17,7 @@
   <text
     :class="[
       'text-sm ml-[8rpx]',
-      plain ? 'text-[#010101]' : 'text-neutral-theme',
+      plain ? 'text-white' : 'text-neutral-theme',
     ]"
     >{{ currentLanguage }}</text
   >

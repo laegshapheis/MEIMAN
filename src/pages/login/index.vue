@@ -4,40 +4,39 @@
       <wk-language-selector plain />
     </view>
     <logo class="mt-[136rpx]" />  
-    <!-- <wk-stroke-bg shadow borderRadius="24rpx" class="mx-[32rpx] mt-[48rpx]"> -->
-      <view class="flex flex-col justify-center items-center mt-[48rpx]">
-        <text class="text-neutralr text-3xl font-medium">
+    <wk-stroke-bg mode="img-card" shadow borderRadius="24rpx" class="mx-[32rpx] mt-[48rpx]">
+      <view class="flex flex-col justify-center items-center">
+        <text class="text-neutral-regular text-3xl font-medium">
           登入你的账号
         </text>
-        <text @click="toRegister" class="text-base mt-[16rpx]" style="color: rgba(37, 44, 47, 0.75);">
-          没有账号？<text class="text-neutral-regular text-black underline">创建账号</text>
+        <text @click="toRegister" class="text-base mt-[16rpx]">
+          没有账号？<text class="text-neutral-primary underline">创建账号</text>
         </text>
       </view>
-      <view class="box-border mt-[48rpx] px-[32rpx]">
+      <view class="box-border mt-[48rpx]">
         <wk-tabs
           v-if="registerMethod == 3"
-          class="mb-[48rpx]"
+          mode="pill"
+          class="mb-[24rpx]"
           :list="tabs"
           @change="handleTabChange"
           :current="current"
           :scrollable="false"
         />
         <login
-        class="mt-[48rpx]"
           v-if="
             (registerMethod == 3 && current == 0) ||
             (registerMethod == 1 && current == 0)
           "
         />
         <emailLogin
-          class="mt-[48rpx]"
           v-if="
             (registerMethod == 3 && current == 1) ||
             (registerMethod == 2 && current == 0)
           "
         />
       </view>
-    <!-- </wk-stroke-bg> -->
+    </wk-stroke-bg>
   </layout>
 </template>
 
@@ -135,7 +134,7 @@ onLoad(async () => {
     const isLoggedIn = await checkLoginStatus();
 
     if (isLoggedIn) {
-      uni.switchTab({
+      uni.redirectTo({
         url: routes.index,
         fail: () => {
           uni.redirectTo({

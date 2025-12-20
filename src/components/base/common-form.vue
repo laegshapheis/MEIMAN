@@ -1,6 +1,6 @@
 <template>
   <view>
-    <view class="flex-1 flex justify-center items-center flex-col gap-[24rpx]">
+    <view class="flex-1 flex justify-center items-center flex-col gap-[24rpx] mb-[24rpx]">
       <template v-for="field in fields" :key="field.name">
         <view v-if="!field.inputHidden" class="custom-box flex flex-row items-center justify-center w-full custom-border" :label="field.label" :required="field.required">
           <wk-input
@@ -10,7 +10,6 @@
             :placeholder="field.placeholder"
             @input="(value) => handleInput(value, field)"
             style="border: none;border-radius: 32rpx;"
-            bgColor="#FFFFFF"
           >
           <template v-slot:prefix>
             <view class="flex flex-row items-center justify-center">
@@ -26,7 +25,6 @@
                 ref="countryCodePicker"
                 :flagIcon="field.icon"
                 @change="handleCountryChange"
-                style="background: #F5F8FD;border-radius: 16rpx;padding: 16rpx 8rpx;"
               />
             </view>
             
@@ -36,7 +34,7 @@
       </template>
       <slot name="formBottom" />
     </view>
-    <wk-button class="mt-[40rpx]" size="large" @submit="handleSubmit">{{ submitButtonText }}</wk-button>
+    <wk-button size="small" @submit="handleSubmit">{{ submitButtonText }}</wk-button>
   </view>
 </template>
 <script setup>
