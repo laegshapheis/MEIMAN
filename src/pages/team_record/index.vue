@@ -4,7 +4,8 @@
     :refresher="true"
     @onRefresh="handleRefresh"
     navTitle="我的团队"
-    bgType="bg-main"
+    bgType="bg-main1"
+    :isLottie="false"
     @reachBottom="handleReachBottom"
   >
     <view class="px-[32rpx] pb-[24rpx] box-border w-full flex flex-col">

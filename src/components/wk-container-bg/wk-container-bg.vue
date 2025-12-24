@@ -2,8 +2,9 @@
 	<view class="fixed inset-0 bg-black" v-if="isLottie">
 		<!-- <c-lottie style="transform: translate3d(0, 0, 0); will-change: transform;" v-if="isLottie" ref="lottieRef" renderer="svg" :data="selectedLottieData" :loop="true" :autoPlay="true" width="750rpx" height="1624rpx"></c-lottie> -->
 		 <image v-if="isLottie" :src="bgImage" mode="aspectFill" class="fixed inset-0 w-full h-full"></image>
-		<view v-else :class="['fixed inset-0', bgColor]">
-		</view>
+		
+	</view>
+	<view v-else :class="['fixed inset-0', bgColor]">
 	</view>
 </template>
 
