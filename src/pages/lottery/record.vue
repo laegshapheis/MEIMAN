@@ -4,24 +4,21 @@
     :refresher="true"
     @onRefresh="handleRefresh"
     navTitle="中奖记录"
-    bgType="bg-main5"
-    
+    bgType="bg-lottery-record"
+    :isLottie="false"
     @reachBottom="getPaginationList"
   >
     <view class="px-page-x py-page-y">
       <view class="flex flex-row w-full mb-[32rpx]">
         <wk-tabs
           :list="typeList"
-          :isButton="true"
+          mode="button"
+          :scrollable="false"
+          class="flex-1"
           @change="changeType"
           :activeStyle="{
-            background: '#FFFFFF25',
-            color: '#20242A',
-          }"
-          :inactiveStyle="{
-            background: 'transparent',
-            color: '#252C2F',
-            border: 'none'
+            width: '100%',
+            textAlign: 'center',
           }"
         ></wk-tabs>
       </view>
@@ -31,11 +28,13 @@
         <view>
           <wk-stroke-bg
             size="small"
+            mode="transparent"
             v-for="item in dataList"
             :key="item.id"
-            class="mb-[16rpx] rounded-[16rpx]"
+            class="mb-[16rpx] rounded-[16rpx] relative"
+            bgColor="#202482"
           >
-            <view class="flex flex-row items-center justify-start">
+            <view class="flex flex-row items-center justify-start relative">
               <image
                 class="w-[138rpx] h-[138rpx] rounded-[8rpx] bg-white/10 mr-[24rpx]"
                 :src="item.image"
@@ -43,9 +42,29 @@
               ></image>
               <view class="flex flex-col">
                 <view class="text-lg text-neutral">{{ item.prize_name }}</view>
-                <view class="text-base text-neutral-regular mt-[12rpx]">{{
+                <view class="text-sm text-white/80 mt-[12rpx]">中奖时间: {{
                   item.created_at
                 }}</view>
+                <view class="text-sm text-white/80 mt-[12rpx]" v-if="item.expdate">到期时间: {{
+                  item.expdate
+                }}</view>
+                <view class="text-sm text-white/80 mt-[12rpx]" v-if="item.extra">使用说明: {{
+                  item.extra
+                }}</view>
+              </view>
+              <!-- 右上角按钮，当type为3时显示 -->
+              <view 
+                v-if="type === 3" 
+                class="absolute top-0 right-0 record-btn-wrapper"
+              >
+                <wk-button 
+                  @click="goToProductList"
+                  type="gradient-lottery-use"
+                  size="mini"
+                  width="auto"
+                >
+                  去使用
+                </wk-button>
               </view>
             </view>
           </wk-stroke-bg>
@@ -67,6 +86,7 @@ import {
   getLotteryRecordTypeList,
 } from "@/api/index";
 import { cacheManager } from "@/utils/cacheManager";
+import { routes } from "@/config/routes";
 
 const cacheLogList = cacheManager.getCache("lotteryRecord");
 const cacheTypeList = cacheManager.getCache("lotteryRecordType");
@@ -166,6 +186,13 @@ const changeType = (item, index) => {
   page.value = 1;
   dataList.value = [];
   getLogList();
+};
+
+// 跳转到产品列表页面
+const goToProductList = () => {
+  uni.navigateTo({
+    url: routes.productList,
+  });
 };
 </script>
 
@@ -304,5 +331,10 @@ const changeType = (item, index) => {
 
 :deep .fui-scroll__view {
   justify-content: space-between;
+}
+
+// 右上角按钮容器
+.record-btn-wrapper {
+  z-index: 10;
 }
 </style>
