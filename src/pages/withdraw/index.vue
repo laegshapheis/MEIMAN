@@ -1,76 +1,46 @@
 <template>
-  <layout
-    ref="layoutRef"
-    navTitle="我要提现"
-    bgType="bg-main"
-    :refresher="true"
-    @onRefresh="handleRefresh"
-  >
+  <layout ref="layoutRef" navTitle="我要提现" bgType="bg-main2" :isLottie="false" :refresher="true"
+    @onRefresh="handleRefresh">
     <template v-slot:navRight>
-      <view
-        class="flex flex-row w-full items-center bg-white/10 justify-end rounded-full p-[12rpx]"
-        @click="navigateTo(routes.withdrawRecord)"
-      >
-        <image
-          src="/static/images/user/list_search.svg"
-          mode="widthFix"
-          class="w-[32rpx] h-[32rpx]"
-        ></image>
+      <view class="flex flex-row w-full items-center bg-white/10 justify-end rounded-full p-[12rpx]"
+        @click="navigateTo(routes.withdrawRecord)">
+        <image src="/static/images/recharge/list_search.svg" mode="widthFix" class="w-[32rpx] h-[32rpx]"></image>
       </view>
     </template>
 
-    <view
-      class="px-page-x pt-page-y pb-[30rpx] box-border w-full flex flex-col"
-    >
+    <view class="px-page-x pt-page-y pb-[30rpx] box-border w-full flex flex-col">
       <!-- 余额宝顶部信息 -->
       <YuebaoHeader :isduodeli="userInfo.isduodeli" />
 
       <!-- 提现表单 -->
       <view class="flex flex-col">
         <!-- 提现方式选择 -->
-        <WithdrawMethod
-          v-model:currentMethodIndex="currentMethodIndex"
-          :withdrawMethodList="withdrawMethodList"
-          @change="handleChangeWithdrawMethod"
-        />
+        <WithdrawMethod v-model:currentMethodIndex="currentMethodIndex" :withdrawMethodList="withdrawMethodList"
+          @change="handleChangeWithdrawMethod" />
 
         <!-- 提现金额输入 -->
-        <WithdrawAmount
-          :withdrawInfo="withdrawInfo"
-          :symbol="symbolStore.symbol"
-          :currentMethodIndex="currentMethodIndex"
-          :withdrawMethodList="withdrawMethodList"
-          :currentRate="currentRate"
-          :tixianzhanghu="userInfo.tixianzhanghu"
-          v-model:amount="params.amount"
-          v-model:usdtamount="params.usdtamount"
-          v-model:cnyamount="params.cnyamount"
-        />
+        <WithdrawAmount :withdrawInfo="withdrawInfo" :symbol="symbolStore.symbol"
+          :currentMethodIndex="currentMethodIndex" :withdrawMethodList="withdrawMethodList" :currentRate="currentRate"
+          :tixianzhanghu="userInfo.tixianzhanghu" v-model:amount="params.amount" v-model:usdtamount="params.usdtamount"
+          v-model:cnyamount="params.cnyamount" />
 
         <!-- 提示信息 -->
-        <view class="text-base leading-6 mt-[30rpx] mb-[150rpx] bg-white rounded-[24rpx] p-[32rpx]"
-         style="border: 1rpx solid #00000020;">
-          <CommonTips
-            :content="withdrawInfo.wenxintishi"
-          ></CommonTips>
+        <view class="text-base leading-6 mt-[30rpx] mb-[150rpx] rounded-[24rpx] p-[2rpx]"
+          style="border: 1rpx solid #00000020;">
+          <CommonTips :content="withdrawInfo.wenxintishi"></CommonTips>
         </view>
       </view>
     </view>
 
     <!-- 底部提交按钮 -->
-    <view
-      class="bg-neutral-bottomBtnBg fixed bottom-0 left-0 right-0 px-[32rpx] py-[16rpx] "
-    >
-      <wk-button type="bg" @submit="prepareSubmit">
+    <view class="bg-neutral-bottomBtnBg fixed bottom-0 left-0 right-0 px-[32rpx] py-[16rpx] ">
+      <wk-button height="80rpx" fontSize="30rpx" @submit="prepareSubmit">
         申请提现
       </wk-button>
     </view>
 
     <!-- 常用提现列表 -->
-    <contact-list
-      v-model:show="contactListShow"
-      @onSelect="handleContactSelect"
-    ></contact-list>
+    <contact-list v-model:show="contactListShow" @onSelect="handleContactSelect"></contact-list>
     <wk-code-input ref="keywordRef" :value="pwdPay" @finish="handleSubmit" />
     <wk-loading v-if="loading" :loadingText="loadingText" />
   </layout>
@@ -188,15 +158,15 @@ const handleResDataWithdraw = (result) => {
       type: "支付宝",
     });
   }
-  
+
   if (result.weixin_switch == 1 && result.is_weixin_pay == 1) {
     console.log(result)
-      methodList.push({
-        text: "微信 " + result.realname,
-        cardid: 6,
-        type: "微信",
-      });
-    }
+    methodList.push({
+      text: "微信 " + result.realname,
+      cardid: 6,
+      type: "微信",
+    });
+  }
 
   withdrawMethodList.value = methodList;
   loading.value = false;
@@ -266,7 +236,7 @@ const prepareCheck = () => {
     return;
   }
 
-  if (!params.value.amount) { 
+  if (!params.value.amount) {
     uni.$showToast({
       title: "请输入提现金额",
       duration: 3000,

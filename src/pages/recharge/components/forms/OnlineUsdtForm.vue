@@ -19,7 +19,7 @@
     </view>
 
     <view class="mt-[58rpx]">
-      <wk-button class="mb-[28rpx]" type="bg" @submit="handleCopy">复制地址</wk-button>
+      <wk-button class="mb-[28rpx]" height="80rpx" fontSize="30rpx" @submit="handleCopy">复制地址</wk-button>
     </view>
   </view>
 </template>

@@ -19,7 +19,7 @@
    <template #top>
      <wk-nav-bar v-if="isNav" :background="navBgColor" @rightClick="handleNavRightClick" @leftClick="handleNavLeftClick" :title="navTitle" :color="mode == 'black' ? '#000' : '#fff'">
        <template #left>
-         <image  v-if="isNavLeftBack" class="w-[40rpx] h-[40rpx]" :src="mode == 'black' ? '/static/images/common/black_back.svg' : '/static/images/common/back.svg'" mode="widthFix"></image>
+         <image  v-if="isNavLeftBack" class="w-[80rpx] h-[80rpx]" :src="mode == 'black' ? '/static/images/common/black_back.svg' : '/static/images/common/back.svg'" mode="widthFix"></image>
          <text v-else>
          </text>
        </template>

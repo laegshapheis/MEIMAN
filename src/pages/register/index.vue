@@ -6,7 +6,7 @@
       <!-- <logo class="mt-[48rpx]"/> -->
        <wk-stroke-bg mode="img-card-big" class="mx-[32rpx] mt-[48rpx]">
         <view class="flex flex-col justify-center items-center px-[32rpx]">
-          <text class="text-white text-3xl">
+          <text class="text-white text-2xl">
             欢迎创建你的账号
           </text>
           <text @click="toLogin" class="text-base mt-[16rpx] text-neutral-secondary">

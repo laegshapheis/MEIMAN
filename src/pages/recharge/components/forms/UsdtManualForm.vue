@@ -8,32 +8,26 @@
       <text class="text-lg leading-6 font-medium">充值金额</text>
     </view>
 
-    <view :class="['flex flex-col bg-neutral-inputBg rounded-[24rpx] px-[32rpx]', symbolStore.value == 'CNY' ? 'pb-[24rpx]' : '']">
-      <view :class="['flex flex-row items-center justify-center h-[120rpx]', symbolStore.value == 'CNY' ? 'border-0 border-b border-solid border-neutral-divider' : '']">
+    <view
+      :class="['flex flex-col input-bg2 rounded-[24rpx] px-[32rpx]', symbolStore.value == 'CNY' ? 'pb-[24rpx]' : '']">
+      <view
+        :class="['flex flex-row items-center justify-center h-[120rpx]', symbolStore.value == 'CNY' ? 'border-0 border-b border-solid border-neutral-divider' : '']">
         <text class="text-2xl font-bold">$</text>
-        <uv-input
-          class="h-[120rpx]"
-          v-model="formData.amount"
-          type="digit"
-          maxlength="9"
-          placeholder="请输入充值金额"
-          border="0"
-          :placeholderStyle="{
+        <uv-input class="h-[120rpx]" v-model="formData.amount" type="digit" maxlength="9" placeholder="请输入充值金额"
+          border="0" :placeholderStyle="{
             color: $colors.secondary,
             fontSize: '32rpx',
             fontWeight: 'normal',
-          }"
-          :customStyle="{
+          }" :customStyle="{
             fontWeight: 'bold',
-          }"
-          fontSize="36rpx"
-          :color="$colors.DEFAULT"
-        />
+          }" fontSize="36rpx" :color="$colors.DEFAULT" />
       </view>
 
-      <view v-if="symbolStore.value == 'CNY'" class="flex flex-row items-center justify-between mt-[16rpx] text-neutral-warning">
+      <view v-if="symbolStore.value == 'CNY'"
+        class="flex flex-row items-center justify-between mt-[16rpx] text-neutral-theme">
         <text class="text-base font-medium">1 USDT = {{ rate }} CNY</text>
-        <text class="text-base">实际到账 {{ symbolStore.value == "USDT" ? formData.amount ? formData.amount : 0 : calcRateUSDT(formData.amount, true) }} {{ symbolStore.code }}</text>
+        <text class="text-base">实际到账 {{ symbolStore.value == "USDT" ? formData.amount ? formData.amount : 0 :
+          calcRateUSDT(formData.amount, true) }} {{ symbolStore.code }}</text>
       </view>
     </view>
 
@@ -41,44 +35,32 @@
       <text class="text-lg leading-6 font-medium">付款信息</text>
     </view>
 
-    <view class="flex flex-row items-center bg-neutral-inputBg mt-[21rpx] rounded-[24rpx] h-[124rpx]">
-      <wk-picker
-        class="dkh_btn"
-        style="width: 100%"
-        @change="handleChangeWallet"
-        rangeKey="title"
-        :range="walletList"
-      >
+    <view class="flex flex-row items-center bg-wraper mt-[21rpx] rounded-[24rpx] h-[124rpx]">
+      <wk-picker class="dkh_btn" style="width: 100%" @change="handleChangeWallet" rangeKey="title" :range="walletList">
         <view class="flex flex-row justify-between px-[30rpx]">
-          <text class="text-lg text-neutral-secondary" v-if="currentWalletIndex == -1">请选择付款协议</text>
-          <text class="text-lg font-semibold text-neutral" v-if="currentWalletIndex >= 0">{{ walletList[currentWalletIndex].title }}</text>
+          <text class="text-lg text-white" v-if="currentWalletIndex == -1">请选择付款协议</text>
+          <text class="text-lg font-semibold text-neutral" v-if="currentWalletIndex >= 0">{{
+            walletList[currentWalletIndex].title }}</text>
           <view class="flex flex-row items-center">
-            <uv-icon size="32rpx" :color="$colors.secondary" name="arrow-right"></uv-icon>
+            <uv-icon size="32rpx" color="#fff" name="arrow-right"></uv-icon>
           </view>
         </view>
       </wk-picker>
     </view>
 
-    <view v-if="recharge_need_wallet_switch == 1" class="flex flex-row items-center justify-center h-[120rpx] bg-neutral-inputBg rounded-[24rpx] mt-[28rpx]">
-      <uv-textarea
-        height="120rpx"
-        v-model="formData.fkname"
-        @input="inputUsdtAddress"
-        :autoHeight="true"
-        placeholder="请输入付款钱包地址(请勿填写充值地址)"
-        border="none"
-        :customStyle="{ background: 'transparent', padding: '0 32rpx' }"
+    <view v-if="recharge_need_wallet_switch == 1"
+      class="flex flex-row items-center justify-center h-[120rpx] input-bg rounded-[24rpx] mt-[28rpx]">
+      <uv-textarea height="120rpx" v-model="formData.fkname" @input="inputUsdtAddress" :autoHeight="true"
+        placeholder="请输入付款钱包地址(请勿填写充值地址)" border="none" :customStyle="{ background: 'transparent', padding: '0 32rpx' }"
         :textStyle="{
           color: $colors.DEFAULT,
           fontSize: '32rpx',
           fontWeight: 'bold',
-        }"
-        :placeholderStyle="{
+        }" :placeholderStyle="{
           color: $colors.secondary,
           fontSize: '32rpx',
           fontWeight: 'normal',
-        }"
-      />
+        }" />
     </view>
 
     <view v-if="recharge_need_wallet_switch == 1" class="flex flex-row items-center justify-between mt-[18rpx]">
@@ -92,34 +74,26 @@
       </view>
 
       <view class="flex flex-row items-center justify-center min-h-[120rpx] bg-neutral-inputBg rounded-[24rpx]">
-        <uv-textarea
-          v-model="formData.fkcontent"
-          type="text"
-          placeholder="输入TxHash TXID 哈希值 交易哈希"
-          border="0"
+        <uv-textarea v-model="formData.fkcontent" type="text" placeholder="输入TxHash TXID 哈希值 交易哈希" border="0"
           :placeholderStyle="{
             color: $colors.secondary,
             fontSize: '32rpx',
-          }"
-          fontSize="32rpx"
-          :color="$colors.DEFAULT"
-          :autoHeight="true"
-          :customStyle="{
+          }" fontSize="32rpx" :color="$colors.DEFAULT" :autoHeight="true" :customStyle="{
             backgroundColor: 'transparent',
-          }"
-          :textStyle="{
+          }" :textStyle="{
             fontSize: '32rpx',
             color: $colors.DEFAULT,
-          }"
-        />
+          }" />
       </view>
     </template>
 
     <view class="flex flex-row items-center justify-center w-[100%] mt-[33rpx] mb-[23rpx]" v-if="needPayPic">
       <view class="flex flex-col items-start justify-center w-[100%]" @click="handleUpload">
-        <image class="w-full h-[150rpx] mb-[15rpx]" :src="formData.upfile" mode="widthFix" v-if="formData.upfile"></image>
+        <image class="w-full h-[150rpx] mb-[15rpx]" :src="formData.upfile" mode="widthFix" v-if="formData.upfile">
+        </image>
 
-        <view class="flex flex-col items-center justify-center w-[208rpx] h-[208rpx] bg-neutral-inputBg rounded-[24rpx]" v-if="!formData.upfile">
+        <view class="flex flex-col items-center justify-center w-[208rpx] h-[208rpx] input-bg rounded-[24rpx]"
+          v-if="!formData.upfile">
           <text><uv-icon size="50rpx" :color="$colors.DEFAULT" name="plus"></uv-icon></text>
           <text class="text-base leading-6 font-medium text-neutral mt-[20rpx]">添加转账截图</text>
         </view>
@@ -127,7 +101,7 @@
     </view>
 
     <view class="z-50 fixed bottom-0 left-0 right-0 px-[32rpx] py-[16rpx] bg-neutral-bottomBtnBg">
-      <wk-button type="bg" @submit="handleSubmit">提交</wk-button>
+      <wk-button height="80rpx" fontSize="30rpx" @submit="handleSubmit">提交</wk-button>
     </view>
   </view>
 </template>
@@ -213,7 +187,7 @@ const handleChangeWallet = (e) => {
 
 const inputUsdtAddress = () => {
   const regex = /^T[A-Za-z0-9]*$/
-  
+
   setTimeout(() => {
     if (!regex.test(formData.fkname)) {
       formData.fkname = ""
@@ -326,4 +300,4 @@ watch(() => props.fkname, (newFkname) => {
   }
 });
 
-</script> 
+</script>

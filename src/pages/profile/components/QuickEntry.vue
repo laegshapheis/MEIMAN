@@ -1,68 +1,42 @@
 <template>
   <view class="grid grid-cols-4 gap-[24rpx] mt-[16rpx] text-white">
     <template v-for="item in menus" :key="item.icon_url">
-      <view
-        v-if="!item.switch || (item.switch && userInfo[item.switch])"
+      <view v-if="!item.switch || (item.switch && userInfo[item.switch])"
         class="relative flex flex-col items-center gap-[10rpx] py-[24rpx] rounded-[16rpx]"
-        @click="$emit('onNavTo', item)"
-      >
+        @click="$emit('onNavTo', item)">
         <view>
-          <image
-            class="w-[112rpx] h-[112rpx]"
-            :src="item.icon_url"
-            mode="widthFix"
-          />
+          <image class="w-[112rpx] h-[112rpx]" :src="item.icon_url" mode="widthFix" />
         </view>
-        <text class="text-[#0C55B3] text-sm font-medium">{{ item.title }}</text>
+        <text class="text-white text-sm font-medium">{{ item.title }}</text>
       </view>
     </template>
   </view>
   <!-- 股权 -->
-  <view
-    v-if="isequity == 1"
-    class="mt-[24rpx] rounded-[32rpx] bg-[#1A283D] flex flex-row justify-between 
-    flex-grow items-center px-[24rpx] pl-[40rpx] h-[112rpx]"
-    @click="goDetailHandle"
-    style="background: linear-gradient(180deg, rgba(136, 191, 255, 0.42) 0%, rgba(136, 191, 255, 0.10) 20.38%, rgba(255, 255, 255, 0.29) 37.46%, #FFF 100%);"
-  >
+  <view v-if="isequity == 1" class="mt-[24rpx] rounded-[32rpx] flex flex-row justify-between 
+    flex-grow items-center px-[24rpx] pl-[40rpx] h-[112rpx]" @click="goDetailHandle"
+    style="background: linear-gradient(180deg, #622DF7 0%, #925FE4 100%)">
     <view class="flex flex-row justify-center items-center">
-      <image
-        src="/static/images/profile/equity_center_icon.svg"
-        class="w-[48rpx] h-[48rpx] mr-[10rpx]"
-        mode="widthFix"
-      />
-      <text class="relative z-10 text-base font-medium text-neutral"
-        >股权中心</text
-      >
+      <image src="/static/images/profile/equity_center_icon.svg" class="w-[64rpx] h-[64rpx] mr-[16rpx]"
+        mode="widthFix" />
+      <text class="relative z-10 text-lg font-medium text-neutral">股权中心</text>
     </view>
     <view class="text-base flex flex-row items-center">
-      <view class="text-neutral flex-shrink-0 text-base mr-[8rpx]"
-        >今日股价:
-      </view>
+      <!-- <view class="text-neutral flex-shrink-0 text-base mr-[8rpx]">今日股价:
+      </view> -->
 
-      <view class="flex flex-row items-center bg-[#E4262C] rounded-[16rpx] px-[16rpx] py-[8rpx]">
-        <image
-          class="mt-[4rpx] w-[12rpx] h-[12rpx] mr-[8rpx]"
-          src="/static/images/profile/gujia_r.svg"
-          mode="widthFix"
-        />
+      <view class="flex flex-row items-center px-[16rpx] py-[8rpx]">
         
-        <view
-          class="text-white font-medium mt-[4rpx] flex-shrink-0 text-base"
-          >{{ userInfo.quote }}</view
-        >
-        
-        <image
-          class="w-[52rpx] h-[52rpx] ml-[8rpx]"
-          src="/static/images/profile/gujia_i.svg"
-          mode="widthFix"
-        />
+
+        <view class="text-white font-medium mt-[4rpx] flex-shrink-0 text-base">{{ userInfo.quote }}</view>
+        <image class="mt-[4rpx] w-[12rpx] h-[12rpx] ml-[8rpx]" src="/static/images/profile/gujia_r.svg"
+        mode="widthFix" />
+        <image class="w-[52rpx] h-[52rpx] ml-[8rpx]" src="/static/images/profile/gujia_i.svg" mode="widthFix" />
       </view>
     </view>
   </view>
 
   <!-- 奖励 -->
-   <!-- <view class="flex flex-row gap-[24rpx]">
+  <!-- <view class="flex flex-row gap-[24rpx]">
     <view
       v-if="permissionStore.getPermission('task_module_switch')"
       style="
@@ -91,7 +65,7 @@
       </view>
     </view>
    </view> -->
-  
+
 </template>
 
 <script setup>
@@ -186,6 +160,7 @@ const goDividendRewardsHandle = () => {
   border: 2rpx solid rgba(255, 255, 255, 0.74);
   background: linear-gradient(97deg, #2fc39c -1.05%, #1fac1f 138.11%);
 }
+
 .q-bg {
   border: 2rpx solid rgba(255, 255, 255, 0.74);
   background: linear-gradient(90deg, #14cc95 0%, #00afda 100%);

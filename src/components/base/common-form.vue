@@ -34,7 +34,7 @@
       </template>
       <slot name="formBottom" />
     </view>
-    <wk-button size="small" @submit="handleSubmit">{{ submitButtonText }}</wk-button>
+    <wk-button size="small" @submit="handleSubmit" height="80rpx">{{ submitButtonText }}</wk-button>
   </view>
 </template>
 <script setup>

@@ -1,8 +1,8 @@
 export const neutral = {
   DEFAULT: '#fff', // 默认字体白色
-  theme: '#B676FF', // 主题色
+  theme: 'rgba(84, 147, 255, 1)', // 主题色
   regular: '#fff', // 常规字体
-  secondary: 'rgba(255, 255, 255, 0.80)', // 次要字体
+  secondary: 'rgba(255, 255, 255, 0.60)', // 次要字体
   light: 'rgba(255, 255, 255, 0.75)', // 轻量字体
   placeholder: 'rgba(255, 255, 255, 0.75)', // 输入框占位符
   disabled: '#C0C4CC', // 禁用状态
@@ -39,7 +39,7 @@ export const neutral = {
   cardBg : '#121E3E',
   cardBg1: '#1C4687',
   topBg: '#000',
-  tips: '#252C2F',
+  tips: 'rgba(255,255,255,.8)',
   inversergular: 'rgba(0, 0, 0, 0.80)',
   // 模态弹窗
   modalBg: '#F5F8FD',

@@ -3,8 +3,9 @@
     ref="layoutRef"
     :refresher="true"
     @onRefresh="handleRefresh"
+    :isLottie="false"
     navTitle="在线充值"
-    bgType="bg-main"
+    bgType="bg-recharge"
   >
     <template v-slot:navRight>
       <view
@@ -57,7 +58,7 @@
         <view
           class="px-[32rpx] py-[16rpx] fixed bottom-0 left-0 right-0 bg-neutral-bottomBtnBg"
         >
-          <wk-button @submit="switchTab(routes.service)">
+          <wk-button @submit="switchTab(routes.service)" height="80rpx" fontSize="30rpx">
             在线客服充值
           </wk-button>
         </view>

@@ -1,62 +1,66 @@
 <template>
-  <view class="flex flex-col mt-[64rpx]">
-    <view class="flex flex-row items-center justify-between">
-      <text class="text-lg font-medium text-neutral">外币汇率换算</text>
+  <view class="flex flex-col justify-start items-center mt-[64rpx]">
+    <view class="w-full box-border flex flex-row items-center px-[8rpx]">
+      <text class="text-white text-[32rpx] leading-[44rpx] font-medium">外币汇率换算</text>
     </view>
 
-    <view class="flex flex-col justify-center mt-[21rpx] px-[32rpx] py-[24rpx] rounded-[48rpx] 
-    bg-white">
-      <view class="flex flex-row items-center justify-end grow-1 bg-black/5 rounded-full">
-        <uv-input
-          maxlength="8"
-          class="mx-[16rpx] rounded-[32rpx] w-[40%] h-[80rpx] font-bold"
-          v-model="USDTInput"
-          type="number"
-          placeholder="请输入"
-          border="none"
-          :customStyle="{ borderRadius: '32rpx', paddingLeft: '32rpx' }"
-          :placeholderStyle="{
-            color: $colors.secondary,
-            fontSize: '30rpx',
-          }"
-          fontSize="30rpx"
-          @change="handleUSDTChange"
-          inputAlign="left"
-          :color="$colors.DEFAULT"
-        />
-        <view class="flex flex-row items-center gap-[8rpx] bg-white rounded-[32rpx] px-[16rpx] py-[8rpx] text-neutral mr-[16rpx]">
-          <image class="w-[32rpx] h-[32rpx]" src="/static/images/profile/usdt_icon.png" mode="widthFix" />
-          <text class="text-base">{{ symbolStore.exchangeUsdtLabel }}</text>
+    <view class="w-full rounded-[24rpx] box-border flex flex-row items-center py-[16rpx] relative mt-[21rpx]">
+      <!-- 背景图片 -->
+      <view class="flex justify-start items-center w-full h-[144rpx] bg-wraper rounded-[24rpx] px-[32rpx] box-border">
+        <!-- 左侧：USDT -->
+        <view class="w-[40rpx] h-[40rpx]">
+          <image src="/static/images/recharge/usdt_icon.png" mode="widthFix" class="w-[40rpx] h-[40px]"></image>
         </view>
-      </view>
-
-      <view class="flex flex-row items-center justify-center mx-[10rpx] w-full my-[-12rpx]">
-        <image src="/static/images/user/exchange_icon.svg" mode="widthFix" class="w-[64rpx] h-[64rpx]" />
-      </view>
-
-      <view class="flex flex-row items-center justify-start grow-1 bg-black/5 rounded-[16rpx]">
-        <uv-input
-          maxlength="8"
-          class="mx-[16rpx] rounded-[360rpx] w-[40%] h-[80rpx] font-bold"
-          v-model="CNYInput"
-          type="number"
-          placeholder="请输入"
-          border="none"
-          :customStyle="{ borderRadius: '32rpx', paddingLeft: '32rpx' }"
-          :placeholderStyle="{
-            color: $colors.secondary,
-            fontSize: '30rpx',
-          }"
-          fontSize="30rpx"
-          :color="$colors.DEFAULT"
-          @change="handleCNYChange"
-          inputAlign="left"
-        />
+        <view class="w-[151rpx] rounded-[16rpx] box-border bg-[rgba(12,5,47,1)] flex h-[80rpx] flex-row justify-center items-center ml-[12rpx]">
+          <uv-input
+            maxlength="8"
+            class="w-full font-bold"
+            v-model="USDTInput"
+            type="number"
+            placeholder="1"
+            border="none"
+            :customStyle="{ borderRadius: '16rpx', textAlign: 'center' }"
+            :placeholderStyle="{
+              color: '#fff',
+              fontSize: '32rpx',
+            }"
+            fontSize="32rpx"
+            @change="handleUSDTChange"
+            inputAlign="center"
+            color="#fff"
+          />
+        </view>
+        <text class="ml-[12rpx] text-white text-[30rpx] leading-[48rpx] font-normal">{{ symbolStore.exchangeUsdtLabel }}</text>
         
-        <view class="flex flex-row items-center gap-[8rpx] bg-white rounded-[32rpx] px-[16rpx] py-[8rpx] text-neutral mr-[16rpx]">
-          <image class="w-[32rpx] h-[32rpx]" src="/static/images/profile/cny_icon.png" mode="widthFix" />
-          <text class="text-base">CNY</text>
+        <!-- 等号 -->
+        <view class="w-[42rpx] h-[42rpx] overflow-hidden box-border ml-[12rpx] flex justify-end items-center">
+          <text class="mr-[10rpx] text-white text-[30rpx] leading-[48rpx] font-normal">=</text>
         </view>
+        
+        <!-- 右侧：CNY -->
+        <view class="w-[40rpx] h-[40rpx]  ml-[12rpx]">
+          <image src="/static/images/recharge/cny_icon.png" mode="widthFix" class="w-[40rpx] h-[40rpx]"></image>
+        </view>
+        <view class="w-[151rpx] rounded-[16rpx] box-border bg-[rgba(12,5,47,1)] flex h-[80rpx] flex-row justify-center items-center ml-[12rpx]">
+          <uv-input
+            maxlength="8"
+            class="w-full font-bold"
+            v-model="CNYInput"
+            type="number"
+            placeholder="7.4"
+            border="none"
+            :customStyle="{ borderRadius: '16rpx', textAlign: 'center' }"
+            :placeholderStyle="{
+              color: '#fff',
+              fontSize: '32rpx',
+            }"
+            fontSize="32rpx"
+            color="#fff"
+            @change="handleCNYChange"
+            inputAlign="center"
+          />
+        </view>
+        <text class="ml-[12rpx] text-white text-[30rpx] leading-[48rpx] font-normal">CNY</text>
       </view>
     </view>
   </view>
@@ -101,3 +105,11 @@ watch(() => props.rate, (newRate) => {
   handleUSDTChange(USDTInput.value)
 }, { immediate: true })
 </script> 
+
+<style lang="scss" scoped>
+.bg-wraper{
+  background-image: url('@/static/images/recharge/rate_bg.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+</style>

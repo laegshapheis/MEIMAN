@@ -44,7 +44,7 @@
       </view>
       <!-- 注册按钮 -->
       <wk-button
-        @submit="handleRegister"
+        @submit="handleRegister" height="80rpx"
       >
         {{ $t("register.registerBtn") }}
       </wk-button>

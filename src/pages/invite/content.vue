@@ -1,5 +1,5 @@
 <template>
-  <layout navTitle="下载安装常见问题" bgType="bg-main">
+  <layout navTitle="下载安装常见问题" bgType="bg-main4" :isLottie="false">
     <view
       class="px-[32rpx] pt-[24rpx] pb-[30rpx] box-border w-full flex flex-col"
     >

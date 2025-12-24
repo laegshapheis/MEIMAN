@@ -1,5 +1,5 @@
 <template>
-  <layout navTitle="版本升级" bgType="bg-main"> 
+  <layout navTitle="版本升级" bgType="bg-main4" :isLottie="false"> 
     <view class="px-page-x py-page-y">
       <view class="py-[64rpx] text-center mx-auto flex flex-col items-center">
           <image
@@ -10,12 +10,13 @@
         </view>
 
       <view class="text-center mb-[64rpx]">
-        <text class="text-neutral text-2xl">请选择你的手机类型</text>
+        <text class="text-neutral text-xl">请选择你的手机类型</text>
       </view>
       <view class="rounded-[16rpx] pt-[0rpx] pb-[24rpx]">
         <template v-for="item in links">
-            <wk-button class="mb-[24rpx]" height="104rpx" v-if="linkObj[item.ua]" :key="item.name" @submit="download(item.ua)"
+            <wk-button class="mb-[24rpx]" height="80rpx" v-if="linkObj[item.ua]" :key="item.name" @submit="download(item.ua)"
               borderRadius="720rpx"
+              fontSize="32rpx"
               borderColor="transparent"
               backgroundColor="#FFFFFF"
               :plain="false"
@@ -25,7 +26,7 @@
               :src="item.icon"
               mode="widthFix"
             />
-            <text class="text-lg mr-[50rpx] text-black font-medium">{{ item.name}}</text>
+            <text class="text-lg mr-[50rpx] text-white font-medium">{{ item.name}}</text>
             </wk-button>
         </template>
       </view>

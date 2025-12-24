@@ -35,7 +35,7 @@
         </text>
       </view>
       <!-- 登录按钮 -->
-      <wk-button size="small" @submit="handleLogin">
+      <wk-button size="small" height="80rpx" @submit="handleLogin">
         登录
       </wk-button>
     </view>

@@ -1,5 +1,5 @@
 <template>
-  <layout navTitle="版本升级" bgType="bg-main">
+  <layout navTitle="版本升级" bgType="bg-main4" :isLottie="false">
     <view class="px-page-x py-page-y">
       <view class="py-[80rpx] flex flex-col justify-between">
         <view class="text-center mx-auto flex flex-col items-center">
@@ -10,13 +10,13 @@
           ></image>
         </view>
         <view class="flex flex-col items-center mt-[50rpx]">
-          <view class="text-neutral text-xl text-center mt-[10rpx]">
+          <view class="text-neutral text-lg text-center mt-[10rpx]">
             <text class="">当前版本：</text>
             <text>
               {{ self_app_version }}
             </text>
           </view>
-          <view class="text-neutral-regular text-lg text-center mt-[10rpx]">
+          <view class="text-white/60 text-sm text-center mt-[10rpx]">
             <text class="">最新版本：</text>
             <text>
               {{ new_app_version }}
@@ -29,16 +29,16 @@
           <wk-button
             v-if="app_upgrade_1_switch == 1"
             class="flex-1 w-full text-xl font-medium mb-[15rpx]"
-            type="bg1"
+            height="80rpx"
+            fontSize="30rpx"
             @submit="onlineUpApp"
           >
             APP在线升级
           </wk-button>
           <wk-button
             :borderColor="$colors.theme"
-            backgroundColor="transparent"
-            :color="$colors.theme"
-            fontWeight="normal"
+            height="80rpx"
+            fontSize="30rpx"
             class="flex-1 text-lg font-medium w-full"
             v-if="!online_up && app_upgrade_2_switch == 1"
             @submit="openDownloadApp"
@@ -54,7 +54,7 @@
             :showInfo="true"
             size="34rpx"
             :color="$colors.theme"
-            background="#2A877C33"
+            background="rgba(10, 125, 254, 0.20)"
             :activeColor="$colors.theme"
           ></fui-progress>
           <view class="text-center text-sm text-neutral-error"
@@ -62,8 +62,8 @@
           >
         </view>
       </view>
-      <view class="mt-[48rpx] p-[32rpx] text-base text-neutral-regular bg-white leading-6 border-[length:1rpx] border-solid border-neutral-divider rounded-[24rpx]" v-if="up_app_tip">
-        <common-tips :content="up_app_tip" :color="$colors.tips"></common-tips>
+      <view class="mt-[48rpx] p-[32rpx] text-base text-white/80 bg-[#0C052F] leading-6 border-[length:1rpx] border-solid border-neutral-divider rounded-[48rpx]" v-if="up_app_tip">
+        <common-tips :content="up_app_tip" :color="'rgba(255,255,255,0.8)'"></common-tips>
       </view>
     </view>
     <wk-loading v-if="loading" :loadingText="loadingText" />

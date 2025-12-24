@@ -1,64 +1,32 @@
 <template>
-  <layout
-    ref="layoutRef"
-    :refresher="true"
-    @onRefresh="handleRefresh"
-    navTitle="提现记录"
-    bgType="bg-main"
-    @reachBottom="getPaginationList"
-  >
-  <template v-slot:navRight>
+  <layout ref="layoutRef" :refresher="true" @onRefresh="handleRefresh" navTitle="提现记录" bgType="bg-main2"
+    :isLottie="false" @reachBottom="getPaginationList">
+    <template v-slot:navRight>
       <view class="flex flex-row w-full items-center justify-end">
-        <wk-picker
-          mode="date"
-          :value="timeDate ? timeDate : Number(new Date())"
-          :minDate="startDate"
-          :maxDate="endDate"
-          @change="handleChangeDate"
-        >
+        <wk-picker mode="date" :value="timeDate ? timeDate : Number(new Date())" :minDate="startDate" :maxDate="endDate"
+          @change="handleChangeDate">
           <view>
-            <image
-              v-if="time_date == 0"
-              src="/static/images/user/date_icon.svg"
-              class="w-[32rpx] h-[32rpx] bg-white/10 rounded-full p-[12rpx]"
-            ></image>
+            <image v-if="time_date == 0" src="/static/images/user/date_icon.svg"
+              class="w-[32rpx] h-[32rpx] bg-white/10 rounded-full p-[12rpx]"></image>
             <text v-else class="text-base text-neutral">{{ time_date }}</text>
           </view>
         </wk-picker>
         <view v-if="time_date != 0" class="" @click="handleResetDate">
-          <uv-icon
-            name="close-circle"
-            size="30rpx"
-            :color="$colors.regular"
-          ></uv-icon>
+          <uv-icon name="close-circle" size="30rpx" :color="$colors.regular"></uv-icon>
         </view>
       </view>
     </template>
-    <view
-      class="px-page-x pt-page-y pb-[30rpx] box-border w-full flex flex-col"
-    >
+    <view class="px-page-x pt-page-y pb-[30rpx] box-border w-full flex flex-col">
       <!-- start 顶部汇总信息 -->
-      <view
-        class="flex flex-row justify-around rounded-[24rpx] h-[186rpx] bg-card3"
-      >
+      <view class="flex flex-row justify-around rounded-[24rpx] h-[186rpx] bg-card3">
         <view class="flex flex-col items-center justify-center">
-          <text class="text-base text-white/60"
-            >提现成功({{ symbolStore.code }})</text
-          >
-          <text
-            class="font-semibold leading-6 text-xl mt-[16rpx] text-white"
-            >{{ chenggong || 0 }}</text
-          >
+          <text class="text-base text-white/60">提现成功({{ symbolStore.code }})</text>
+          <text class="font-semibold leading-6 text-xl mt-[16rpx] text-white">{{ chenggong || 0 }}</text>
         </view>
 
         <view class="flex flex-col items-center justify-center">
-          <text class="text-base text-white/60"
-            >提现失败({{ symbolStore.code }})</text
-          >
-          <text
-            class="font-semibold leading-6 text-xl mt-[16rpx] text-white"
-            >{{ shibai || 0 }}</text
-          >
+          <text class="text-base text-white/60">提现失败({{ symbolStore.code }})</text>
+          <text class="font-semibold leading-6 text-xl mt-[16rpx] text-white">{{ shibai || 0 }}</text>
         </view>
       </view>
       <!-- end 顶部汇总信息 -->
@@ -67,51 +35,44 @@
 
       <!-- start 列表 -->
       <view class="flex flex-col mt-[32rpx]">
-        <wk-stroke-bg
-          class="flex flex-col mb-[24rpx]"
-          v-for="item in dataList"
-          :key="item.id"
-        >
+        <view class="flex flex-col mb-[24rpx] bg-black px-[24rpx] py-[48rpx] rounded-[32rpx] shadow-[0_0_16px_0_#266AFF_inset]" v-for="item in dataList" :key="item.id">
           <view
-            class="flex flex-row justify-between items-center pb-[24rpx] border-b border-solid border-b-neutral-divider border-x-0 border-t-0"
-          >
+            class="flex flex-row justify-between items-center pb-[24rpx] border-b border-solid border-b-neutral-divider border-x-0 border-t-0">
             <text class="text-lg leading-6 flex-1 truncate">
               {{
                 item.istype == 0
                   ? "提现余额划转可用余额"
                   : item.istype == 1
-                  ? "银行卡提现"
-                  : item.istype == 2
-                  ? "支付宝提现"
-                  : item.istype == 3
-                  ? item.memo
-                  : item.istype == 4
-                  ? "USDT钱包提现"
-                  : item.istype == 6
-                  ? "微信提现"
-                  : "未知渠道"
+                    ? "银行卡提现"
+                    : item.istype == 2
+                      ? "支付宝提现"
+                      : item.istype == 3
+                        ? item.memo
+                        : item.istype == 4
+                          ? "USDT钱包提现"
+                          : item.istype == 6
+                            ? "微信提现"
+                            : "未知渠道"
               }}
             </text>
-            <text
-              :class="['text-base px-[8rpx] pt-[5rpx] pb-[8rpx]',
-                item.status == 0
-                  ? 'text-neutral'
-                  : item.status == -1
+            <text :class="['text-base px-[8rpx] pt-[5rpx] pb-[8rpx]',
+              item.status == 0
+                ? 'text-neutral'
+                : item.status == -1
                   ? 'text-neutral-error'
                   : 'text-neutral-theme',
-              ]"
-              >{{
+            ]">{{
                 item.status == 0
                   ? "审核中"
                   : item.status == -1
-                  ? "已取消"
-                  : "成功"
-              }}</text
-            >
+                    ? "已取消"
+                    : "成功"
+              }}</text>
           </view>
 
           <view class="flex flex-col mt-[24rpx] text-neutral-regular">
-            <view class="flex flex-row justify-between items-center text-base leading-6 pb-[16rpx] border-b border-solid border-b-neutral-divider border-x-0 border-t-0">
+            <view
+              class="flex flex-row justify-between items-center text-base leading-6 pb-[16rpx] border-b border-solid border-b-neutral-divider border-x-0 border-t-0">
               <text class="text-neutral-secondary">提现金额：</text>
               <text class="text-neutral-regular">
                 {{
@@ -120,10 +81,8 @@
                 }}
               </text>
             </view>
-            <view
-              v-if="item.istype !== 0 && item.istype !== 3"
-              class="flex flex-row text-base leading-6 justify-between items-center py-[16rpx] border-b border-solid border-b-neutral-divider border-x-0 border-t-0"
-            >
+            <view v-if="item.istype !== 0 && item.istype !== 3"
+              class="flex flex-row text-base leading-6 justify-between items-center py-[16rpx] border-b border-solid border-b-neutral-divider border-x-0 border-t-0">
               <text class="text-neutral-secondary">提现手续费：</text>
               <text class="text-neutral-regular" v-if="symbolStore.value == 'USDT'">
                 {{
@@ -137,7 +96,8 @@
               </text>
             </view>
 
-            <view class="flex flex-row text-base leading-6 justify-between items-center py-[16rpx] border-b border-solid border-b-neutral-divider border-x-0 border-t-0">
+            <view
+              class="flex flex-row text-base leading-6 justify-between items-center py-[16rpx] border-b border-solid border-b-neutral-divider border-x-0 border-t-0">
               <text class="text-neutral-secondary">到账金额：</text>
               <!-- istype 0 提现余额划转可用余额 4 USDT钱包提现 3 zz -->
               <text class="text-neutral-theme">
@@ -145,7 +105,8 @@
               </text>
             </view>
 
-            <view class="flex flex-row text-base leading-6 justify-between items-center py-[16rpx] border-b border-solid border-b-neutral-divider border-x-0 border-t-0">
+            <view
+              class="flex flex-row text-base leading-6 justify-between items-center py-[16rpx] border-b border-solid border-b-neutral-divider border-x-0 border-t-0">
               <text class="text-neutral-secondary">提现时间：</text>
               <text class="text-neutral-regular">{{ item.created_at }}</text>
             </view>
@@ -157,18 +118,13 @@
 
             <view
               class="flex flex-row text-base leading-6 justify-between items-center py-[16rpx] border-t border-solid border-t-neutral-divider border-x-0 border-b-0"
-              v-if="item.status == -1"
-            >
+              v-if="item.status == -1">
               <text class="whitespace-nowrap">取消原因：</text>
-              <text
-                class="text-neutral-error"
-                v-if="item.status == -1 && item.zhuanuserid > 0"
-                >{{ item.reason }}</text
-              >
+              <text class="text-neutral-error" v-if="item.status == -1 && item.zhuanuserid > 0">{{ item.reason }}</text>
               <text class="text-neutral-error" v-else>{{ item.memo }}</text>
             </view>
           </view>
-        </wk-stroke-bg>
+        </view>
       </view>
       <!-- start 列表 -->
     </view>

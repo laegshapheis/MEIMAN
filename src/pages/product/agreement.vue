@@ -5,6 +5,7 @@
     navTitle="合同详情"
     mode="black"
     bgType="bg-grey-light"
+    :isLottie="false"
     :isNavLeftBackClick="false"
     @navLeftClick="handelBack"
   >

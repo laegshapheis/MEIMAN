@@ -56,6 +56,7 @@ module.exports = {
         '2xs': '22rpx',
         'sm': '24rpx',
         'base': '28rpx',
+        'md': '30rpx',
         'lg': '32rpx',
         'xl': '36rpx',
         '2xl': '40rpx',

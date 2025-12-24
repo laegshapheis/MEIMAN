@@ -101,6 +101,18 @@ const TYPE_PRESETS = {
     border: "transparent",
     shadow: "none",
   },
+  "img-bg": {
+    bgImage: "/static/images/yuebao/btn_bg.png",
+    color: "#fff",
+    border: "transparent",
+    shadow: "none",
+  },
+  "img-bg2": {
+    bgImage: "/static/images/yuebao/btn_bg2.png",
+    color: "#fff",
+    border: "transparent",
+    shadow: "none",
+  },
 };
 
 const SIZE_PRESETS = {

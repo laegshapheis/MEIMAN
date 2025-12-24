@@ -4,7 +4,7 @@
       <text class="text-lg leading-6 font-medium text-neutral">充值金额</text>
     </view>
 
-    <view :class="['flex flex-col bg-[#FFFFFF] rounded-[24rpx] px-[32rpx]', symbolStore.value == 'USDT' ? 'pb-[24rpx]' : '']">
+    <view :class="['flex flex-col input-bg rounded-[24rpx] px-[32rpx]', symbolStore.value == 'USDT' ? 'pb-[24rpx]' : '']">
       <view :class="['flex flex-row items-center justify-center h-[120rpx]', symbolStore.value == 'USDT' ? 'border-0 border-b border-solid border-neutral-divider' : '']">
         <text class="text-2xl font-bold">¥</text>
         <uv-input
@@ -33,7 +33,7 @@
       </view>
     </view>
     <view class="fixed bottom-0 left-0 right-0 px-[32rpx] py-[16rpx] bg-neutral-bottomBtnBg">
-      <wk-button type="bg" @submit="handleSubmit">提交</wk-button>
+      <wk-button @submit="handleSubmit" height="80rpx" fontSize="30rpx">提交</wk-button>
     </view>
   </view>
 </template>

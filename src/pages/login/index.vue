@@ -1,12 +1,12 @@
 <template>
-  <layout :isNav="false" bgType="bg-main1">
+  <layout :isNav="false" bgType="bg-main">
     <view class="justify-end absolute top-0 right-0 mx-[24rpx] mt-[16rpx]">
       <wk-language-selector plain />
     </view>
     <logo class="mt-[136rpx]" />  
     <wk-stroke-bg mode="img-card" shadow borderRadius="24rpx" class="mx-[32rpx] mt-[48rpx]">
       <view class="flex flex-col justify-center items-center">
-        <text class="text-neutral-regular text-3xl font-medium">
+        <text class="text-neutral-regular text-2xl font-medium">
           登入你的账号
         </text>
         <text @click="toRegister" class="text-base mt-[16rpx]">
@@ -22,6 +22,7 @@
           @change="handleTabChange"
           :current="current"
           :scrollable="false"
+         
         />
         <login
           v-if="

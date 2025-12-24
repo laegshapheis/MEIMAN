@@ -436,7 +436,10 @@ watch(
   :deep(.uv-tabs__wrapper__nav__line) {
     border-radius: 360rpx;
     border: 2px solid rgba(255, 255, 255, 0.50);
-    background: #299DF6;
+    background-color: #299DF6;
+    background-image: url('/static/images/base/tab_btn_bg.png') !important;
+    box-shadow: 0 4px 4px 0 rgba(63, 171, 255, 0.20);
+
     box-sizing: border-box;
     bottom: 0 !important;
     height: calc(100% - 4rpx) !important;

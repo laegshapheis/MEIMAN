@@ -1,20 +1,21 @@
 <template>
   <layout
     :navTitle="title"
-    bgType="bg-white"
+    bgType="bg-main4"
+    :isLottie="false"
     ref="layoutRef"
     :refresher="true"
     @onRefresh="handleRefresh"
   >
     <template #navRight>
-      <view v-if="hasPermission('cms_save_to_album_switch')" class="flex items-center justify-center px-[16rpx] py-[8rpx] rounded-full" @click="saveImage">
+      <view v-if="hasPermission('cms_save_to_album_switch')" class="flex items-center justify-center px-[16rpx] py-[8rpx] rounded-full bg-white/10" @click="saveImage">
         <image
           class="w-[32rpx] h-[32rpx] mr-[8rpx]"
           src="/static/images/base/download.svg"
           mode="widthFix"
         >
         </image>
-        <text class="text-base text-black">保存</text>
+        <text class="text-base text-white">保存</text>
       </view>
     </template>
     <view

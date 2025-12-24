@@ -8,6 +8,33 @@
   background-size: cover;
 }
 
+.bg-main1{
+  background: #0C052F;
+  // background-repeat: no-repeat;
+  // background-size: cover;
+
+}
+
+.bg-recharge,
+.bg-main2,
+.bg-address {
+  background-image: url('@/static/images/bg/address/bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-main3{
+  background-image: url('@/static/images/bg/main3.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-main4{
+  background-image: url('@/static/images/bg/main4.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .bg-task {
   background-image: url('@/static/images/task/task_bg.png');
   background-repeat: no-repeat;
@@ -17,7 +44,8 @@
 }
 
 .bg-profile {
-  background-image: url('@/static/images/profile/profile_top_bg.png'),linear-gradient(180deg, #EFF1F6 0%, #EFF1F6 100%);
+  background-image: url('@/static/images/profile/profile_top_bg.png');
+  background-color: #121E3E;
   background-repeat: no-repeat, no-repeat;
   background-position: 0px -80rpx,top center;
   background-size: contain,contain;
@@ -25,15 +53,16 @@
 
 .bg-account-section {
   // background-image: url('@/static/images/profile/account_bg.png');
-  background-image: linear-gradient(180deg, #2E89FF 0%, #004399 100%);
+  // background-image: linear-gradient(180deg, #2E89FF 0%, #004399 100%);
   background-repeat: no-repeat;
   background-size: cover;
 
   box-shadow: 0 8rpx 16rpx 0 rgba(57, 115, 191, 0.10);
 }
 .bg-card3{
-  background: linear-gradient(180deg, #515BD5 0%,  #2935CC 100%);
-  box-shadow: 0 8px 0 0 #C5FFFC inset;
+  background-image: url('@/static/images/common/card_bg.png');
+  background-size: 100% 100%;
+  // box-shadow: 0 8px 0 0 #C5FFFC inset;
 }
 
 .bg-card {
@@ -109,4 +138,22 @@
 
 .bg-guess-number {
   background: linear-gradient(173deg, rgba(255, 206, 127, 0.69) 2.18%, rgba(255, 38, 56, 0.00) 24.15%), linear-gradient(153deg, rgba(255, 100, 57, 0.83) 10.75%, rgba(255, 47, 97, 0.83) 40.16%), #FE3845;
+}
+
+.input-bg {
+  background-image: url('@/static/images/recharge/input_bg.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.input-bg2 {
+  background-image: url('@/static/images/recharge/input_bg2.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.bg-wraper {
+  background-image: url('@/static/images/recharge/rate_bg.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }

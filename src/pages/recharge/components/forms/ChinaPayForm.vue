@@ -8,7 +8,7 @@
       <text class="text-neutral text-lg leading-6 font-medium">充值金额</text>
     </view>
 
-    <view :class="['flex flex-col bg-neutral-inputBg rounded-[24rpx] px-[32rpx]', symbolStore.value == 'USDT' ? 'pb-[24rpx]' : '']">
+    <view :class="['flex flex-col rounded-[24rpx] px-[32rpx]', symbolStore.value == 'USDT' ? 'pb-[24rpx] input-bg2' : 'input-bg']">
       <view :class="['flex flex-row items-center justify-center h-[120rpx]', symbolStore.value == 'USDT' ? 'border-0 border-b border-solid border-neutral-divider' : '']">
         <text class="text-2xl font-bold">¥</text>
         <uv-input
@@ -42,7 +42,7 @@
       <text class="text-base text-neutral" @click="$emit('showContactList', 2)">历史付款人</text>
     </view>
 
-    <view class="flex flex-row items-center justify-center h-[120rpx] bg-neutral-inputBg rounded-[24rpx]">
+    <view class="flex flex-row items-center justify-center h-[120rpx] bg-wraper rounded-[24rpx]">
       <uv-input
         class="h-[120rpx]"
         v-model="formData.fkname" 
@@ -68,7 +68,7 @@
       <view class="flex flex-col items-start justify-center w-[100%]" @click="handleUpload">
         <image class="w-full h-[150rpx] mb-[15rpx]" :src="formData.upfile" mode="widthFix" v-if="formData.upfile"></image>
 
-        <view class="flex flex-col items-center justify-center w-[208rpx] h-[208rpx] bg-neutral-inputBg rounded-[24rpx]" v-if="!formData.upfile">
+        <view class="flex flex-col items-center justify-center w-[208rpx] h-[208rpx] input-bg rounded-[24rpx]" v-if="!formData.upfile">
           <text><uv-icon size="50rpx" :color="$colors.DEFAULT" name="plus"></uv-icon></text>
           <text class="text-base leading-6 font-medium text-neutral mt-[20rpx]">添加转账截图</text>
         </view>
@@ -76,7 +76,7 @@
     </view>
 
     <view class="fixed bottom-0 left-0 right-0 px-[32rpx] py-[16rpx] bg-neutral-bottomBtnBg">
-      <wk-button type="bg" @submit="handleSubmit">提交</wk-button>
+      <wk-button height="80rpx" fontSize="30rpx" @submit="handleSubmit">提交</wk-button>
     </view>
   </view>
 </template>

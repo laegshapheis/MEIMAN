@@ -1,38 +1,24 @@
 <template>
-  <view class="rounded-[16rpx] mt-[32rpx] flex flex-col justify-between bg-white 
-  border border-[length:1rpx] border-solid border-[#FFFFFF]/20 rounded-[32rpx]">
-    <view class="text-neutral text-xl px-[32rpx] py-[24rpx]" style="border-bottom: 1rpx solid #FFFFFF20;">
+  <view class="mt-[32rpx] flex flex-col justify-between bg-black px-[24rpx] py-[48rpx] rounded-[32rpx] shadow-[0_0_16px_0_#266AFF_inset]">
+    <view class="text-neutral text-xl text-center">
       <text>安全中心</text>
     </view>
     <!-- <view class="w-full h-[0rpx] bg-black my-[24rpx]"></view> -->
-    <view
-      class="p-[16rpx] grid grid-flow-row-dense grid-cols-4 gap-x-[40rpx]"
-    >
+    <view class="p-[16rpx] grid grid-flow-row-dense grid-cols-4 gap-x-[40rpx]">
       <template v-for="item in menus" :key="item.icon_url">
-        <view
-          class="flex flex-col justify-center items-center relative"
-          v-if="!item.switch || (item.switch && userInfo[item.switch])"
-          @click="$emit('onNavTo', item)"
-        >
-          <view
-            class="flex items-center justify-center w-[160rpx] mt-[32rpx]"
-          >
-          <view class="flex items-center w-[108rpx] h-[108rpx] justify-center rounded-[24rpx] bg-[#E9F3FF]">
-          <image
-              class="w-[48rpx] h-[48rpx]"
-              :src="item.icon_url"
-              mode="widthFix"
-            ></image>
-          </view>
+        <view class="flex flex-col justify-center items-center relative"
+          v-if="!item.switch || (item.switch && userInfo[item.switch])" @click="$emit('onNavTo', item)">
+          <view class="flex items-center justify-center w-[160rpx] mt-[32rpx]">
+            <view class="flex items-center w-[96rpx] h-[96rpx] justify-center rounded-[24rpx] icon_bg">
+              <image class="w-[48rpx] h-[48rpx]" :src="item.icon_url" mode="widthFix"></image>
+            </view>
           </view>
           <text class="text-base leading-6 mt-[12rpx] text-neutral">{{
             item.title
-          }}</text>
-          <view
-            v-if="item.key == 'app_version' && appNewVersion"
-            class="absolute top-[25rpx] right-[5rpx] rounded-[10rpx] w-[10rpx] h-[10rpx] bg-[#ff0000]"
-          ></view>
-          
+            }}</text>
+          <view v-if="item.key == 'app_version' && appNewVersion"
+            class="absolute top-[25rpx] right-[5rpx] rounded-[10rpx] w-[10rpx] h-[10rpx] bg-[#ff0000]"></view>
+
 
         </view>
       </template>
@@ -107,6 +93,10 @@ defineEmits(["onNavTo"]);
 </script>
 
 <style scoped>
+  .icon_bg{
+  background-image: url('/static/images/profile/icon_v2/icon_bg.png');
+  background-size: 100% 100%;
+}
 .gradient-border-container {
   position: relative;
 }

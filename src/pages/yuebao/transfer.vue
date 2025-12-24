@@ -1,42 +1,20 @@
 <template>
-  <layout
-    :navTitle="code == 'in' ? '余额宝转入' : '余额宝转出'"
-    bgType="bg-main"
-    ref="layoutRef"
-    :refresher="true"
-    @onRefresh="handleRefresh"
-  >
-    <view
-      class="px-page-x pt-page-y pb-[30rpx] box-border w-full flex flex-col"
-    >
+  <layout :navTitle="code == 'in' ? '余额宝转入' : '余额宝转出'" bgType="bg-main2" :isLottie="false" ref="layoutRef"
+    :refresher="true" @onRefresh="handleRefresh">
+    <view class="px-page-x pt-page-y pb-[30rpx] box-border w-full flex flex-col">
       <view class="flex flex-col" v-if="code == 'out'">
-        <view
-          class="flex flex-row items-center justify-between mb-[22rpx] mt-[46rpx]"
-        >
+        <view class="flex flex-row items-center justify-between mb-[22rpx] mt-[46rpx]">
           <text class="text-lg leading-6 font-medium text-neutral">转出方式</text>
         </view>
 
-        <view
-          class="flex flex-row items-center justify-center h-[120rpx] bg-neutral-inputBg rounded-[24rpx]"
-        >
-          <uv-input
-            class="h-[120rpx]"
-            v-model="outText"
-            type="text"
-            readonly
-            border="0"
-            :placeholderStyle="{
-              color: $colors.light,
-              fontSize: '30rpx',
-            }"
-            fontSize="30rpx"
-            :color="$colors.DEFAULT"
-          />
+        <view class="flex flex-row items-center justify-center h-[120rpx] bg-wraper rounded-[24rpx]">
+          <uv-input class="h-[120rpx]" v-model="outText" type="text" readonly border="0" :placeholderStyle="{
+            color: $colors.light,
+            fontSize: '30rpx',
+          }" fontSize="30rpx" :color="$colors.DEFAULT" />
 
           <view class="flex flex-row mr-[22rpx]">
-            <text class="text-lg mr-[5rpx] font-medium"
-              >{{ yuebaoInfo.zong_jin_e }} {{ symbolStore.code }}</text
-            >
+            <text class="text-lg mr-[5rpx] font-medium">{{ yuebaoInfo.zong_jin_e }} {{ symbolStore.code }}</text>
 
             <!-- <view class="flex flex-row items-center"
               ><uv-icon
@@ -48,40 +26,24 @@
           </view>
         </view>
 
-        <view
-          class="flex flex-row items-center justify-between mb-[22rpx] mt-[46rpx]"
-        >
+        <view class="flex flex-row items-center justify-between mb-[22rpx] mt-[46rpx]">
           <text class="text-lg leading-6 font-medium text-neutral">转出金额</text>
         </view>
 
-        <view
-          class="flex flex-row items-center justify-center h-[120rpx] bg-neutral-inputBg  rounded-[24rpx]"
-        >
+        <view class="flex flex-row items-center justify-center h-[136rpx] input-bg  rounded-[24rpx]">
           <text class="text-2xl ml-[28rpx] font-medium">{{
             symbolStore.symbol
-          }}</text>
-          <uv-input
-            class="h-[120rpx]"
-            v-model="params.amount"
-            type="digit"
-            :placeholder="`最低转出${yuebaoInfo.minduodeli}`"
-            maxlength="9"
-            border="0"
-            :placeholderStyle="{
+            }}</text>
+          <uv-input class="h-[136rpx]" v-model="params.amount" type="digit"
+            :placeholder="`最低转出${yuebaoInfo.minduodeli}`" maxlength="9" border="0" :placeholderStyle="{
               color: $colors.secondary,
               fontSize: '38rpx',
-            }"
-            fontSize="38rpx"
-            :color="$colors.DEFAULT"
-          />
+            }" fontSize="38rpx" :color="$colors.DEFAULT" />
         </view>
 
         <!-- 按钮 -->
         <view class="fixed bottom-0 left-0 right-0 px-[32rpx] py-[16rpx]">
-          <wk-button
-            type="bg"
-            @submit="prepareSubmit"
-          >
+          <wk-button height="80rpx" fontSize="30rpx" borderRadius="80rpx" @submit="prepareSubmit">
             确认转出
           </wk-button>
         </view>
@@ -90,33 +52,19 @@
 
       <!-- 转入 -->
       <view class="flex flex-col" v-if="code == 'in'">
-        <view
-          class="flex flex-row items-center justify-between mb-[22rpx] mt-[46rpx]"
-        >
+        <view class="flex flex-row items-center justify-between mb-[22rpx] mt-[46rpx]">
           <text class="text-lg leading-6 font-medium text-neutral">转入方式</text>
         </view>
 
-        <view
-          class="flex flex-row items-center justify-center h-[120rpx] bg-neutral-inputBg rounded-[24rpx]"
-        >
-          <uv-input
-            class="h-[120rpx]"
-            v-model="inText"
-            type="text"
-            readonly
-            border="0"
-            :placeholderStyle="{
-              color: $colors.light,
-              fontSize: '30rpx',
-            }"
-            fontSize="30rpx"
-            :color="$colors.DEFAULT"
-          />
+        <view class="flex flex-row items-center justify-center h-[120rpx] bg-wraper rounded-[24rpx]">
+          <uv-input class="h-[120rpx]" v-model="inText" type="text" readonly border="0" :placeholderStyle="{
+            color: $colors.light,
+            fontSize: '30rpx',
+          }" fontSize="30rpx" :color="$colors.DEFAULT" />
 
           <view class="flex flex-row mr-[22rpx]">
-            <text class="text-neutral text-lg mr-[5rpx] font-medium"
-              >{{ yuebaoInfo.txmoney }} {{ symbolStore.code }}</text
-            >
+            <text class="text-neutral text-lg mr-[5rpx] font-medium">{{ yuebaoInfo.txmoney }} {{ symbolStore.code
+              }}</text>
 
             <!-- <view class="flex flex-row items-center"
               ><uv-icon
@@ -128,46 +76,28 @@
           </view>
         </view>
 
-        <view
-          class="flex flex-row items-center justify-between mb-[22rpx] mt-[46rpx]"
-        >
+        <view class="flex flex-row items-center justify-between mb-[22rpx] mt-[46rpx]">
           <text class="text-lg leading-6 font-medium text-neutral">转入金额</text>
         </view>
 
-        <view
-          class="flex flex-row items-center justify-center h-[120rpx] bg-neutral-inputBg rounded-[24rpx]"
-        >
+        <view class="flex flex-row items-center justify-center h-[136rpx] input-bg rounded-[24rpx]">
           <text class="text-2xl text-neutral ml-[28rpx]">{{
             symbolStore.symbol
-          }}</text>
-          <uv-input
-            class="h-[120rpx]"
-            v-model="params.amount"
-            type="digit"
-            :placeholder="`最低转入${yuebaoInfo.minduodeli_recharge}`"
-            maxlength="9"
-            border="0"
-            :placeholderStyle="{
+            }}</text>
+          <uv-input class="h-[136rpx]" v-model="params.amount" type="digit"
+            :placeholder="`最低转入${yuebaoInfo.minduodeli_recharge}`" maxlength="9" border="0" :placeholderStyle="{
               color: $colors.regular,
               fontSize: '40rpx',
-            }"
-            fontSize="40rpx"
-            :color="$colors.DEFAULT"
-          />
+            }" fontSize="40rpx" :color="$colors.DEFAULT" />
         </view>
         <view class="flex flex-row items-center justify-end mt-[22rpx]">
           <text class="text-base text-neutral">30天收益 </text>
-          <text class="text-base text-neutral-error ml-[10rpx]"
-            >{{ profit }} {{ symbolStore.code }}</text
-          >
+          <text class="text-base text-neutral-error ml-[10rpx]">{{ profit }} {{ symbolStore.code }}</text>
         </view>
 
         <!-- 按钮 -->
         <view class="fixed bottom-0 left-0 right-0 px-[32rpx] py-[16rpx] bg-neutral-bottomBtnBg">
-          <wk-button
-            type="bg"
-            @submit="prepareSubmit"
-          >
+          <wk-button height="80rpx" fontSize="30rpx" borderRadius="80rpx" @submit="prepareSubmit">
             确认转入
           </wk-button>
         </view>
@@ -225,7 +155,7 @@ onLoad((options) => {
   getYuebaoInfo();
 });
 
-onShow(() => {});
+onShow(() => { });
 
 const yuebaoInfo = ref({
   minduodeli: 0,

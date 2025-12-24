@@ -1,56 +1,36 @@
 <template>
-  <layout
-    navTitle="邀请好友"
-    bgType="bg-main3"
-    ref="layoutRef"
-    :refresher="true"
-    @onRefresh="handleRefresh"
-  >
-    <view class="p-[32rpx]">
+  <layout navTitle="邀请好友" bgType="bg-main3" ref="layoutRef" :isLottie="false" :refresher="true"
+    @onRefresh="handleRefresh">
+    <view class="px-[32rpx] py-[48rpx]">
       <view class="flex flex-col items-center">
-        <image
-          src="/static/images/base/invite_logo.png"
-          class="w-[240rpx] h-[240rpx]"
-          mode="widthFix"
-        ></image>
-        <text class="text-base text-[#252C2F75] mt-[48rpx]"
-          >请根据对方的手机系统进行邀请</text
-        >
+        <image src="/static/images/base/invite_logo.png" class="w-[176rpx] h-[176rpx]" mode="widthFix"></image>
+        <text class="text-base text-white/60 mt-[48rpx]">请根据对方的手机系统进行邀请</text>
       </view>
 
       <view class="flex flex-col gap-[24rpx] mt-[48rpx]">
         <template v-for="os in osList" :key="os.ua">
-          <wk-stroke-bg shadow v-if="linkObj[os.ua]" borderRadius="48rpx" size="middle">
-            <view class="flex items-center mb-[32rpx]">
-              <image
-                class="w-[80rpx] h-[80rpx] rounded-full"
-                :src="os.icon"
-                mode="aspectFit"
-              />
+          <view class="box" v-if="linkObj[os.ua]">
+            <view class="flex items-center">
+              <image class="w-[80rpx] h-[80rpx] rounded-full" :src="os.icon" mode="aspectFit" />
               <view class="ml-[24rpx] flex-1">
-                <text class="text-lg font-bold text-neutral block">{{ os.name }}</text>
-                <text class="text-sm text-gray-500 mt-[8rpx] block">{{ os.description }}</text>
+                <text class="text-lg font-bold text-neutral block">{{
+                  os.name
+                  }}</text>
+                <text class="text-sm text-gray-500 mt-[8rpx] block">{{
+                  os.description
+                  }}</text>
               </view>
             </view>
-            <view class="h-[1px] bg-black/10 w-full my-[16rpx]"></view>
+            <view class="border-t border-white/30 border-b-0 border-l-0 border-r-0 border-solid w-full my-[24rpx]"></view>
             <view class="flex gap-[16rpx] w-full">
-              <wk-button
-                class="flex-1"
-                size="small"
-                plain
-                @submit="download(os.helpUrl)"
-              >
+              <wk-button type="img-bg" fontSize="28rpx" class="flex-1" size="small" plain @submit="download(os.helpUrl)">
                 常见问题
               </wk-button>
-              <wk-button
-                class="flex-1"
-                size="small"
-                @submit="download(os.inviteUrl)"
-              >
+              <wk-button type="img-bg2" fontSize="28rpx" class="flex-1" size="small" @submit="download(os.inviteUrl)">
                 邀请好友
               </wk-button>
             </view>
-          </wk-stroke-bg>
+          </view>
         </template>
       </view>
     </view>
@@ -150,4 +130,13 @@ onLoad(() => {
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+  .box{
+    margin-bottom: 24rpx;
+    background-image: url('@/static/images/invite/box_bg.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 32rpx;
+  }
+</style>

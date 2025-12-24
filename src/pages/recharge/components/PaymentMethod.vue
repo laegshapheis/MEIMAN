@@ -4,7 +4,7 @@
       <text class="text-lg font-medium text-neutral">请选择充值方式</text>
     </view>
 
-    <view class="flex flex-row items-center bg-[#FFFFFF] mt-[21rpx] rounded-[360rpx] h-[124rpx]">
+    <view class="flex flex-row items-center bg-wraper  mt-[21rpx] h-[144rpx]">
       <wk-picker
         class="dkh_btn"
         style="width: 100%"
@@ -13,10 +13,10 @@
         :range="payments"
       >
         <view class="flex flex-row justify-between px-[30rpx]">
-          <text class="text-lg text-neutral-secondary" v-if="currentIndex == -1">请先选择充值方式</text>
+          <text class="text-lg text-white" v-if="currentIndex == -1">请先选择充值方式</text>
           <text class="text-lg font-semibold text-neutral" v-if="currentIndex >= 0">{{ payments[currentIndex].pay_name }}</text>
           <view class="flex flex-row items-center">
-            <uv-icon size="32rpx" :color="$colors.secondary" name="arrow-right"></uv-icon>
+            <uv-icon size="32rpx" color="#fff" name="arrow-right"></uv-icon>
           </view>
         </view>
       </wk-picker>
@@ -88,3 +88,10 @@ const handleChange = (e) => {
   })
 }
 </script> 
+<style lang="scss" scoped>
+.bg-wraper{
+  background-image: url('@/static/images/recharge/rate_bg.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+</style>

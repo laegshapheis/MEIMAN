@@ -1,34 +1,22 @@
 <template>
-  <view class="mt-[32rpx] flex flex-col justify-between bg-white 
-  border border-[length:1rpx] border-solid border-[#FFFFFF]/20 rounded-[32rpx]">
-    <view class="text-neutral text-xl px-[32rpx] py-[24rpx]" style="border-bottom: 1rpx solid #FFFFFF20;">
+  <view
+    class="mt-[32rpx] flex flex-col justify-between bg-black px-[24rpx] py-[48rpx] rounded-[32rpx] shadow-[0_0_16px_0_#266AFF_inset]">
+    <view class="text-neutral text-xl text-center">
       <text>常用功能</text>
     </view>
-    <view
-      class="p-[16rpx] grid grid-flow-row-dense grid-cols-4 gap-x-[40rpx]"
-    >
+    <view class="p-[16rpx] grid grid-flow-row-dense grid-cols-4 gap-x-[40rpx]">
       <template v-for="item in menus" :key="item.icon_url">
-        <view
-          class="flex flex-col justify-center items-center"
-          v-if="
-            (!item.switch || (item.switch && userInfo[item.switch]))
-          "
-          @click="$emit('onNavTo', item)"
-        >
-          <view
-            class="flex items-center justify-center w-[160rpx] mt-[32rpx]"
-          >
-          <view class="flex items-center w-[108rpx] h-[108rpx] justify-center rounded-[24rpx] bg-[#E9F3FF]">
-          <image
-              class="w-[48rpx] h-[48rpx]"
-              :src="item.icon_url"
-              mode="widthFix"
-            ></image>
-          </view>
+        <view class="flex flex-col justify-center items-center" v-if="
+          (!item.switch || (item.switch && userInfo[item.switch]))
+        " @click="$emit('onNavTo', item)">
+          <view class="flex items-center justify-center w-[160rpx] mt-[32rpx]">
+            <view class="flex items-center w-[96rpx] h-[96rpx] justify-center rounded-[108rpx] icon_bg">
+              <image class="w-[48rpx] h-[48rpx]" :src="item.icon_url" mode="widthFix"></image>
+            </view>
           </view>
           <text class="text-base leading-6 mt-[12rpx] text-neutral">{{
             item.title
-          }}</text>
+            }}</text>
         </view>
       </template>
     </view>
@@ -112,6 +100,12 @@ const menus = computed(() => [
     redirect: routes.cashCoupon,
     switch: "coupon_switch",
   },
+  {
+    title: "幸运转盘",
+    icon_url: "/static/images/profile/icon_v2/luckydraw_icon.svg",
+    redirect: routes.lottery,
+    switch: "luckdraw_switch",
+  },
   // {
   //   title: "VIP体验券",
   //   icon_url: "/static/images/profile/icon_v2/vip_experience_icon.svg",
@@ -135,12 +129,12 @@ const menus = computed(() => [
     redirect: routes.indexGuide,
     switch: "isschool_switch",
   },
-  // {
-  //   title: "盲盒",
-  //   icon_url: "/static/images/profile/icon_v2/box_icon.svg",
-  //   redirect: routes.taskIndex,
-  //   switch: "boxes_switch",
-  // },
+  {
+    title: "盲盒",
+    icon_url: "/static/images/profile/icon_v2/box_icon.svg",
+    redirect: routes.taskIndex,
+    switch: "boxes_switch",
+  },
   {
     title: "幸运转盘",
     icon_url: "/static/images/profile/icon_v2/lucky_icon.svg",
@@ -159,6 +153,10 @@ defineEmits(["onNavTo"]);
 </script>
 
 <style scoped>
+.icon_bg{
+  background-image: url('/static/images/profile/icon_v2/icon_bg.png');
+  background-size: 100% 100%;
+}
 .gradient-border-container {
   position: relative;
 }

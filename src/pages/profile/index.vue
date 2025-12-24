@@ -6,6 +6,7 @@
     :refresher="true"
     @onRefresh="handleRefresh"
     navTitle="个人中心"
+    :isLottie="false"
     @navLeftClick="handleNavLeftClick"
     :isNavLeftBack="true"
   >
@@ -40,7 +41,7 @@
       <!-- 团队，股权 -->
       <QuickEntry v-if="openCards > 0" :userInfo="userInfo" :isequity="isequity" :permissionStore="permissionStore" @onNavTo="navTo" />
       <!-- 游戏入口区域 -->
-      <GameEntry :userInfo="userInfo" @onRealname="handleRealname" v-if="permissionStore.permissions.game_module_switch == 1"/>
+      <!-- <GameEntry :userInfo="userInfo" @onRealname="handleRealname" v-if="permissionStore.permissions.game_module_switch == 1"/> -->
       <!-- 推广等级 -->
       <view 
         v-if="promotion_level_switch"
