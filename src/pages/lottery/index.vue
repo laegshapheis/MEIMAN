@@ -1,5 +1,5 @@
 <template>
-  <layout navTitle="" bgType="bg-main5" mode="black" :isLottie="false">
+  <layout navTitle="" bgType="bg-main5" :isLottie="false">
     <template v-slot:navRight>
       <view
         class="flex flex-row w-full items-center justify-end px-[16rpx] py-[4rpx] rounded-[24rpx]"
