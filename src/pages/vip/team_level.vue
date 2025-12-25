@@ -1,23 +1,15 @@
 <template>
   <layout
     navTitle="团队等级"
-    bgType="bg-white"
+    bgType="team-level"
     ref="layoutRef"
     :refresher="true"
-    :mode="activeIndex < 7 ? 'black' : 'white'"
     @onRefresh="handleRefresh"
   >
     <!-- 动态背景层 -->
-    <view 
-      class="fixed inset-0"
-      :style="{
-        zIndex: 1,
-        backgroundImage: `url(${backgroundImage})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
-      }"
-    ></view>
+    <!-- <view 
+      class="fixed inset-0">
+    </view> -->
     <z-swiper
       ref="swiperRef"
       class="my-[16rpx] h-[320rpx] relative z-10"
@@ -44,13 +36,13 @@
         </view>
       </z-swiper-item>
     </z-swiper>
-    <view class="px-[32rpx] -mt-[60rpx] mb-[32rpx] relative z-10">
+    <!-- <view class="px-[32rpx] -mt-[60rpx] mb-[32rpx] relative z-10">
           <image
             :src="lineImage"
             mode="widthFix"
             class="w-full"
           />
-    </view>
+    </view> -->
     <view class="relative pb-[24rpx] box-border w-full z-10">
       <view
         class="rounded-[32rpx] box-border relative p-[32rpx] mx-[32rpx] flex flex-col justify-between"

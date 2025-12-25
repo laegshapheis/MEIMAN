@@ -33,6 +33,14 @@ export const vipIcons = [
     id: 8,
     icon: "/static/images/user/vip/vip07.png",
   },
+  {
+    id: 9,
+    icon: "/static/images/user/vip/vip08.png",
+  },
+  {
+    id: 10,
+    icon: "/static/images/user/vip/vip09.png",
+  },
 ];
 
 // 团队等级图标
