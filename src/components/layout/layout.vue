@@ -23,6 +23,11 @@
          <text v-else>
          </text>
        </template>
+       <template v-slot:center>
+         <slot name="navCenter">
+           <text v-if="navTitle" class="uv-line-1" :style="{color: mode == 'black' ? '#000' : '#fff', fontSize: '32rpx', fontWeight: '600'}">{{ navTitle }}</text>
+         </slot>
+       </template>
        <template v-slot:right>
          <slot name="navRight"/>
        </template>

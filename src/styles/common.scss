@@ -157,6 +157,12 @@
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
+.bg-product{
+  background-image: url('@/static/images/bg/product_bg.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+}
 
 .center-modal,
 .uv-popup {
