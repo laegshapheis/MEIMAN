@@ -1,6 +1,6 @@
 <template>
   <view v-if="productview.id" class="">
-    <view v-if="productview.video_url" class="w-full aspect-video mb-[24rpx]">
+    <view v-if="productview.video_url" class="w-full mb-[24rpx]" style="aspect-ratio: 2/1;">
       <VideoCard ref="videoCardRef" :videoUrl="productview.video_url" :posterUrl="productview.pic"/>
     </view>
     <view class="px-[32rpx] box-border">

@@ -18,11 +18,17 @@
         >
           <wk-button
             @submit="handleSubmit(item, 'apply')"
+            :customStyle="{
+              background: 'url(/static/images/product/pintuan_btn1.png) center/100% 100% no-repeat'
+            }"
           >
               参与拼团
           </wk-button>
           <wk-button
             @submit="handleSubmit(item, 'create')"
+            :customStyle="{
+              background: 'url(/static/images/product/pintuan_btn2.png) center/100% 100% no-repeat'
+            }"
           >
               发起拼团
           </wk-button>
