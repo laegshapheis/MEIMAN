@@ -7,7 +7,7 @@ export const neutral = {
   placeholder: 'rgba(255, 255, 255, 0.75)', // 输入框占位符
   disabled: '#C0C4CC', // 禁用状态
   primary: '#B676FF', // 主色调
-  primaryAssist: '#F5F8FD', // 辅助主色调
+  primaryAssist: '#1F197D', // 辅助主色调
   grey: '#053978',
   warning: '#2A877C',
   error: '#FF6B75',

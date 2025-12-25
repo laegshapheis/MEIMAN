@@ -2,7 +2,7 @@
   <view class="product-info">
     <!-- 产品图片 -->
     <view class="box-border flex flex-row items-center w-full mb-[24rpx]">
-      <view class="w-[192rpx] overflow-hidden mr-[16rpx] rounded-[24rpx] relative" style="aspect-ratio: 16/9;">
+      <view class="w-[268rpx] overflow-hidden mr-[16rpx] rounded-[24rpx] relative" style="aspect-ratio: 2/1;">
               <image
                 :src="product.pic"
                 style="width: 100%; height: 100%; object-fit: contain; object-position: center;"
@@ -64,7 +64,7 @@
       <view class="flex flex-col mt-[24rpx] py-[16rpx]">
         <!-- 分红方式 -->
         <view class="flex flex-row items-center">
-          <uv-icon name="checkmark-circle-fill" size="30rpx" color="#9AEEDE" class="mr-[8rpx]" />
+          <uv-icon name="checkmark-circle-fill" size="30rpx" color="#B676FF" class="mr-[8rpx]" />
           <text class="text-sm text-neutral-regular mr-[16rpx]">投资模式:</text>
           <text class="text-sm text-neutral-regular">{{ product.dividend_method }}</text>
         </view>
@@ -73,7 +73,7 @@
           v-if="product.presale === 0 && product.ismake == 1"
           class="flex flex-row items-center mt-[10rpx]"
         >
-          <uv-icon name="checkmark-circle-fill" size="30rpx" color="#9AEEDE" class="mr-[8rpx]" />
+          <uv-icon name="checkmark-circle-fill" size="30rpx" color="#B676FF" class="mr-[8rpx]" />
           <text class="text-sm text-neutral-regular mr-[16rpx]">开放时间:</text>
           <text class="text-sm text-neutral-regular">{{ product.endingtime }}</text>
         </view>

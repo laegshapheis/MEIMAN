@@ -4,6 +4,18 @@
     <template v-slot:left>
       <slot name="left"/>
     </template>
+    <!-- 自定义中间内容 -->
+    <template v-slot:center>
+      <slot name="center">
+        <text
+          class="uv-line-1 uv-navbar__content__title"
+          :style="[{
+            width: '400rpx',
+            flex: '0 1 auto'
+          }, {color, fontSize, fontWeight: '600'}]"
+        >{{ title }}</text>
+      </slot>
+    </template>
     <!-- 自定义右侧 -->
     <template v-slot:right>
       <slot name="right"/>

@@ -2,9 +2,9 @@
   <wk-stroke-bg shadow class="mt-[24rpx]" v-if="productview.show_shouyi_shuoming == 1">
     <view class="flex flex-row items-center justify-between mb-[20rpx]">
       <text class="text-xl font-bold text-neutral ">收益说明</text>
-      <view class="py-[8rpx] px-[16rpx] rounded-full flex flex-row items-center justify-center bg-[#F3F5FC]" @click="goCalc">
-        <image src="/static/images/profile/calc_icon.png" class="w-[24rpx] h-[24rpx] mr-[8rpx]"/>
-        <text class="text-neutral-theme text-base">收益计算器</text>
+      <view class="py-[8rpx] px-[16rpx] rounded-full flex flex-row items-center justify-center bg-[#121E3E]" @click="goCalc">
+        <image src="/static/images/profile/calc_icon.png" class="w-[24rpx] h-[24rpx]"/>
+        <text class="text-neutral-theme text-base"></text>
       </view>
     </view>
     <view class="flex flex-col">

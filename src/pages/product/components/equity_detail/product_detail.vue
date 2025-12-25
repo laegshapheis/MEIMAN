@@ -1,6 +1,6 @@
 <template>
   <view v-if="productview.id" class="mt-[28rpx] pb-[150rpx]">
-    <view class="aspect-video mb-[24rpx] rounded-[16rpx] overflow-hidden mx-[32rpx]">
+    <view class="mb-[24rpx] rounded-[16rpx] overflow-hidden mx-[32rpx]" style="aspect-ratio: 2/1;">
       <uv-image
         :src="productview.pic"
         width="100%"

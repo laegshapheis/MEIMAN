@@ -23,7 +23,7 @@
               >{{ productview.xmjd }}%</text
             >
           </view>
-          <view class="bg-[#F5F8FD] rounded-[16rpx] p-[16rpx]">
+          <view class="bg-neutral-primaryAssist rounded-[16rpx] p-[16rpx]">
             <view v-for="(item, index) in productInfoList" :key="index" class="flex flex-row justify-between mt-[6rpx]">
               <view class="flex-shrink-0 w-[120rpx] text-neutral text-base mr-[10rpx] leading-6">{{ item.label }}</view>
               <view>

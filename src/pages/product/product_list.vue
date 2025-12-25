@@ -1,42 +1,57 @@
 <template>
   <layout
-    :isNav="true"
-    navTitle="产品中心"
+    :isNav="false"
+    navTitle=""
     ref="layoutRef"
     :refresher="true"
     @onRefresh="handleRefresh"
-    bgType="bg-main"
+    bgType="bg-product"
+    :isLottie="false"
     @reachBottom="handleReachBottom"
   >
     <template #exp>
-      <view class="pt-[28rpx]">
+      <!-- 搜索框 - 固定在顶部 -->
+      <view class="flex items-center px-[20rpx]">
+        <!-- 返回按钮 -->
+        <view @click="handleBack" class="flex-shrink-0 mr-[20rpx]">
+          <image
+            class="w-[80rpx] h-[80rpx]"
+            src="/static/images/common/back.svg"
+            mode="widthFix"
+          />
+        </view>
+        <!-- 搜索框 -->
         <view
+          class="flex-1 h-[104rpx] px-[20rpx]"
           style="
-            border: 2rpx solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(2px);
+            background-image: url('/static/images/product/input_bg.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-position: center;
           "
-          class="mx-[20rpx] mb-[16rpx] rounded-full"
         >
           <uv-search
             v-model="key"
             maxLength="66"
-            bgColor="#FFFFFF40"
-            height="80rpx"
-            color="#010101"
+            bgColor="transparent"
+            height="104rpx"
+            color="#ffffff"
             :placeholderColor="$colors.placeholder"
-            searchIconColor="#010101"
-            shape="round"
-            placeholder="输入项目名称"
-            placeholderStyle="font-size: 28rpx;"
+            searchIconColor="#ffffff60"
+            placeholder="搜索产品"
+            placeholderStyle="font-size: 24rpx;"
             @search="handleConfirm"
             @clear="handleClear"
             :showAction="false"
             :inputStyle="{
-              fontSize: '32rpx',
+              fontSize: '28rpx',
               backgroundColor: 'transparent',
             }"
           ></uv-search>
         </view>
+      </view>
+      <!-- Tabs 区域 - 固定在顶部 -->
+      <view class="pt-[32rpx] pb-[20rpx]">
         <view class="px-[20rpx]">
           <wk-tabs
             :list="tabs"
@@ -78,6 +93,7 @@ import { routes } from "@/config/routes";
 import productList from "./components/list/product_list.vue";
 import checkNetwork from "@/utils/checkNetWork";
 import { useAuth } from '@/hooks/useAuth'
+import { navigateBack } from '@/utils/navigation'
 
 const page = ref(1); // 当前页码
 const key = ref(""); // 搜索关键词
@@ -214,6 +230,18 @@ const handleConfirm = (value) => {
   loadFinish.value = false;
   pullType.value = "down";
   getProductlist();
+};
+// 清除搜索
+const handleClear = () => {
+  key.value = "";
+  page.value = 1;
+  loadFinish.value = false;
+  pullType.value = "down";
+  getProductlist();
+};
+// 返回按钮
+const handleBack = () => {
+  navigateBack();
 };
 // 刷新列表
 const handleRefresh = async  () => {

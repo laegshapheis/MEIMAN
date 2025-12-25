@@ -2,7 +2,7 @@
   <view class="product-info box-border">
     <!-- 产品图片 -->
     <view class="box-border flex flex-row items-center w-full mb-[24rpx]">
-      <view class="w-[192rpx] overflow-hidden mr-[16rpx] rounded-[24rpx] relative" style="aspect-ratio: 16/9;">
+      <view class="w-[268rpx] overflow-hidden mr-[16rpx] rounded-[24rpx] relative" style="aspect-ratio: 2/1;">
               <image
                 :src="product.pic"
                 style="width: 100%; height: 100%; object-fit: contain; object-position: center;"

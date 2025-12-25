@@ -1,24 +1,23 @@
 <template>
   <view class="progress-wrap">
     <view 
-      style="background: #00000010"
+      style="background: rgba(10, 125, 254, 0.20)"
       class="progress-box"
     >
       <view
         class="progress-item-bg"
         :style="{
           width: val,
-          background: 'linear-gradient(270deg, #06F -8.49%, #9AEEDE 100%)'
+          background: 'linear-gradient(46deg, #5493FF 30%, #B676FF 75.25%)'
         }"
       ></view>
-      
     </view>
-    <view
+    <!-- <view
         class="progress-dot"
         :style="{
           left: `calc(${val} - 9px / 2)`
         }"
-      ></view>
+      ></view> -->
   </view>
 </template>
 
@@ -72,11 +71,7 @@ const props = defineProps({
     left: 0;
     top: 0;
     bottom: 0;
-    // border-radius: 32rpx;
-  }
-  .progress-item-anim {
-    // box-shadow: inset 0rpx 2rpx 8rpx #ffffff;
-    background: linear-gradient(270deg,  #2935CC -8.49%, #98EDFB 100%);
+    border-radius: 32rpx;
   }
   .progress-s {
     animation-delay: 1s;

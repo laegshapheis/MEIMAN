@@ -14,36 +14,29 @@
         <!-- 拼团按钮 -->
         <view
           v-if="item.category_id == 57"
-          class="grid grid-cols-2 gap-x-[16rpx] mt-[40rpx]"
+          class="grid grid-cols-2 gap-x-[16rpx] mt-[16rpx]"
         >
           <wk-button
-            style="
-            background: #FFFFFF;"
-            height="66rpx"
-            :borderColor="$colors.theme"
-            :color="$colors.DEFAULT"
             @submit="handleSubmit(item, 'apply')"
-            backgroundColor="transparent"
-            class="shadow-btn-bg rounded-[24rpx]"
+            :customStyle="{
+              background: 'url(/static/images/product/pintuan_btn1.png) center/100% 100% no-repeat'
+            }"
           >
-            <view class="flex flex-col items-center">
-              <text class="text-base text-neutral-theme">参与拼团</text>
-            </view>
-            <view class="text-[28rpx]"></view>
+              参与拼团
           </wk-button>
           <wk-button
-            height="66rpx"
             @submit="handleSubmit(item, 'create')"
+            :customStyle="{
+              background: 'url(/static/images/product/pintuan_btn2.png) center/100% 100% no-repeat'
+            }"
           >
-            <view class="text-base">发起拼团</view>
+              发起拼团
           </wk-button>
         </view>
         <!-- 立即投资按钮 -->
         <view v-else class="mt-[16rpx]">
           <wk-button 
             @submit="handleSubmit(item)"
-            :backgroundColor="btnText(item) === '暂未开放' ? '#F5F8FD' : undefined"
-            :color="btnText(item) === '暂未开放' ? 'rgba(37, 44, 47, 0.50)' : undefined"
           >
             {{ btnText(item) }}
           </wk-button>
@@ -107,5 +100,17 @@ const btnText = (item) => {
   border-radius: 16px;
   border: 0.5px solid rgba(0, 0, 0, 0.1);
   background: linear-gradient(128deg, #000 29.28%, #161e33 79.47%);
+}
+
+// 确保 grid 中的按钮高度一致
+.grid > :deep(.wk-button-wrapper) {
+  display: block;
+}
+
+// 确保所有按钮使用相同的高度（wk-button 默认 small size 是 72rpx）
+:deep(.wk-button-wrapper .uv-button) {
+  height: 72rpx !important;
+  // 确保背景图片正确填充按钮高度
+  background-size: 100% 100% !important;
 }
 </style>
