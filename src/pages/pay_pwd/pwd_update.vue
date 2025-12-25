@@ -1,11 +1,11 @@
 <template>
-    <layout :navTitle="type == 0 ? '设置支付密码' : type == 1 ? '修改支付密码' : ''"  bgType="bg-main">  
+    <layout :navTitle="type == 0 ? '设置支付密码' : type == 1 ? '修改支付密码' : ''"  bgType="bg-main2" :isLottie="false">  
           <view class="p-[32rpx]">
        <view class="">
           <view v-if="type == 0" class="mt-[58rpx] text-center">
             <view v-if="new_pass_s == 0" class="text-lg font-semibold text-center">
               <text>请输入支付密码</text>
-              <uv-code-input class="mt-[58rpx]"  v-model="new_pass" :maxlength="6" :focus="true" borderColor="none" :dot="true" color="#000" size="90rpx" @finish="keyConfirm"></uv-code-input>
+              <uv-code-input class="mt-[58rpx]" v-model="new_pass" :maxlength="6" :focus="true"  borderColor="none" :dot="true" color="#000" size="90rpx" @finish="keyConfirm"></uv-code-input>
             </view>
             <view v-if="new_pass_s == 1" class="text-lg font-semibold text-center">
               <text>请再次输入支付密码！</text>

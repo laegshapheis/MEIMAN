@@ -1,78 +1,63 @@
 <template>
-  <layout
-    ref="layoutRef"
-    :refresher="true"
-    @onRefresh="handleRefresh"
-    navTitle="拼团记录"
-    bgType="bg-main"
-    @reachBottom="handleReachBottom"
-    :isNavLeftBackClick="false"
-    @navLeftClick="handleNavLeftClick"
-  >
+  <layout ref="layoutRef" :refresher="true" @onRefresh="handleRefresh" navTitle="拼团记录" bgType="bg-main1"
+    :isLottie="false" @reachBottom="handleReachBottom" :isNavLeftBackClick="false" @navLeftClick="handleNavLeftClick">
     <template v-slot:navRight>
       <view class="flex flex-row items-center bg-white/10 rounded-full px-[16rpx] py-[8rpx] pt-[5rpx]">
-        <text class="text-black text-base ml-[5rpx]" @click="handleRuleShow"
-          >拼团规则</text
-        >
+        <text class="text-white text-base" @click="handleRuleShow">拼团规则</text>
       </view>
     </template>
     <template v-slot:exp>
       <view class="px-[32rpx] mt-[24rpx]">
-        <wk-tabs
-          :list="navList"
-          :current="listIdx"
-          @change="setNav"
-          
-          :scrollable="false"
-        ></wk-tabs>
+        <wk-tabs :list="navList" :current="listIdx" @change="setNav" mode="card" :inactiveStyle="{
+          width: '100%',
+          textAlign: 'center',
+        }" :activeStyle="{
+          width: '100%',
+          textAlign: 'center',
+        }" :scrollable="false"></wk-tabs>
       </view>
     </template>
     <!-- 内容区域 => 开始 -->
     <view class="px-[32rpx] pt-[24rpx]">
       <!-- 我发起的 -->
       <template v-for="item in dataAList" :key="item.id">
-        <wk-stroke-bg shadow v-if="listIdx == 0" class="py-[32rpx] mb-[24rpx]" size="small">
+        <view shadow v-if="listIdx == 0" class="mb-[24rpx] bg-black p-[32rpx] rounded-[32rpx] shadow-[0_0_16px_0_#266AFF_inset]" size="small">
           <view class="">
-            <view class="text-neutral text-xl font-medium">{{
-              item.title
-            }}</view>
+            <view class="text-neutral text-xl font-medium">{{item.title}}</view>
           </view>
           <view class="flex flex-row justify-between mt-[24rpx]">
             <view class="flex items-center">
-              <text class="text-neutral-regular text-base">记录编号:</text>
-              <text class="text-neutral-regular text-base ml-[16rpx]">{{
+              <text class="text-neutral-regular/80 text-sm">记录编号:</text>
+              <text class="text-neutral-regular/80 text-sm ml-[16rpx]">{{
                 item.orderid
               }}</text>
             </view>
-            <view
-              :class="[
-                'text-sm',
-                item.status == 0
-                  ? 'text-neutral'
-                  : item.status == 1
+            <view :class="[
+              'text-sm',
+              item.status == 0
+                ? 'text-neutral'
+                : item.status == 1
                   ? 'text-neutral-theme'
                   : 'text-neutral-error',
-              ]"
-              >{{
-                item.status == 0
-                  ? "拼团中"
-                  : item.status == 1
+            ]">{{
+              item.status == 0
+                ? "拼团中"
+                : item.status == 1
                   ? "拼团成功"
                   : "拼团失败"
-              }}</view
-            >
+            }}</view>
           </view>
           <view class="">
-            <text class="text-neutral-regular text-base">发起时间:</text>
-            <text class="text-neutral-regular text-base ml-[16rpx]">{{
+            <text class="text-neutral-regular/80 text-sm">发起时间:</text>
+            <text class="text-neutral-regular/80 text-sm ml-[16rpx]">{{
               item.created_at
             }}</text>
           </view>
           <view
-            class="gap-[16rpx] rounded-[16rpx] p-[24rpx] mt-[24rpx] py-[24rpx] flex flex-col flex-wrap mb-[16rpx] bg-neutral-primaryAssist"
-          >
-            <view class="flex flex-row justify-between pb-[16rpx] border-[length:1rpx] border-white/10 border-solid border-t-0 border-l-0 border-r-0">
-              <view class="text-neutral-regular text-base">投资金额</view>
+            class="gap-[16rpx] rounded-[16rpx] p-[24rpx] mt-[24rpx] py-[24rpx] flex flex-col flex-wrap mb-[16rpx] bg-[#1F197D]">
+            <view
+              class="flex flex-row justify-between items-center pb-[16rpx] border-[length:1rpx] border-white/10 border-solid border-t-0 border-l-0 border-r-0">
+              <view class="text-neutral-regular/80 text-sm">投资金额</view>
               <view>
                 <text class="text-neutral text-base font-bold mr-[8rpx]">{{
                   item.selfmoney
@@ -82,10 +67,9 @@
                 }}</text>
               </view>
             </view>
-            <view class="flex flex-row justify-between pb-[16rpx] border-[length:1rpx] border-white/10 border-solid border-t-0 border-l-0 border-r-0">
-              <view class="text-neutral-regular text-base"
-                >每人最低投资金额</view
-              >
+            <view
+              class="flex flex-row justify-between items-center pb-[16rpx] border-[length:1rpx] border-white/10 border-solid border-t-0 border-l-0 border-r-0">
+              <view class="text-neutral-regular/80 text-sm">每人最低投资金额</view>
               <view>
                 <text class="text-neutral text-base font-bold mr-[8rpx]">{{
                   item.money
@@ -95,8 +79,9 @@
                 }}</text>
               </view>
             </view>
-            <view class="flex flex-row justify-between pb-[16rpx] border-[length:1rpx] border-white/10 border-solid border-t-0 border-l-0 border-r-0">
-              <view class="text-neutral-regular text-base">计划参与人数</view>
+            <view
+              class="flex flex-row justify-between items-center pb-[16rpx] border-[length:1rpx] border-white/10 border-solid border-t-0 border-l-0 border-r-0">
+              <view class="text-neutral-regular/80 text-sm">计划参与人数</view>
               <view>
                 <text class="text-neutral text-base font-bold mr-[8rpx]">{{
                   item.participant_limit
@@ -104,8 +89,9 @@
                 <text class="text-neutral text-base">人</text>
               </view>
             </view>
-            <view class="flex flex-row justify-between pb-[16rpx] border-[length:1rpx] border-white/10 border-solid border-t-0 border-l-0 border-r-0">
-              <view class="text-neutral-regular text-base">当前参与人数</view>
+            <view
+              class="flex flex-row justify-between items-center pb-[16rpx] border-[length:1rpx] border-white/10 border-solid border-t-0 border-l-0 border-r-0">
+              <view class="text-neutral-regular/80 text-sm">当前参与人数</view>
               <view>
                 <text class="text-neutral text-base font-bold mr-[8rpx]">{{
                   item.bugnumber
@@ -113,8 +99,8 @@
                 <text class="text-neutral text-base">人</text>
               </view>
             </view>
-            <view class="flex flex-row justify-between">
-              <view class="text-neutral-regular text-base">团队总投资金额</view>
+            <view class="flex flex-row justify-between items-center">
+              <view class="text-neutral-regular/80 text-sm">团队总投资金额</view>
               <view>
                 <text class="text-neutral text-base font-bold mr-[8rpx]">{{
                   item.allmoney
@@ -134,40 +120,29 @@
             </view>
           </view>
           <sx-count-down :updatedAt="item.updated_at"></sx-count-down>
-          <wk-button
-            class="mt-[24rpx]"
-            @submit="$sxCopyText(item.group_buy_code)"
-            >
+          <wk-button type="none" background="transparent" borderColor="#fff" height="80rpx" class="mt-[12rpx]" @submit="$sxCopyText(item.group_buy_code)">
             拼团口令：{{ item.group_buy_code }}
-            <image
-                src="/static/images/user/copy_white.svg"
-                mode="widthFix"
-                class="w-[40rpx] h-[40rpx] ml-[8rpx]"
-              ></image>
-            </wk-button
-          >
+            <image src="/static/images/user/copy_white.svg" mode="widthFix" class="w-[40rpx] h-[40rpx] ml-[8rpx]">
+            </image>
+          </wk-button>
           <view
-            class="bg-neutral-primaryAssist text-neutral-regular rounded-[24rpx] px-[16rpx] py-[8rpx] flex flex-row justify-between mt-[24rpx]"
-          >
-            <view class="text-base">发起人信息</view>
+            class="bg-[#1F197D] text-neutral-regular/80 rounded-[24rpx] px-[16rpx] py-[8rpx] flex flex-row justify-between items-center mt-[24rpx]">
+            <view class="text-sm">发起人信息</view>
             <view class="flex flex-row items-center">
-              <image
-                class="w-[40rpx] h-[40rpx] rounded-[40rpx]"
-                src="/static/images/user/logo.png"
-              ></image>
-              <text class="text-base ml-[16rpx]">{{
+              <image class="w-[32rpx] h-[32rpx] rounded-[40rpx]" src="/static/images/user/logo.png"></image>
+              <text class="text-sm ml-[16rpx]">{{
                 item.relaname
               }}</text>
-              <text class="text-base ml-[16rpx]">{{
+              <text class="text-sm ml-[16rpx]">{{
                 item.tele
               }}</text>
             </view>
           </view>
-        </wk-stroke-bg>
+        </view>
       </template>
       <!-- 我参与 -->
       <template v-for="item in dataBList" :key="item.id">
-        <wk-stroke-bg shadow v-if="listIdx == 1" class="mb-[24rpx] py-[24rpx]" size="small">
+        <view shadow v-if="listIdx == 1" class="mb-[24rpx] bg-black p-[32rpx] rounded-[32rpx] shadow-[0_0_16px_0_#266AFF_inset]" size="small">
           <view class="">
             <view class="text-neutral text-xl font-medium">{{
               item.title
@@ -175,40 +150,37 @@
           </view>
           <view class="flex flex-row justify-between mt-[24rpx]">
             <view class="flex flex-row items-center">
-              <text class="text-neutral-regular text-base">记录编号</text>
+              <text class="text-neutral-regular/80 text-sm">记录编号</text>
               <text class="text-neutral-regular text-base ml-[16rpx]">{{
                 item.orderid
               }}</text>
             </view>
-            <view
-              :class="[
-                'text-base',
-                item.status == 0
-                  ? 'text-neutral'
-                  : item.status == 1
+            <view :class="[
+              'text-base',
+              item.status == 0
+                ? 'text-neutral'
+                : item.status == 1
                   ? 'text-neutral-theme'
                   : 'text-neutral-error',
-              ]"
-              >{{
-                item.status == 0
-                  ? "拼团中"
-                  : item.status == 1
+            ]">{{
+              item.status == 0
+                ? "拼团中"
+                : item.status == 1
                   ? "拼团成功"
                   : "拼团失败"
-              }}</view
-            >
+            }}</view>
           </view>
           <view class="line-m-str">
-            <text class="text-neutral-regular text-base">参与时间</text>
+            <text class="text-neutral-regular/80 text-sm">参与时间</text>
             <text class="text-neutral-regular text-base ml-[16rpx]">{{
               item.created_at
             }}</text>
           </view>
           <view
-            class="rounded-[16rpx] p-[24rpx] gap-[16rpx] mt-[24rpx] py-[24rpx] flex flex-col bg-neutral-primaryAssist"
-          >
-            <view class="flex flex-row justify-between pb-[16rpx] border-[length:1rpx] border-white/10 border-solid border-t-0 border-l-0 border-r-0">
-              <view class="text-neutral-regular text-base">投资金额</view>
+            class="rounded-[16rpx] p-[24rpx] gap-[16rpx] mt-[24rpx] py-[24rpx] flex flex-col bg-[#1F197D]">
+            <view
+              class="flex flex-row justify-between items-center pb-[16rpx] border-[length:1rpx] border-white/10 border-solid border-t-0 border-l-0 border-r-0">
+              <view class="text-neutral-regular/80 text-sm">投资金额</view>
               <view class="flex flex-row">
                 <text class="text-neutral text-base font-bold mr-[8rpx]">{{
                   item.selfmoney
@@ -218,10 +190,9 @@
                 }}</text>
               </view>
             </view>
-            <view class="flex flex-row justify-between pb-[16rpx] border-[length:1rpx] border-white/10 border-solid border-t-0 border-l-0 border-r-0">
-              <view class="text-neutral-regular text-base"
-                >每人最低投资金额</view
-              >
+            <view
+              class="flex flex-row justify-between items-center pb-[16rpx] border-[length:1rpx] border-white/10 border-solid border-t-0 border-l-0 border-r-0">
+              <view class="text-neutral-regular/80 text-sm">每人最低投资金额</view>
               <view class="flex flex-row">
                 <text class="text-neutral text-base font-bold mr-[8rpx]">{{
                   item.money
@@ -231,8 +202,9 @@
                 }}</text>
               </view>
             </view>
-            <view class="flex flex-row justify-between pb-[16rpx] border-[length:1rpx] border-white/10 border-solid border-t-0 border-l-0 border-r-0">
-              <view class="text-neutral-regular text-base">计划参与人数</view>
+            <view
+              class="flex flex-row justify-between items-center pb-[16rpx] border-[length:1rpx] border-white/10 border-solid border-t-0 border-l-0 border-r-0">
+              <view class="text-neutral-regular/80 text-sm">计划参与人数</view>
               <view class="flex flex-row">
                 <text class="text-neutral text-base font-bold mr-[8rpx]">{{
                   item.renshu
@@ -240,8 +212,9 @@
                 <text class="text-neutral text-base">人</text>
               </view>
             </view>
-            <view class="flex flex-row justify-between pb-[16rpx] border-[length:1rpx] border-white/10 border-solid border-t-0 border-l-0 border-r-0">
-              <view class="text-neutral-regular text-base">当前参与人数</view>
+            <view
+              class="flex flex-row justify-between items-center pb-[16rpx] border-[length:1rpx] border-white/10 border-solid border-t-0 border-l-0 border-r-0">
+              <view class="text-neutral-regular/80 text-sm">当前参与人数</view>
               <view class="flex flex-row">
                 <text class="text-neutral text-base font-bold mr-[8rpx]">{{
                   item.renshu2
@@ -249,8 +222,8 @@
                 <text class="text-neutral text-base">人</text>
               </view>
             </view>
-            <view class="flex flex-row justify-between">
-              <view class="text-neutral-regular text-base">团队总投资金额</view>
+            <view class="flex flex-row justify-between items-center">
+              <view class="text-neutral-regular/80 text-sm">团队总投资金额</view>
               <view class="flex flex-row">
                 <text class="text-neutral text-base font-bold mr-[8rpx]">{{
                   item.allmoney
@@ -269,57 +242,36 @@
               </view>
             </view>
           </view>
-          <wk-button
-            class="mt-[24rpx]"
-            @submit="$sxCopyText(item.group_buy_code)"
-            >
+          <wk-button type="none" background="transparent" borderColor="#fff" height="80rpx" class="mt-[24rpx]" @submit="$sxCopyText(item.group_buy_code)">
             拼团口令：{{ item.group_buy_code }}
-            <image
-                src="/static/images/user/copy_white.svg"
-                mode="widthFix"
-                class="w-[40rpx] h-[40rpx] ml-[8rpx]"
-              ></image>
-            </wk-button
-          >
+            <image src="/static/images/user/copy_white.svg" mode="widthFix" class="w-[40rpx] h-[40rpx] ml-[8rpx]">
+            </image>
+          </wk-button>
           <view class="text-base mt-[24rpx]">参与人信息</view>
-          <view
-            v-for="itemx in item.joinlist"
-            class="bg-neutral-primaryAssist text-neutral-regular rounded-[24rpx] px-[16rpx] py-[8rpx] flex flex-row items-center justify-between mt-[15rpx]"
-            :key="itemx.id"
-          >
+          <view v-for="itemx in item.joinlist"
+            class="bg-[#1F197D] text-neutral-regular/80 rounded-[24rpx] px-[16rpx] py-[8rpx] flex flex-row items-center justify-between mt-[15rpx]"
+            :key="itemx.id">
             <view class="flex flex-row items-center">
-              <image
-                class="w-[40rpx] h-[40rpx] rounded-[40rpx]"
-                src="/static/images/user/logo.png"
-              ></image>
-              <text class="text-base ml-[16rpx]">{{
+              <image class="w-[32rpx] h-[32rpx] rounded-[40rpx]" src="/static/images/user/logo.png"></image>
+              <text class="text-sm ml-[16rpx]">{{
                 itemx.relaname
               }}</text>
-              <text class="text-base ml-[16rpx]">{{
+              <text class="text-sm ml-[16rpx]">{{
                 itemx.tele
               }}</text>
             </view>
-            <view class="text-base"
-              >{{ itemx.money }} {{ symbolStore.code }}</view
-            >
+            <view class="text-sm text-white">{{ itemx.money }} {{ symbolStore.code }}</view>
           </view>
-        </wk-stroke-bg>
+        </view>
       </template>
-      <Empty
-        class="mt-[300rpx]"
-        v-if="
-          (listIdx == 0 && dataAList.length == 0) ||
-          (listIdx == 1 && dataBList.length == 0)
-        "
-      />
+      <Empty class="mt-[300rpx]" v-if="
+        (listIdx == 0 && dataAList.length == 0) ||
+        (listIdx == 1 && dataBList.length == 0)
+      " />
     </view>
     <!-- 内容区域 => 结束 -->
     <wk-modal ref="wkPopupRef" :title="noticeTitle || '拼团规则'">
-      <uv-parse
-        :show-img-menu="false"
-        container-style="white-space: pre-wrap"
-        :content="noticeText"
-      ></uv-parse>
+      <uv-parse :show-img-menu="false" container-style="white-space: pre-wrap" :content="noticeText"></uv-parse>
     </wk-modal>
     <wk-loading v-if="loading" :loadingText="loadingText" />
   </layout>

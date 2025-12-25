@@ -1,25 +1,21 @@
 <template>
-  <view class="flex flex-row items-center w-full justify-center bg-[#9AEEDE] rounded-[48rpx] py-[16rpx]">
-    <view class="text-black text-sm mr-[12rpx]">拼团倒计时</view>
+  <view class="flex flex-row items-center w-full justify-center bg-[#5493FF] rounded-[48rpx] py-[16rpx]">
+    <view class="text-white text-sm mr-[12rpx]">拼团倒计时</view>
     <view
-      class="w-[48rpx] h-[48rpx] box-border flex items-center justify-center text-[#9AEEDE] rounded-[8rpx] px-[8rpx] py-[4rpx] text-base mr-[16rpx] c-bg"
-      >{{ days }}</view
-    >
-    <view class="text-black text-base mr-[12rpx]">天</view>
+      class="w-[48rpx] h-[48rpx] box-border flex items-center justify-center text-[#000] rounded-[8rpx] px-[8rpx] py-[4rpx] text-base mr-[16rpx] c-bg">
+      {{ days }}</view>
+    <view class="text-white text-base mr-[12rpx]">天</view>
     <view
-      class="w-[48rpx] h-[48rpx] box-border flex items-center justify-center text-[#9AEEDE] rounded-[8rpx] px-[8rpx] py-[4rpx] text-base mr-[12rpx] c-bg"
-      >{{ hours }}</view
-    >
-    <view class="text-black text-lg mr-[12rpx]">:</view>
+      class="w-[48rpx] h-[48rpx] box-border flex items-center justify-center text-[#000] rounded-[8rpx] px-[8rpx] py-[4rpx] text-base mr-[12rpx] c-bg">
+      {{ hours }}</view>
+    <view class="text-white text-lg mr-[12rpx]">:</view>
     <view
-      class="w-[48rpx] h-[48rpx] box-border flex items-center justify-center text-[#9AEEDE] rounded-[8rpx] px-[8rpx] py-[4rpx] text-base mr-[12rpx] c-bg"
-      >{{ minutes }}</view
-    >
-    <view class="text-black text-lg mr-[12rpx]">:</view>
+      class="w-[48rpx] h-[48rpx] box-border flex items-center justify-center text-[#000] rounded-[8rpx] px-[8rpx] py-[4rpx] text-base mr-[12rpx] c-bg">
+      {{ minutes }}</view>
+    <view class="text-white text-lg mr-[12rpx]">:</view>
     <view
-      class="w-[48rpx] h-[48rpx] box-border flex items-center justify-center text-[#9AEEDE] rounded-[8rpx] px-[8rpx] py-[4rpx] text-base c-bg"
-      >{{ seconds }}</view
-    >
+      class="w-[48rpx] h-[48rpx] box-border flex items-center justify-center text-[#000] rounded-[8rpx] px-[8rpx] py-[4rpx] text-base c-bg">
+      {{ seconds }}</view>
   </view>
 </template>
 
@@ -89,8 +85,8 @@ export default {
 <style lang="scss" scoped>
 .c-bg {
   border-radius: 8rpx;
-  border: 2rpx solid #000;
-  background: #010101;
+  border: 2rpx solid #FFF;
+  background: #FFF;
   font-weight: 700;
   font-size: 32rpx;
 }

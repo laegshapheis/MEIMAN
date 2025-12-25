@@ -1,184 +1,118 @@
 <template>
-  <layout
-    ref="layoutRef"
-    :refresher="true"
-    @onRefresh="handleRefresh"
-    navTitle="我的团队"
-    bgType="bg-main1"
-    :isLottie="false"
-    @reachBottom="handleReachBottom"
-  >
+  <layout ref="layoutRef" :refresher="true" @onRefresh="handleRefresh" navTitle="我的团队" bgType="bg-main1"
+    :isLottie="false" @reachBottom="handleReachBottom">
     <view class="px-[32rpx] pb-[24rpx] box-border w-full flex flex-col">
       <!-- start 列表 -->
-      <wk-stroke-bg shadow class="flex flex-col rounded-[16rpx] p-[24rpx] my-[24rpx]" bgColor="#FFFFFF">
-        <template
-          v-for="(list, chunkIndex) in chunk(
-            fields.filter((item) => item.mtype == -1 || item.mtype == mtype),
-            2
-          )"
-          :key="`b-${chunkIndex}`"
-        >
+      <view class="flex flex-col my-[24rpx] bg-black px-[24rpx] py-[48rpx] rounded-[32rpx] shadow-[0_0_16px_0_#266AFF_inset]" bgColor="#FFFFFF">
+        <template v-for="(list, chunkIndex) in chunk(
+          fields.filter((item) => item.mtype == -1 || item.mtype == mtype),
+          2
+        )" :key="`b-${chunkIndex}`">
           <view class="flex flex-row items-center justify-start">
             <template v-for="item in list" :key="item.field">
-              <view
-                :class="[
-                  'flex flex-col w-[48%] justify-center items-start rounded-[16rpx] py-[16rpx] px-[8rpx]',
-                ]"
-                v-if="item.mtype == -1 || item.mtype == mtype"
-                @click="item.click && item.click()"
-              >
-                <text class="text-sm text-neutral-theme">{{
-                  item.title
-                }}</text>
-                <text
-                  :class="[
-                    'text-lg text-neutral font-bold mt-[8rpx]',
-                    item.click ? 'underline' : '',
-                  ]"
-                  >{{ statInfo[item.field] }} {{ item.unit }}</text
-                >
+              <view :class="[
+                'flex flex-col w-[48%] justify-center items-start rounded-[16rpx] py-[16rpx] px-[8rpx]',
+              ]" v-if="item.mtype == -1 || item.mtype == mtype" @click="item.click && item.click()">
+                <text class="text-sm text-white/60">{{ item.title }}</text>
+                <text :class="[
+                  'text-lg text-neutral font-bold mt-[8rpx]',
+                  item.click ? 'underline' : '',
+                ]">{{ statInfo[item.field] }} {{ item.unit }}</text>
               </view>
             </template>
           </view>
 
-          <view
-            class="flex flex-row h-[1rpx] bg-neutral-inputBorder"
-            v-if="
-              chunkIndex <
-              fields.filter((item) => item.mtype == -1 || item.mtype == mtype)
-                .length /
-                2 -
-                1
-            "
-          ></view>
+          <view class="flex flex-row h-[1rpx] bg-[#BEBEBE]" v-if="
+            chunkIndex <
+            fields.filter((item) => item.mtype == -1 || item.mtype == mtype)
+              .length /
+            2 -
+            1
+          "></view>
         </template>
         <!-- </view> -->
-      </wk-stroke-bg>
+      </view>
       <!-- end 列表 -->
 
-
-       <!-- start 列表 -->
-       <wk-stroke-bg shadow class="flex flex-col rounded-[16rpx] p-[24rpx] my-[24rpx]" bgColor="#FFFFFF">
-        <template
-          v-for="(list, chunkIndex) in chunk(
-            teamFields.filter((item) => item.mtype == -1 || item.mtype == mtype),
-            2
-          )"
-          :key="`b-${chunkIndex}`"
-        >
+      <!-- start 列表 -->
+      <view shadow class="flex flex-col my-[24rpx]  bg-black px-[24rpx] py-[48rpx] rounded-[32rpx] shadow-[0_0_16px_0_#266AFF_inset]" >
+        <template v-for="(list, chunkIndex) in chunk(
+          teamFields.filter(
+            (item) => item.mtype == -1 || item.mtype == mtype
+          ),
+          2
+        )" :key="`b-${chunkIndex}`">
           <view class="flex flex-row items-center justify-start">
             <template v-for="item in list" :key="item.field">
-              <view
-                :class="[
-                  'flex flex-col w-[48%] justify-center items-start rounded-[16rpx] py-[16rpx] px-[8rpx]',
-                ]"
-                v-if="item.mtype == -1 || item.mtype == mtype"
-                @click="item.click && item.click()"
-              >
-                <text class="text-sm text-neutral-theme">{{
-                  item.title
-                }}</text>
-                <text
-                  :class="[
-                    'text-lg text-neutral font-bold mt-[8rpx]',
-                    item.click ? 'underline' : '',
-                  ]"
-                  >{{ statInfo[item.field] }} {{ item.unit }}</text
-                >
+              <view :class="[
+                'flex flex-col w-[48%] justify-center items-start rounded-[16rpx] py-[16rpx] px-[8rpx]',
+              ]" v-if="item.mtype == -1 || item.mtype == mtype" @click="item.click && item.click()">
+                <text class="text-sm text-white/60">{{ item.title }}</text>
+                <text :class="[
+                  'text-lg text-neutral font-bold mt-[8rpx]',
+                  item.click ? 'underline' : '',
+                ]">{{ statInfo[item.field] }} {{ item.unit }}</text>
               </view>
             </template>
           </view>
 
-          <view
-            class="flex flex-row h-[1rpx] bg-neutral-inputBorder"
-            v-if="
-              chunkIndex <
-                teamFields.filter((item) => item.mtype == -1 || item.mtype == mtype)
-                .length /
-                2 -
-                1
-            "
-          ></view>
+          <view class="flex flex-row h-[1rpx] bg-[#BEBEBE]" v-if="
+            chunkIndex <
+            teamFields.filter(
+              (item) => item.mtype == -1 || item.mtype == mtype
+            ).length /
+            2 -
+            1
+          "></view>
         </template>
         <!-- </view> -->
-      </wk-stroke-bg>
+      </view>
       <!-- end 列表 -->
 
       <!-- 筛选 -->
       <view class="flex flex-row justify-between items-center">
-        <uv-search
-          class=" flex flex-row items-center w-[100%] h-[88rpx]"
-          bgColor="transparent"
-          placeholder="请输入账号查询"
-          shape="square"
-          @blur="blur"
-          @cancel="cancel"
-          cancelButton="none"
-          @search="search"
-          @custom="reset"
-          searchIconSize="48rpx"
-          searchIconColor="#010101"
-          placeholderColor="#010101"
-          :color="$colors.DEFAULT"
-          height="68rpx"
-          :showAction="true"
-          :clearabled="true"
-          actionText="取消"
-          :actionStyle="{
-            color: '#010101',
+        <uv-search class="flex flex-row items-center w-[100%] h-[88rpx]" bgColor="transparent" placeholder="请输入账号查询"
+          shape="square" @blur="blur" @cancel="cancel" cancelButton="none" @search="search" @custom="reset"
+          searchIconSize="48rpx" searchIconColor="rgba(255,255,255,.6)" placeholderColor="rgba(255,255,255,.6)" :color="'#fff'"
+          height="80rpx" :showAction="true" :clearabled="true" actionText="取消" :actionStyle="{
+            color: '#ffffff60',
             fontSize: '28rpx',
             width: keyword ? '108rpx' : '0rpx',
-            height: '68rpx',
-            lineHeight: '68rpx',
-            backgroundColor: '#FFFFFF',
-            borderRadius: '48rpx',
-          }"
-          :customStyle="{
+            height: '80rpx',
+            lineHeight: '80rpx',
+            backgroundColor: '#1F197D',
+            borderRadius: '16rpx',
+          }" :customStyle="{
             border: '0px solid ' + '#000000',
-          }"
-          :boxStyle="{
-            borderRadius: '48rpx',
+          }" :boxStyle="{
+            borderRadius: '16rpx',
             border: '1rpx solid rgba(0, 0, 0, 0.10)',
-            backgroundColor: '#FFFFFF',
-          }"
-          v-model="keyword"
-        >
+            backgroundImage: 'url(/static/images/common/search_bg.png)',
+            backgroundSize: '100% 100%',
+            backgroundRepeat: 'no-repeat',
+          }" v-model="keyword">
         </uv-search>
       </view>
       <!-- 筛选 -->
 
       <!-- 标签筛选 -->
       <view class="flex flex-row my-[25rpx] mt-[25rpx] justify-between">
-        <scroll-view
-          scroll-x="true"
-          class="w-[100%] h-[76rpx] flex flex-row whitespace-nowrap flex-nowrap"
-        >
-          <view
-            class="inline-flex items-center mr-[12rpx]"
-            v-for="(item, index) in filterList"
-            :key="index"
-            @click="changeFilterLevel(item)"
-          >
+        <scroll-view scroll-x="true" class="w-[100%] h-[76rpx] flex flex-row whitespace-nowrap flex-nowrap">
+          <view class="inline-flex items-center mr-[12rpx]" v-for="(item, index) in filterList" :key="index"
+            @click="changeFilterLevel(item)">
             <view class="flex flex-row gap-[20rpx] items-center">
-              <view
-                :class="[
-                  'flex flex-col items-center',
-                  currentLevel == item.level
-                    ? 'bg-neutral border-[length:2rpx] border-solid border-white/10 px-[24rpx] rounded-full text-base'
-                    : 'bg-[transparent] border-[length:2rpx] border-solid border-white/10 px-[24rpx] rounded-full text-base',
-                ]"
-              >
-                <text
-                  class="text-base py-[15rpx]"
-                  :class="
-                    currentLevel == item.level
-                      ? 'text-white'
-                      : 'text-neutral-regular'
-                  "
-                  >{{
+              <view :class="[
+                'flex flex-col items-center',
+                currentLevel == item.level
+                  ? 'bg-[#1F197D] border-[length:2rpx] border-solid border-white/10 px-[24rpx] rounded-full text-base'
+                  : 'bg-[transparent] border-[length:2rpx] border-solid border-white/10 px-[24rpx] rounded-full text-base',
+              ]">
+                <text class="text-base py-[15rpx]" :class="currentLevel == item.level
+                    ? 'text-white'
+                    : 'text-neutral-regular'
+                  ">{{
                     currentLevel == item.level ? "取消查看" : item.title
-                  }}</text
-                >
+                  }}</text>
               </view>
             </view>
           </view>
@@ -188,52 +122,33 @@
 
       <!-- 下级列表 -->
       <view class="flex flex-col">
-        <wk-stroke-bg
-          shadow
-          size="small"
-          class="flex flex-col min-h-[200rpx] p-[24rpx] mb-[24rpx]"
-          bgColor="#FFFFFF"
-          v-for="item in dataList"
-          :key="'no__l' + item.id"
-        >
+        <view class="flex flex-col min-h-[200rpx] mb-[24rpx] bg-[#1F197D] px-[24rpx] py-[48rpx] rounded-[32rpx]" 
+          v-for="item in dataList" :key="'no__l' + item.id">
           <view class="flex flex-col">
             <view class="flex flex-row justify-between items-center">
               <view class="flex flex-row justify-between">
-                <view
-                  class="flex flex-row items-center w-[48rpx] h-[48rpx] mr-[12rpx]"
-                >
-                  <image
-                    class="w-[48rpx] h-[48rpx] rounded-full"
-                    src="/static/images/user/logo.png"
-                  />
+                <view class="flex flex-row items-center w-[48rpx] h-[48rpx] mr-[12rpx]">
+                  <image class="w-[48rpx] h-[48rpx] rounded-full" src="/static/images/user/logo.png" />
                 </view>
                 <text class="text-lg font-medium text-neutral">
                   <text v-if="item.realname">{{ item.realname }}</text>
                 </text>
               </view>
-              <view
-                class="flex flex-row justify-center items-center my-[10rpx]"
-              >
+              <view class="flex flex-row justify-center items-center my-[10rpx]">
                 <view class="flex flex-row items-center mr-[24rpx]">
                   <text class="text-sm">团队总人数</text>
-                  <text class="text-sm text-neutral-theme ml-[5rpx]">
+                  <text class="text-sm text-white/60 ml-[5rpx]">
                     {{ item.invest_nunber }}
                   </text>
-                  <text class="text-sm text-neutral-theme"
-                    >/{{ item.register_nunber }}
+                  <text class="text-sm text-white/60">/{{ item.register_nunber }}
                   </text>
                 </view>
                 <view class="flex flex-row items-center" @click="viewId(item)">
                   <text class="text-sm text-neutral-regular">一级总人数</text>
-                  <text class="text-sm text-neutral-theme ml-[5rpx]">{{
+                  <text class="text-sm text-white/60 ml-[5rpx]">{{
                     item.invite_direct_count
-                  }}</text>
-                  <uv-icon
-                    class="ml-[5rpx]"
-                    size="24rpx"
-                    :color="$colors.theme"
-                    name="arrow-right"
-                  ></uv-icon>
+                    }}</text>
+                  <uv-icon class="ml-[5rpx]" size="24rpx" :color="'rgba(255,255,255,.6)'" name="arrow-right"></uv-icon>
                 </view>
               </view>
             </view>
@@ -246,123 +161,98 @@
             </view>
           </view>
 
-          <view
-            class="flex flex-row my-[16rpx] h-[2rpx] bg-neutral-black/10"
-          ></view>
+          <view class="flex flex-row my-[16rpx] h-[2rpx] bg-neutral-black/10"></view>
 
           <view class="flex flex-row justify-between items-center leading-5">
             <view class="flex flex-col w-[33%]">
               <text class="text-lg text-neutral font-bold">{{
                 item.nextrecharges
-              }}</text>
-              <text class="text-sm text-neutral-theme"
-                >充值({{ symbolStore.code }})</text
-              >
+                }}</text>
+              <text class="text-sm text-white/60">充值({{ symbolStore.code }})</text>
             </view>
 
             <view class="flex flex-col w-[33%]">
               <text class="text-lg text-neutral font-bold">{{
                 item.nextwithdrawals
-              }}</text>
-              <text class="text-sm text-neutral-theme"
-                >提现({{ symbolStore.code }})</text
-              >
+                }}</text>
+              <text class="text-sm text-white/60">提现({{ symbolStore.code }})</text>
             </view>
 
             <view class="flex flex-col w-[33%]">
               <text class="text-lg text-neutral font-bold">{{
                 item.nexttransfer
-              }}</text>
-              <text class="text-sm text-neutral-theme"
-                >转账({{ symbolStore.code }})</text
-              >
+                }}</text>
+              <text class="text-sm text-white/60">转账({{ symbolStore.code }})</text>
             </view>
           </view>
 
           <template v-if="mtype == 1">
-            <view
-              class="flex flex-row my-[16rpx] h-[2rpx] bg-neutral-black/10"
-            ></view>
+            <view class="flex flex-row my-[16rpx] h-[2rpx] bg-neutral-black/10"></view>
 
             <view class="flex flex-row justify-between items-center leading-5">
               <view class="flex flex-col w-[33%]">
                 <text class="text-lg text-neutral font-bold">{{
                   item.tixian
-                }}</text>
-                <text class="text-sm text-neutral-theme"
-                  >可提({{ symbolStore.code }})</text
-                >
+                  }}</text>
+                <text class="text-sm text-white/60">可提({{ symbolStore.code }})</text>
               </view>
 
               <view class="flex flex-col w-[33%]">
                 <text class="text-lg text-neutral font-bold">{{
                   item.amount
-                }}</text>
-                <text class="text-sm text-neutral-theme"
-                  >可投({{ symbolStore.code }})</text
-                >
+                  }}</text>
+                <text class="text-sm text-white/60">可投({{ symbolStore.code }})</text>
               </view>
 
               <view class="flex flex-col w-[33%]">
                 <text class="text-lg text-neutral font-bold">{{
                   item.yuebao
-                }}</text>
-                <text class="text-sm text-neutral-theme"
-                  >余额宝({{ symbolStore.code }})</text
-                >
+                  }}</text>
+                <text class="text-sm text-white/60">余额宝({{ symbolStore.code }})</text>
               </view>
             </view>
           </template>
           <template v-if="mtype == 1">
-            <view
-              class="flex flex-row my-[16rpx] h-[2rpx] bg-neutral-black/10"
-            ></view>
+            <view class="flex flex-row my-[16rpx] h-[2rpx] bg-neutral-black/10"></view>
 
             <view class="flex flex-row justify-between items-center leading-5">
               <view class="flex flex-col w-[33%]">
                 <text class="text-lg text-neutral font-bold">{{
                   item.integral
-                }}</text>
-                <text class="text-sm text-neutral-theme">积分(分)</text>
+                  }}</text>
+                <text class="text-sm text-white/60">积分(分)</text>
               </view>
 
               <view class="flex flex-col w-[33%]">
                 <text class="text-lg text-neutral font-bold">{{
                   item.integral_used
-                }}</text>
-                <text class="text-sm text-neutral-theme">已兑换(分)</text>
+                  }}</text>
+                <text class="text-sm text-white/60">已兑换(分)</text>
               </view>
 
               <view class="flex flex-col w-[33%]">
                 <text class="text-lg text-neutral font-bold">{{
                   item.invite_direct_invest_count
-                }}</text>
-                <text class="text-sm text-neutral-theme">直推(人)</text>
+                  }}</text>
+                <text class="text-sm text-white/60">直推(人)</text>
               </view>
             </view>
           </template>
           <view class="flex flex-row my-[16rpx] h-[2rpx] bg-neutral-black/10">
           </view>
           <view class="flex flex-row justify-between items-center">
-
             <view class="flex flex-col w-[33%]">
               <text class="text-lg text-neutral font-bold">{{
                 item.zaitou
-              }}</text>
-              <text class="text-sm text-neutral-theme"
-                >在投({{ symbolStore.code }})</text
-              >
+                }}</text>
+              <text class="text-sm text-white/60">在投({{ symbolStore.code }})</text>
             </view>
           </view>
-          <view
-            class="flex flex-row my-[16rpx] h-[2rpx] bg-neutral-black/10"
-          ></view>
+          <view class="flex flex-row my-[16rpx] h-[2rpx] bg-neutral-black/10"></view>
           <view class="flex flex-row justify-between items-center">
-            <text class="text-sm text-neutral-regular"
-              >注册时间：{{ item.created_at }}</text
-            >
+            <text class="text-sm text-neutral-regular">注册时间：{{ item.created_at }}</text>
           </view>
-        </wk-stroke-bg>
+        </view>
       </view>
       <!-- 下级列表 -->
     </view>
@@ -459,7 +349,7 @@ const fields = computed(() => {
     //   unit: '人',
     //   mtype: -1,
     // },
-    
+
     // {
     //   title: "今日一级新增二次投资人数",
     //   field: "todayonerebuytzrs",
@@ -579,15 +469,11 @@ const fields = computed(() => {
       mtype: 1,
       click: () => viewTouziCount(6),
     },
-
-   
   ];
 });
 
-
 const teamFields = computed(() => {
   return [
-    
     {
       title: "团队总注册人数",
       field: "totltzhuce",
@@ -643,16 +529,15 @@ const teamFields = computed(() => {
       mtype: -1,
     },
 
-
     {
       title: "团队总计提现",
-      field: "team_total_withdraw", 
+      field: "team_total_withdraw",
       unit: symbolStore.unit,
       mtype: -1,
     },
 
     // {
-    //   title: "团队总计转账", 
+    //   title: "团队总计转账",
     //   field: "team_total_transfer",
     //   unit: symbolStore.unit,
     //   mtype: -1,

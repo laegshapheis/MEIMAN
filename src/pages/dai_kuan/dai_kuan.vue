@@ -1,36 +1,24 @@
 <template>
-  <layout
-    ref="layoutRef"
-    navTitle="无忧易贷"
-    bgType="bg-main"
-    :refresher="true"
-    @onRefresh="handleRefresh"
-  >
+  <layout ref="layoutRef" navTitle="无忧易贷" bgType="bg-main1" :isLottie="false" :refresher="true"
+    @onRefresh="handleRefresh">
     <template #navRight>
-      <view v-if="!loadBS" @click="goDaikuanLog" class="right-menu flex items-center bg-white/10 justify-center w-[64rpx] h-[64rpx] rounded-full">
+      <view v-if="!loadBS" @click="goDaikuanLog"
+        class="right-menu flex items-center bg-white/10 justify-center w-[64rpx] h-[64rpx] rounded-full">
         <image src="/static/images/user/record_icon.svg" mode="widthFix" class="w-[32rpx] h-[32rpx]"></image>
       </view>
     </template>
 
     <view class="px-page-x pt-page-y pb-[150rpx]">
-      <view
-        class="rounded-[48rpx] h-[244rpx] bg-card3"
-      >
-        <view
-          class="flex flex-row h-full items-center justify-around px-[48rpx]"
-        >
+      <view class="rounded-[32rpx] h-[208rpx] bg-card3">
+        <view class="flex flex-row h-full items-center justify-around px-[48rpx]">
           <view class="flex flex-col items-center">
-            <view class="text-base text-neutral-white"
-              >可贷金额({{ symbolStore.code }})</view
-            >
+            <view class="text-base text-neutral-white/80">可贷金额({{ symbolStore.code }})</view>
             <view class="text-2xl text-neutral-white font-bold mt-[12rpx]">{{
               price_max
             }}</view>
           </view>
           <view class="flex flex-col items-center">
-            <view class="text-base text-neutral-white"
-              >已贷金额({{ symbolStore.code }})</view
-            >
+            <view class="text-base text-neutral-white/80">已贷金额({{ symbolStore.code }})</view>
             <view class="text-2xl text-neutral-white font-bold mt-[12rpx]">{{
               yidaimoney
             }}</view>
@@ -39,102 +27,62 @@
       </view>
 
       <!-- 内容区域 => 开始 -->
-      <wk-stroke-bg  
-        shadow
-        class="mt-[32rpx] p-[32rpx] rounded-[48rpx]">
+      <view class="mt-[32rpx] p-[32rpx] rounded-[24rpx] bg-[#1F197D]">
         <view class="text-lg text-neutral font-medium">贷款金额</view>
-        <view
-          class="h-[112rpx] bg-black/5 rounded-[24rpx] mt-[24rpx] px-[24rpx]"
-        >
-          <input
-            type="number"
-            :maxlength="33"
-            v-model="inp_val"
-            class="h-full w-full text-base"
-            :placeholder="`请输入金额，最低申请借贷金额 ${withdrawalmin } ${symbolStore.code}`"
-            placeholder-class="text-neutral-light text-base"
-          />
-          
-        </view>
+        <view class="h-[112rpx] bg-black/5 rounded-[24rpx] mt-[24rpx] px-[0rpx]">
+          <wk-input type="number" :maxlength="33" v-model="inp_val" class="h-full w-full text-base"
+            :placeholder="`请输入金额，最低申请借贷金额 ${withdrawalmin} ${symbolStore.code}`"
+            placeholder-class="text-neutral-light text-base" />
 
-        <view class="py-[16rpx] mt-[18rpx]">
-          <wk-button
-            @submit="open_play_pass"
-            >申请贷款</wk-button
-          >
         </view>
-      </wk-stroke-bg>
+        <view class="py-[24rpx] mt-[8rpx]">
+          <wk-button height="80rpx" @submit="open_play_pass">申请贷款</wk-button>
+        </view>
+        <view class="bg-[#0C052F] rounded-[24rpx]">
+          <view class="flex flex-row items-center justify-between px-[32rpx] pt-[24rpx]">
+            <view class="flex flex-col py-[12rpx]">
+              <view class="text-base text-neutral">待还金额({{ symbolStore.code }})</view>
+              <view class="mt-[12rpx] text-3xl font-bold text-neutral">{{
+                jiemoney
+                }}</view>
+            </view>
 
-      <wk-stroke-bg
-        shadow
-        class="mt-[32rpx] rounded-[16rpx]" size="none">
-        <view class="flex flex-row items-center justify-between px-[32rpx] pt-[24rpx]">
-          <view class="flex flex-col py-[12rpx]">
-            <view class="text-base text-neutral"
-              >待还金额({{ symbolStore.code }})</view
-            >
-            <view class="mt-[12rpx] text-3xl font-bold text-neutral">{{
-              jiemoney
-            }}</view>
+            <view class="flex flex-col items-center justify-center">
+              <wk-button type="none" :borderColor="$colors.theme" background="transparent" :color="$colors.theme" size="small"
+                fontWeight="normal" borderRadius="72rpx" height="72rpx" @submit="goHuankuan">申请还款</wk-button>
+            </view>
           </view>
 
-          <view class="flex flex-col items-center justify-center">
-            <wk-button
-              :borderColor="$colors.theme"
-              backgroundColor="transparent"
-              :color="$colors.theme"
-              size="small"
-              fontWeight="normal"
-              borderRadius="16rpx"
-              shadow=""
-              height="64rpx"
-              @submit="goHuankuan"
-            >
-              申请还款
-            </wk-button>
+
+          <view class="flex flex-row my-[12rpx] h-[1rpx] bg-white/25"></view>
+
+          <view class="flex flex-row items-center justify-between px-[32rpx] py-[24rpx]">
+            <view class="flex flex-row items-center">
+              <view class="text-base text-neutral">已还金额</view>
+              <view class="ml-[12rpx] text-base text-neutral">{{
+                huanmoney
+                }} {{ symbolStore.code }}</view>
+            </view>
+
+            <view class="flex flex-row items-center" @click="goHuankuanLog">
+              <text class="text-sm text-neutral-theme">
+                还款记录
+              </text>
+
+              <uv-icon name="arrow-right" size="12" :color="$colors.theme" class="ml-[8rpx]" />
+            </view>
           </view>
         </view>
+      </view>
 
 
-        <view
-            class="flex flex-row my-[12rpx] h-[1rpx] bg-neutral-divider"
-          ></view>
-
-        <view class="flex flex-row items-center justify-between px-[32rpx] py-[24rpx]">
-          <view class="flex flex-row items-center">
-            <view class="text-base text-neutral"
-              >已还金额</view
-            >
-            <view class="ml-[12rpx] text-base text-neutral">{{
-              huanmoney
-            }} {{ symbolStore.code }}</view>
-          </view>
-
-          <view class="flex flex-row items-center" @click="goHuankuanLog">
-            <text class="text-sm text-neutral-theme"
-            >
-              还款记录
-            </text>
-
-            <uv-icon name="arrow-right" size="12" :color="$colors.theme" class="ml-[8rpx]"/>
-          </view>
-        </view>
-        
-      </wk-stroke-bg>
-
-
-     
-      <view v-if="mark" class="mt-[48rpx] p-[32rpx] text-base text-neutral-regular leading-6 bg-white 
-      border-[length:1rpx] border-solid border-neutral-divider rounded-[24rpx]">
+      <view v-if="mark" class="mt-[48rpx] p-[32rpx] text-base text-white/80 leading-6  
+      border-[length:1rpx] border-solid border-[rgba(255,255,255,.25)] rounded-[24rpx]">
         {{ mark }}
       </view>
     </view>
-    <wk-code-input
-      ref="keywordRef"
-      :value="pay_password"
-      @finish="keyConfirm"
-    />
-    
+    <wk-code-input ref="keywordRef" :value="pay_password" @finish="keyConfirm" />
+
     <wk-loading v-if="loading" :loadingText="loadingText" />
   </layout>
 </template>
@@ -164,7 +112,7 @@ export default {
       loadingText: "",
     };
   },
-  onUnload() {},
+  onUnload() { },
   onShow() {
     this.getDaikuanInfo();
   },
@@ -430,6 +378,4 @@ export default {
 };
 </script>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>

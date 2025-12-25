@@ -1,5 +1,5 @@
 <template>
-  <layout navTitle="合同详情"  bgType="bg-white" mode="black">
+  <layout navTitle="合同详情"  bgType="bg-white" :isLottie="false" mode="black">
     <view class="px-[32rpx]">
       <rich-text :nodes="content"></rich-text>
     </view>

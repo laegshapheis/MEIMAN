@@ -3,7 +3,7 @@
     ref="modal"
     :title="title"
     zIndex="33"
-    borderRadius="48rpx"
+    :borderRadius="borderRadius"
     :bgColor="bgColor"
     :titleColor="$colors.modalTitleColor"
     :closeOnClickOverlay="false"
@@ -11,12 +11,9 @@
     v-bind="attrs"
   >
     <view class="modal-wrapper" :style="{ backgroundColor: bgColor }">
-      <view
-        :class="title ? 'close-btn-title' : 'close-btn'"
-        v-if="showClose"
-        @click="close"
-        >×</view
-      >
+      <view :class="title ? 'close-btn-title' : 'close-btn'" v-if="showClose" @click="close">
+        <image class="w-[64rpx] h-[64rpx]" src="/static/images/component/modal/close.png" mode="widthFix"></image>
+      </view>
       <scroll-view class="max-h-[60vh] text-base" scroll-y>
         <slot></slot>
       </scroll-view>
@@ -51,6 +48,10 @@ const props = defineProps({
   bgColor: {
     type: String,
     default: () => neutral.modalBg,
+  },
+  borderRadius: {
+    type: String,
+    default: '48rpx',
   },
 });
 const emit = defineEmits(["onClose"]);

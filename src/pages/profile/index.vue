@@ -90,9 +90,9 @@
   </wk-modal>
 
   <!-- 密码重置 -->
-  <wk-modal ref="wkPwdPopupRef" title="修改/重置登录密码">
-    <view class="flex flex-col justify-center px-[0rpx]">
-      <view class="text-center mb-[50rpx] mt-[20rpx]">
+  <wk-modal ref="wkPwdPopupRef" class="center-modal" borderRadius="32rpx" title="修改/重置登录密码">
+    <view class="flex flex-col justify-center px-[0rpx] bg-transparent">
+      <view class="text-center mb-[24rpx] mt-[20rpx]">
         <text class="text-base text-neutral-regular"
           >请选择修改/重置登录密码方式</text
         >
@@ -100,44 +100,46 @@
       <view class="flex-1">
         <!-- 密钥开关打开并且手机号注册的用户 -->
         <wk-button
-          class="mb-[28rpx]"
-          @submit="handleResetPassword(routes.editResetPass)"
-          v-if="userInfo.miyao_switch && userInfo.register_type == 1"
-        >
+          height="80rpx"
+          class="mb-[24rpx]"
+          @submit="handleResetPassword(routes.editResetPass)" v-if="userInfo.miyao_switch && userInfo.register_type == 1">
           使用密钥重置
         </wk-button>
         <!-- 邮箱注册的用户 -->
         <wk-button
+          height="80rpx"
+          
           v-if="
             userInfo.register_type == 2 &&
             (registerMethod == 3 || registerMethod == 2)
           "
-          class="mb-[28rpx]"
+          class="mb-[24rpx]"
           @submit="handleResetPassword(routes.emailResetPass)"
         >
           使用邮箱重置
         </wk-button>
         <view
-          class="mb-[28rpx] text-center pt-[10rpx]"
+          class="text-center"
           @click="handleResetPassword(routes.editPassword)"
         >
-          <text class="text-neutral-theme text-base">使用原登录密码修改</text>
+          <text class="text-white text-base">使用原登录密码修改</text>
       </view>
       </view>
     </view>
   </wk-modal>
 
   <!-- 支付密码重置 -->
-  <wk-modal ref="wkPaypwdPopupRef" title="修改/重置支付密码">
+  <wk-modal ref="wkPaypwdPopupRef" class="center-modal" borderRadius="32rpx" title="修改/重置支付密码">
     <view class="flex flex-col justify-center px-[0rpx]">
       <view class="text-center mb-[50rpx] mt-[20rpx]">
-        <text class="text-base text-neutral-regular"
+        <text class="text-base text-neutral-regular/80"
           >请选择修改/重置支付密码方式</text
         >
       </view>
       <view class="flex-1">
         <wk-button
-          class="mb-[28rpx]"
+          height="80rpx"
+          class="mb-[24rpx]"
           @submit="
             handleResetPayPassword(
               routes.editPayPass + '?code=' + userInfo.ispaypwd
@@ -149,24 +151,25 @@
         </wk-button>
         <!-- 邮箱注册 -->
         <wk-button
+          height="80rpx"
           v-if="
             userInfo.register_type == 2 &&
             (registerMethod == 3 || registerMethod == 2)
           "
-          class="mb-[28rpx]"
+          class="mb-[24rpx]"
           @submit="handleResetPayPassword(routes.emailResetPayPass)"
         >
           使用邮箱重置
         </wk-button>
         <view
-          class="mb-[28rpx] text-center pt-[10rpx]"
+          class="text-center"
           @click="
             handleResetPayPassword(
               routes.payPassNew + '?code=' + userInfo.ispaypwd
             )
           "
         >
-          <text class="text-neutral-theme text-base">使用原支付密码修改</text>
+          <text class="text-white text-base">使用原支付密码修改</text>
         </view>
       </view>
     </view>

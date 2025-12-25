@@ -1,15 +1,9 @@
 <template>
-  <layout navTitle="申请还款" bgType="bg-main">
+  <layout navTitle="申请还款" bgType="bg-main1" :isLottie="false">
     <template v-slot:navRight>
-      <view
-        class="flex items-center justify-center w-[64rpx] h-[64rpx] bg-white/10 rounded-full"
-      >
-        <image
-          @click="HuankuanLog"
-          src="/static/images/user/record_icon.svg"
-          mode="widthFix"
-          class="w-[32rpx] h-[32rpx]"
-        ></image>
+      <view class="flex items-center justify-center w-[64rpx] h-[64rpx] bg-white/10 rounded-full">
+        <image @click="HuankuanLog" src="/static/images/user/record_icon.svg" mode="widthFix"
+          class="w-[32rpx] h-[32rpx]"></image>
       </view>
     </template>
     <view class="px-[32rpx] mt-[28rpx]">
@@ -21,45 +15,31 @@
           >
         </view>
       </wk-stroke-bg> -->
-      <view class="mt-[28rpx]">
-        <view class="flex flex-row items-center justify-between font-medium">
-          <text class="text-neutral text-lg">还款金额</text>
-          <text class="text-neutral-theme text-base"
-            >投资余额 {{ amount }} {{ symbolStore.code }}</text
-          >
+      <view class="bg-black p-[32rpx] rounded-[32rpx] shadow-[0_0_16px_0_#266AFF_inset]">
+        <view class="mt-[28rpx]">
+          <view class="flex flex-row items-center justify-between font-medium">
+            <text class="text-neutral text-lg">还款金额</text>
+            <text class="text-neutral-theme text-base">投资余额 {{ amount }} {{ symbolStore.code }}</text>
+          </view>
+          <view class="mt-[28rpx] bg-grey">
+            <wk-input maxlength="33" type="number" fontSize="38rpx" v-model="inp_val" placeholder="请输入金额"
+              :bgColor="$colors.inputBg" :borderColor="$colors.divider" readonly
+              placeholder-class="text-neutral-placeholder text-2xl" />
+          </view>
         </view>
-        <view class="mt-[28rpx] bg-grey">
-          <wk-input
-            maxlength="33"
-            type="number"
-            fontSize="38rpx"
-            v-model="inp_val"
-            placeholder="请输入金额"
-            :bgColor="$colors.inputBg"
-            :borderColor="$colors.divider"
-            readonly
-            placeholder-class="text-neutral-placeholder text-2xl"
-          />
+
+        <view class="py-[16rpx] mt-[28rpx]">
+          <wk-button height="80rpx" @submit="open_play_pass">申请还款</wk-button>
         </view>
       </view>
-
-      <view class="py-[16rpx] mt-[28rpx]">
-        <wk-button @submit="open_play_pass">申请还款</wk-button>
-      </view>
-
       <view
-        class="mt-[28rpx] text-base bg-white leading-6 border-[length:1rpx] border-solid border-neutral-divider rounded-[24rpx] p-[32rpx]"
-        v-if="mark"
-      >
-        <view class="text-base text-neutral-regular">{{ mark }}</view>
+        class="mt-[28rpx] text-base leading-6 border-[length:1rpx] border-solid border-white/25 rounded-[24rpx] p-[32rpx]"
+        v-if="mark">
+        <view class="text-base text-white/80">{{ mark }}</view>
       </view>
     </view>
 
-    <wk-code-input
-      ref="keywordRef"
-      :value="pay_password"
-      @finish="keyConfirm"
-    />
+    <wk-code-input ref="keywordRef" :value="pay_password" @finish="keyConfirm" />
 
     <!-- 内容区域 => 结束 -->
     <wk-loading v-if="loading" :loadingText="loadingText" />
@@ -221,13 +201,15 @@ export default {
 .right-menu {
   font-size: 28rpx;
   color: #000000;
-  .str {
-  }
+
+  .str {}
 }
+
 .slef_32 {
   box-sizing: border-box;
   padding: 24rpx 28rpx 1rpx;
 }
+
 // 装饰部分
 .b-k-1,
 .b-k-2,
@@ -238,29 +220,35 @@ export default {
   height: 28rpx;
   border: 6rpx solid #000000;
 }
+
 .b-k-1,
 .b-k-4 {
   left: -6rpx;
   border-right: none;
 }
+
 .b-k-1,
 .b-k-2 {
   top: -6rpx;
   border-bottom: none;
 }
+
 .b-k-2,
 .b-k-3 {
   right: -6rpx;
   border-left: none;
 }
+
 .b-k-3,
 .b-k-4 {
   bottom: -6rpx;
   border-top: none;
 }
+
 // 头部固定部分
 .header-wrap {
   padding: 32rpx;
+
   // padding-bottom: 0;
   .header {
     height: 122rpx;
@@ -272,14 +260,17 @@ export default {
     border: 1px solid #000000;
     line-height: 1;
     background-image: linear-gradient(276.53deg, #00366c 0%, #005bb5 82.17%);
+
     .var {
       font-size: 32rpx;
       color: #fff;
     }
+
     .bold-str {
       font-weight: bold;
       font-size: 36rpx;
     }
+
     // position: relative;
     // width: 100%;
     // height: 198rpx;
@@ -311,12 +302,14 @@ export default {
   font-size: 28rpx;
   line-height: 1;
 }
+
 .dk-input-box {
   position: relative;
   height: 104rpx;
   background-color: #010e21;
   border: 1px solid #000000;
   margin-top: 32rpx;
+
   .dk-input {
     width: 100%;
     height: 100%;
@@ -325,16 +318,19 @@ export default {
     font-size: 32rpx;
     padding-left: 32rpx;
   }
+
   .dk-input-pl {
     color: #bbdaff;
     font-size: 32rpx;
   }
 }
+
 .dk-str2 {
   color: #000000;
   margin-top: 32rpx;
   font-size: 28rpx;
 }
+
 .dk-sq-btn {
   height: 102rpx;
   background-size: 100% 100%;
@@ -346,6 +342,7 @@ export default {
   margin-top: 32rpx;
   margin-bottom: 64rpx;
 }
+
 .dk-card-kl {
   position: relative;
   display: flex;
@@ -357,6 +354,7 @@ export default {
   line-height: 1;
   background-image: linear-gradient(276.53deg, #00366c 0%, #005bb5 82.17%);
   position: relative;
+
   &::before {
     content: "";
     width: 100%;
@@ -370,6 +368,7 @@ export default {
     background-repeat: no-repeat, no-repeat;
     filter: brightness(1.4);
   }
+
   &::after {
     content: "";
     width: 100%;
@@ -383,19 +382,23 @@ export default {
     background-repeat: no-repeat, no-repeat;
     filter: brightness(1.8);
   }
+
   .dk-left-box {
     position: relative;
     z-index: 2;
+
     .top-dk-val {
       font-size: 40rpx;
       font-weight: bold;
     }
+
     .dk-jin-e {
       margin-top: 24rpx;
       font-size: 28rpx;
       color: #000000;
     }
   }
+
   .dk-sq-hk {
     position: relative;
     z-index: 2;
@@ -406,24 +409,29 @@ export default {
     justify-content: center;
     padding: 0 24rpx;
     font-size: 28rpx;
+
     .lef-icon,
     .ref-icon,
     &::before,
     &::after {
       position: absolute;
     }
+
     .lef-icon,
     .ref-icon {
       width: 18rpx;
       height: 100%;
       top: 0;
     }
+
     .lef-icon {
       left: 0;
     }
+
     .ref-icon {
       right: 0;
     }
+
     &::before,
     &::after {
       content: "";
@@ -433,21 +441,24 @@ export default {
       background-size: 100% 100%;
       // background-color: #000000;
     }
+
     &::before {
       top: 0;
     }
+
     &::after {
       bottom: 0;
     }
-    .dk-str-btn {
-    }
+
+    .dk-str-btn {}
   }
 }
+
 .dk-tips {
   margin-top: 64rpx;
   font-size: 28rpx;
   padding-bottom: 32rpx;
-  br {
-  }
+
+  br {}
 }
 </style>

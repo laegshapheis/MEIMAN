@@ -1,58 +1,31 @@
 <template>
-  <layout navTitle="重置登录密码" bgType="bg-main">
+  <layout navTitle="重置登录密码" bgType="bg-main2" :isLottie="false">
     <view class="p-[32rpx]">
       <view>
         <view>
-          <view class="mb-[10rpx] text-base text-neutral font-medium"
-            >密钥</view
-          >
-          <view 
-          class="flex flex-row items-center justify-between">
-            <wk-input
-              @input="(val) => passKey(val, 'a')"
-              v-model="old_password"
-              maxlength="12"
-              type="number"
-              style="border: none;border-radius: 720rpx;"
-              placeholder="请输入12位密钥"
-            ></wk-input>
+          <view class="mb-[10rpx] text-base text-neutral/80 font-medium">密钥</view>
+          <view class="flex flex-row items-center justify-between">
+            <wk-input @input="(val) => passKey(val, 'a')" v-model="old_password" maxlength="12" type="number"
+              style="border: none;border-radius: 24rpx;background-color: #202337;" color="#fff" mode="none" placeholder="请输入12位密钥" placeholderColor="rgba(255,255,255,0.8)"></wk-input>
           </view>
         </view>
         <view class="mt-[24rpx]">
-          <view class="mb-[10rpx] text-base text-neutral font-medium"
-            >新的密码</view
-          >
-          <view 
-          class="flex flex-row items-center justify-between">
-          <wk-input
-            @input="(val) => passKey(val, 'b')"
-            v-model="new_password"
-            type="password"
-            style="border: none;border-radius: 720rpx;"
-            maxlength="16"
-            placeholder="请输入新登录密码"
-          ></wk-input>
-        </view>
+          <view class="mb-[10rpx] text-base text-neutral/80 font-medium">新的密码</view>
+          <view class="flex flex-row items-center justify-between">
+            <wk-input @input="(val) => passKey(val, 'b')" v-model="new_password" type="password"
+              style="border: none;border-radius: 24rpx;background-color: #202337;" color="#fff" mode="none" maxlength="16" placeholder="请输入新登录密码" placeholderColor="rgba(255,255,255,0.8)"></wk-input>
+          </view>
         </view>
         <view class="mt-[24rpx]">
-          <view class="mb-[10rpx] text-base text-neutral font-medium"
-            >确认密码</view
-          >
-          <view 
-          class="flex flex-row items-center justify-between">
-          <wk-input
-            @input="(val) => passKey(val, 'c')"
-            v-model="password"
-            type="password"
-            style="border: none;border-radius: 720rpx;"
-            maxlength="16"
-            placeholder="请输入确认密码"
-          ></wk-input>
-        </view>
+          <view class="mb-[10rpx] text-base text-neutral/80 font-medium">确认密码</view>
+          <view class="flex flex-row items-center justify-between">
+            <wk-input @input="(val) => passKey(val, 'c')" v-model="password" type="password"
+              style="border: none;border-radius: 24rpx;background-color: #202337;" color="#fff" mode="none" maxlength="16" placeholder="请输入确认密码" placeholderColor="rgba(255,255,255,0.8)"></wk-input>
+          </view>
         </view>
       </view>
       <view class="fixed bottom-0 left-0 right-0 px-[32rpx] py-[16rpx]">
-        <wk-button @submit="setNewPassword"> 完成修改 </wk-button>
+        <wk-button height="80rpx" fontSize="30rpx" @submit="setNewPassword"> 完成修改 </wk-button>
       </view>
     </view>
     <wk-loading v-if="loading" :loadingText="loadingText" />
@@ -224,7 +197,7 @@ const quitLogin = () => {
   });
 };
 
-onLoad(() => {});
+onLoad(() => { });
 </script>
 
 <style lang="scss" scoped></style>

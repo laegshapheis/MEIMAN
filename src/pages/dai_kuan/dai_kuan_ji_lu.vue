@@ -1,139 +1,76 @@
 <template>
-  <layout
-    ref="layoutRef"
-    navTitle="贷款记录"
-    bgType="bg-main"
-    :refresher="true"
-    @onRefresh="handleRefresh"
-  >
+  <layout ref="layoutRef" navTitle="贷款记录" bgType="bg-main1" :refresher="true" :isLottie="false"
+    @onRefresh="handleRefresh">
     <view class="px-[32rpx] mt-[28rpx]" v-if="list.length > 0">
-      <wk-stroke-bg
-        shadow
-        class="mb-[24rpx] rounded-[32rpx]"
-        v-for="item in list"
-        size="none"
-        :key="item.bianhao"
-      >
-        <view
-          class="flex flex-row items-center justify-between py-[32rpx] px-[32rpx]"
-        >
-          <view class="text-base text-neutral-regular"
-            >合同编号：{{ item.bianhao }}</view
-          >
+      <view shadow
+        class="mb-[24rpx] rounded-[32rpx] bg-black px-[0rpx] rounded-[32rpx] shadow-[0_0_16px_0_#266AFF_inset]"
+        v-for="item in list" size="none" :key="item.bianhao">
+        <view class="flex flex-row items-center justify-between p-[32rpx]">
+          <view class="text-base text-neutral-regular">合同编号：{{ item.bianhao }}</view>
           <view class="text-base text-neutral font-medium">
-            <view
-              :class="
-                item.status == 0
-                  ? 'text-neutral'
-                  : item.status == 1
-                  ? 'text-neutral-theme'
-                  : item.status == 2
+            <view :class="item.status == 0
+              ? 'text-neutral'
+              : item.status == 1
+                ? 'text-neutral-theme'
+                : item.status == 2
                   ? 'text-neutral-warning'
                   : ''
-              "
-            >
+              ">
               {{
                 item.status == 0
                   ? "已还款"
                   : item.status == 1
-                  ? "使用中"
-                  : item.status == 2
-                  ? "待还款"
-                  : ""
-              }}</view
-            >
+                    ? "使用中"
+                    : item.status == 2
+                      ? "待还款"
+                      : ""
+              }}</view>
           </view>
         </view>
 
-        <view class="flex flex-row h-[1rpx] bg-neutral-divider"></view>
+        <view class="flex flex-row h-[1rpx] bg-[rgba(255,255,255,.15)]"></view>
 
         <view class="flex flex-col py-[16rpx] px-[32rpx]">
-          <view class="flex flex-col">
-            <view class="text-base text-neutral">贷款金额</view>
-            <view class="text-2xl text-neutral font-bold mt-[12rpx]"
-              >{{ item.number }} {{ symbolStore.code }}</view
-            >
+          <view class="flex flex-row items-center justify-between bg-[#1F197D] px-[32rpx] py-[16rpx] rounded-[48rpx]">
+            <view class="text-sm text-neutral">贷款金额</view>
+            <view class="text-base leading-1 text-neutral font-bold">{{ item.number }} {{ symbolStore.code }}</view>
           </view>
 
           <view class="flex flex-col pt-[24rpx]">
-            <text class="text-neutral-regular text-base"
-              >贷款时间：{{ item.created_at }}</text
-            >
-            <text class="text-neutral-regular text-base mt-[16rpx]"
-              >还款时间：{{ item.updated_at }}</text
-            >
+            <view class="flex flex-row items-center justify-between px-[32rpx] text-white/80 text-sm">
+              <text>贷款时间</text>
+              <text>{{ item.created_at }}</text>
+            </view>
+            <view class="flex flex-row items-center justify-between px-[32rpx] text-white/80 text-sm">
+              <text>还款时间</text>
+              <text>{{ item.updated_at }}</text>
+            </view>
           </view>
         </view>
 
-        <view
-          v-if="item.status != 0"
-          class="flex flex-row items-center px-[32rpx] py-[32rpx] justify-between gap-[16rpx] border border-solid border-neutral-divider border-b-0 border-l-0 border-r-0"
-        >
-          <wk-button
-            class="flex-grow"
-            :borderColor="$colors.theme"
-            backgroundColor="transparent"
-            :color="$colors.theme"
-            shadow=""
-            fontWeight="normal"
-            size="small"
-            borderRadius="16rpx"
-            height="64rpx"
-            @submit="handleDownload(item)"
-            v-if="
+        <view v-if="item.status != 0"
+          class="flex flex-row items-center px-[32rpx] py-[32rpx] justify-between gap-[16rpx] border border-solid border-[rgba(255,255,255,.15)] border-b-0 border-l-0 border-r-0">
+          <wk-button type="none" class="flex-grow" :borderColor="$colors.theme" background="transparent"
+            :color="$colors.theme" shadow="" fontWeight="normal" size="small" borderRadius="64rpx" height="64rpx"
+            @submit="handleDownload(item)" v-if="
               item.status != 0 &&
               download_switch == 1 &&
               ((esignature == 1 && item.sign_img) || esignature == 0)
-            "
-            >下载合同</wk-button
-          >
+            ">下载合同</wk-button>
 
-          <wk-button
-            class="flex-grow"
-            :borderColor="$colors.theme"
-            backgroundColor="transparent"
-            :color="$colors.theme"
-            shadow=""
-            fontWeight="normal"
-            size="small"
-            borderRadius="16rpx"
-            height="64rpx"
-            @submit="handleSign(item)"
-            v-if="item.status != 0 && !item.sign_img && esignature == 1"
-            >补签合同</wk-button
-          >
+          <wk-button type="none" class="flex-grow" :borderColor="$colors.theme" background="transparent"
+            :color="$colors.theme" shadow="" fontWeight="normal" size="small" borderRadius="64rpx" height="64rpx"
+            @submit="handleSign(item)" v-if="item.status != 0 && !item.sign_img && esignature == 1">补签合同</wk-button>
 
-          <wk-button
-            class="flex-grow"
-            :borderColor="$colors.theme"
-            backgroundColor="transparent"
-            :color="$colors.theme"
-            shadow=""
-            fontWeight="normal"
-            size="small"
-            borderRadius="16rpx"
-            height="64rpx"
-            @submit="goToTiQian(item)"
-            v-if="item.status == 1"
-            >提前还款</wk-button
-          >
+          <wk-button type="none" class="flex-grow" :borderColor="$colors.theme" background="transparent"
+            :color="$colors.theme" shadow="" fontWeight="normal" size="small" borderRadius="64rpx" height="64rpx"
+            @submit="goToTiQian(item)" v-if="item.status == 1">提前还款</wk-button>
 
-          <wk-button
-            class="flex-grow"
-            :borderColor="$colors.theme"
-            backgroundColor="transparent"
-            :color="$colors.theme"
-            shadow=""
-            fontWeight="normal"
-            size="small"
-            borderRadius="16rpx"
-            height="64rpx"
-            @submit="jumpToContract(item)"
-            v-if="item.status == 1"
-            >查看合同</wk-button
-          >
+          <wk-button type="none" class="flex-grow" :borderColor="$colors.theme" background="transparent"
+            :color="$colors.theme" shadow="" fontWeight="normal" size="small" borderRadius="64rpx" height="64rpx"
+            @submit="jumpToContract(item)" v-if="item.status == 1">查看合同</wk-button>
         </view>
-      </wk-stroke-bg>
+      </view>
 
     </view>
 
@@ -171,7 +108,7 @@ export default {
       uni.$on("onSign", async (sign_img) => {
         this.list = [];
         await this.getDaikuanlogs();
-        uni.$off("onSign", () => {});
+        uni.$off("onSign", () => { });
       });
       uni.navigateTo({
         url: `${routes.daiKuanHeTong}?id=${item.bianhao}`,
@@ -290,25 +227,25 @@ export default {
           url: "/api/v2/daikuan/downloadContract?contract_no=" + item.bianhao,
           method: "get",
         }).then((res) => {
-            if (res.status == 0) {
-              // #ifdef APP-PLUS
-              plus.runtime.openURL(res.url);
-              // #endif
-              // #ifdef H5
-              window.open(res.url);
-              // #endif
-            }
+          if (res.status == 0) {
+            // #ifdef APP-PLUS
+            plus.runtime.openURL(res.url);
+            // #endif
+            // #ifdef H5
+            window.open(res.url);
+            // #endif
+          }
 
-              this.loading = false;
-              uni.hideLoading();
-              return;
-            })
-            .catch((error) => {
+          this.loading = false;
+          uni.hideLoading();
+          return;
+        })
+          .catch((error) => {
             console.error("请求失败", error);
             this.loading = false;
             uni.hideLoading();
             // 处理错误情况
-            });
+          });
         return;
       }
       this.$requestApi({
@@ -369,6 +306,7 @@ export default {
   box-sizing: border-box;
   padding: 24rpx 28rpx 1rpx;
 }
+
 // 装饰部分
 .b-k-1,
 .b-k-2,
@@ -379,29 +317,35 @@ export default {
   height: 28rpx;
   border: 6rpx solid #000000;
 }
+
 .b-k-1,
 .b-k-4 {
   left: -6rpx;
   border-right: none;
 }
+
 .b-k-1,
 .b-k-2 {
   top: -6rpx;
   border-bottom: none;
 }
+
 .b-k-2,
 .b-k-3 {
   right: -6rpx;
   border-left: none;
 }
+
 .b-k-3,
 .b-k-4 {
   bottom: -6rpx;
   border-top: none;
 }
+
 // 头部固定部分
 .header-wrap {
   padding: 24rpx;
+
   // padding-bottom: 0;
   .header {
     position: relative;
@@ -410,15 +354,18 @@ export default {
     background-size: 100% 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+
     .item {
       display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
+
       .str {
         font-size: 28rpx;
         color: #000000;
       }
+
       .dfn {
         color: #fff;
         margin-top: 24rpx;
@@ -434,74 +381,87 @@ export default {
   padding: 32rpx;
   line-height: 1.4;
   margin-bottom: 24rpx;
+
   .title-status {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     .title {
       font-size: 32rpx;
       color: #fff;
     }
+
     .status {
       font-size: 28rpx;
       color: #000000;
     }
   }
+
   .line-tips {
     display: flex;
     margin-top: 24rpx;
     margin-bottom: 20rpx;
     font-size: 28rpx;
     justify-content: space-between;
+
     .var {
       color: #95caff;
     }
+
     .dfn {
       font-weight: bold;
     }
+
     .status {
       font-size: 28rpx;
       color: #000000;
     }
   }
+
   .tips-s {
     margin-top: 12rpx;
     color: #95caff;
     font-size: 28rpx;
   }
+
   .info-box-x {
     margin-top: 32rpx;
+
     .hr-x {
       height: 2rpx;
-      background-image: linear-gradient(
-        to right,
-        rgba(3, 88, 173, 1),
-        rgba(7, 254, 239, 1),
-        rgba(3, 88, 173, 1)
-      );
+      background-image: linear-gradient(to right,
+          rgba(3, 88, 173, 1),
+          rgba(7, 254, 239, 1),
+          rgba(3, 88, 173, 1));
     }
+
     .line-info {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       font-size: 28rpx;
       padding: 24rpx 0;
       padding-left: 24rpx;
-      .leftb {
-      }
+
+      .leftb {}
+
       .top {
         font-weight: bold;
         font-size: 32rpx;
       }
+
       .bot {
         color: rgba(255, 255, 255, 0.8);
       }
     }
   }
+
   .bt-box {
     display: flex;
     grid-template-columns: repeat(2, 1fr);
     font-size: 32rpx;
     column-gap: 32rpx;
+
     .item-btn {
       width: 100%;
       height: 80rpx;
@@ -513,24 +473,29 @@ export default {
       color: theme("colors.neutral.regular");
       font-size: 28rpx;
       border: 2rpx solid theme("colors.neutral.light");
+
       .lef-icon,
       .ref-icon,
       &::before,
       &::after {
         position: absolute;
       }
+
       .lef-icon,
       .ref-icon {
         width: 24rpx;
         height: 100%;
         top: 0;
       }
+
       .lef-icon {
         left: 0;
       }
+
       .ref-icon {
         right: 0;
       }
+
       &::before,
       &::after {
         content: "";
@@ -540,14 +505,17 @@ export default {
         background-size: 100% 100%;
         // background-color: #000000;
       }
+
       &::before {
         top: 0;
       }
+
       &::after {
         bottom: 0;
       }
     }
   }
+
   .other-btn {
     color: #000000;
     font-size: 28rpx;

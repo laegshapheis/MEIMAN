@@ -1,36 +1,18 @@
 <template>
-  <layout
-    ref="layoutRef"
-    mode="black"
-    navTitle="合同详情"
-    bgType="bg-white"
-    :isNavLeftBackClick="false"
-    @navLeftClick="handelBack"
-  >
+  <layout ref="layoutRef" mode="black" navTitle="合同详情" bgType="bg-white" :isLottie="false" :isNavLeftBackClick="false"
+    @navLeftClick="handelBack">
     <!-- 内容区域 => 开始 -->
     <view class="px-[32rpx]">
       <rich-text :nodes="content"></rich-text>
     </view>
-    <view
-      class="text-neutral text-xl font-bold mt-[28rpx] mb-[28rpx] px-[32rpx]"
-      >签名</view
-    >
-    <view
-      class="w-[686rpx] h-[344rpx] bg-black/10 rounded-[8rpx] mx-[32rpx] flex items-center justify-center"
-      @click="$navigateWithAnim('/pages/other_view/dian_zi_qian_ming')"
-    >
-      <image
-        :src="qm_url"
-        v-if="!img_stv"
-        class="w-full h-full rotate-[-90deg]"
-        mode="heightFix"
-      ></image>
-      <text v-else class="text-black/80 text-lg"
-        >点击签名</text
-      >
+    <view class="text-neutral text-xl font-bold mt-[28rpx] mb-[28rpx] px-[32rpx]">签名</view>
+    <view class="w-[686rpx] h-[344rpx] bg-black/10 rounded-[8rpx] mx-[32rpx] flex items-center justify-center"
+      @click="$navigateWithAnim('/pages/other_view/dian_zi_qian_ming')">
+      <image :src="qm_url" v-if="!img_stv" class="w-full h-full rotate-[-90deg]" mode="heightFix"></image>
+      <text v-else class="text-black/80 text-lg">点击签名</text>
     </view>
     <view class="px-[32rpx] my-[40rpx]">
-      <wk-button @submit="handleSubmit" fontSize="lg">确认提交</wk-button>
+      <wk-button @submit="handleSubmit" fontSize="lg" height="80rpx">确认提交</wk-button>
     </view>
     <wk-code-input ref="keywordRef" :value="pwdPay" @finish="handleFinish" />
     <wk-loading v-if="loading" />
@@ -199,10 +181,12 @@ const articleDetailsById = async (contractId) => {
 page {
   background-color: #f0f3f5;
 }
+
 .xs-bg-box {
   background-image: none !important;
   background-color: #f0f3f5;
 }
+
 .slef_32 {
   box-sizing: border-box;
   padding: 24rpx 32rpx 48rpx;
@@ -211,9 +195,11 @@ page {
 .hr-m {
   height: 24rpx;
 }
+
 .hr-x {
   height: 48rpx;
 }
+
 .he_tong_box {
   color: #252c2f;
   line-height: 1.4;
@@ -222,11 +208,13 @@ page {
   padding: 32rpx;
   background-color: #fff;
   border: 2rpx solid #000000;
+
   .title {
     font-size: 44rpx;
     text-align: center;
     margin-top: 32rpx;
   }
+
   .tou-zi-id {
     text-align: center;
     margin-top: 48rpx;
@@ -234,49 +222,60 @@ page {
     font-size: 28rpx;
     margin-bottom: 24rpx;
   }
+
   .tab-box-k {
     background-color: #f0f3f5;
     padding: 32rpx 32rpx 1rpx;
+
     .line-x {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 24rpx;
       font-size: 32rpx;
-      .var-n {
-      }
+
+      .var-n {}
+
       .dfn-n {
         font-weight: bold;
       }
-      .time-n {
-      }
+
+      .time-n {}
     }
   }
+
   .h-1-x {
     font-weight: bold;
     font-size: 32rpx;
   }
+
   .hr-m {
     height: 24rpx;
   }
+
   .span-box {
     font-size: 32rpx;
-    .var {
-    }
+
+    .var {}
+
     .bold {
       font-weight: bold;
     }
   }
+
   .hr-x {
     height: 48rpx;
   }
+
   .le-str-x {
     font-size: 32rpx;
   }
+
   .re-str-x {
     text-align: right;
     font-size: 32rpx;
   }
+
   .b-k-1,
   .b-k-2,
   .b-k-3,
@@ -286,31 +285,37 @@ page {
     height: 42rpx;
     border: 6rpx solid #000000;
   }
+
   .b-k-1,
   .b-k-4 {
     left: -6rpx;
     border-right: none;
   }
+
   .b-k-1,
   .b-k-2 {
     top: -6rpx;
     border-bottom: none;
   }
+
   .b-k-2,
   .b-k-3 {
     right: -6rpx;
     border-left: none;
   }
+
   .b-k-3,
   .b-k-4 {
     bottom: -6rpx;
     border-top: none;
   }
 }
+
 .qian-m-title {
   color: #252c2f;
   font-size: 32rpx;
 }
+
 .bai-ban {
   border: 2rpx solid #000000;
   background-color: #fff;
@@ -323,10 +328,12 @@ page {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+
   .icon {
     width: 260rpx;
     height: 80rpx;
   }
+
   .qm_img {
     transform: rotate(-90deg);
     width: 344rpx;
@@ -337,6 +344,7 @@ page {
     background-position: center;
   }
 }
+
 .copy-btn {
   margin-top: 32rpx;
   width: 100%;

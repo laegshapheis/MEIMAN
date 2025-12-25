@@ -250,7 +250,7 @@ const computedStyle = computed(() => {
   };
 
   if (preset.bgImage) {
-    style.background = `url(${preset.bgImage}) center/cover no-repeat`;
+    style.background = `url(${preset.bgImage}) center/100% no-repeat`;
   } else {
     style.background = background;
   }
