@@ -127,6 +127,7 @@ defineExpose({
 ::v-deep {
   .uv-popup__content {
     background: theme('colors.neutral.modalBg') !important;
+    border:none !important;
   }
   .uv-popup__content .uni-picker-view-mask {
     background-image: none !important;

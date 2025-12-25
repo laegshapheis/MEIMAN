@@ -152,6 +152,13 @@
   background-repeat: no-repeat;
 }
 
+.input-bg3 {
+  background-image: url('@/static/images/index/input_primary.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+
 .bg-wraper {
   background-image: url('@/static/images/recharge/rate_bg.png');
   background-size: 100% 100%;
@@ -175,4 +182,14 @@
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-position: center;
+}
+
+#app{
+  .uv-code-input__item{
+    background-color: transparent;
+    background-image: url('@/static/images/component/code-input/code_bg.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+  }
 }

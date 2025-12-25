@@ -4,7 +4,7 @@
       <text class="text-base text-neutral leading-6 font-medium">真实姓名</text>
     </view>
 
-    <view class="flex flex-row items-center justify-center h-[112rpx] bg-neutral-inputBg border-[length:1rpx] border-neutral-divider border-solid rounded-[24rpx]">
+    <view class="flex flex-row items-center justify-center h-[112rpx] input-bg3 border-[length:1rpx] border-neutral-divider border-solid rounded-[24rpx]">
       <uv-input
         class="h-[96rpx]"
         v-model="formData.realname"
@@ -42,7 +42,7 @@
         ></image>
 
         <view
-          class="flex flex-col items-center justify-center w-[208rpx] h-[208rpx] bg-neutral-inputBg border-[length:1rpx] border-neutral-divider border-solid rounded-[24rpx]"
+          class="flex flex-col items-center justify-center w-[208rpx] h-[208rpx] input-bg2 border-[length:1rpx] border-neutral-divider border-solid rounded-[24rpx]"
           v-if="!formData.upfile"
         >
           <text>

@@ -1,5 +1,5 @@
 <template>
-    <layout navTitle="提现管理" bgType="bg-main">
+    <layout navTitle="提现管理" bgType="bg-main2" :isLottie="false">
       <view class="px-page-x pt-page-y pb-[30rpx] box-border w-full flex flex-col">
         <view class="flex flex-col items-center">
           <!-- USDT -->
@@ -44,7 +44,7 @@
         </view>
   
         <view
-          class="text-base leading-6 my-[48rpx] bg-white rounded-[24rpx] p-[32rpx]"
+          class="text-base leading-6 my-[48rpx] rounded-[24rpx] p-[32rpx] bg-[#0C052F]"
           style="border: 1rpx solid #00000020;"
           v-if="userInfo.istxusdt == 1 || userInfo.iszfb == 1"
         >

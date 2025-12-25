@@ -2,16 +2,16 @@
   <view
     class="flex flex-col justify-center w-full h-[192rpx] rounded-[24rpx]"
      :class="isEmpty? 'items-center': 'items-start'"
-     :style="isEmpty? '': 'border: 1px solid #FFFFFF80'"
+     :style="isEmpty? 'border: 2px dashed rgba(255, 255, 255, 0.50);': 'border: 1px solid #FFFFFF80'"
     @click="$emit('click')"
   >
     <template v-if="isEmpty">
-      <view class="flex flex-row items-center justify-center bg-white/50 py-[16rpx] px-[24rpx] rounded-[360rpx]">
+      <view class="flex flex-row items-center justify-center py-[16rpx] px-[24rpx] rounded-[360rpx]">
         <image
           class="w-[48rpx] h-[48rpx] mr-[24rpx]"
           :src="icon"
         />
-        <text class="text-base font-medium text-black">{{ addText }}</text>
+        <text class="text-lg font-medium text-white">{{ addText }}</text>
       </view>
     </template>
     <template v-else>

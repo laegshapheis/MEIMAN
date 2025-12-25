@@ -5,7 +5,7 @@
       <text class="text-base text-neutral leading-6 font-medium">开户人姓名</text>
     </view>
 
-    <view class="flex flex-row items-center justify-center h-[96rpx] bg-[#FFFFFF] border-[length:1rpx] border-neutral-divider border-solid rounded-[24rpx]" >
+    <view class="flex flex-row items-center justify-center h-[96rpx] input-bg3  border-[length:1rpx] border-neutral-divider border-solid rounded-[24rpx]" >
       <uv-input
         class="h-[96rpx]"
         v-model="formData.bankrealname"
@@ -31,8 +31,8 @@
     <view class="flex flex-row items-center justify-between mb-[10rpx] mt-[24rpx]">
       <text class="text-base text-neutral leading-6 font-medium">请输入银行名称</text>
     </view>
-    <view class="box-border py-[12rpx] flex flex-row items-center justify-center min-h-[96rpx] bg-[#FFFFFF] border-[length:1rpx] border-neutral-divider border-solid rounded-[24rpx]">
-      <uv-textarea
+    <view class="box-border py-[12rpx] flex flex-row items-center justify-center min-h-[96rpx] input-bg3 border-[length:1rpx] border-neutral-divider border-solid rounded-[24rpx]">
+      <uv-input
         v-model="formData.bankname"
         type="text"
         maxlength="40"
@@ -81,7 +81,7 @@
       <text class="text-base text-neutral leading-6 font-medium">银行卡号</text>
     </view>
 
-    <view class="flex flex-row items-center justify-center h-[96rpx] bg-[#FFFFFF] border-[length:1rpx] border-[#2A877C33] border-solid rounded-[24rpx]">
+    <view class="flex flex-row items-center justify-center h-[96rpx] input-bg3 border-[length:1rpx] border-[#2A877C33] border-solid rounded-[24rpx]">
       <uv-input
         class="h-[96rpx]"
         v-model="formData.bankcode"
@@ -127,8 +127,8 @@
       <text class="text-base text-neutral leading-6 font-medium">开户行</text>
     </view>
 
-    <view class="box-border py-[12rpx] flex flex-row items-center justify-center min-h-[102rpx] bg-[#FFFFFF] border-[length:1rpx] border-neutral-divider border-solid rounded-[24rpx]">
-      <uv-textarea
+    <view class="box-border py-[12rpx] flex flex-row items-center justify-center min-h-[102rpx] input-bg3 border-[length:1rpx] border-neutral-divider border-solid rounded-[24rpx]">
+      <uv-input
         v-model="formData.bankaddress"
         type="text"
         placeholder="请输入开户行支行地址(选填)"

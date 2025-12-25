@@ -11,23 +11,30 @@
 
         <!-- 主要内容区域 -->
         <view class="relative flex flex-col">
+            <view class="flex flex-row items-center mb-[44rpx]">
+                <image class="h-[32rpx] w-[72rpx]" src="/static/images/profile/vip/logo.png" mode="widthFix"></image>
+                <view @click.stop="handleNavToMembershipLevel" class="py-[4rpx] px-[16rpx] bg-white/50 rounded-[36rpx] text-[#193168] text-xs ml-[8rpx]">查看等级详情</view>
+            </view>
             <!-- 成长值和直推人数 -->
             <view class="flex flex-row items-center w-full">
                 <!-- 会员成长值 -->
                 <view class="flex flex-col justify-center items-center flex-1">
-                    <view class="flex flex-row items-center w-full">
-                        <text class="text-white text-sm leading-[18px] font-normal">会员成长值</text>
-                        <view class="w-[12rpx] h-[12rpx] flex justify-center items-center ml-[4rpx]"
-                            @click="$emit('onTips', 9)">
-                            <uv-icon size="20rpx" color="#fff" name="question-circle"></uv-icon>
+                    <view class="flex items-center justify-between w-full mb-[16rpx]">
+                        <view class="flex flex-row items-center">
+                            <text class="text-white text-sm leading-[18px] font-normal">会员成长值</text>
+                            <view class="w-[12rpx] h-[12rpx] flex justify-center items-center ml-[8rpx]"
+                                @click="$emit('onTips', 9)">
+                                <uv-icon size="20rpx" color="#fff" name="question-circle"></uv-icon>
+                            </view>
+                        </view>
+                        <view class="flex flex-row items-center mt-[8rpx]">
+                            <text class="text-white text-sm leading-[14px] ">
+                                <text class="font-bold">{{ userInfo.buymoney || 0 }}</text>
+                                <text class="font-bold text-white/60">/{{ userInfo.serlfmoney || 0 }}</text>
+                            </text>
                         </view>
                     </view>
-                    <view class="flex flex-row items-center w-full mt-[8rpx]">
-                        <text class="text-white text-sm leading-[14px] font-medium">
-                            <text class="font-normal">{{ userInfo.buymoney || 0 }}</text>
-                            <text class="font-normal">/{{ userInfo.serlfmoney || 0 }}</text>
-                        </text>
-                    </view>
+
                     <view class="w-full mt-[8rpx]">
                         <uv-line-progress height="12rpx" :showText="false" :percentage="growthProgress"
                             inactiveColor="rgba(0,0,0,0.60)" activeColor="#fff"></uv-line-progress>
@@ -35,7 +42,7 @@
                 </view>
 
                 <!-- 直推人数 -->
-                <view class="flex flex-col justify-center items-center ml-[32rpx] w-[186rpx]">
+                <!-- <view class="flex flex-col justify-center items-center ml-[32rpx] w-[186rpx]">
                     <view class="flex flex-row items-center w-full">
                         <text class="text-white text-sm leading-[18px] font-normal">直推人数</text>
                         <view class="w-[12rpx] h-[12rpx] flex justify-center items-center ml-[4rpx]"
@@ -54,11 +61,11 @@
                             inactiveColor="rgba(0,0,0,0.60)" activeColor="#fff"></uv-line-progress>
                     </view>
 
-                </view>
+                </view> -->
             </view>
 
             <!-- 底部按钮 -->
-            <view class="flex flex-row items-center w-full mt-[48rpx]">
+            <!-- <view class="flex flex-row items-center w-full mt-[48rpx]">
                 <view
                     class="flex-1 h-[64rpx] rounded-[720rpx] btn flex flex-col px-[48rpx] justify-center items-center"
                     @click="handleNavToMembershipLevel">
@@ -76,7 +83,7 @@
 
                     </view>
                 </view>
-            </view>
+            </view> -->
         </view>
     </view>
 </template>
@@ -148,14 +155,14 @@ const qualifiedProgress = computed(() => {
 }
 
 .vip-card {
-    height: 298rpx;
+    height: 202rpx;
     width: 100%;
     background-image: url('/static/images/profile/vip/bg.png');
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: center;
     box-sizing: border-box;
-    padding: 64rpx 32rpx 32rpx 32rpx;
+    padding: 28rpx 32rpx 32rpx 32rpx;
 }
 
 .vip-card-inner {
@@ -163,7 +170,7 @@ const qualifiedProgress = computed(() => {
     height: 100%;
 }
 
-.btn{
+.btn {
     background: rgba(255, 255, 255, 0.20);
     box-shadow: 0 0 15.6px 0 #FFF inset;
 }

@@ -1,18 +1,22 @@
 <template>
-  <wk-stroke-bg class="h-full relative mb-[32rpx] bg-card2">
+  <view class="h-full relative mb-[32rpx] bg-[#1F197D] py-[24rpx] px-[32rpx] rounded-[24rpx]">
     <view class="flex flex-row items-center justify-between h-full">
       <image class="w-[354rpx] h-[244rpx]" :src="imgSrc" mode="aspectFit" />
 
-      <view class="h-[192rpx] flex flex-col items-center justify-between">
-        <text class="text-neutral-regular text-lg">{{ text }}</text>
+      <view class="h-[192rpx] flex flex-col items-center justify-center">
+        <text class="text-neutral-regular text-lg mb-[16rpx]">{{ text }}</text>
         <wk-button
-          class="w-[176rpx] h-[56rpx] flex flex-row items-center justify-center text-sm"
-          :backgroundColor="$colors.theme"
+          class="w-[176rpx] flex flex-row items-center justify-center text-sm"
+          height="64rpx"
+          background="transparent"
+          borderColor="#5493FF"
           @submit="selImg"
-          borderRadius="16rpx"
+          type="text"
+          shadow="none"
+          borderRadius="64rpx"
           >
           <text
-            class="text-neutral-white text-sm"
+            class="text-[#5493FF] text-sm"
           >上传</text>
           <!-- <uv-icon
             class="ml-[8rpx] mt-[4rpx]"
@@ -23,7 +27,7 @@
         </wk-button>
       </view>
     </view>
-  </wk-stroke-bg>
+  </view>
   <wk-loading v-if="loading" :loadingText="loadingText" />
 </template>
 

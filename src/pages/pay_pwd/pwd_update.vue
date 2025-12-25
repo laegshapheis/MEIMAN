@@ -5,25 +5,25 @@
           <view v-if="type == 0" class="mt-[58rpx] text-center">
             <view v-if="new_pass_s == 0" class="text-lg font-semibold text-center">
               <text>请输入支付密码</text>
-              <uv-code-input class="mt-[58rpx]" v-model="new_pass" :maxlength="6" :focus="true"  borderColor="none" :dot="true" color="#000" size="90rpx" @finish="keyConfirm"></uv-code-input>
+              <uv-code-input class="mt-[58rpx]" v-model="new_pass" :maxlength="6" :focus="true"  borderColor="none" :dot="true" color="#fff" size="90rpx" @finish="keyConfirm"></uv-code-input>
             </view>
             <view v-if="new_pass_s == 1" class="text-lg font-semibold text-center">
               <text>请再次输入支付密码！</text>
-              <uv-code-input class="mt-[58rpx]" v-model="new_pass_firm" :maxlength="6" :focus="true" borderColor="none" :dot="true" color="#000" size="90rpx" @finish="keyConfirm"></uv-code-input>
+              <uv-code-input class="mt-[58rpx]" v-model="new_pass_firm" :maxlength="6" :focus="true" borderColor="none" :dot="true" color="#fff" size="90rpx" @finish="keyConfirm"></uv-code-input>
             </view>
           </view>
           <view v-if="type == 1" class="text-neutral text-3xl font-semibold">
             <view v-if="old_pass_s == 0" class="text-lg font-semibold text-center">
               <text>请输入原支付密码</text>
-              <uv-code-input class="mt-[58rpx]" v-model="old_pass" :maxlength="6" :focus="true" borderColor="none" :dot="true" color="#000" size="90rpx" @finish="keyConfirm"></uv-code-input>
+              <uv-code-input class="mt-[58rpx]" v-model="old_pass" :maxlength="6" :focus="true" borderColor="none" :dot="true" color="#fff" size="90rpx" @finish="keyConfirm"></uv-code-input>
             </view>
             <view v-if="old_pass_s == 1" class="text-lg font-semibold text-center">
               <text>请输入新的支付密码！</text>
-              <uv-code-input class="mt-[58rpx]" v-model="new_pass" :maxlength="6" :focus="true" borderColor="none" :dot="true" color="#000" size="90rpx" @finish="keyConfirm"></uv-code-input>
+              <uv-code-input class="mt-[58rpx]" v-model="new_pass" :maxlength="6" :focus="true" borderColor="none" :dot="true" color="#fff" size="90rpx" @finish="keyConfirm"></uv-code-input>
             </view>
             <view v-if="old_pass_s == 2" class="text-lg font-semibold text-center">
               <text>请再次输入新的支付密码！</text>
-              <uv-code-input class="mt-[58rpx]" v-model="new_pass_firm" :maxlength="6" :focus="true" borderColor="none" :dot="true" color="#000" size="90rpx" @finish="keyConfirm"></uv-code-input>
+              <uv-code-input class="mt-[58rpx]" v-model="new_pass_firm" :maxlength="6" :focus="true" borderColor="none" :dot="true" color="#fff" size="90rpx" @finish="keyConfirm"></uv-code-input>
             </view>
           </view>
         </view>

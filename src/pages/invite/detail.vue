@@ -162,8 +162,8 @@
       </l-painter-view>
     </l-painter>
     <wk-loading v-if="loading" :loadingText="loadingText" />
-    <wk-modal ref="contentPopup" title="">
-      <uv-parse :content="content" container-style="white-space: pre-wrap"></uv-parse>
+    <wk-modal ref="contentPopup" title=" ">
+      <uv-parse :content="content" container-style="white-space: pre-wrap;margin-top:20rpx"></uv-parse>
     </wk-modal>
   </layout>
 </template>

@@ -1,9 +1,9 @@
 <template>
-    <layout navTitle="重置支付密码"  bgType="bg-main"> 
+    <layout navTitle="重置支付密码" bgType="bg-main2" :isLottie="false"> 
       <view class="p-[32rpx]">
         <view v-if="old_pass_s == 0">
           <view>
-            <view class="mb-[10rpx] text-base text-neutral-regular font-medium">密钥</view>
+            <view class="mb-[10rpx] text-base text-neutral-regular/80 font-medium ml-[24rpx]">密钥</view>
             <view 
           class="flex flex-row items-center justify-between">
         
@@ -20,6 +20,7 @@
           </view>
           <view class="fixed bottom-0 left-0 right-0 px-[32rpx] py-[16rpx]">
             <wk-button
+              height="80rpx"
               @submit="verifyMiyao"
             >
               {{cz_str == true ? '核验中...' : '确定'}}

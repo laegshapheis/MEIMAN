@@ -1,40 +1,26 @@
 <template>
-  <layout navTitle="验证密钥" bgType="bg-main">
+  <layout navTitle="验证密钥" bgType="bg-main2" :isLottie="false">
     <view class="p-[32rpx]">
-      <wk-stroke-bg shadow size="large">
+      <view class="card">
         <view class="flex flex-row justify-center mb-[24rpx]">
-          <image
-            class="w-[128rpx] h-[128rpx]"
-            src="/static/images/base/miyao_icon.png"
-            mode="scaleToFill"
-          />
+          <image class="w-[184rpx] h-[184rpx]" src="/static/images/base/miyao_icon.png" mode="scaleToFill" />
         </view>
-        <view class="text-neutral text-center text-lg mb-[24rpx] font-semibold">
+        <view class="text-neutral text-center text-xl font-semibold mb-[16rpx]">
           <text>粘贴您的密钥以登录</text>
         </view>
         <!-- 密码显示框 -->
         <view
-          class="relative rounded-[24rpx] bg-[#F5F8FD] h-[144rpx] flex flex-row items-center justify-center px-[32rpx] mb-[48rpx]"
-        >
-          <wk-input
-            style="background: transparent"
-            class="relative z-10 w-full text-center font-bold"
-            v-model="str"
-            borderWidth="0"
-            fontSize="48rpx"
-            inputAlign="center"
-            @input="handleInput"
-            placeholder="长按此处粘贴密钥"
+          class="relative rounded-[24rpx] bg-[#0C052F] h-[92rpx] flex flex-row items-center justify-center px-[32rpx] mb-[48rpx]">
+          <wk-input style="background: transparent" class="relative z-10 w-full text-center font-bold" v-model="str"
+            borderWidth="0" fontSize="48rpx" inputAlign="center" @input="handleInput" placeholder="长按此处粘贴密钥"
             :placeholder-style="{
               color: $colors.regular,
               fontSize: '32rpx',
               fontWeight: 'normal',
-            }"
-            @longpress="handleLongPress"
-          />
+            }" @longpress="handleLongPress" />
         </view>
-        <wk-button @submit="jumpApp"> 登录 </wk-button>
-      </wk-stroke-bg>
+        <wk-button height="80rpx" @submit="jumpApp"> 登录 </wk-button>
+      </view>
     </view>
     <wk-modal ref="modal" :showConfirmButton="false" title="联系客服">
       <view class="flex flex-col justify-center w-full">
@@ -139,5 +125,17 @@ const handleInput = (e) => {
 };
 </script>
 
-<style lang="scss" scoped></style>
-
+<style lang="scss" scoped>
+  .card{
+    background-image: url('@/static/images/miyao/card_bg.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding:66rpx 32rpx;
+    border-radius: 24rpx;
+    box-shadow: 0 0 10rpx 0 rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+  }
+</style>

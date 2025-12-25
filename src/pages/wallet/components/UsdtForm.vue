@@ -4,7 +4,7 @@
       <text class="text-base text-neutral leading-6 font-medium">地址类型</text>
     </view>
 
-    <view class="flex flex-row items-center h-[112rpx] bg-neutral-inputBg border-[length:1rpx] border-neutral-divider border-solid rounded-[24rpx]">
+    <view class="flex flex-row items-center h-[112rpx] input-bg3 border-[length:1rpx] border-neutral-divider border-solid rounded-[24rpx]">
       <wk-picker
         style="width: 100%"
         @change="handleChangeMethod"
@@ -25,7 +25,7 @@
       <text class="text-base text-neutral leading-6 font-medium">USDT 地址</text>
     </view>
 
-    <view class="flex flex-row items-center justify-center min-h-[112rpx] bg-neutral-inputBg border-[length:1rpx] border-neutral-divider border-solid rounded-[24rpx]">
+    <view class="flex flex-row items-center justify-center min-h-[112rpx] input-bg3 border-[length:1rpx] border-neutral-divider border-solid rounded-[24rpx]">
       <uv-textarea
         v-model="formData.usdtadr"
         type="text"

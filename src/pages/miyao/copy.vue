@@ -1,52 +1,28 @@
 <template>
-  <layout class="" navTitle="我的密钥" bgType="bg-main">
+  <layout navTitle="我的密钥" bgType="bg-main2" :isLottie="false">
     <view class="p-[32rpx]">
-      <wk-stroke-bg shadow size="large">
+      <view class="card">
         <view class="flex flex-row justify-center mb-[24rpx]">
-          <image
-            class="w-[196rpx] h-[196rpx]"
-            src="/static/images/base/miyao_icon.png"
-            mode="scaleToFill"
-          />
+          <image class="w-[184rpx] h-[184rpx]" src="/static/images/base/miyao_icon.png" mode="scaleToFill" />
         </view>
-        <view class="text-neutral text-center text-2xl font-semibold">
-          <text>您当前的密钥</text>
+        <view class="text-neutral text-center text-xl font-semibold mb-[16rpx]">
+          <text>请妥善保存您的密钥</text>
         </view>
-        <view
-          class="text-center text-sm mt-[10rpx] mb-[32rpx] text-neutral-regular"
-        >
+        <!-- <view class="text-center text-sm mt-[10rpx] mb-[32rpx] text-neutral-regular">
           <text>请复制保存好您的密钥</text>
-        </view>
+        </view> -->
 
         <view
-          class="bg-[#F5F8FD] rounded-[24rpx] h-[144rpx] flex flex-row items-center justify-center mb-[48rpx] px-[32rpx] text-3xl text-black font-bold"
-        >
+          class="bg-[#0C052F] rounded-[24rpx] h-[112rpx]  flex flex-row items-center justify-center mb-[32rpx] px-[32rpx] text-3xl text-white font-bold">
           {{ formatMiyao(mi_bao_str) }}
         </view>
-        <wk-button class="mb-[16rpx]" @submit="saveMiYao"> 复制密钥 </wk-button>
-        <wk-button
-          :isShowShadow="false"
-          :color="$colors.theme"
-          :buttonStyle="{
-            border: '1rpx solid ' + $colors.theme,
-            background: 'transparent',
-            fontWeight: 'normal',
-          }"
-          @submit="confirmSaveCode"
-        >
-          确认已保存密钥
-        </wk-button>
-      </wk-stroke-bg>
-      <view
-        style="
-          border-radius: var(--margin-small, 12px);
+        <wk-button height="80rpx" class="mb-[16rpx]" @submit="saveMiYao">复制密钥</wk-button>
+        <wk-button height="80rpx" @submit="confirmSaveCode">确认已保存密钥</wk-button>
+      </view>
+      <view style="
           border: 0.5px solid rgba(42, 135, 124, 0.6);
-          background: rgba(255, 255, 255, 0.05);
-        "
-        class="p-[32rpx] mt-[32rpx] border-[length:1rpx] border-solid border-neutral-theme rounded-[24rpx]"
-        bgColor="transparent"
-        size="small"
-      >
+        " class="bg-[#0C052F] p-[32rpx] mt-[32rpx] border-[length:1rpx] border-solid border-neutral-theme rounded-[48rpx]"
+        bgColor="transparent" size="small">
         <wk-common-tip :content="wx_ti_shi"></wk-common-tip>
       </view>
     </view>
@@ -116,5 +92,17 @@ const confirmSaveCode = async () => {
 };
 </script>
 
-<style lang="scss" scoped></style>
-
+<style lang="scss" scoped>
+  .card{
+    background-image: url('@/static/images/miyao/card_bg.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding:66rpx 32rpx;
+    border-radius: 24rpx;
+    box-shadow: 0 0 10rpx 0 rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+  }
+</style>

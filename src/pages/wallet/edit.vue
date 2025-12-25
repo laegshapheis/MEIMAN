@@ -1,66 +1,38 @@
 <template>
-  <layout :navTitle="navTitle" bgType="bg-main">
+  <layout :navTitle="navTitle" bgType="bg-main2" :isLottie="false">
     <template v-slot:navRight v-if="code == 'usdt'">
-      <view
-        class="flex bg-white/10 rounded-full flex-row items-center justify-end px-[16rpx] py-[8rpx] pt-[5rpx]"
-        @click="navigateTo(routes.indexGuide)"
-      >
+      <view class="flex bg-white/10 rounded-full flex-row items-center justify-end px-[16rpx] py-[8rpx] pt-[5rpx]"
+        @click="navigateTo(routes.indexGuide)">
         <text class="text-base mr-[2rpx] text-neutral">下载钱包</text>
       </view>
     </template>
 
-    <view
-      class="px-page-x pt-page-y pb-[30rpx] box-border w-full flex flex-col"
-    >
+    <view class="px-page-x pt-page-y pb-[30rpx] box-border w-full flex flex-col">
       <!-- 银行卡表单 -->
-      <bank-form
-        v-if="code == 'bank'"
-        v-model:formData="params"
-        :cardlist="userInfo.cardlist"
-        @openAddressSelect="openAddressSelect"
-        ref="bankFormRef"
-      />
+      <bank-form v-if="code == 'bank'" v-model:formData="params" :cardlist="userInfo.cardlist"
+        @openAddressSelect="openAddressSelect" ref="bankFormRef" />
 
       <!-- USDT表单 -->
-      <usdt-form
-        v-if="code == 'usdt'"
-        v-model:formData="params"
-        :onlineWalletList="onlineWalletList"
-        @onGuideClick="navigateTo(routes.indexGuide)"
-        ref="usdtFormRef"
-      />
+      <usdt-form v-if="code == 'usdt'" v-model:formData="params" :onlineWalletList="onlineWalletList"
+        @onGuideClick="navigateTo(routes.indexGuide)" ref="usdtFormRef" />
 
       <!-- 支付宝表单 -->
-      <alipay-form
-        v-if="code == 'alipay'"
-        v-model:formData="params"
-        @onUploadClick="uploadFile"
-        ref="alipayFormRef"
-      />
+      <alipay-form v-if="code == 'alipay'" v-model:formData="params" @onUploadClick="uploadFile" ref="alipayFormRef" />
 
       <!-- 微信表单 -->
-      <wechat-form
-        v-if="code == 'wechat'"
-        v-model:formData="params"
-        @onUploadClick="uploadFile"
-        ref="wechatFormRef"
-      />
+      <wechat-form v-if="code == 'wechat'" v-model:formData="params" @onUploadClick="uploadFile" ref="wechatFormRef" />
 
       <!-- 按钮 -->
       <view class="py-[16rpx] mt-[32rpx]">
-        <wk-button
-          type="bg"
-          @submit="prepareSubmit"
-        >
+        <wk-button height="80rpx" fontSize="30rpx" @submit="prepareSubmit">
           立即添加
         </wk-button>
       </view>
 
-      <view v-if="userInfo.istxusdt == 1 || userInfo.iszfb == 1" 
-      class="text-base leading-6 mt-[40rpx] mb-[150rpx] bg-white rounded-[24rpx] p-[32rpx]"
-      style="border: 1rpx solid #00000020;"
-      >
-        <CommonTips :content="tips"></CommonTips>
+      <view v-if="userInfo.istxusdt == 1 || userInfo.iszfb == 1"
+        class="text-base leading-6 mt-[40rpx] mb-[150rpx] bg-[#0C052F] rounded-[24rpx] p-[32rpx]"
+        style="border: 1rpx solid #00000020;">
+        <CommonTips :content="tips" color="rgba(255,255,255,0.8)"></CommonTips>
       </view>
     </view>
 
@@ -166,7 +138,7 @@ const handleAddressConfirm = (data) => {
 
 const prepareSubmit = () => {
   let isValid = false;
-  
+
   switch (code.value) {
     case "bank":
       isValid = bankFormRef.value.validate();

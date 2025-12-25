@@ -1,118 +1,60 @@
 <template>
-  <layout
-    ref="layoutRef"
-    :refresher="true"
-    @onRefresh="handleRefresh"
-    navTitle="实名认证"
-    bgType="bg-main"
-  >
+  <layout ref="layoutRef" :refresher="true" @onRefresh="handleRefresh" navTitle="实名认证" bgType="bg-main2"
+    :isLottie="false">
     <view class="px-[32rpx] pb-[180rpx]" v-if="loadingFlag">
       <!-- 审核中 -->
-      <view
-        class="flex-col flex items-center justify-center"
-        v-if="certificate_stae == 4"
-      >
-        <image
-          class="w-[184rpx] h-[184rpx]"
-          src="/static/images/user/audit.png"
-          mode="widthFix"
-        />
+      <view class="flex-col flex items-center justify-center" v-if="certificate_stae == 4">
+        <image class="w-[184rpx] h-[184rpx]" src="/static/images/user/audit.png" mode="widthFix" />
         <view class="text-center flex flex-col mt-[20rpx] mb-[60rpx]">
           <text class="text-neutral text-xl">实名资料审核中</text>
-          <text class="text-neutral/80 text-lg mt-[10rpx]"
-            >请稍后再来查看审核结果</text
-          >
+          <text class="text-neutral/80 text-lg mt-[10rpx]">请稍后再来查看审核结果</text>
         </view>
       </view>
       <!-- 完成认证，审核通过 -->
-      <view
-        class="w-full flex flex-col justify-center items-center mt-[50rpx]"
-        v-if="certificate_stae === 2 || certificate_stae === 3"
-      >
-        <image
-          class="w-[184rpx] h-[184rpx]"
-          src="/static/images/user/audit_success.png"
-          mode="widthFix"
-        />
+      <view class="w-full flex flex-col justify-center items-center mt-[50rpx]"
+        v-if="certificate_stae === 2 || certificate_stae === 3">
+        <image class="w-[184rpx] h-[184rpx]" src="/static/images/user/audit_success.png" mode="widthFix" />
         <view class="mt-[20rpx] mb-[60rpx] text-center">
           <text class="text-neutral text-xl">{{ more_text }}</text>
         </view>
       </view>
-      <template
-        v-if="
-          certificate_stae == 1 ||
-          certificate_stae == 3 ||
-          certificate_stae == 4 ||
-          certificate_stae == 5
-        "
-      >
-        <view
-          v-if="
-            certificate_stae !== 4 && certificate_stae !== 3 && rz_sjnum > 0
-          "
-          class="mb-[60rpx] flex flex-col items-center justify-center mt-[20rpx]"
-        >
-          <image
-            class="w-[184rpx] h-[184rpx]"
-            src="/static/images/user/audit_fail.png"
-            mode="widthFix"
-          />
-          <view class="mt-[32rpx] text-neutral text-xl"
-            >实名资料审核失败！</view
-          >
-          <view class="mt-[20rpx] text-neutral-regular text-lg"
-            >失败原因：{{ sb_mark }}</view
-          >
-          <view
-            v-if="sancishibai"
-            class="mt-[20rpx] text-neutral-error text-base"
-            >{{ sancishibai }}</view
-          >
+      <template v-if="
+        certificate_stae == 1 ||
+        certificate_stae == 3 ||
+        certificate_stae == 4 ||
+        certificate_stae == 5
+      ">
+        <view v-if="
+          certificate_stae !== 4 && certificate_stae !== 3 && rz_sjnum > 0
+        " class="mb-[60rpx] flex flex-col items-center justify-center mt-[20rpx]">
+          <image class="w-[184rpx] h-[184rpx]" src="/static/images/user/audit_fail.png" mode="widthFix" />
+          <view class="mt-[32rpx] text-neutral text-xl">实名资料审核失败！</view>
+          <view class="mt-[20rpx] text-neutral-regular text-lg">失败原因：{{ sb_mark }}</view>
+          <view v-if="sancishibai" class="mt-[20rpx] text-neutral-error text-base">{{ sancishibai }}</view>
         </view>
-        <view class="mb-[44rpx] bg-white p-[32rpx] rounded-[48rpx]" style="border: 1rpx solid #00000020;">
-          <view class="text-black text-base mb-[24rpx]">实名信息</view>
-          <view class="flex flex-row justify-between">
-            <view class="text-neutral-regular text-base mb-[10rpx]"
-              >真实姓名</view>
-              <view v-if="certificate_stae == 5 || certificate_stae == 3">
-            <text class="text-neutral-regular text-lg font-bold">{{ user_name }}</text>
+        <view class="mb-[44rpx] py-[32rpx] rounded-[48rpx]" style="border: 1rpx solid #00000020;">
+          <!-- <view class="text-white/80 text-base mb-[24rpx]">实名信息</view> -->
+          <view class="flex flex-col justify-between">
+            <view class="text-neutral-regular/80 text-sm mb-[10rpx]">真实姓名</view>
+            <view class="input-bg3 h-[96rpx] flex items-center px-[24rpx]" v-if="certificate_stae == 5 || certificate_stae == 3">
+              <text class="text-neutral-regular text-lg font-bold">{{ user_name }}</text>
+            </view>
           </view>
-          </view>
-          <view class="h-[1rpx] bg-neutral-divider w-full my-[16rpx]"></view>
-          <view class="flex flex-row justify-between">
-            <view class="text-neutral-regular text-base mb-[10rpx]"
-              >身份证号码</view
-            >
-            <view v-if="certificate_stae == 5 || certificate_stae == 3">
-            <text class="text-neutral-regular text-lg font-bold">{{ certificate_no }}</text>
-          </view>
+          <!-- <view class="h-[1rpx] bg-neutral-divider w-full my-[16rpx]"></view> -->
+          <view class="flex flex-col justify-between mt-[24rpx]">
+            <view class="text-neutral-regular/80 text-sm mb-[10rpx]">身份证号码</view>
+            <view class="input-bg3 h-[96rpx] flex items-center px-[24rpx]" v-if="certificate_stae == 5 || certificate_stae == 3">
+              <text class="text-neutral-regular text-lg font-bold">{{ certificate_no }}</text>
+            </view>
           </view>
         </view>
-        <view
-          class="flex flex-col mt-[24rpx] bg-white"
-          v-if="certificate_stae == 1 && isShowInfo"
-        >
-          <idCardItem
-            v-if="is_card_image == 1"
-            text="身份证正面"
-            :src="simg_1"
-            :defaultSrc="defaultSrc1"
-            @click="(src) => handleSelImage(src, 'simg_1')"
-          />
-          <idCardItem
-            v-if="is_card_image == 1"
-            text="身份证反面"
-            :src="simg_2"
-            :defaultSrc="defaultSrc2"
-            @click="(src) => handleSelImage(src, 'simg_2')"
-          />
-          <idCardItem
-            v-if="ishandheld == 1"
-            text="手持身份证"
-            :src="simg_3"
-            :defaultSrc="defaultSrc3"
-            @click="(src) => handleSelImage(src, 'simg_3')"
-          />
+        <view class="flex flex-col mt-[24rpx] bg-white" v-if="certificate_stae == 1 && isShowInfo">
+          <idCardItem v-if="is_card_image == 1" text="身份证正面" :src="simg_1" :defaultSrc="defaultSrc1"
+            @click="(src) => handleSelImage(src, 'simg_1')" />
+          <idCardItem v-if="is_card_image == 1" text="身份证反面" :src="simg_2" :defaultSrc="defaultSrc2"
+            @click="(src) => handleSelImage(src, 'simg_2')" />
+          <idCardItem v-if="ishandheld == 1" text="手持身份证" :src="simg_3" :defaultSrc="defaultSrc3"
+            @click="(src) => handleSelImage(src, 'simg_3')" />
         </view>
       </template>
       <!-- 未提交认证 -->
@@ -120,85 +62,44 @@
       <template v-if="certificate_stae == 0">
         <view class="mt-[24rpx]">
           <view class="flex flex-col mb-[24rpx]">
-            <view class="text-neutral-regular text-base mb-[10rpx]">真实姓名</view>
-            <view 
-              class="flex flex-row items-center justify-between rounded-[32rpx]">
-        
-          <wk-input
-            class="text-regular text-base font-medium"
-            fontSize="32rpx"
-            maxlength="50"
-            borderWidth="0rpx"
-            v-model="user_name"
-            placeholder="请输入真实姓名"
-            @input="vinInput"
-          />
-        </view>
+            <view class="text-neutral-regular/80 text-sm mb-[10rpx]">真实姓名</view>
+            <view class="flex flex-row items-center justify-between rounded-[32rpx]">
+            <wk-input class="text-regular text-base font-medium" fontSize="32rpx"  bgSize="100%" maxlength="50" borderWidth="0rpx"
+                v-model="user_name" placeholder="请输入真实姓名" @input="vinInput" />
+            </view>
           </view>
           <view class="flex flex-col">
-            <view class="text-neutral-regular text-base mb-[10rpx]">身份证号码</view>
-            <view 
-          class="flex flex-row items-center justify-between rounded-[32rpx] ">
-        
-          <wk-input
-            class="text-neutral/80 text-base font-medium"
-            fontSize="32rpx"
-            maxlength="18"
-            borderWidth="0rpx"
-            v-model="certificate_no"
-            placeholder="请输入身份证号码"
-            @input="sfzInput"
-          />
-        </view>
+            <view class="text-neutral-regular/80 text-sm mb-[10rpx]">身份证号码</view>
+            <view class="flex flex-row items-center justify-between rounded-[32rpx] ">
+
+              <wk-input class="text-neutral/80 text-base font-medium" fontSize="32rpx" bgSize="100%" maxlength="18" borderWidth="0rpx"
+                v-model="certificate_no" placeholder="请输入身份证号码" @input="sfzInput" />
+            </view>
           </view>
         </view>
-        <view class="flex flex-col mt-[32rpx] bg-white p-[32rpx] rounded-[24rpx]" v-if="isShowInfo" style="border: 1rpx solid #00000020;">
+
+        <view class="flex flex-col mt-[32rpx] bg-white p-[32rpx] rounded-[24rpx]" v-if="isShowInfo"
+          style="border: 1rpx solid #00000020;">
           <view class="mb-[32rpx] text-neutral-regular text-lg font-bold">上传证照信息</view>
-          <idCardItem
-            v-if="is_card_image == 1"
-            text="身份证正面"
-            :src="simg_1"
-            :defaultSrc="defaultSrc1"
-            @click="(src) => handleSelImage(src, 'simg_1')"
-          />
-          <idCardItem
-            v-if="is_card_image == 1"
-            text="身份证反面"
-            :src="simg_2"
-            :defaultSrc="defaultSrc2"
-            @click="(src) => handleSelImage(src, 'simg_2')"
-          />
-          <idCardItem
-            v-if="ishandheld == 1"
-            text="手持身份证"
-            :src="simg_3"
-            :defaultSrc="defaultSrc3"
-            @click="(src) => handleSelImage(src, 'simg_3')"
-          />
+          <idCardItem v-if="is_card_image == 1" text="身份证正面" :src="simg_1" :defaultSrc="defaultSrc1"
+            @click="(src) => handleSelImage(src, 'simg_1')" />
+          <idCardItem v-if="is_card_image == 1" text="身份证反面" :src="simg_2" :defaultSrc="defaultSrc2"
+            @click="(src) => handleSelImage(src, 'simg_2')" />
+          <idCardItem v-if="ishandheld == 1" text="手持身份证" :src="simg_3" :defaultSrc="defaultSrc3"
+            @click="(src) => handleSelImage(src, 'simg_3')" />
         </view>
       </template>
 
       <wk-common-tip
-        class="mt-[24rpx] bg-white text-neutral-tips p-[32rpx] rounded-[48rpx] border-[length:1rpx] border-solid border-neutral-divider"
-        :content="noteMsg"
-      ></wk-common-tip>
+        class="mt-[24rpx] bg-[#0C052F] text-white/80 p-[32rpx] rounded-[48rpx] border-[length:1rpx] border-solid border-neutral-divider"
+        :content="noteMsg" color="rgba(255,255,255,0.8)"></wk-common-tip>
     </view>
-    <view
-      v-if="certificate_stae == 0 || certificate_stae == 1"
-      class="bg-neutral-bottomBtnBg fixed bottom-0 left-0 right-0 px-[32rpx] py-[24rpx]"
-    >
-      <wk-button
-        v-if="certificate_stae == 0"
-        height="86rpx"
-        @submit="handleSubmit"
-      >
+    <view v-if="certificate_stae == 0 || certificate_stae == 1"
+      class="bg-neutral-bottomBtnBg fixed bottom-0 left-0 right-0 px-[32rpx] py-[24rpx]">
+      <wk-button v-if="certificate_stae == 0" height="80rpx" @submit="handleSubmit">
         立即认证
       </wk-button>
-      <wk-button
-        v-if="certificate_stae == 1"
-        height="86rpx"
-        @submit="handleSubmit"
-      >
+      <wk-button v-if="certificate_stae == 1" height="80rpx" @submit="handleSubmit">
         重新认证
       </wk-button>
     </view>
@@ -339,12 +240,12 @@ const checkIdcard = (b) => {
   if (18 == a)
     if (
       ((a = RegExp(/^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X)$/)),
-      (a = b.match(a)),
-      (c = new Date(a[2] + "/" + a[3] + "/" + a[4])),
-      (a =
-        c.getFullYear() == Number(a[2]) &&
-        c.getMonth() + 1 == Number(a[3]) &&
-        c.getDate() == Number(a[4])))
+        (a = b.match(a)),
+        (c = new Date(a[2] + "/" + a[3] + "/" + a[4])),
+        (a =
+          c.getFullYear() == Number(a[2]) &&
+          c.getMonth() + 1 == Number(a[3]) &&
+          c.getDate() == Number(a[4])))
     ) {
       a = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2];
       c = "10X98765432".split("");
