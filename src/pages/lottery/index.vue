@@ -1,18 +1,26 @@
 <template>
-  <layout navTitle="幸运大抽奖" bgType="bg-main5" mode="black">
-
+  <layout navTitle="" bgType="bg-main5" :isLottie="false">
     <template v-slot:navRight>
       <view
-        class="flex flex-row w-full items-center justify-end bg-black/10 px-[16rpx] py-[4rpx] rounded-[24rpx]"
+        class="flex flex-row w-full items-center justify-end px-[16rpx] py-[4rpx] rounded-[24rpx]"
         @click="goLotteryRecord()"
       >
-        <text class="text-sm mr-[2rpx] text-black">中奖记录</text>
+        <text class="text-sm mr-[2rpx] text-white">中奖记录</text>
       </view>
     </template>
 
+    <!-- 背景图片 -->
+    <view class="lottery-bg-container">
+      <image
+        src="/static/images/lottery/lottery_bg.png"
+        class="lottery-bg-image"
+        mode="aspectFill"
+      ></image>
+    </view>
+
     <!-- 内容区域 => 开始 -->
-    <view class="lottery-container">
-      <view class="flex flex-col justify-center items-center relative z-10 px-[32rpx] relative h-[400rpx]">
+    <view class="lottery-container relative z-10">
+      <view class="flex flex-col justify-center items-center relative z-10 px-[32rpx] relative h-[200rpx]">
         <!-- <text class="text-[3em] font-bold">幸运大抽奖</text> -->
         <!-- <image
           class="w-[390rpx] mt-[200rpx] z-0"
@@ -20,18 +28,26 @@
           mode="widthFix"
         ></image> -->
         <image
-          class="w-[702rpx] absolute -top-[46rpx] left-[36rpx] z-1"
+          class="w-[440rpx] absolute top-[66rpx]  z-1"
           src="/static/images/index/lottery_title_bg.png"
           mode="widthFix"
         ></image>
       </view>
-      <view class="flex justify-center items-center relative z-10 -top-[100rpx] left-[10rpx] z-0">
+      <view class="flex justify-center items-center relative z-10 top-[180rpx] left-[10rpx] z-0">
         <view class="ci_shu text-neutral-black rounded-b-[0rpx]">今日剩余抽奖次数：{{ remain_count }}</view>
       </view>
       <view class="grid-container relative -mt-[150rpx]">
-        <image src="/static/images/index/bg_lottery.png" class="absolute top-0 left-0 w-full h-[858rpx]" ></image>
+        <c-lottie
+          class="absolute top-0 left-0 w-full h-[1030rpx]"
+          renderer="svg"
+          :data="bgLotteryData"
+          :loop="true"
+          :autoPlay="true"
+          width="100%"
+          height="1030rpx"
+        ></c-lottie>
         <!-- 奖项1 -->
-         <view class="grid-container-inner relative top-[110rpx] left-[10rpx]">
+         <view class="grid-container-inner relative top-[306rpx] left-[10rpx]">
           <view
             v-for="(item, index) in prizes"
             :key="index"
@@ -44,11 +60,20 @@
             <view class="prize-text">{{ item.name }}</view>
           </view>
 
-          <view v-if="prizes.length > 0" class="grid-item lottery-button">
-            <image
+          <view v-if="prizes.length > 0" class="grid-item lottery-button relative">
+            <c-lottie
               @click="startLottery"
-              src="/static/images/index/lottery_logo.png"
               class="w-[256rpx] h-[256rpx]"
+              renderer="svg"
+              :data="lotteryBtnData"
+              :loop="true"
+              :autoPlay="true"
+              width="256rpx"
+              height="256rpx"
+            ></c-lottie>
+            <image
+              src="/static/images/lottery/lottery_go.png"
+              class="lottery-go-image"
               mode="widthFix"
             ></image>
           </view>
@@ -71,9 +96,10 @@
       </view>
       <view
         v-if="lottery_jifen_switch == 1"
-        class="z-10 relative px-[32rpx] py-[20rpx] inline-block rounded-full absolute top-[185rpx] left-[50%] translate-x-[-50%]"
+        class="z-10 relative px-[32rpx] py-[16rpx] inline-block rounded-full absolute top-[316rpx] left-[50%] translate-x-[-50%]"
+        style="background: rgba(37, 44, 47, 0.15);"
       >
-        <view class="text-black text-sm">可用积分 <text class="ml-[8rpx]">{{ user_jifen }}</text></view>
+        <view class="text-white text-sm">可用积分 <text class="ml-[8rpx]">{{ user_jifen }}</text></view>
       </view>
       <view class="w-full flex justify-center items-center" v-if="false">
         <view @click="goLotteryRecord" class="look_log">查看中奖记录</view>
@@ -123,14 +149,64 @@
       </view>
     </view>
 
-    <fui-modal :buttons="[]" :boxRadius="0" width="400" :show="zjShow" background="linear-gradient(0deg, #FFF 77.57%, #D9CDFF 100%)">
+    <fui-modal :buttons="[]" :boxRadius="0" width="400" :show="zjShow">
       <view class="zj_box">
-        <image class="zj_img" :src="zjObj.img" mode="widthFix"></image>
-        <view class="zj_str">{{ zjObj.name }}</view>
-        <wk-button @click="zjShow = false" class="w-full" backgroundColor="#FE3355"
-          >我知道了</wk-button
-        >
+        <!-- 关闭按钮 -->
+        <view class="zj_close_btn" @click="zjShow = false">×</view>
+        
+        <!-- 顶部机器人图标 -->
+        <image 
+          class="zj_robot_icon"
+          src="/static/images/lottery/robot_icon.png"
+          mode="aspectFit"
+        ></image>
+        
+        <!-- 白色内容面板 -->
+        <view class="zj_content_panel">
+          <!-- 标题 -->
+          <view class="zj_title">恭喜获得</view>
+          
+          <!-- 奖品名称 -->
+          <view class="zj_prize_name">{{ zjObj.name }}</view>
+          
+          <!-- 奖品图片 -->
+          <view class="zj_image_container">
+            <image 
+              class="zj_img" 
+              :src="zjObj.img" 
+              mode="aspectFit"
+            ></image>
+          </view>
+          
+          <!-- 用户信息 -->
+          <!-- <view class="zj_user_info">
+            <view class="zj_info_item">{{ userAddress.name_mask || '暂无姓名' }}</view>
+            <view class="zj_info_item">{{ userAddress.phone_mask || '暂无电话' }}</view>
+            <view class="zj_info_item zj_address">{{ hasAddress ? `${userAddress.location || ''} ${userAddress.address || ''}`.trim() : '暂无地址' }}</view>
+          </view> -->
+          
+          <!-- 更换地址链接 -->
+          <!-- <view class="zj_change_address" @click="handleChangeAddress">
+            <text class="zj_change_text">{{ hasAddress ? '更换地址 >' : '选择收货地址' }}</text>
+          </view> -->
+          
+          <!-- 说明文字 -->
+          <!-- <view class="zj_tips">
+            关于赠品的礼品,请稍候前往「商城」-「兑换记录」查看详情/兑换规则
+          </view>
+           -->
+         
+        </view>
+        <!-- 保存按钮 -->
+       <wk-button 
+            @click="handleSavePrize" 
+            class="zj_save_btn"
+            type="gradient-lottery"
+          >
+            我知道了
+          </wk-button>
       </view>
+       
     </fui-modal>
     <wk-loading v-if="loading" :loadingText="loadingText" />
   </layout>
@@ -146,8 +222,11 @@ import {
   getUserInfo,
   startLottery as startLotteryApi,
 } from "@/api/lottery";
+import { getDefaultAddress } from "@/api/user";
 import { getCardListApi } from "@/api/activity";
 import { cacheManager } from "@/utils/cacheManager";
+import bgLotteryData from "@/static/images/lottery/bg_lottery.json";
+import lotteryBtnData from "@/static/images/lottery/lottery_btn.json";
 // 响应式状态
 const zjShow = ref(false);
 const zjObj = ref({
@@ -155,6 +234,13 @@ const zjObj = ref({
   img: "",
   name: "",
   prize: "",
+});
+const userAddress = ref({
+  name_mask: "",
+  phone_mask: "",
+  area_code: "",
+  location: "",
+  address: "",
 });
 const ruleStr = ref(""); //抽奖规则
 const wheelListStr = ref("加载中..."); //横向滚动中奖记录
@@ -182,6 +268,11 @@ const cardsNum = computed(() => {
     num += Number(item.user_count)
   })
   return num
+});
+
+// 判断是否有地址
+const hasAddress = computed(() => {
+  return userAddress.value.location || userAddress.value.address;
 });
 // 初始化方法
 const init = async () => {
@@ -401,6 +492,8 @@ const animateLottery = () => {
         loading.value = false;
         resetLottery();
         zjObj.value = prizes.value[finalIndex_x.value];
+        // 获取默认地址
+        getDefaultAddressInfo();
         zjShow.value = true;
       } else {
         speed.value += decelerationStep.value;
@@ -419,6 +512,59 @@ const resetLottery = () => {
   decelerationPhase.value = false;
 };
 
+// 获取默认地址信息
+const getDefaultAddressInfo = async () => {
+  try {
+    // 从 localStorage 读取 addressList
+    const addressListStr = uni.getStorageSync('addressList');
+    if (!addressListStr) {
+      userAddress.value = {};
+      return;
+    }
+
+    const addressListData = JSON.parse(addressListStr);
+    const addressData = addressListData.data;
+    
+    // 检查数据是否有效
+    if (!addressData || !addressData.list || addressData.list.length === 0) {
+      userAddress.value = {};
+      return;
+    }
+
+    // 查找默认地址 (is_default === 1)
+    const defaultAddress = addressData.list.find(item => item.is_default === 1);
+    
+    if (defaultAddress) {
+      userAddress.value = {
+        name_mask: defaultAddress.name_mask || "",
+        phone_mask: defaultAddress.phone_mask || "",
+        area_code: defaultAddress.area_code || "",
+        location: defaultAddress.location || "",
+        address: defaultAddress.address || "",
+      };
+    } else {
+      userAddress.value = {};
+    }
+  } catch (error) {
+    console.error("获取默认地址失败", error);
+    userAddress.value = {};
+  }
+};
+
+// 更换地址
+const handleChangeAddress = () => {
+  zjShow.value = false;
+  uni.navigateTo({
+    url: routes.address + "?isChoice=1",
+  });
+};
+
+// 保存奖品
+const handleSavePrize = () => {
+  zjShow.value = false;
+  // 可以在这里添加保存逻辑
+};
+
 // 页面显示时初始化
 onShow(() => {
   init();
@@ -426,6 +572,26 @@ onShow(() => {
 </script>
 
 <style lang="scss">
+.lottery-bg-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.lottery-bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
 .lottery-container {
   // height: 100vh;
   // background-color: #f5f5f5;
@@ -437,13 +603,9 @@ onShow(() => {
   }
 }
 .ci_shu {
-  background: #FFC63C;
-  border-radius: 24rpx;
-  border-bottom-right-radius: 0px;
-  border-bottom-left-radius: 0px;
   min-width: 300rpx;
   display: inline-block;
-  color: #010101;
+  color: #ffffff;
   font-size: 24rpx;
   text-align: center;
   padding: 20rpx 28rpx;
@@ -525,13 +687,13 @@ onShow(() => {
   width: 120rpx;
   height: 120rpx;
   overflow: hidden;
-  border: 6rpx solid transparent;
+  border: 6rpx solid #33396F;
   border-radius: 24rpx;
-  background: #00000049;
+  background: #ffffff;
 }
 
 .grid-item.highlight {
-  border-color: #FFF7AB; /* 高亮显示的样式 */
+  border-color: #FF6B75; /* 高亮显示的样式 */
 }
 
 .prize-image {
@@ -545,7 +707,7 @@ onShow(() => {
   left: 0;
   text-align: center;
   width: 100%;
-  background: #00000050;
+  background: #0C052F;
   height: 38rpx;
   display: flex;
   align-items: center;
@@ -569,6 +731,16 @@ onShow(() => {
   border-color: transparent;
   line-height: 100px;
   // box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.lottery-go-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 76px;
+  height: 34px;
+  pointer-events: none;
 }
 .zj_zs_box {
   background-color: rgba(0, 0, 0, 0.1);
@@ -596,8 +768,7 @@ onShow(() => {
 .rule-bg {
   padding: 0 32rpx;
   padding-bottom: 24rpx;
-  background: #FFE3A5;
-  padding-top: 260rpx;
+  padding-top: 360rpx;
 }
 .rule_box {
   box-sizing: border-box;
@@ -609,7 +780,8 @@ onShow(() => {
   background-repeat: no-repeat;
   border-radius: 32rpx;
   overflow: hidden;
-  background: #FF7C22;
+  border: 3rpx solid #202337;
+  background: #0C052F;
   .rule_box_title {
     color: #FFFFFF80;
     display: inline-block;
@@ -628,46 +800,156 @@ onShow(() => {
   }
 }
 .zj_box {
-  width: 100%;
+  width: 566rpx;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  box-sizing: border-box;
+  background-image: url('/static/images/lottery/lottery_nodel_bg.png');
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 32rpx;
+  padding: 200rpx 32rpx 32rpx;
+  min-height: 600rpx;
+}
+
+// 关闭按钮
+.zj_close_btn {
+  position: absolute;
+  top: -20rpx;
+  right: -20rpx;
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-  padding: 0 24rpx;
+  font-size: 32rpx;
+  color: #FFFFFF;
+  z-index: 20;
+  cursor: pointer;
+}
+
+// 顶部机器人图标
+.zj_robot_icon {
+  position: absolute;
+  top: -60rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120rpx;
+  height: 120rpx;
+  z-index: 10;
+}
+
+// 白色内容面板
+.zj_content_panel {
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  padding: 48rpx 32rpx 32rpx;
   box-sizing: border-box;
-  // background: #FFFFFF;
-  
-  // border-radius: 16rpx;
-  border-radius: 0px;
-  .zj_img {
-    width: 204rpx;
-    height: 204rpx;
-  }
-  .zj_str {
-    padding: 24rpx 12rpx;
-    font-size: 32rpx;
-    color: #010101;
-  }
-  .zj_btn {
-    width: 100%;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 88rpx;
-    font-weight: bold;
-    border-radius: 24rpx;
-    color: #000;
-    font-size: 34rpx;
-  }
+  margin-top: 20rpx;
+}
+
+// 标题
+.zj_title {
+  font-size: 48rpx;
+  font-weight: bold;
+  text-align: center;
+  background: linear-gradient(46deg, #7884FF 30%, #B97CFF 75.25%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+// 奖品名称
+.zj_prize_name {
+  font-size: 32rpx;
+  color: #010101;
+  text-align: center;
+  font-weight: 500;
+}
+
+// 图片容器
+.zj_image_container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 32rpx;
+  min-height: 180rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+}
+
+.zj_img {
+  width: 180rpx;
+  height: 180rpx;
+  object-fit: contain;
+}
+
+// 用户信息
+.zj_user_info {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+  margin-bottom: 24rpx;
+  padding: 0 32rpx;
+}
+
+.zj_info_item {
+  font-size: 28rpx;
+  color: #010101;
+  line-height: 1.5;
+  word-break: break-all;
+}
+
+.zj_address {
+  color: #010101;
+  word-break: break-all;
+  max-height: 80rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-clamp: 2;
+}
+
+// 更换地址
+.zj_change_address {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24rpx;
+}
+
+.zj_change_text {
+  font-size: 28rpx;
+  color: #299DF6;
+  cursor: pointer;
+}
+
+// 说明文字
+.zj_tips {
+  font-size: 24rpx;
+  color: rgba(37, 44, 47, 0.50);
+  line-height: 1.6;
+  text-align: center;
+}
+
+// 保存按钮
+.zj_save_btn {
+  width: 100%;
+  margin-top: 20rpx;
 }
 
 :deep .fui-modal__inner {
-    // background:theme('colors.neutral.cardBg') !important;
+    background: transparent !important;
     border-radius: 24rpx !important;
-    // border: 1px solid rgba(255, 255, 255, 0.10) !important;
-    // 方法2：通过深度选择器设置渐变色背景（如果使用此方法，需要移除 background prop）
-    // background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
 }
 
 // 小卡片样式
