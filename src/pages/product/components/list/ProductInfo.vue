@@ -64,7 +64,7 @@
       <view class="flex flex-col mt-[24rpx] py-[16rpx]">
         <!-- 分红方式 -->
         <view class="flex flex-row items-center">
-          <uv-icon name="checkmark-circle-fill" size="30rpx" color="#9AEEDE" class="mr-[8rpx]" />
+          <uv-icon name="checkmark-circle-fill" size="30rpx" color="#B676FF" class="mr-[8rpx]" />
           <text class="text-sm text-neutral-regular mr-[16rpx]">投资模式:</text>
           <text class="text-sm text-neutral-regular">{{ product.dividend_method }}</text>
         </view>
@@ -73,7 +73,7 @@
           v-if="product.presale === 0 && product.ismake == 1"
           class="flex flex-row items-center mt-[10rpx]"
         >
-          <uv-icon name="checkmark-circle-fill" size="30rpx" color="#9AEEDE" class="mr-[8rpx]" />
+          <uv-icon name="checkmark-circle-fill" size="30rpx" color="#B676FF" class="mr-[8rpx]" />
           <text class="text-sm text-neutral-regular mr-[16rpx]">开放时间:</text>
           <text class="text-sm text-neutral-regular">{{ product.endingtime }}</text>
         </view>
