@@ -1,7 +1,7 @@
 <template>
-  <wk-stroke-bg shadow class="mt-[24rpx]" v-if="hasContent">
-    <view class="flex flex-row justify-between items-center mb-[20rpx]">
-      <text class="text-xl font-bold text-neutral">投资相关</text>
+  <wk-stroke-bg shadow class="mt-[24rpx]" v-if="hasContent" mode="img-card3-big">
+    <view class="mb-[20rpx]">
+      <image src="/static/images/product/touzixiangguan.png" class="w-full" mode="widthFix"/>
     </view>
     <template v-for="section in sections" :key="section.title">
       <view

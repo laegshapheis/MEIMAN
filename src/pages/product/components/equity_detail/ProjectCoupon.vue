@@ -1,5 +1,5 @@
 <template>
-  <wk-stroke-bg class="mt-[24rpx]">
+  <wk-stroke-bg class="mt-[24rpx]" mode="img-card3-big">
     <view
         class="flex flex-row items-center justify-between"
       >

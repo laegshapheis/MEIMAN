@@ -1,5 +1,5 @@
 <template>
-  <wk-stroke-bg>
+  <wk-stroke-bg mode="img-card3-big">
     <!-- 标题和利率 -->
     <view
       class="flex-1 whitespace-pre-wrap text-lg text-neutral line-clamp-2 font-bold"

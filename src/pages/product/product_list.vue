@@ -6,7 +6,6 @@
     :refresher="true"
     @onRefresh="handleRefresh"
     bgType="bg-product"
-    :isLottie="false"
     @reachBottom="handleReachBottom"
   >
     <template #exp>

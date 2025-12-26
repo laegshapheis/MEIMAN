@@ -100,6 +100,12 @@ const MODE_PRESETS = {
     borderWidth: "0",
     borderColor: "transparent",
   },
+  "img-card5": {
+    bgImage: "/static/images/component/card/card5.png",
+    bgColor: "",
+    borderWidth: "0",
+    borderColor: "transparent",
+  },
 };
 
 const SIZE_PRESETS = {

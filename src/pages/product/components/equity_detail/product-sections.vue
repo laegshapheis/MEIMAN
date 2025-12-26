@@ -1,5 +1,5 @@
 <template>
-  <wk-stroke-bg class="mt-[24rpx]" v-if="hasContent">
+  <wk-stroke-bg class="mt-[24rpx]" v-if="hasContent" mode="img-card3-big">
     <view class="flex flex-row justify-between items-center mb-[20rpx]">
       <text class="text-xl font-bold text-neutral">认购相关</text>
     </view>

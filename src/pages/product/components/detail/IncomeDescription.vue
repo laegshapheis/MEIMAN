@@ -1,8 +1,8 @@
 <template>
-  <wk-stroke-bg shadow class="mt-[24rpx]" v-if="productview.show_shouyi_shuoming == 1">
-    <view class="flex flex-row items-center justify-between mb-[20rpx]">
-      <text class="text-xl font-bold text-neutral ">收益说明</text>
-      <view class="py-[8rpx] px-[16rpx] rounded-full flex flex-row items-center justify-center bg-[#121E3E]" @click="goCalc">
+  <wk-stroke-bg shadow class="mt-[24rpx]" v-if="productview.show_shouyi_shuoming == 1" mode="img-card3-big">
+    <view class="relative mb-[20rpx]">
+      <image src="/static/images/product/shouyishuoming.png" class="w-full" mode="widthFix"/>
+      <view class="absolute right-0 top-1/2 -translate-y-1/2 py-[8rpx] px-[16rpx] rounded-full flex flex-row items-center justify-center bg-[#121E3E]" @click="goCalc">
         <image src="/static/images/profile/calc_icon.png" class="w-[24rpx] h-[24rpx]"/>
         <text class="text-neutral-theme text-base"></text>
       </view>

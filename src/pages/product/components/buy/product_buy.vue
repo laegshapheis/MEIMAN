@@ -19,8 +19,11 @@
         </view>
       </view>
       <view
-        class="mt-[24rpx] h-[112rpx] px-[32rpx] rounded-[24rpx] flex flex-row items-center bg-[#FFF]"
+        class="mt-[24rpx] h-[112rpx] px-[32rpx] relative rounded-[24rpx] flex flex-row items-center bg-[#202337]"
+        style="border: 1px solid #FFFFFF50;"
       >
+      <image src="/static/images/product/left.png" class="absolute left-0 top-0 z-10 h-[48rpx]" mode="heightFix"/>
+      <image src="/static/images/product/right.png" class="absolute right-0 bottom-0 z-10 h-[48rpx]" mode="heightFix"/>
         <input
           type="number"
           maxlength="8"
@@ -37,58 +40,91 @@
         <text>拼团人数</text>
       </view>
       <view
-        class="mt-[24rpx] h-[112rpx] px-[32rpx] rounded-[24rpx] flex flex-row items-center bg-[#FFF]"
+        class="mt-[24rpx] h-[112rpx] px-[32rpx] rounded-[24rpx] relative flex flex-row items-center bg-[#202337]"
+        style="border: 1px solid #FFFFFF50;"
       >
+      <image src="/static/images/product/left.png" class="absolute left-0 top-0 z-10 h-[48rpx]" mode="heightFix"/>
+      <image src="/static/images/product/right.png" class="absolute right-0 bottom-0 z-10 h-[48rpx]" mode="heightFix"/>
         <input
-          class="text-neutral-black text-2xl font-medium w-full"
+          class="text-neutral-white text-2xl font-medium w-full"
           type="number"
           v-model="fennum"
-          maxlength="8"
+          @input="checkFennumInput($event)"
+          :max="data.groupmax"
+          :min="data.groupmin"
           :placeholder="`请输入拼团人数(${data.groupmin}-${data.groupmax})`"
           placeholderStyle="font-weight: 400; font-size: 36rpx;"
         />
       </view>
     </view>
+    <!-- 投资金额 -->
+    <view class="flex flex-row items-center justify-between mt-[24rpx]">
+      <view class="text-xl">投资金额</view>
+      <view class="text-neutral text-base"
+        >最高投资金额：{{ productview.zgje || 0 }} {{ symbolStore.code }}</view
+      >
+    </view>
+    <view
+      class="mt-[24rpx] h-[112rpx] px-[32rpx] rounded-[24rpx] relative flex flex-row items-center bg-[#202337]"
+      style="border: 1px solid #FFFFFF50;"
+    >
+      <image src="/static/images/product/left.png" class="absolute left-0 top-0 z-10 h-[48rpx]" mode="heightFix"/>
+      <image src="/static/images/product/right.png" class="absolute right-0 bottom-0 z-10 h-[48rpx]" mode="heightFix"/>
+
+      <text class="text-neutral-white text-2xl font-semibold">{{
+        symbolStore.symbol
+      }}</text>
+      <input
+        @input="checkInput($event)"
+        v-model="investment_amount"
+        type="digit"
+        class="ml-[20rpx] text-neutral-white text-2xl font-medium"
+        :placeholder="
+          (productview.qtje || 0) +
+          ' ' +
+          symbolStore.code +
+          (productview.qtje == productview.zgje ? '' : '起投')
+        "
+        placeholderStyle="color: #FFFFFF80; font-weight: 400; font-size: 36rpx;"
+      />
+    </view>
     <!-- 预期收益计算 -->
-    <wk-stroke-bg shadow class="my-[24rpx]">
-      <view class="flex flex-row items-center py-[16rpx]">
-        <text class="text-neutral-regular text-lg font-bold">{{ data.member_level_name }} 会员累计收益</text>
-        <text class="text-neutral-theme text-lg font-[700] ml-[16rpx]">{{ calculateTotalRevenue(data.member_level_name) }} 
-          <text class="text-neutral-theme text-base font-bold">{{ symbolStore.code }}</text> 
-        </text>
-      </view>
-      <view class="flex flex-col bg-[#F5F8FD] px-[16rpx] py-[24rpx] rounded-[32rpx]">
-        <view
-          v-for="item in allMemberLevels"
-          class="flex flex-row items-center justify-between mb-[8rpx]"
-          :key="item.id"
-          :class="[
-              data.member_level_name == item.name
-                ? 'bg-[#9AEEDE]'
-                : '',
-            ]"
-        >
-          <view
-            :class="[
-              data.member_level_name == item.name
-                ? 'text-neutral-black'
-                : 'text-[#252C2F75]',
-              'text-base mr-[16rpx] flex flex-row items-center',
-            ]"
-          >
-            <view class="w-[90rpx]">{{ item.name }}</view>
-            <view>累计收益</view>
-          </view>
-          <view
-            :class="[
-              data.member_level_name == item.name
-                ? 'text-neutral-black'
-                : 'text-[#252C2F75]',
-              'text-lg font-bold',
-            ]"
-            >{{ calculateTotalRevenue(item) }} {{ symbolStore.code }}</view
-          >
+    <wk-stroke-bg shadow class="my-[24rpx]" mode="img-card3-big">
+      <view class="flex flex-col">
+        <view class="mb-[24rpx]">
+          <text class="text-neutral-white text-xl font-bold">{{ data.member_level_name }} 累计收益</text>
+          <text class="text-[#5493FF] text-2xl ml-[10rpx] font-bold">{{ calculateTotalRevenue(data.member_level_name) }} {{ symbolStore.code }}</text>
         </view>
+        <view class="flex flex-col bg-[#1F197D] rounded-[24rpx] p-[24rpx]">
+          <view
+            v-for="item in allMemberLevels"
+            class="flex flex-row items-center justify-between mb-[16rpx]"
+            :key="item.id"
+            :style="{ borderBottom: data.member_level_name == item.name ? '1px solid #B676FF' : '' }"
+          >
+            <view
+              :class="[
+                data.member_level_name == item.name
+                  ? 'text-[#B676FF]'
+                  : 'text-neutral-white/60',
+                'text-base mr-[16rpx] flex flex-row items-center',
+              ]"
+            >
+              <view class="w-[90rpx]">{{ item.name }}</view>
+              <view>累计收益</view>
+            </view>
+            <view
+              :class="[
+                data.member_level_name == item.name
+                  ? 'text-[#B676FF]'
+                  : 'text-neutral-regular',
+                'text-lg font-bold',
+              ]"
+              >{{ calculateTotalRevenue(item) }} {{ symbolStore.code }}</view
+            >
+          </view>
+        </view>
+        
       </view>
       <!-- <view class="flex flex-row items-center w-full">
         <text class="text-base text-neutral-regular"
@@ -187,7 +223,7 @@
         <view
           v-if="coupon.value"
           class="text-black text-base mt-[10rpx] ml-[60rpx] text-right"
-          ><text class="bg-[#9AEEDE] px-[8rpx] py-[4rpx]"
+          ><text class="bg-[#B676FF] px-[8rpx] py-[4rpx]"
             >加息券收益 {{ numFilter(couponExtMoney)
             }}{{ symbolStore.code }}</text
           >
@@ -198,45 +234,20 @@
     <wk-stroke-bg shadow class="my-[24rpx]" v-if="productview.specialbenefits">
       <view class="text-base" v-if="productview.specialbenefits">
         <rich-text
-          class="text-neutral-black text-base"
+          class="text-neutral-white text-base"
           :nodes="productview.specialbenefits"
         />
       </view>
     </wk-stroke-bg>
     <!-- 温馨提示 -->
-    <wk-stroke-bg shadow class="my-[24rpx] mb-[350rpx]" v-if="data.content">
-      <text class="text-neutral-black text-base">{{ data.content }}</text>
+    <wk-stroke-bg shadow class="my-[24rpx] mb-[150rpx]" v-if="data.content" mode="img-card3-big">
+      <text class="text-neutral-white text-base">{{ data.content }}</text>
     </wk-stroke-bg>
   </view>
   <view
-    class="bg-neutral-bottomBtnBg fixed bottom-0 w-full px-[32rpx] py-[24rpx] box-border rounded-t-[48rpx]"
-    style="box-shadow: -8px 16px -8px rgba(12, 12, 13, 0.05);border-top: 0.5px solid rgba(0, 0, 0, 0.10);"
+    class="fixed bottom-0 w-full px-[32rpx] py-[16rpx] box-border"
+    :style="{ background: neutral.bottomBtnBg }"
   >
-  <!-- 投资金额 -->
-    <view
-      class="mt-[24rpx] h-[120rpx] px-[32rpx] rounded-[24rpx] flex flex-col items-center justify-center bg-[#F3F5FC]"
-    >
-      <text class="text-black font-[400] text-[24rpx]">投资金额（{{
-        symbolStore.unit
-      }}）</text>
-      <input
-        @input="checkInput($event)"
-        v-model="investment_amount"
-        type="digit"
-        class="text-neutral-black text-xl font-medium w-full text-center"
-        :placeholder="
-          (productview.qtje || 0) +
-          ' ' +
-          symbolStore.code +
-          (productview.qtje == productview.zgje ? '' : '起投')
-        "
-        placeholderStyle="color: #252C2F30; font-weight: 400; font-size: 36rpx;text-align: center;"
-      />
-    </view>
-    <view class="flex flex-row items-center justify-center py-[24rpx]">
-      <view class="text-base text-[#252C2F75]"
-        >最高投资金额：{{ productview.zgje || 0 }} {{ symbolStore.code }}</view>
-    </view>
     <wk-button @submit="rdSubmit">立即投资</wk-button>
   </view>
   <gift-modal
@@ -285,6 +296,8 @@ import { routes } from "@/config/routes";
 import { useSymbolStore } from "@/stores/symbolStore";
 import GiftModal from "../gift_modal.vue";
 import { cacheManager } from "@/utils/cacheManager";
+import { neutral } from "@/config/colors";
+
 const symbolStore = useSymbolStore();
 
 const props = defineProps({
@@ -419,7 +432,8 @@ const calculateTotalRevenue = (memberLevel) => {
     totalRevenue = (amount * totalRate * days) / 100;
   }
 
-  return numFilter(totalRevenue);
+  // 保留两位小数（四舍五入）
+  return parseFloat(totalRevenue.toFixed(2));
 };
 
 onMounted(() => {
@@ -713,6 +727,36 @@ const truncateDecimal = (value, decimalPlaces) => {
   const decimalIndex = stringValue.indexOf(".");
   if (decimalIndex === -1) return stringValue;
   return stringValue.slice(0, decimalIndex + decimalPlaces + 1);
+};
+
+// 检查拼团人数输入并限制范围
+const checkFennumInput = (param) => {
+  if (!param.detail.value) {
+    fennum.value = "";
+    return;
+  }
+  const value = parseFloat(param.detail.value);
+  if (isNaN(value)) {
+    fennum.value = "";
+    return;
+  }
+  
+  const min = parseFloat(data.groupmin) || 0;
+  const max = parseFloat(data.groupmax) || 999;
+  
+  let finalValue = value;
+  if (value < min) {
+    finalValue = min;
+  } else if (value > max) {
+    finalValue = max;
+  }
+  
+  // 确保是整数
+  finalValue = Math.floor(finalValue);
+  
+  nextTick(() => {
+    fennum.value = finalValue.toString();
+  });
 };
 
 // 检查输入并格式化
