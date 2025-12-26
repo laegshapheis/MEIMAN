@@ -71,6 +71,11 @@ module.exports = {
       },
       borderRadius: {
         'page' : '16rpx',
+      },
+      backgroundImage: {
+        'gradient-blue': 'linear-gradient(90deg, #4EB2FE 0%, #0479FE 100%)',
+        'gradient-vip': 'linear-gradient(180deg, #1A2195 0%, #205AF4 100%)',
+        'gradient-reward': 'linear-gradient(84deg, #2E97FF 5.92%, #356EFF 101.92%)',
       }
     }
   },

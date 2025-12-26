@@ -1,50 +1,27 @@
 <template>
-  <layout
-    navTitle=""
-    :bgType="bgType"
-    ref="layoutRef"
-    mode="white"
-    :refresher="true"
-    @onRefresh="handleRefresh"
-  >
-    <z-swiper
-      ref="mySwiper"
-      class="my-[98rpx] h-[276rpx]"
-      v-model="vip_icons"
-      slidesPerView="auto"
-      centeredSlides
-      :spaceBetween="30"
-      grabCursor
-      @slideChange="onChange"
-    >
-      <z-swiper-item v-for="(item, index) in vip_icons" :key="index" :custom-style="{width:'276rpx'}">
+  <layout navTitle="" bgType="team-level" ref="layoutRef" mode="white" :refresher="true" @onRefresh="handleRefresh">
+    <z-swiper ref="mySwiper" class="mt-[28rpx] mb-[72rpx] h-[300rpx]" v-model="vip_icons" slidesPerView="auto"
+      centeredSlides :spaceBetween="30" grabCursor @slideChange="onChange">
+      <z-swiper-item v-for="(item, index) in vip_icons" :key="index" :custom-style="{ width: '276rpx' }">
         <view class="flex justify-center items-center">
-          <image
-            class="h-[200rpx] w-[240rpx]"
-            :class="[
-              index === activeIndex
-                ? 'opacity-100 scale-[1]'
-                : 'opacity-50 scale-[0.8]',
-            ]"
-            :src="item"
-            mode="widthFix"
-          >
+          <image class="h-[280rpx] w-[280rpx]" :class="[
+            index === activeIndex
+              ? 'opacity-100 scale-[1]'
+              : 'opacity-50 scale-[0.8]',
+          ]" :src="item" mode="widthFix">
           </image>
         </view>
-        
+
       </z-swiper-item>
     </z-swiper>
 
-    <view class="px-[32rpx] -mt-[180rpx] mb-[32rpx]">
-          <image
-            :src="`/static/images/user/vip/line_${activeIndex}.png`"
-            mode="widthFix"
-            class="w-full h-[97px]"
-          />
-    </view>
-    
+    <!-- <view class="px-[32rpx] -mt-[180rpx] mb-[32rpx]">
+      <image :src="`/static/images/user/vip/line_${activeIndex}.png`" mode="widthFix" class="w-full h-[97px]" />
+    </view> -->
+
     <view class="px-[32rpx] pb-[24rpx] box-border w-full -mt-[20rpx]">
-      <view class="rounded-[32rpx] relative p-[32rpx] mt-[16rpx]" :style="`background: ${cardBackground};`">
+      <view class="rounded-[32rpx] relative px-[32rpx] py-[40rpx] mt-[16rpx]"
+        :style="{ backgroundImage: 'url(/static/images/vip/bg.png)', backgroundSize: '100% 100%', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }">
         <view class="flex flex-col">
           <!-- <view
             class="mb-[10rpx] text-neutral-white text-base flex flex-row items-center justify-between"
@@ -54,43 +31,30 @@
               {{ " " + single_recharge_amount + " " }} {{ symbolStore.code }}
             </text>
           </view> -->
-          <view
-            class="mb-[10rpx] text-white/50 text-base flex flex-row items-center justify-between"
-            style="border-bottom: 1rpx solid #FFFFFF1A;"
-          >
+          <view class="py-[8rpx] text-white/ text-base flex flex-row items-center justify-between"
+            style="border-bottom: 1rpx solid #FFFFFF25;">
             <text>您当前的等级</text>
-            <view
-              class="text-neutral-white text-base flex-row items-center justify-between pb-[16rpx]"
-            >
-              <image
-                src="/static/images/vip/vip_icon.svg"
-                mode="widthFix"
-                class="w-[32rpx] h-[32rpx] mr-[4rpx]"
-              />
-              {{ level }}
+            <view class="flex text-neutral-white text-base flex-row items-center justify-between">
+              <image :src="levelIcon || '/static/images/vip/vip_icon.svg'" mode="widthFix"
+                class="w-[48rpx] h-[48rpx] mr-[4rpx]" />
+              <text>{{ level }}</text>
             </view>
           </view>
-          <view
-            class="mb-[10rpx] text-neutral-white text-base flex flex-row items-center justify-between pb-[16rpx]"
-            style="border-bottom: 1rpx solid #FFFFFF1A;"
-          >
-            <text class="text-base text-white/50">您已累计投资</text>
+          <view class="text-neutral-white text-base flex flex-row items-center justify-between py-[16rpx]"
+            style="border-bottom: 1rpx solid #FFFFFF25;">
+            <text class="text-base">您已累计投资</text>
             <text class="text-base font-medium">
               {{ " " + buymoney + " " }} {{ symbolStore.code }}
             </text>
           </view>
-          <view
-            v-if="mylevel && mylevel === lastlevel"
-            class="text-neutral-white text-lg font-medium mt-[10rpx] text-center"
-          >
+          <view v-if="mylevel && mylevel === lastlevel"
+            class="text-[#5493FF] text-base mb-[20rpx] text-center bg-[#1F197D] rounded-[24rpx] py-[12rpx] px-[32rpx]">
             恭喜您已达到最高等级！
           </view>
           <view v-else>
-            <view
-              class="mb-[10rpx] text-neutral-white text-base flex flex-row items-center justify-between pb-[16rpx]"
-              style="border-bottom: 1rpx solid #FFFFFF1A;"
-            >
-              <text class="text-base text-white/50"> 距离升级还需投资 </text>
+            <view class=" text-neutral-white text-base flex flex-row items-center justify-between py-[16rpx]"
+              style="border-bottom: 1rpx solid #FFFFFF25;">
+              <text class="text-base"> 距离升级还需投资 </text>
               <template v-if="list.length != 0">
                 <text v-if="mylevel == lastlevel" class="text-base font-medium">
                   {{ " 0 " }} {{ symbolStore.code }}
@@ -119,11 +83,9 @@
                 {{ " " + single_recharge_amount + " " }} {{ symbolStore.code }}
               </text>
             </view> -->
-            <view
-              v-if="config.member_next === 1"
-              class="mb-[10rpx] text-neutral-white text-base flex flex-row items-center justify-between"
-            >
-              <text class="text-base text-white/50"> 距离升级还需 </text>
+            <view v-if="config.member_next === 1"
+              class="pt-[16rpx] text-neutral-white text-base flex flex-row items-center justify-between">
+              <text class="text-base"> 距离升级还需 </text>
               <template v-if="list.length">
                 <text v-if="mylevel == lastlevel" class="text-base font-medium">
                   {{ " 0 个一级有效人数" }}
@@ -136,10 +98,8 @@
                 {{ " " + number + " 个一级有效人数" }}
               </text>
             </view>
-            <view
-              v-if="config.member_next == 1"
-              class="mt-[16rpx] text-neutral-white rounded-full py-1 px-2 text-sm bg-[#FFFFFF]/20"
-            >
+            <view v-if="config.member_next == 1"
+              class="mt-[16rpx] text-neutral-white rounded-[16rpx] p-[16rpx] text-sm bg-[#FFFFFF]/10 tip-box">
               <text class="flex-1 text-sm">单个一级会员需投资</text>
               <text class="text-sm mx-[4rpx] text-[#98EDFB]">{{
                 invite_min_invest_amount
@@ -152,153 +112,102 @@
           </view>
         </view>
         <view class="flex flex-row mt-[32rpx] justify-between">
-          <view
-            class="mr-[16rpx] px-[24rpx] py-[8rpx] rounded-[66rpx] btn-bg"
-            @click="navigateTo(routes.accountDetails)"
-          >
+          <view class="mr-[16rpx] px-[24rpx] py-[8rpx] rounded-[66rpx] btn-bg"
+            @click="navigateTo(routes.accountDetails)">
             <text class="text-base">投资记录</text>
           </view>
-          <view
-            class="mr-[16rpx] px-[24rpx] py-[8rpx] rounded-[66rpx] btn-bg"
-            @click="openTips('vipshuoming')"
-          >
+          <view class="mr-[16rpx] px-[24rpx] py-[8rpx] rounded-[66rpx] btn-bg" @click="openTips('vipshuoming')">
             <text class="text-base">升级/降级机制</text>
           </view>
-          <view
-            class="px-[24rpx] py-[8rpx] rounded-[66rpx] btn-bg"
-            @click="navigateTo(routes.promoRecord)"
-          >
+          <view class="px-[24rpx] py-[8rpx] rounded-[66rpx] btn-bg" @click="navigateTo(routes.promoRecord)">
             <text class="text-base">我的团队</text>
           </view>
         </view>
       </view>
       <view class="flex flex-col items-center mt-6">
         <view class="text-lg font-medium flex flex-row items-center mb-6">
-          <image
-            class="w-[24rpx] h-[24rpx]"
-            src="/static/images/user/hy_level.svg"
-            mode="widthFix"
-          />
-          <text class="text-neutral-theme mx-2 gradient-text"> 会员等级奖励 </text>
-          <image
-            class="w-[24rpx] h-[24rpx]"
-            src="/static/images/user/hy_level.svg"
-            mode="widthFix"
-          />
+          <image class="w-[24rpx] h-[24rpx]" src="/static/images/user/hy_level_black.svg" mode="widthFix" />
+          <text class="mx-2 text-xl bg-gradient-blue bg-clip-text text-transparent"> 会员等级奖励 </text>
+          <image class="w-[24rpx] h-[24rpx]" src="/static/images/user/hy_level_black.svg" mode="widthFix" />
+
         </view>
         <view v-if="list.length !== 0" class="w-full">
           <view
-            class="flex flex-col p-[32rpx] mb-[32rpx] rounded-[24rpx] bg-[#FFFFFF]"
+            class="flex flex-col p-[32rpx] mb-[32rpx] rounded-[32rpx] bg-gradient-vip border-[#0188FE] border-solid border-[0.5px]"
             v-for="item in mylevel && mylevel === lastlevel
               ? [list[list.length - 1]]
-              : list"
-            :key="item.id"
-          >
+              : list" :key="item.id">
             <view class="flex flex-row items-center justify-center mb-[20rpx]">
-              <image
-                class="w-[32rpx] h-[32rpx] mr-[10rpx]"
-                src="/static/images/user/vip_title_icon.svg"
-                mode="widthFix"
-              />
-              <text class="gradient-text text-lg">{{ item.name }}</text>
+              <image class="w-[32rpx] h-[32rpx] mr-[10rpx]" src="/static/images/user/vip_title_icon.svg"
+                mode="widthFix" />
+              <text class="text-[#9FEAFF] text-md">{{ item.name }}</text>
             </view>
             <view class="flex flex-col text-sm">
               <template v-for="reward in rewards" :key="reward.key">
-                <view
-                  class="w-full flex flex-row items-start mb-[20rpx]"
-                  v-if="config[reward.configKey] === 1"
-                >
-                  <view
-                    :style="`width: ${
-                      reward.labelWidth ? reward.labelWidth : '220rpx'
-                    }`"
-                    class="text-[#8C3400CC] text-base flex flex-row items-center"
-                    @click="reward.action && reward.action()"
-                  >
-                    <text class="text-[#8C3400CC]">{{ reward.label }}</text>
-                    <uv-icon
-                      v-if="reward.labelIcon"
-                      class="w-[30rpx] h-[30rpx] ml-[4rpx]"
-                      name="question-circle"
-                      size="14"
-                      color="#FFFFFF50"
-                    />
+                <view class="w-full flex flex-row items-start mb-[20rpx]" v-if="config[reward.configKey] === 1">
+                  <view class=" text-base flex flex-row items-center w-[220rpx] mr-[32rpx]"
+                    @click="reward.action && reward.action()">
+                    <text class="text-white">{{ reward.label }}</text>
+                    <uv-icon v-if="reward.labelIcon" class="w-[30rpx] h-[30rpx] ml-[4rpx]" name="question-circle"
+                      size="14" color="#FFFFFF" />
                   </view>
-                  <view class="flex flex-col flex-1 text-right justify-end">
-                    <text class="text-[#8C3400CC] text-base font-medium">
+                  <view class="flex flex-col flex-1 text-left justify-end">
+                    <text class="text-white text-base font-medium">
                       {{ reward.value(item, config) }}
                     </text>
-                    <text class="text-base text-[#8C3400CC]">
+                    <text class="text-base text-[#fff]">
                       {{ reward.descKey ? config[reward.descKey] : "" }}
                     </text>
                   </view>
                 </view>
-                <view
-                  v-if="
-                    config[reward.configKey] === 1 &&
-                    index !== rewards.length - 1
-                  "
-                  class="w-full mb-[15rpx]"
-                  style="border-bottom: 0.5px dashed rgba(255, 255, 255, 0.50);"
-                ></view>
+                <view v-if="
+                  config[reward.configKey] === 1 &&
+                  index !== rewards.length - 1
+                " class="w-full mb-[15rpx]" style="border-bottom: 0.5px dashed rgba(255, 255, 255, 0.50);"></view>
               </template>
             </view>
-            <view class="p-[32rpx] rounded-[16rpx] bg-[#F0EAE2] mt-[48rpx]">
-              <view
-                class="text-base font-medium text-center text-[#8C3400CC]"
-                v-if="mylevel && mylevel === lastlevel"
-              >
-                恭喜您已达到最高等级！
+            <view class="text-base font-medium text-center text-[#8C3400CC] mt-[48rpx]"
+              v-if="mylevel && mylevel === lastlevel">恭喜您已达到最高等级！</view>
+            <view class="p-[32rpx] pt-[48rpx] rounded-[8rpx] bg-[#DFF4FD] mt-[48rpx] relative" v-else>
+
+              <view class="tag">
+                同时满足以下2个条件即可升级
               </view>
-              <template v-else>
-                <view class="mb-[16rpx] text-neutral-black text-base flex">
-                  同时满足以下2个条件即可升级
-                </view>
-                <view class="flex items-center"
-                style="border-bottom: 0.5px dashed rgba(255, 255, 255, 0.50);">
-                  <text class="text-[#8C3400CC] text-base font-medium px-[8rpx] py-[4rpx] rounded-[8rpx]"
-                  style="background: linear-gradient(0deg, #FFF2E6 0%, #FFF2E6 100%), #FD9227;">条件1</text>
-                  <view class="text-[#8C3400CC]">
-                    <text class="text-base font-medium ml-[20rpx]">个人累计投资</text>
-                    <text class="ml-1.5 text-base font-medium">
-                      {{ item.selfmoney }} {{ symbolStore.code }}</text>
-                  </view>
-                  
-                </view>
-                <view class="flex items-center mt-2.5" v-if="config.member_next == 1" 
-                style="border-bottom: 0.5px dashed rgba(255, 255, 255, 0.50);">
-                  <text
-                    class="text-[#8C3400CC] text-base font-medium px-[8rpx] py-[4rpx] rounded-[8rpx]"
-                    style="background: linear-gradient(0deg, #FFF2E6 0%, #FFF2E6 100%), #FD9227;">条件2</text>
-                  <view class="text-[#8C3400CC]">
-                  <text class="text-base font-medium ml-[20rpx]">直推一级有效人数</text>
-                    <text class="ml-1.5 text-base font-medium">
-                      {{ item.inte }} 人</text>
-                  </view>
-                </view>
-                <view class="flex items-center mt-2.5" v-if="config.member_single_recharge_amount == 1"
-                style="border-bottom: 0.5px dashed rgba(255, 255, 255, 0.50);">
-                  <text class="text-[#8C3400CC] text-base font-medium px-[8rpx] py-[4rpx] rounded-[8rpx]"
-                  style="background: linear-gradient(0deg, #FFF2E6 0%, #FFF2E6 100%), #FD9227;">条件2</text>
-                  <view class="text-[#8C3400CC]">
-                    <text class="text-base font-medium ml-[20rpx]">单笔充值</text>
-                    <text class="ml-1.5 text-base font-medium">
-                      {{ item.single_recharge_amount }} {{ symbolStore.code }}</text>
-                  </view>
+              <view class="flex items-center py-[16rpx]" style="border-bottom: 0.5px dashed rgba(37, 44, 47, 0.75);">
+                <text class="text-[rgba(37,44,47,.5)] text-base font-medium">条件1</text>
+                <view class="text-[#010101] ml-[auto]">
+                  <text class="text-base font-medium ml-[20rpx]">个人累计投资</text>
+                  <text class="ml-1.5 text-base font-medium">
+                    {{ item.selfmoney }} {{ symbolStore.code }}</text>
                 </view>
 
-              </template>
+              </view>
+              <view class="flex items-center py-[16rpx]" v-if="config.member_next == 1"
+                style="border-bottom: 0.5px dashed rgba(37, 44, 47, 0.75);">
+                <text class="text-[rgba(37,44,47,.5)] text-base font-medium">条件2</text>
+                <view class="text-[#010101] ml-[auto]">
+                  <text class="text-base font-medium ml-[20rpx]">直推一级有效人数</text>
+                  <text class="ml-1.5 text-base font-medium">
+                    {{ item.inte }} 人</text>
+                </view>
+              </view>
+              <view class="flex items-center py-[16rpx]" v-if="config.member_single_recharge_amount == 1"
+                style="border-bottom: 0.5px dashed rgba(255, 255, 255, 0.75);">
+                <text class="text-[rgba(37,44,47,.5)] text-base font-medium">条件2</text>
+                <view class="text-[#010101] ml-[auto]">
+                  <text class="text-base font-medium ml-[20rpx]">单笔充值</text>
+                  <text class="ml-1.5 text-base font-medium">
+                    {{ item.single_recharge_amount }} {{ symbolStore.code }}</text>
+                </view>
+              </view>
+
             </view>
           </view>
         </view>
       </view>
     </view>
     <wk-modal ref="wkPopupRef" title="说明">
-      <uv-parse
-        :show-img-menu="false"
-        container-style="white-space: pre-wrap"
-        :content="strings"
-      ></uv-parse>
+      <uv-parse :show-img-menu="false" container-style="white-space: pre-wrap" :content="strings"></uv-parse>
     </wk-modal>
     <!-- <wk-loading v-if="loading" :loadingText="loadingText" /> -->
   </layout>
@@ -521,57 +430,100 @@ const onChange = (swiper) => {
 
 <style lang="scss" scoped>
 .vip-bg {
-  background: var(
-    --card_color,
-    linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%),
-    linear-gradient(256deg, #27395b 16.29%, #0c1838 92.09%)
-  );
+  background: var(--card_color,
+      linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%),
+      linear-gradient(256deg, #27395b 16.29%, #0c1838 92.09%));
 }
+
 .bg-membership-gradient {
   border-radius: 66rpx;
   background: linear-gradient(90deg, #fbf6ef 0%, #f9d7c5 100%);
 }
+
 .vip-title {
   background: linear-gradient(358deg, #b27a5a 16.95%, #f9e0d1 81.2%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 .custom-gradient {
   border-radius: var(--radius-m, 8px);
   background: #d2c5c5;
 }
+
 .level-text {
-  background: var(
-    --Linear,
-    linear-gradient(358deg, #f7c3aa 16.95%, #fbf9f3 81.2%)
-  );
+  background: var(--Linear,
+      linear-gradient(358deg, #f7c3aa 16.95%, #fbf9f3 81.2%));
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 .tj-bg {
   background: linear-gradient(90deg, #fbf6ef 0%, #f9d7c5 100%);
 }
+
 .transition-all {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .text-bg {
   color: theme('colors.neutral.DEFAULT');
 }
+
 .gradient-text {
   background: linear-gradient(110deg, #897D5B 6.48%, #C7A487 83.04%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-.btn-bg{
-  background: transparent;
-  border: 1rpx solid #FFFFFF;
-  color:#FFFFFF;
+
+.btn-bg {
+  // border: 1rpx solid #FFFFFF;
+  color: #FFFFFF;
+  border-radius: 360px;
+  background: rgba(255, 255, 255, 0.20);
+  box-shadow: 0 0 15.6px 0 #FFF inset;
 }
+
 .title-bg {
   background: url('/static/images/bg/title_bg.png') no-repeat center center;
   background-size: 100% 100%;
+}
+
+.tip-box {
+  position: relative;
+}
+
+.tip-box::before {
+  content: '';
+  position: absolute;
+  top: -10rpx;
+  left: 40rpx;
+  width: 0;
+  height: 0;
+  border-left: 16rpx solid transparent;
+  border-right: 16rpx solid transparent;
+  border-bottom: 10rpx solid rgba(255, 255, 255, 0.1);
+}
+
+.tag{
+  position: absolute;
+  top:-24rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 48rpx;
+  width: 470rpx;
+  background-image: url('/static/images/vip/header_bg.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  font-size: 28rpx;
+  color: #010101;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
 }
 </style>

@@ -3,23 +3,23 @@
     ref="keyboard"
     :tooltip="false"
     mode="number"
-    backgroundColor="#CCCED3C2"
+    backgroundColor="rgba(32,32,32,.92)"
+    class="keyboard-wrap"
     :closeOnClickOverlay="false"
     @change="handleKeyInput"
     @backspace="handleBackspace"
   >
-    <view class="h-full flex flex-col items-center bg-[#F5F8FD]">
+    <view class="h-full flex flex-col items-center bg-[#0C052F]">
       <slot name="title"></slot>
       <view
-        class="flex flex-row justify-between items-center w-full px-[35rpx] pt-[35rpx] mb-[10rpx] box-border"
-      >
+        class="flex flex-row justify-between items-center w-full px-[35rpx] pt-[35rpx] mb-[10rpx] box-border">
         <text class="text-lg text-neutral-regular" @click="handleCancel">取消</text>
         <text class="text-lg text-neutral">{{ title }}</text>
-        <text class="text-lg text-neutral-theme" @click="handleFinish"
-          >确定</text
-        >
+        <text class="text-lg text-neutral-theme" @click="handleFinish">确定</text>
       </view>
-      <slot name="content"></slot>
+      <view name="content" class="content-slot">
+        <slot name="content"></slot>
+      </view>
 
       <!-- 使用Tailwind CSS重构验证码输入框 -->
       <view class="flex flex-row justify-between items-center py-[32rpx] gap-[12rpx]">
@@ -30,6 +30,10 @@
           :style="{
             width: size,
             height: size,
+            backgroundImage: 'url(/static/images/component/code-input/code_bg.png)',
+            backgroundSize: '100% 100%',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
           }"
         >
           <text
@@ -176,4 +180,5 @@ defineExpose({
   box-shadow: 0 4rpx 0px #0000001A;
   border-radius: 10rpx; /* 按钮外层容器圆角 */
 }
+
 </style>

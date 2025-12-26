@@ -1,67 +1,28 @@
 <template>
-  <uv-overlay
-    :show="show"
-    class="px-[60rpx] box-border flex flex-col items-center justify-center"
-    :showClose="false"
-  >
+  <uv-overlay :show="show" class="px-[60rpx] box-border flex flex-col items-center justify-center" :showClose="false">
     <view class="w-full flex flex-col items-center relative mt-[160rpx]">
       <!-- 顶部图标 -->
       <view class="w-full absolute top-[-166rpx] left-0 flex justify-center z-50">
-        <image
-          class="w-full h-[206rpx]"
-          src="/static/images/profile/product_icon.png"
-          mode="widthFix"
-        />
+        <image class="w-full h-[206rpx]" src="/static/images/profile/product_icon.png" mode="widthFix" />
       </view>
 
       <!-- 产品内容区域 -->
-      <wk-stroke-bg shadow
-        class="p-[32rpx] w-full relative z-20 box-border"
-        bgColor="#FFFFFF"
-      >
-        <scroll-view
-          class="max-h-[80vh] text-left pb-[0rpx] rounded-b-[0rpx] pt-[16rpx]"
-          :show-scrollbar="true"
-          :scroll-y="true"
-        >
+      <wk-stroke-bg shadow class="p-[32rpx] w-full relative z-20 box-border" bgColor="#FFFFFF">
+        <scroll-view class="max-h-[80vh] text-left pb-[0rpx] rounded-b-[0rpx] pt-[16rpx]" :show-scrollbar="true"
+          :scroll-y="true">
           <!-- 根据产品类型显示不同内容 -->
-          <ProductEquityInfo
-            v-if="product.category_id == 32"
-            :product="product"
-          />
+          <ProductEquityInfo v-if="product.category_id == 32" :product="product" />
           <ProductInfo v-else :product="product" />
 
           <!-- 拼团产品按钮 -->
-          <view
-            v-if="product.category_id == 57"
-            class="grid grid-cols-2 gap-x-[16rpx] mt-[24rpx]"
-          >
-            <wk-button
-              @submit="$emit('submit', 'apply')"
-               backgroundColor="transparent"
-               :borderColor="$colors.theme"
-              class="shadow-btn-bg rounded-[24rpx]"
-            >
-              <view class="flex flex-col items-center">
-                <text class="text-lg text-neutral-theme">参与拼团</text>
-              </view>
-              <view class="text-[28rpx]"></view>
-            </wk-button>
-            <wk-button
-              @submit="$emit('submit', 'create')"
-              class="btn-item fbtn"
-            >
-              <view class="text-lg">发起拼团</view>
-            </wk-button>
+          <view v-if="product.category_id == 57" class="grid grid-cols-2 gap-x-[16rpx] mt-[24rpx]">
+            <wk-button @submit="$emit('submit', 'apply')" height="80rpx" type="img-bg">参与拼团</wk-button>
+            <wk-button @submit="$emit('submit', 'create')" height="80rpx" type="img-bg2">发起拼团</wk-button>
           </view>
 
           <!-- 普通产品按钮 -->
           <view v-else>
-            <wk-button
-              @submit="$emit('submit')"
-              height="80rpx"
-              class="mt-[24rpx]"
-            >
+            <wk-button @submit="$emit('submit')" height="80rpx" class="mt-[24rpx]">
               立即查看
             </wk-button>
           </view>

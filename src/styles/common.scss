@@ -198,4 +198,24 @@
     background-size: 100% 100%;
     background-position: center;
   }
+
+  .keyboard-wrap view[name="content"] {
+    background-color: transparent !important;
+    .uv-popup__content{
+      border:none;
+      border-radius: 16rpx 16rpx 0 0;
+
+      .uv-keyboard__button-wrapper{
+        background-color: #434343;
+
+        .uv-keyboard__button-wrapper__button{
+          background-color: #434343;
+        }
+
+        .uv-keyboard__button-wrapper__button__text{
+          color: #fff;
+        }
+      }
+    }
+  }
 }

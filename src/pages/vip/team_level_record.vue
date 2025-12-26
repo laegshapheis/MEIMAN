@@ -1,85 +1,60 @@
 <template>
-  <layout
-    navTitle="团队等级奖励"
-    bgType="bg-main4"
-    ref="layoutRef"
-    :refresher="true"
-    mode="white"
-    @onRefresh="handleRefresh"
-  >
+  <layout navTitle="团队等级奖励" bgType="bg-main4" ref="layoutRef" :refresher="true" mode="white" :isLottie="false"
+    @onRefresh="handleRefresh">
     <view class="p-[22rpx]">
-      <view
-        v-for="item in list"
-        :key="item.id"
-        class="flex flex-col mb-[32rpx] rounded-[16rpx]"
-      >
+      <view v-for="item in list" :key="item.id" class="flex flex-col mb-[32rpx] rounded-[16rpx]">
         <view class="flex flex-row justify-center items-center mb-[32rpx]">
-          <image
-            class="w-[40rpx] h-[40rpx] mr-2"
-            src="/static/images/user/hy_icon.png"
-            mode="widthFix"
-          ></image>
-          <text class="gradient-text text-xl font-medium">{{ item.name }}</text>
+          <image class="w-[40rpx] h-[40rpx] mr-2" src="/static/images/user/hy_icon.png" mode="widthFix"></image>
+          <text class="text-white text-xl font-medium">{{ item.name }}</text>
         </view>
-        <view
-          class="px-[32rpx] py-[24rpx] flex-col flex rounded-[24rpx] bg-[#F6FAFE]"
-        >
-          <text class="text-neutral-black text-lg font-medium mb-[10rpx]">升级条件</text>
-          <view class="w-full flex flex-col basis-0 flex-wrap">
-            <template v-for="val in dataList" :key="val.value">
-              <view
-                v-if="config[val.auth] === 1"
-                class="flex flex-row mb-[10rpx] py-[16rpx] items-center justify-between"
-                style="border-bottom: 1px solid #00000010;"
-              >
-                <view class="text-neutral-black/70 text-base "
-                  >{{ val.labelKey ? item[val.labelKey] : val.label }}({{ val.unit }})</view
-                >
-                <view class="text-lg font-bold text-neutral-black">
-                  {{ item[val.value] }}
-                </view>
-              </view>
-            </template>
-          </view>
-        </view>
-
-        <view class="bg-white rounded-[24rpx] p-[32rpx] mt-[32rpx]">
-          <view class="w-full mt-[20rpx]">
-            <view class="text-neutral-black text-lg font-medium mb-[20rpx]">奖励制度</view>
-            <view
-              class="rounded-[24rpx] box-border p-[32rpx] mb-[16rpx] bg-[#FFFFFF]/5"
-            >
-              <template v-for="val in rewardsList" :key="val.label">
-                
-                <view class="mt-[10rpx]" v-if="config[val.auth] === 1">
-                  <view class="flex flex-row items-center">
-                    <view class="h-[10rpx] w-[10rpx] bg-[#010101] rounded-full mr-[8rpx]"></view>
-                    <text class="text-base text-neutral-black/70">{{ val.label }}</text>
-                    <text class="text-neutral-error ml-[10rpx] text-base">{{
-                      val.filterValue(item[val.value])
-                    }}</text>
+        <view class="flex-col flex rounded-[24rpx] bg-gradient-vip border-[#0188FE] border-solid border-[0.5px]">
+          <view class="flex flex-col p-[32rpx]">
+            <view class="text-white text-md font-medium py-[16rpx]">升级条件</view>
+            <view class="w-full flex flex-row flex-wrap basis-0 flex-wrap border-white/15 border-solid border-b-[0.5px] border-t-0 border-l-0 border-r-0">
+              <template v-for="(val, index) in dataList" :key="val.value">
+                <view v-if="config[val.auth] === 1"
+                  :class="[
+                    'flex flex-col py-[24rpx] items-start justify-between border-white/15 border-solid border-t-[0.5px] border-b-0 border-l-0 border-r-0',
+                    getItemWidth(val, index)
+                  ]">
+                  <view class="text-white/80 text-base mb-[8rpx]">{{ val.labelKey ? item[val.labelKey] : val.label }}({{
+                    val.unit }})</view>
+                  <view class="text-lg font-bold text-white">
+                    {{ item[val.value] }}
                   </view>
-                  <view
-                    class="flex flex-row text-[#2935CC] text-sm mt-[5rpx]"
-                    v-if="val.desc"
-                    >
-                    <view class="h-[10rpx] w-[10rpx] bg-[#010101] rounded-full mr-[8rpx] flex-shrink-0 mt-[10rpx]"></view>
-                    {{ val.desc }}</view
-                  >
-                  <view
-                    class="text-neutral-black/70 text-sm mt-[5rpx]"
-                    v-if="val.descKey"
-                    >{{ config[val.descKey] }}</view
-                  >
                 </view>
               </template>
             </view>
           </view>
-          <text
-            v-if="config.teams_salarydata"
-            class="text-neutral-black/70 text-sm mt-[5rpx]"
-            >{{ config.teams_salarydata }}</text>
+          <view class="px-[32rpx] py-[24rpx]">
+            <view class="text-white text-md font-medium py-[16rpx] mb-[16rpx]">奖励制度</view>
+            <view class="rounded-[16rpx] box-border p-[24rpx] mb-[16rpx] bg-gradient-reward">
+              <template v-for="val in rewardsList" :key="val.label">
+                <view v-if="config[val.auth] === 1">
+                  <view class="flex flex-row items-center">
+                    <!-- <view class="h-[10rpx] w-[10rpx] bg-[#010101] rounded-full mr-[8rpx]"></view> -->
+                    <text class="text-base text-white">{{ val.label }}</text>
+                    <text class="text-[#FFBD84] ml-[10rpx] text-base">{{
+                      val.filterValue(item[val.value])
+                    }}</text>
+                  </view>
+                  <view class="flex flex-row text-white/55 text-sm mt-[5rpx]" v-if="val.desc">
+                    <!-- <view class="h-[10rpx] w-[10rpx] bg-[#010101] rounded-full mr-[8rpx] flex-shrink-0 mt-[10rpx]">
+                    </view> -->
+                    {{ val.desc }}
+                  </view>
+                  <view class="text-white text-sm mt-[5rpx]" v-if="val.descKey">{{ config[val.descKey] }}
+                  </view>
+                </view>
+              </template>
+            </view>
+            <text v-if="config.teams_salarydata" class="text-[#5493FF] text-sm mt-[5rpx]">{{
+              config.teams_salarydata
+            }}</text>
+          </view>
         </view>
+
+
       </view>
     </view>
     <wk-loading v-if="loading" :loadingText="loadingText" />
@@ -186,7 +161,7 @@ const dataList = computed(() => {
 // 奖励制度
 const rewardsList = computed(() => {
   return [
-  {
+    {
       label: "每日签到奖励",
       value: "checkin_money",
       auth: "teams_checkin_money",
@@ -286,6 +261,37 @@ const config = reactive({
 const myteams = ref(null);
 const lastteams = ref(null);
 const layoutRef = ref(null);
+
+// 计算符合条件的项目数量
+const getVisibleCount = () => {
+  return dataList.value.filter(val => config[val.auth] === 1).length;
+};
+
+// 获取当前项目在可见项目中的索引
+const getVisibleIndex = (currentVal, currentIndex) => {
+  let visibleIndex = 0;
+  for (let i = 0; i <= currentIndex; i++) {
+    if (config[dataList.value[i].auth] === 1) {
+      if (dataList.value[i] === currentVal) {
+        return visibleIndex;
+      }
+      visibleIndex++;
+    }
+  }
+  return visibleIndex;
+};
+
+// 计算项目宽度
+const getItemWidth = (val, index) => {
+  const visibleCount = getVisibleCount();
+  const visibleIndex = getVisibleIndex(val, index);
+  
+  // 如果是最后一个且总数是奇数，占整行
+  if (visibleIndex === visibleCount - 1 && visibleCount % 2 === 1) {
+    return 'w-full';
+  }
+  return 'w-[50%]';
+};
 const handleRefresh = async () => {
   await getmMemberlevel();
   layoutRef.value.complete();
@@ -324,22 +330,22 @@ onLoad(() => {
 
 <style lang="scss" scoped>
 .custom-gradient {
-  background: linear-gradient(
-    270deg,
-    rgba(1, 18, 23, 0.87) 44%,
-    rgba(1, 18, 75, 0.87) 91%
-  );
+  background: linear-gradient(270deg,
+      rgba(1, 18, 23, 0.87) 44%,
+      rgba(1, 18, 75, 0.87) 91%);
   border-width: 4rpx;
   border-style: solid;
   border-image: linear-gradient(269deg, #0453a1 0%, #6cccfe 47%, #0453a1 100%);
   border-image-slice: 1;
 }
+
 .vip-title {
   background: linear-gradient(358deg, #b8d7f4 16.95%, #fff 81.2%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 .gradient-text {
   background: linear-gradient(110deg, #FFF 6.48%, #FFDABD 83.04%);
   background-clip: text;
