@@ -28,7 +28,7 @@
           type="number"
           maxlength="8"
           v-model="buycode"
-          class="ml-[20rpx] text-neutral-black text-2xl font-medium"
+          class="ml-[20rpx] text-neutral-white text-2xl font-medium"
           placeholder="请输入拼团口令"
           placeholderStyle="font-weight: 400; font-size: 36rpx;"
         />

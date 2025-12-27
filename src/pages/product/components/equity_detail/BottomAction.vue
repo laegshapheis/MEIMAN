@@ -53,7 +53,7 @@
         </uv-count-down>
       </wk-button>
     </view>
-    <view v-else class="bg-neutral-bottomBtnBg py-[16rpx] px-[32rpx] w-full box-border">
+    <view v-else class="py-[16rpx] px-[32rpx] w-full box-border" :style="{ background: neutral.bottomBtnBg }">
       <wk-button
         @submit="$emit('submit')"
         :fontSize="btnText && btnText.length > 20 ? '24rpx' : '30rpx'"
@@ -67,6 +67,7 @@
 
 <script setup>
 import { ref } from "vue";
+import { neutral } from "@/config/colors";
 
 const timeData = ref({});
 defineProps({

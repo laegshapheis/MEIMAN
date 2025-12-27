@@ -66,9 +66,6 @@
             mode="button"
             @change="handleSubTabChange"
             :defaultIndex="subCurrent"
-            :inactiveStyle="{
-              border: 'none',
-            }"
           />
         </view>
       </view>

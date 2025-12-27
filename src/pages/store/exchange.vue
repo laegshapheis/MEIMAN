@@ -1,27 +1,25 @@
 <template>
   <layout navTitle="兑换商品" bgType="bg-white">
     <view class="mt-[24rpx]">
-      <view class="">
-        <wk-stroke-bg 
-          bgColor="#98EDFB"
-          v-if="type == 0"
-          shadow
-          borderRadius="0"
+      <view class="px-[32rpx]">
+        <view 
           class="p-[30rpx] flex flex-row justify-between items-center box-border mb-[24rpx]"
+          style="border-radius: 12px; background: linear-gradient(90deg, #CA9CFF 0%, #8870FF 100%);"
+          v-if="type == 0"
         >
           <view
             class="flex flex-row justify-between items-center w-full h-full"
             v-if="!product_user"
             @click="toAddress"
           >
-            <text class="text-xl font-bold">添加收货地址</text>
-            <view class="text-base">
-              <uni-icons type="arrowright" size="14" color="#fff"></uni-icons>
+            <text class="text-base text-black">您还未添加收货地址</text>
+            <view class="text-base text-black underline">
+              添加地址
             </view>
           </view>
           <view class="flex flex-col justify-between w-full h-full" v-else>
             <view class="flex flex-row justify-between items-center mb-[20rpx]">
-              <text class="text-lg">收货信息</text>
+              <text class="text-lg text-black">收货地址</text>
               <text @click="toAddress" class="text-black text-base underline">更换地址</text>
               <!-- <image
                 @click="toAddress"
@@ -33,12 +31,12 @@
             <view
               class="flex-col rounded-[24rpx] p-[16rpx]"
             >
-              <text class="text-lg font-medium"
+              <text class="text-lg font-medium text-black"
                 >{{ form.location }} {{ product_address }}</text
               >
               <view class="flex flex-row items-center mt-[15rpx]">
-                <text class="text-base">{{ product_user }}</text>
-                <text class="text-base ml-[20rpx]">
+                <text class="text-base text-black">{{ product_user }}</text>
+                <text class="text-base ml-[20rpx] text-black">
                   {{
                     product_area_code
                       ? `+${product_area_code} ${product_mobile}`
@@ -48,8 +46,9 @@
               </view>
             </view>
           </view>
-        </wk-stroke-bg>
-        <wk-stroke-bg shadow>
+        </view>
+        
+        <wk-stroke-bg shadow mode="img-card3-big">
           <view class="px-[32rpx] flex flex-row items-center h-full">
             <image
               class="bg-black/5 w-[160rpx] h-[160rpx] rounded-[8rpx] mr-[24rpx]"
@@ -77,7 +76,8 @@
         </wk-stroke-bg>
       </view>
       <view
-        class="bg-neutral-bottomBtnBg fixed bottom-0 left-0 right-0 px-[32rpx] py-[16rpx]"
+        class="fixed bottom-0 left-0 right-0 px-[32rpx] py-[16rpx]"
+        :style="{ background: neutral.bottomBtnBg }"
       >
         <wk-button @submit="open_play_pass()"> 立即兑换 </wk-button>
       </view>
@@ -94,6 +94,7 @@ import { getDefaultAddress } from "@/api/user";
 import { exchangeStore } from "@/api/index";
 import { onLoad, onShow, onUnload } from "@dcloudio/uni-app";
 import { cacheManager } from "@/utils/cacheManager";
+import { neutral } from "@/config/colors";
 const keywordRef = ref(null);
 
 const form = reactive({
