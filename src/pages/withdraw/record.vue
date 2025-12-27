@@ -7,7 +7,7 @@
           @change="handleChangeDate">
           <view>
             <image v-if="time_date == 0" src="/static/images/user/date_icon.svg"
-              class="w-[32rpx] h-[32rpx] bg-white/10 rounded-full p-[12rpx]"></image>
+              class="w-[56rpx] h-[56rpx] bg-white/10 rounded-full "></image>
             <text v-else class="text-base text-neutral">{{ time_date }}</text>
           </view>
         </wk-picker>
