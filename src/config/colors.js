@@ -42,9 +42,9 @@ export const neutral = {
   tips: 'rgba(255,255,255,.8)',
   inversergular: 'rgba(0, 0, 0, 0.80)',
   // 模态弹窗
-  modalBg: 'transparent',
+  modalBg: '#1F197D',
   modalTitleColor: '#fff',
-  modalTextColor: '#010101',
+  modalTextColor: '#fff',
   // 弹窗颜色
   showModal: {
     titleColor: '#010101', // 弹窗标题色

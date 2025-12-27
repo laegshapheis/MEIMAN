@@ -9,6 +9,7 @@
     :closeOnClickOverlay="false"
     :showConfirmButton="false"
     v-bind="attrs"
+    class="center-modal"
   >
     <view class="modal-wrapper" :style="{ backgroundColor: bgColor }">
       <view :class="title ? 'close-btn-title' : 'close-btn'" v-if="showClose" @click="close">

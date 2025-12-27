@@ -171,8 +171,7 @@
   background-position: center;
 }
 
-.center-modal,
-.uv-popup {
+.center-modal {
   .uv-popup__content {
     background-image: url('@/static/images/component/modal/bg.png');
     background-size: 100% 100%;
@@ -200,7 +199,7 @@
   }
 
   .uv-popup view[name="content"]{
-    background-color: transparent !important;
+    // background-color: transparent !important;
 
   }
 
