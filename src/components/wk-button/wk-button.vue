@@ -136,6 +136,20 @@ const TYPE_PRESETS = {
     border: "transparent",
     shadow: "none",
   },
+  "img-bg3": {
+    bgImage: "/static/images/component/button/btn_tuiguang.png",
+    color: "#000",
+    border: "transparent",
+    shadow: "none",
+    height: "60rpx",
+  },
+  "plain_1": {
+    border: "#BD6EFF",
+    background: "transparent",
+    color: "#FFFFFF60",
+    boxShadow: "none",
+    height: "60rpx",
+  },
   "gradient-lottery-use": {
     background: "linear-gradient(103deg, rgba(166, 51, 255, 0.40) 11.94%, rgba(23, 15, 255, 0.40) 94.55%), radial-gradient(56.68% 65.59% at 18.1% 100%, rgba(31, 25, 101, 0.30) 0%, rgba(31, 25, 101, 0.00) 100%), radial-gradient(28.23% 54.58% at 64.44% 0%, rgba(78, 69, 173, 0.31) 0%, rgba(31, 22, 144, 0.00) 100%), linear-gradient(246deg, rgba(154, 103, 255, 0.48) 10.85%, rgba(72, 62, 210, 0.00) 53.28%), radial-gradient(86.14% 83.15% at 73.06% 100%, #31FFF5 0%, rgba(13, 85, 255, 0.00) 100%), radial-gradient(54% 53.14% at 5.17% 18.33%, rgba(198, 52, 255, 0.66) 0%, rgba(198, 52, 255, 0.00) 100%), linear-gradient(110deg, rgba(127, 23, 170, 0.80) 3.96%, rgba(127, 23, 170, 0.00) 75.08%), radial-gradient(167.64% 95.42% at 50% 119.58%, #0042D0 0%, rgba(2, 64, 199, 0.00) 60.69%), linear-gradient(90deg, #281964 0%, #1E228E 88.36%)",
     color: "#fff",
