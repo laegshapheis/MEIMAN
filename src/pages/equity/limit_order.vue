@@ -2,8 +2,9 @@
   <layout navTitle="限价交易" bgType="bg-main">
     <view class="px-[32rpx] pt-[28rpx]">
       <wk-stroke-bg
+      mode="img-card3-big"
       >
-        <uv-form labelPosition="left" labelWidth="180rpx" labelAlign="left" labelStyle="font-size: 28rpx; color: #010101;">
+        <uv-form labelPosition="left" labelWidth="180rpx" labelAlign="left" labelStyle="font-size: 28rpx; color: #FFFFFF80;">
           <uv-form-item label="股权数量">
             <uv-input
               :maxlength="20"
@@ -24,7 +25,7 @@
               <text class="text-neutral text-base font-semibold">个</text>
             </template>
           </uv-form-item>
-          <view class="w-full h-[1rpx] bg-[#EBF6F0] my-[16rpx]"></view>
+          <view class="w-full h-[1rpx] bg-white/25 my-[16rpx]"></view>
           <uv-form-item
             :label="type == 'xian_jia' ? '自定义价格' : '股权价格'"
           >
@@ -48,7 +49,7 @@
               <text class="text-neutral text-base font-semibold">{{ symbolStore.code }}</text>
             </template>
           </uv-form-item>
-          <view class="w-full h-[1rpx] bg-[#EBF6F0] my-[16rpx]"></view>
+          <view class="w-full h-[1rpx] bg-white/25 my-[16rpx]"></view>
           <uv-form-item
             v-if="type == 'xian_jia'"
             label="承担人"
@@ -76,19 +77,19 @@
               </view>
             </wk-picker>
             <template v-slot:right>
-              <uv-icon name="arrow-right" color="#fff" size="28rpx"></uv-icon>
+              <uv-icon name="arrow-right" color="#ffffff60" size="28rpx"></uv-icon>
             </template>
           </uv-form-item>
         </uv-form>
-        <view class="w-full h-[1rpx] bg-[#EBF6F0] my-[16rpx]"></view>
-        <view class="flex flex-row justify-between mt-[20rpx]">
-          <view class="flex-shrink-0 w-[200rpx] text-neutral text-base"
+        <view class="w-full h-[1rpx] bg-white/25 my-[16rpx]"></view>
+        <view class="flex flex-row justify-between mt-[20rpx] text-[#5493FF]">
+          <view class="flex-shrink-0 w-[200rpx] text-base"
             >
-            <text class="text-base text-neutral-regular">手续费：</text>
-            <text class="text-base text-neutral font-semibold">{{ shouxufeiitshi }}</text>
+            <text class="text-base">手续费：</text>
+            <text class="text-base font-semibold">{{ shouxufeiitshi }}</text>
             </view
           >
-          <view class="text-neutral text-base font-medium ml-[20rpx]"
+          <view class="text-base font-medium ml-[20rpx]"
             >总价格：{{ totle_nuber }} {{ symbolStore.code }}</view
           >
         </view>
@@ -99,7 +100,7 @@
       v-if="result.xjjy == 1 || result.sjjy == 1"
       class="px-[32rpx] mt-[44rpx]"
     >
-      <wk-button type="bg" @submit="prepareSubmit">
+      <wk-button @submit="prepareSubmit">
         申请交易
       </wk-button>
     </view>

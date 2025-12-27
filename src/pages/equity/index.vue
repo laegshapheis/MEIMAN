@@ -32,13 +32,13 @@
           @click="handleNavigate(item)"
         >
         <view v-if="index != 0"
-          class="w-full h-[1rpx] bg-black/10"></view>
+          class="w-full h-[2rpx] bg-[#0C052F]"></view>
           <view
             class="box-border w-full p-[16rpx] flex flex-row items-center justify-between"
           >
             <view class="w-full flex flex-row items-center">
               <view
-                class="w-[96rpx] h-[96rpx] mr-[32rpx] flex flex-row items-center justify-center rounded-full bg-white"
+                class="w-[96rpx] h-[96rpx] mr-[32rpx] flex flex-row items-center justify-center rounded-full bg-[#121E3E]"
               >
                 <image
                   :src="item.icon"
@@ -77,7 +77,7 @@ const buttonItems = [
     type: "purchase",
     icon: "/static/images/equity/purchase.svg",
     label: "购买",
-    switch: true,
+    switch: false,
     route: routes.productList,
     tabType: 32,
   },
@@ -160,10 +160,14 @@ const handleNavigate = (item) => {
     return;
   }
   
-  if (item.switch) {
+  // 如果设置了 tabType，先保存到 storage
+  if (item.tabType) {
     uni.setStorageSync("switchTabData", {
       tabType: item.tabType,
     });
+  }
+  
+  if (item.switch) {
     uni.switchTab({
       url: item.route,
     });

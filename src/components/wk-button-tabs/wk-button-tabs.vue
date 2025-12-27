@@ -1,5 +1,6 @@
 <template>
-  <wk-tabs
+  <view class="p-[2rpx]" style="border-radius: 360rpx;border: 1px solid rgba(255, 255, 255, 0.25);">
+    <uv-tabs
     :class="className"
     :itemStyle="{
       padding: '10rpx',
@@ -10,12 +11,10 @@
       height: '60rpx',
       width: '100%',
       lineHeight: '60rpx',
-      borderRadius: '720rpx',
-      border: 'none',
-      background: $colors.black,
-      backgroundClip: 'none',
-      WebkitBackgroundClip: 'none',
-      WebkitTextFillColor: 'none',
+      borderRadius: '360rpx',
+      border: '2px solid rgba(255, 255, 255, 0.50)',
+      background: '#1930FF',
+      boxShadow: '0 12px 12px 2px rgba(41, 157, 246, 0.59) inset',
       color: '#fff',
       fontSize: '32rpx',
       textAlign: 'center',
@@ -28,23 +27,27 @@
       width: '100%',
       lineHeight: '60rpx',
       borderRadius: '0rpx',
-      borderColor: '#fff',
-      border: 'none',
-      backgroundColor: 'transparent',
-      color: $colors.regular,
+      color: regularColor,
       fontSize: '32rpx',
       textAlign: 'center',
       ...inactiveStyle
     }"
     :list="list"
-    :isButton="true"
     :scrollable="scrollable"
+    :lineColor="'transparent'"
+    :lineHeight="0"
+    :lineWidth="0"
+    :showBottomBorder="false"
     @change="handleChange"
     :current="current"
   />
+  </view>
+  
 </template>
 
 <script setup>
+import { neutral } from '@/config/colors'
+
 const props = defineProps({
   // 当前选中项
   current: {
@@ -59,7 +62,7 @@ const props = defineProps({
   // 外部类名
   className: {
     type: String,
-    default: 'bg-white/10 rounded-[8rpx] border border-black/10 border-solid'
+    default: ''
   },
   // tab列表数据
   list: {
@@ -89,6 +92,9 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['change'])
+
+// 获取常规字体颜色
+const regularColor = neutral.regular
 
 // tab切换事件
 const handleChange = (item) => {

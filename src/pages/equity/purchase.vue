@@ -23,12 +23,13 @@
           }}</text>
         </view>
       </view>
-      <wk-stroke-bg 
+      <view 
         v-if="tabList.length > 0"
+        class="p-[32rpx] rounded-[48rpx] bg-black"
       >
         <view class="mb-[24rpx]">
           <wk-button-tabs
-            className="w-full rounded-full bg-[#F5F8FD] border-[length:1rpx] border-solid border-black/10"
+            className="w-full rounded-full"
             :list="tabList"
             :scrollable="false"
             @change="changeType"
@@ -38,7 +39,7 @@
           labelPosition="left"
           labelWidth="240rpx"
           labelAlign="left"
-          labelStyle="font-size: 28rpx; color: #010101;"
+          labelStyle="font-size: 28rpx; color: #ffffff;"
         >
           <uv-form-item label="股权数量(个)">
             <uv-input
@@ -60,7 +61,7 @@
               <text class="text-neutral text-base">个</text>
             </template> -->
           </uv-form-item>
-          <view class="w-full h-[1rpx] bg-black/10 my-[16rpx]"></view>
+          <view class="w-full h-[1rpx] bg-white/25 my-[16rpx]"></view>
           <uv-form-item :label="(type == 'xian_jia' ? '自定义价格(' : '股权价格(') + symbolStore.code + ')'">
             <uv-input
               v-model="model[type].input_pric"
@@ -84,7 +85,7 @@
           </uv-form-item>
           <view
             v-if="type == 'xian_jia'"
-            class="w-full h-[1rpx] bg-black/10 my-[16rpx]"
+            class="w-full h-[1rpx] bg-white/25 my-[16rpx]"
           ></view>
 
           <uv-form-item
@@ -117,37 +118,48 @@
               <uv-icon name="arrow-right" color="#010101" size="14"></uv-icon>
             </template>
           </uv-form-item>
-          <view class="w-full h-[1rpx] bg-black/10 my-[16rpx]"></view>
-          <uv-form-item label="手续费">
+          <view class="w-full h-[1rpx] bg-white/25 my-[16rpx]"></view>
+          <!-- <uv-form-item label="手续费">
             <view class="w-full text-right">
               <text class="text-base text-neutral font-semibold"
                 >{{ shou_xu_fei }}%</text
               >
             </view>
           </uv-form-item>
-          <view class="w-full h-[1rpx] bg-black/10 my-[16rpx]"></view>
+          <view class="w-full h-[1rpx] bg-white/25 my-[16rpx]"></view>
           <uv-form-item label="总价格">
             <view class="w-full text-right">
               <text class="text-base text-neutral font-semibold"
                 >{{ zong_jia[type] }} {{ symbolStore.code }}</text
               >
             </view>
-          </uv-form-item>
+          </uv-form-item> -->
         </uv-form>
-      </wk-stroke-bg>
+        <view class="flex flex-row justify-between mt-[24rpx] text-[#5493FF]">
+          <view>
+            <text>手续费</text>
+            <text>{{ shou_xu_fei }}%</text>
+          </view>
+          <view>
+            <text>总价格</text>
+            <text>{{ zong_jia[type] }} {{ symbolStore.code }}</text>
+          </view>
+        </view>
+      </view>
       <view
-        class="text-base leading-6 mt-[32rpx] bg-white p-[24rpx] rounded-[24rpx]"
-        style="border: 1rpx solid #00000020;"
+        class="text-base leading-6 mt-[32rpx] p-[24rpx]"
+        style="border-radius: 24px;border: 0.5px solid rgba(255, 255, 255, 0.25);background: #0C052F;"
       >
-        <CommonTips color="#252C2F" :content="content"></CommonTips>
+        <CommonTips color="#FFFFFF80" :content="content"></CommonTips>
       </view>
     </view>
     <!-- 按钮 -->
     <view
       v-if="result.xjjy == 1 || result.sjjy == 1"
-      class="fixed bottom-0 left-0 right-0 bg-neutral-bottomBtnBg px-[32rpx] py-[16rpx]"
+      class="fixed bottom-0 left-0 right-0 px-[32rpx] py-[16rpx]"
+      style="background: linear-gradient(90deg, #4EB2FE 0%, #0479FE 100%);"
     >
-      <wk-button type="bg" @submit="prepareSubmit">
+      <wk-button @submit="prepareSubmit">
         申请交易
       </wk-button>
     </view>
@@ -169,6 +181,7 @@ import { getTradeInfoApi, submitTradeApi } from "@/api/user";
 import { routes } from "@/config/routes";
 import CommonTips from "@/components/base/common-tips";
 import { cacheManager } from "@/utils/cacheManager";
+import { neutral } from "@/config/colors";
 const symbolStore = useSymbolStore();
 const model = ref({
   xian_jia: {

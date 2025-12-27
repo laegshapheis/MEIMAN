@@ -4,6 +4,7 @@
     mode="black"
     navTitle="质押合约"
     bgType="bg-white"
+    :isLottie="false"
     :isNavLeftBackClick="false"
     @navLeftClick="handelBack"
   >

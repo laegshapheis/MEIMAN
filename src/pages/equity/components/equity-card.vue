@@ -1,6 +1,6 @@
 <template>
   <view
-    class="relative overflow-hidden p-[48rpx] bg-card3 rounded-[32rpx]"
+    class="relative overflow-hidden p-[48rpx] bg-card4 rounded-[32rpx]"
   >
     <!-- 背景图 -->
     <!-- <view class="absolute top-0 right-0 w-full h-full">

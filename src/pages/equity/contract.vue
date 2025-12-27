@@ -9,10 +9,11 @@
   >
     <view class="px-[32rpx] pt-[24rpx]">
       <!-- 合约列表项 -->
-      <wk-stroke-bg
+      <view
         v-for="(item, idx) in list"
         :key="'contract_' + idx"
-        class="mb-[24rpx]"
+        class="mb-[24rpx] rounded-[32rpx] p-[32rpx]"
+        style="background-color: #1F197D;"
       >
         <view class="flex flex-col">
           <!-- 合约ID和时间 -->
@@ -44,17 +45,15 @@
           <view class="flex gap-[24rpx] mt-[24rpx]">
             <wk-button
               v-if="isshow"
-              size="small"
-              color="#010101"
-              backgroundColor="#98EDFB"
-              class="shadow-btn-bg flex-1 rounded-[24rpx]"
+              type="img-bg"
+              class="flex-1 rounded-[24rpx]"
               @submit="handleRedeem(item)"
             >
               赎回合约
             </wk-button>
             <wk-button
-              size="small"
-              class="bg-transparent flex-1 bg-primary text-black"
+              type="img-bg2"
+              class="flex-1 rounded-[24rpx]"
               @submit="handleView(item)"
             >
               查看合约
@@ -63,11 +62,11 @@
           <view
             v-if="download_switch == 1"
             @click="handleDownload(item)"
-            class="text-base font-medium text-neutral-theme text-center mt-[32rpx]"
+            class="text-base font-medium text-[#B676FF] text-center mt-[32rpx]"
             >下载合约</view
           >
         </view>
-      </wk-stroke-bg>
+      </view>
       <!-- 无数据展示 -->
       <empty v-if="!list.length" />
     </view>
@@ -85,15 +84,13 @@
       </view>
       <view class="flex-1 flex flex-row w-[90%] mx-auto">
         <wk-button
-          backgroundColor="#F5F8FD"
-          size="small"
-          class="flex-1"
-          color="#252628"
+          type="img-bg2"
+          class="flex-1 rounded-[24rpx]"
           @submit="modal.close()"
           >取消</wk-button
         >
         <view class="flex-1 ml-[20rpx]">
-          <wk-button size="small" @submit="handleRedeemKeyWord">确认</wk-button>
+          <wk-button type="img-bg" class="rounded-[24rpx]" @submit="handleRedeemKeyWord">确认</wk-button>
         </view>
       </view>
     </wk-modal>
