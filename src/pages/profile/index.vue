@@ -143,10 +143,10 @@
     @submit="handleProductSubmit" />
 
   <!-- 右下角可拖拽固定图片按钮 -->
-  <!-- <DraggableFloatingButton 
+  <DraggableFloatingButton 
     v-if="fucardSwitch == 1" 
     @click="handleFloatingImageClick"
-  /> -->
+  />
 </template>
 
 <script setup>

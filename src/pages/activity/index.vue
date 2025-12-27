@@ -105,9 +105,22 @@
       </view>
       <!-- 抽奖 -->
       <view class="flex justify-center items-center">
-        <wk-button class="w-[362rpx] h-[72rpx] my-1" backgroundColor="linear-gradient(21deg, #003DA0 4.25%, #8A5BFF 58.07%, #8A5BFF 97.54%)" @click="goToLottery">
-          <text class="text-white text-base">{{ fucard_mode_type == 1 ? '已集齐四卡 去抽奖' : '集齐四卡 去抽奖' }}</text>
-        </wk-button>
+        <view
+          class="my-1 relative flex justify-center items-center"
+          style="width: 212px; height: 54px;"
+          @click="goToLottery"
+        >
+          <c-lottie
+            renderer="svg"
+            :data="jikaLottieData"
+            :loop="true"
+            :autoPlay="true"
+            width="212px"
+            height="54px"
+            style="position: absolute; top: 0; left: 0;"
+          ></c-lottie>
+          <text class="text-black text-base relative z-10">{{ fucard_mode_type == 1 ? '已集齐四卡 去抽奖' : '集齐四卡 去抽奖' }}</text>
+        </view>
       </view>
       <!-- 小卡片 -->
       <view class="flex flex-row justify-center items-center gap-[24rpx] mt-[32rpx]">
@@ -140,6 +153,7 @@
 <script>
 import { getCardListApi } from "@/api/activity";
 import { routes } from "@/config/routes";
+import jikaLottieData from "@/static/lottie/jika.json";
 export default {
   data() {
     return {
@@ -147,6 +161,7 @@ export default {
       title: "",
       activeIndex: 0,
       fucard_mode_type: 0,
+      jikaLottieData: jikaLottieData,
     };
   },
   onShow() {

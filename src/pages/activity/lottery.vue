@@ -15,7 +15,7 @@
             mode="widthFix"
           ></image>
         </view>
-        <text class="text-neutral-theme text-base mt-[20rpx]"
+        <text class="text-[#36CBFF] text-base mt-[20rpx]"
           >可抽奖{{ lottery_num }}次</text
         >
       </view>
@@ -36,13 +36,10 @@
           <image
             src="/static/images/activity/lottery_z_bg.png"
             mode="widthFix"
-            style="
-              padding: 20rpx;
-              box-sizing: border-box;
-              width: 750rpx;
-              height: 750rpx;
-            "
+            class="lottery-bg-image"
+            :style="bgImageStyle"
           ></image>
+          
           <!-- 滚动抽奖 -->
           <view class="chou_jiang_kl">
             <l-dialer
@@ -59,7 +56,7 @@
               <template #pointer>
                 <image
                   @click="click_chou_jiang"
-                  style="flex-shrink: 0; width: 100%; height: 240rpx"
+                  style="flex-shrink: 0; width: 100%; height: 240rpx; margin-top: -10px;"
                   src="/static/images/activity/lottery_btn.png"
                   mode="aspectFit"
                 ></image>
@@ -76,7 +73,7 @@
         </view>
       </view>
       <view
-        style="border-radius: 20px;border: 2px solid #FFFFFF;background: rgba(255, 255, 255, 0.10);"
+        style="border-radius: 20px;border: 2px solid #FFFFFF;background: linear-gradient(180deg, #0611A1 0%, #1252FF 100%)"
         class="pb-[40rpx] flex flex-col items-center z-20 relative mt-[50rpx] mx-[48rpx] mb-[40rpx]"
       >
         <wk-section-title title="奖品内容" />
@@ -87,31 +84,28 @@
       </view>
 
       <!-- 规则弹窗 -->
-      <wk-modal
+      <uv-modal
         title=""
-        :showClose="false"
         ref="modalRef"
-        size="large"
+        :bgColor="'transparent'"
+        :closeOnClickOverlay="false"
+        :showConfirmButton="false"
+        :borderRadius="'24rpx'"
+        width="750rpx"
       >
-        <view class="w-full h-full flex flex-col items-center" @click.stop>
-          <image
-            class="w-[240rpx] h-[240rpx] mt-[68rpx]"
-            src="/static/images/activity/lottery_modal.png"
-            mode="scaleToFill"
-          />
-          <view class="flex flex-col items-center mt-[48rpx]">
-            <text class="text-[#FFFFFF] text-3xl font-semibold"
-              >恭喜您抽到{{ prizeInfo.name }}</text
-            >
-            <text class="text-[#FFFFFF] text-3xl font-semibold mt-[16rpx]"
-              >{{ prizeInfo.prize || 0 }} {{ symbolStore.code }}</text
-            >
+        <view class="lottery-modal-content" @click.stop>
+          <view class="lottery-modal-text-content">
+            <text class="lottery-modal-title">恭喜您抽到{{ prizeInfo.name }}</text>
+            <text class="lottery-modal-prize">{{ prizeInfo.prize || 0 }} {{ symbolStore.code }}</text>
+            <text class="lottery-modal-desc">奖励已入账到您的余额</text>
           </view>
-          <view class="mt-[48rpx] w-full">
-            <wk-button @click="closePopup"> 开心收下 </wk-button>
+          <view class="lottery-modal-button-wrapper">
+            <view class="lottery-modal-button" @click="closePopup">
+              <text class="lottery-modal-button-text">开心收下</text>
+            </view>
           </view>
         </view>
-      </wk-modal>
+      </uv-modal>
     </view>
   </layout>
 </template>
@@ -132,14 +126,31 @@ export default {
       show_kl: false,
       content_typ: "",
       styleOpt: {
-        prizeBgColors: ["linear-gradient(21deg, #5493FF 4.25%,  #B676FF 58.07%, #B676FF 97.54%)", "linear-gradient(90deg, #4EB2FE 0%, #0479FE 100%)"],
-        borderColor: "#fff",
+        prizeBgColors: ["transparent", "transparent"],
+        borderColor: "transparent",
         fontSize: "32rpx",
         color: "#fff",
       },
       showPopup: false,
       prizeInfo: {},
+      isRotating: false, // 转盘是否正在转动
+      bgRotateAngle: 0, // 背景旋转角度
+      bgRotateTransition: "", // 背景旋转过渡
+      bgStartRotateDegree: 0, // 背景起始旋转角度
     };
+  },
+  computed: {
+    bgImageStyle() {
+      return `
+        padding: 20rpx;
+        box-sizing: border-box;
+        width: 750rpx;
+        height: 750rpx;
+        transform: rotate(${this.bgRotateAngle}deg);
+        transition: ${this.bgRotateTransition};
+        transform-origin: center center;
+      `;
+    },
   },
   onLoad() {
     this.getLotteryPeizhi(); //大转盘配置
@@ -175,23 +186,60 @@ export default {
               icon: "none",
               duration: 3000,
             });
+            // 如果请求失败，确保停止背景旋转
+            this.stopBgRotation();
             return;
           }
           const data = res.data || {};
           this.prizeInfo = data;
+          // 同时开始转动背景和转盘，确保完全同步
+          this.startBgRotation(data.index);
           this.$refs.dialer.run(data.index);
           this.getLotteryPeizhi();
         })
         .catch((error) => {
           console.error("请求失败", error);
           uni.hideLoading();
+          // 请求失败时停止背景旋转
+          this.stopBgRotation();
+          ths.prizeListStar = true;
         });
     },
     //结束转盘触发
     onDone(index) {
       const prize = this.prizeList[index];
       this.prizeListStar = true;
+      // 停止背景旋转
+      this.stopBgRotation();
       this.$refs.modalRef.open();
+    },
+    // 开始背景旋转（与转盘同步）
+    startBgRotation(index) {
+      if (!this.prizeList || this.prizeList.length === 0) {
+        return;
+      }
+      this.isRotating = true;
+      const duration = 3; // 与转盘默认 duration 相同
+      const turns = 10; // 与转盘默认 turns 相同
+      const length = this.prizeList.length;
+      
+      // 使用与转盘完全相同的旋转角度计算逻辑
+      const rotateAngle =
+        this.bgStartRotateDegree +
+        turns * 360 +
+        360 -
+        (180 / length + (360 / length) * index) -
+        (this.bgStartRotateDegree % 360);
+      
+      this.bgStartRotateDegree = rotateAngle;
+      this.bgRotateAngle = rotateAngle;
+      // 使用与转盘完全相同的过渡时间和缓动函数
+      this.bgRotateTransition = `transform ${duration}s cubic-bezier(0.250, 0.460, 0.455, 0.995)`;
+    },
+    // 停止背景旋转
+    stopBgRotation() {
+      this.isRotating = false;
+      // 保持当前角度，不重置
     },
     // 转盘抽奖配置
     getLotteryPeizhi() {
@@ -443,5 +491,93 @@ page {
   color: #fff;
   font-size: 28rpx;
   line-height: 1.5;
+}
+
+.lottery-bg-image {
+  transform-origin: center center;
+}
+
+.lottery-modal-content {
+  position: relative;
+  width: 100%;
+  min-height: 800rpx;
+  background-image: url("/static/images/activity/lottery_modal_bg.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.lottery-modal-text-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 240rpx;
+  margin-bottom: 40rpx;
+  background-color: #ffffff;
+  border-radius: 24rpx;
+  box-sizing: border-box;
+  width: fit-content;
+  width: calc(100% - 96rpx);
+  padding: 40rpx 0;
+}
+
+.lottery-modal-title {
+  font-size: 48rpx;
+  font-weight: 600;
+  color: #000000;
+  text-align: center;
+  margin-bottom: 32rpx;
+  line-height: 1.4;
+}
+
+.lottery-modal-prize {
+  font-size: 56rpx;
+  font-weight: 700;
+  color: #FF397B;
+  text-align: center;
+  margin-bottom: 24rpx;
+  line-height: 1.2;
+}
+
+.lottery-modal-desc {
+  color: #171717;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.lottery-modal-button-wrapper {
+  padding-bottom: 60rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: calc(100% - 96rpx);
+}
+
+.lottery-modal-button {
+  width: 100%;
+  height: 88rpx;
+  border-radius: 44rpx;
+  border: 1px solid #FFF;
+  background: linear-gradient(90deg, #A7FFFF 0%, #FFCCF9 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+}
+
+.lottery-modal-button-text {
+  font-size: 36rpx;
+  font-weight: 500;
+  color: #000000;
 }
 </style>

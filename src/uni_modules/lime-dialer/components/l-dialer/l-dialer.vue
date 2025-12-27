@@ -26,7 +26,7 @@
               <view
                 class="lime-dialer__inner-name"
                 :style="[
-                  { writingMode: 'vertical-rl', fontSize: styleOpt.fontSize, color: styleOpt.color },
+                  { writingMode: 'horizontal-tb', fontSize: styleOpt.fontSize, color: styleOpt.color },
                 ]"
                 >{{ item.name }}</view
               >
