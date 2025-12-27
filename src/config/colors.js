@@ -1,7 +1,7 @@
 export const neutral = {
   DEFAULT: '#fff', // 默认字体白色
   theme: 'rgba(84, 147, 255, 1)', // 主题色
-  regular: '#fff', // 常规字体
+  regular: '#ffffff80', // 常规字体
   secondary: 'rgba(255, 255, 255, 0.60)', // 次要字体
   light: 'rgba(255, 255, 255, 0.75)', // 轻量字体
   placeholder: 'rgba(255, 255, 255, 0.75)', // 输入框占位符

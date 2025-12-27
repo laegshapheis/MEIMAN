@@ -1,7 +1,7 @@
 <template>
   <layout navTitle="市价交易" bgType="bg-main">
     <view class="px-[32rpx] py-[28rpx]">
-      <wk-stroke-bg>
+      <wk-stroke-bg mode="img-card3-big">
         <uv-form labelPosition="left" labelWidth="160rpx" labelAlign="left" labelStyle="font-size: 28rpx; color: #fff;">
           <uv-form-item label="股权数量">
             <uv-input
@@ -57,7 +57,7 @@
       v-if="result.xjjy == 1 || result.sjjy == 1"
       class="px-[32rpx] py-[44rpx]"
     >
-      <wk-button type="bg" @submit="prepareSubmit">
+      <wk-button @submit="prepareSubmit">
         申请交易
       </wk-button>
     </view>

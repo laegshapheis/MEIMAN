@@ -23,7 +23,10 @@
       <view class="flex flex-col mt-[48rpx]">
         <!-- <text class="text-neutral-theme text-xl">股权质押</text> -->
         <view
-          class="h-[100rpx] bg-white border border-solid border-neutral-divider rounded-[24rpx] px-[32rpx] mt-[24rpx]"
+          class="h-[100rpx] rounded-[24rpx] px-[32rpx] mt-[24rpx]"
+          style="border-radius: 12px;
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          background: #202337;"
         >
           <input
             type="number"
@@ -35,7 +38,7 @@
           />
         </view>
         <view class="flex flex-row justify-end items-center mt-[16rpx]">
-          <text class="text-neutral-regular text-sm"
+          <text class="text-white/80 text-sm"
             >稀释比例 {{ data.sfbl }}</text
           >
         </view>
@@ -44,19 +47,14 @@
             >单次质押</wk-button
           >
         </view>
-        <view
-          class="text-base text-center mt-[32rpx] px-[]"
-          >
-          <wk-button class="rounded-[16rpx]" plain @submit="setMaxAmount"
-            >全部质押</wk-button
-          >
-          </view
-        >
+        <view class="text-base text-center mt-[32rpx]" @click="setMaxAmount">
+          全部质押
+        </view>
       </view>
 
       <!-- 说明文案 -->
       <view
-        class="my-[48rpx] text-[#252C2F] text-base leading-6 border border-black/10 border-solid rounded-[24rpx] p-[24rpx]"
+        class="my-[48rpx] text-white/80 text-base leading-6 border border-white/24 border-solid rounded-[24rpx] p-[24rpx]"
       >
         {{ description }}
       </view>

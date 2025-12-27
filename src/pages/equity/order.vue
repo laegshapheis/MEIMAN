@@ -9,10 +9,11 @@
   >
     <view class="px-[32rpx] pt-[28rpx]">
       <!-- 订单列表项 -->
-      <wk-stroke-bg
+      <view
         v-for="(item, idx) in list"
         :key="'order_' + idx"
-        class="mb-[24rpx]"
+        class="mb-[24rpx] p-[32rpx] rounded-[32rpx]"
+        style="background-color: #1F197D"
       >
         <view class="flex flex-col">
           <!-- 订单ID -->
@@ -117,16 +118,16 @@
           >
             <wk-button
               size="small"
-              color="#000"
+              color="#ffffff"
               class="flex-1 rounded-[24rpx]"
-              backgroundColor="#98EDFB"
+              type="gradient"
               @submit="open_play_pass(item.id)"
-              >取消交易</wk-button
-            >
+              >取消交易</wk-button>
             <wk-button
               size="small"
               v-if="item.frequency == 1"
               class="flex-1 rounded-[24rpx]"
+              type="gradient-blue"
               @submit="jumpInfo(item.id, 4, item)"
               >改价</wk-button
             >
@@ -140,7 +141,7 @@
             >
           </view>
         </view>
-      </wk-stroke-bg>
+      </view>
 
       <!-- 无数据展示 -->
       <empty class="mt-[300rpx]" v-if="!list.length" />
@@ -187,15 +188,14 @@
     </view>
     <view class="flex flex-row gap-[24rpx]">
       <wk-button
-        size="small"
+        type="gradient"
         class="flex-1 rounded-[24rpx]"
-        plain
         @submit="modalRef.close()"
         >取消</wk-button
       >
       <wk-button
-        size="small"
-        class="flex-1"
+        type="gradient-blue"
+        class="flex-1 rounded-[24rpx]"
         @submit="confirmGo"
         >确认</wk-button
       >

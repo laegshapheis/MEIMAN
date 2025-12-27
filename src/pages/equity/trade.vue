@@ -36,27 +36,24 @@
         </view>
       </view>
       <!-- 功能按钮 -->
-      <view class="w-full flex flex-row justify-center items-center mt-[16rpx]">
-        <view
-          class="w-full h-[80rpx] bg-[transparent] border-neutral-theme border-[length:1rpx] border-solid rounded-full flex flex-row items-center justify-center"
-          @click="handleNavigate('transfer')"
+      <view class="flex flex-row justify-center items-center mt-[16rpx] px-[32rpx]">
+        <wk-button
+          @submit="handleNavigate('transfer')"
         >
-          <text
-            class="text-neutral-theme text-base font-medium"
-            >我要转让</text
-          >
-        </view>
+          我要转让
+        </wk-button>
       </view>
 
       <!-- 交易列表 -->
       <view v-if="list.length > 0" class="mt-[32rpx]">
-        <wk-stroke-bg
+        <view
           v-for="(item, index) in list"
           :key="index"
-          class="border-b border-neutral pb-[36rpx] mb-[24rpx]"
+          class="border-b border-neutral pb-[36rpx] mb-[24rpx] p-[32rpx] rounded-[32rpx]"
+          style="background-color: #0C052F;"
         >
           <!-- 订单信息 -->
-          <view class="mb-[12rpx] flex flex-row items-center">
+          <view class="mb-[12rpx] flex flex-row items-center mb-[24rpx]">
             <image src="/static/images/user/logo.png" class="w-[48rpx] h-[48rpx] rounded-full mr-[10rpx]"></image>
             <text class="text-neutral text-base">{{ item.username }}</text>
           </view>
@@ -66,6 +63,7 @@
             </text>
             <text class="text-neutral text-base">{{ item.bianhao }}</text>
           </view>
+          <view class="w-full h-[2rpx] bg-white/25 mb-[12rpx]"></view>
           <!-- <view class="mb-[12rpx]">
             <text class="text-neutral-regular text-base mr-[10rpx]">数量 </text>
             <text class="text-neutral text-base">{{ item.number }} 个</text>
@@ -82,6 +80,7 @@
               >{{ item.buyprice * item.number }} {{ symbolStore.code }}</text
             >
           </view>
+          <view class="w-full h-[2rpx] bg-white/25"></view>
           <!-- <view class="mb-[12rpx]">
             <text class="text-neutral-regular text-base mr-[10rpx]"
               >手续费
@@ -92,35 +91,38 @@
               }})</text
             >
           </view> -->
-          <view class="mt-[12rpx]">
+          <view class="mt-[12rpx] mb-[24rpx]">
             <text class="text-neutral-regular text-base mr-[10rpx]"
               >挂单时间
             </text>
             <text class="text-neutral text-base">{{ item.selltime }}</text>
           </view>
-          <view class="w-full h-[2rpx] bg-neutral-divider my-[32rpx]"></view>
+          <view class="w-full h-[2rpx] bg-white/25 mb-[24rpx]"></view>
           <view
-            class="flex flex-row items-center justify-between"
+            class="flex flex-row items-center justify-between px-[32rpx] py-[24rpx]"
+            style="border-radius: 16px;
+              background: rgba(0, 0, 0, 0.10);
+              box-shadow: 0 4px 40px 0 rgba(255, 255, 255, 0.25) inset;"
           >
-            <view class="flex flex-col items-start justify-end">
-              <text class="text-neutral text-lg font-bold mb-[12rpx]">
+            <view class="flex flex-col items-center">
+              <text class="text-[#5493FF] text-lg font-bold mb-[12rpx]">
                 {{ item.buyprice }}
               </text>
-              <text class="text-base text-neutral-regular"
+              <text class="text-sm text-neutral-regular"
                 >金额({{ symbolStore.code }})</text
               >
             </view>
-            <view class="flex flex-col items-start">
-              <text class="text-neutral text-lg font-bold mb-[12rpx]">{{
+            <view class="flex flex-col items-center">
+              <text class="text-[#5493FF] text-lg font-bold mb-[12rpx]">{{
                 item.number || 0
               }}</text>
-              <text class="text-base text-neutral-regular">数量(个)</text>
+              <text class="text-sm text-neutral-regular">数量(个)</text>
             </view>
-            <view class="flex flex-col items-start">
-              <text class="text-neutral text-lg font-bold mb-[12rpx]"
+            <view class="flex flex-col items-center">
+              <text class="text-[#5493FF] text-lg font-bold mb-[12rpx]"
                 >{{ item.extmoney }} {{ symbolStore.code }}</text
               >
-              <text class="text-base text-neutral-regular">{{
+              <text class="text-sm text-neutral-regular">{{
                 item.feetip
               }}</text>
             </view>
@@ -128,12 +130,12 @@
           <wk-button
             height="77rpx"
             v-if="item.show == 1"
-            class="mt-[40rpx]"
+            class="mt-[12rpx]"
             @submit="handleBuy(item)"
           >
             购买
           </wk-button>
-        </wk-stroke-bg>
+        </view>
       </view>
 
       <!-- 空状态 -->
@@ -172,6 +174,7 @@ import Empty from "@/components/base/empty.vue";
 import { useSymbolStore } from "@/stores/symbolStore";
 import { routes } from "@/config/routes";
 import { cacheManager } from "@/utils/cacheManager";
+import { neutral } from "@/config/colors";
 const symbolStore = useSymbolStore();
 
 const loading = ref(false);
