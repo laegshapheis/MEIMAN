@@ -22,7 +22,7 @@
     <scroll-view
       scroll-x
       v-if="showSuffix && filteredEmailSuffixes.length > 0"
-      class="box-border px-[16rpx] py-[30rpx] absolute left-0 right-0 top-[100%] z-50 bg-neutral-modalBg rounded-[24rpx] shadow-lg mt-[16rpx]"
+      class="box-border px-[16rpx] py-[30rpx] absolute left-0 right-0 top-[100%] z-50 bg-[#1F197D] rounded-[24rpx] shadow-lg mt-[16rpx]"
     >
       <view class="flex flex-row">
         <view
