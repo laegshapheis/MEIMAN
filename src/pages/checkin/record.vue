@@ -1,143 +1,128 @@
 <template>
-  <layout
-    ref="layoutRef"
-    :refresher="true"
-    @onRefresh="handleRefresh"
-    navTitle="签到记录"
-    bgType="bg-main4"
-    mode="white"
-    @reachBottom="getPaginationList"
-  >
-    <view
-      class="px-page-x pt-page-y pb-[30rpx] box-border w-full flex flex-col"
-    >
+  <layout ref="layoutRef" :refresher="true" @onRefresh="handleRefresh" navTitle="签到记录" bgType="bg-main4"
+    :isLottie="false" mode="white" @reachBottom="getPaginationList">
+    <view class="px-page-x pt-page-y pb-[30rpx] box-border w-full flex flex-col">
       <Empty title="暂无相关记录" v-if="dataList.length == 0"></Empty>
       <!-- start 列表 -->
       <view class="flex flex-col mb-[48rpx]">
-        <wk-stroke-bg
-          class="rounded-[24rpx] flex flex-col min-h-[200rpx] p-[32rpx] mb-[24rpx] relative"
-          v-for="item in dataList"
-          bgColor="#FFFFFF"
-          :key="item.id"
-        >
+        <view class="bg-[#202482] rounded-[24rpx] flex flex-col min-h-[200rpx] p-[24rpx] mb-[24rpx] relative"
+          v-for="item in dataList" bgColor="#FFFFFF" :key="item.id">
           <view class="flex flex-col">
-            <view class="flex flex-row justify-between mt-[16rpx]">
-              <text class="text-lg text-black font-medium">{{ item.moneylog_notice }}</text>
-              <text class="text-2xl font-semibold text-[#FF6135]">{{
-                  item.moneylog_status + "" + item.moneylog_money
-                }}</text> 
-            </view>
-            
-            <view class="flex flex-row justify-between mt-[16rpx]">
-              <text class="text-base text-[#6E7B89]">{{
-                item.created_at
+            <view class="flex flex-row justify-between">
+              <text class="text-lg text-white">{{ item.moneylog_notice }}</text>
+              <text class="text-2xl font-semibold text-[#5493FF]">{{
+                item.moneylog_status + "" + item.moneylog_money
               }}</text>
-              
+            </view>
+
+            <view class="flex flex-row justify-between mt-[8rpx]">
+              <text class="text-sm text-white/60">{{
+                item.created_at
+                }}</text>
+
             </view>
           </view>
           <!-- 股权 -->
           <template v-if="item.danwei == '股'">
-            <view class="w-full h-[1rpx] bg-neutral-divider flex flex-row my-[16rpx]"></view>
+            <view class="w-full h-[1rpx] bg-[rgba(255,255,255,.25)] flex flex-row my-[16rpx]"></view>
 
-            <view class="flex flex-row justify-between items-center leading-5">
-              <view class="flex flex-col items-start">
-                <text class="text-base text-[#6E7B89]">原有股权</text>
-                <text class="text-lg font-bold mt-[8rpx] text-neutral-black">{{
+            <view class="flex flex-col justify-between items-center leading-5">
+              <view class="flex flex-row items-center w-full justify-between ">
+                <text class="text-sm text-white/60">原有股权</text>
+                <text class="text-sm font-bold mt-[8rpx] text-white">{{
                   item.moneylog_yuanamount
-                }}</text>
+                  }}</text>
               </view>
 
-              <view class="flex flex-col items-start">
-                <text class="text-base text-[#6E7B89]">现有股权</text>
-                <text class="text-lg font-bold mt-[8rpx]  text-neutral-black">{{
+              <view class="flex flex-row items-center w-full justify-between ">
+                <text class="text-sm text-white/60">现有股权</text>
+                <text class="text-sm font-bold mt-[8rpx]  text-white">{{
                   item.moneylog_houamount
-                }}</text>
-                
+                  }}</text>
+
               </view>
             </view>
           </template>
 
           <!-- 积分 -->
           <template v-else-if="item.danwei == '分'">
-              <view class="w-full h-[1rpx] bg-neutral-divider flex flex-row my-[16rpx]"></view>
+            <view class="w-full h-[1rpx] bg-[rgba(255,255,255,.25)] flex flex-row my-[16rpx]"></view>
 
-            <view class="flex flex-row justify-between items-center leading-5">
-              <view class="flex flex-col items-start">
-                <text class="text-base text-[#6E7B89]">原有积分</text>
-                <text class="text-lg font-bold mt-[8rpx] text-neutral-black">{{
+            <view class="flex flex-col justify-between items-center leading-5">
+              <view class="flex flex-row items-center w-full justify-between ">
+                <text class="text-sm text-white/60">原有积分</text>
+                <text class="text-sm font-bold mt-[8rpx] text-white">{{
                   item.moneylog_yuanamount
-                }}</text>
-                
+                  }}</text>
+
               </view>
 
-              <view class="flex flex-col items-start">
-                <text class="text-base text-[#6E7B89]">现有积分</text>
-                <text class="text-lg font-bold mt-[8rpx] text-neutral-black">{{
+              <view class="flex flex-row items-center w-full justify-between ">
+                <text class="text-sm text-white/60">现有积分</text>
+                <text class="text-sm font-bold mt-[8rpx] text-white">{{
                   item.moneylog_houamount
-                }}</text>
-                
+                  }}</text>
+
               </view>
             </view>
           </template>
 
           <!-- 贷款 -->
           <template v-else-if="item.danwei == '款'">
-            <view class="w-full h-[1rpx] bg-neutral-divider flex flex-row my-[16rpx]"></view>
+            <view class="w-full h-[1rpx] bg-[rgba(255,255,255,.25)] flex flex-row my-[16rpx]"></view>
 
-            <view class="flex flex-row justify-between items-center leading-5">
-              <view class="flex flex-col items-start">
-                <text class="text-base text-[#6E7B89]">原有贷款额度</text>
-                <text class="text-lg font-bold mt-[8rpx] text-neutral-black">{{
+            <view class="flex flex-col justify-between items-center leading-5">
+              <view class="flex flex-row items-center w-full justify-between ">
+                <text class="text-sm text-white/60">原有贷款额度</text>
+                <text class="text-sm font-bold mt-[8rpx] text-white">{{
                   item.moneylog_yuanamount
-                }}</text>
+                  }}</text>
               </view>
 
               <view class="flex flex-col items-start">
-                <text class="text-base text-[#6E7B89]">现有贷款额度</text>
-                <text class="text-lg font-bold mt-[8rpx] text-neutral-black">{{
+                <text class="text-sm text-white/60">现有贷款额度</text>
+                <text class="text-sm font-bold mt-[8rpx] text-white">{{
                   item.moneylog_houamount
-                }}</text>
+                  }}</text>
               </view>
             </view>
           </template>
 
           <!-- 推广奖励 -->
           <template v-else-if="item.danwei == '金'">
-            <view class="w-full h-[1rpx] bg-neutral-divider flex flex-row my-[16rpx]"></view>
+            <view class="w-full h-[1rpx] bg-[rgba(255,255,255,.25)] flex flex-row my-[16rpx]"></view>
 
-            <view class="flex flex-row justify-between items-center leading-5">
-              <view class="flex flex-col items-start">
-                <text class="text-base text-[#6E7B89]">原有推广奖励</text>
-                <text class="text-lg font-bold mt-[8rpx] text-neutral-black">{{
+            <view class="flex flex-col justify-between items-center leading-5">
+              <view class="flex flex-row items-center w-full justify-between ">
+                <text class="text-sm text-white/60">原有推广奖励</text>
+                <text class="text-sm font-bold mt-[8rpx] text-white">{{
                   item.moneylog_yuanamount
-                }}</text>
-                
+                  }}</text>
+
               </view>
 
-              <view class="flex flex-col items-start">
-                <text class="text-base text-[#6E7B89]">现有推广奖励</text>
-                <text class="text-lg font-bold mt-[8rpx] text-neutral-black">{{
+              <view class="flex flex-row items-center w-full justify-between ">
+                <text class="text-sm text-white/60">现有推广奖励</text>
+                <text class="text-sm font-bold mt-[8rpx] text-white">{{
                   item.moneylog_houamount
-                }}</text>
-                
+                  }}</text>
+
               </view>
             </view>
 
             <template v-if="item.isext == 1">
               <view class="w-full h-[1rpx] bg-neutral-divider flex flex-row my-[16rpx]"></view>
 
-              <view
-                class="flex flex-row justify-between items-center leading-5"
-              >
-                <view class="flex flex-col items-start">
-                  <text class="text-base text-neutral-light">{{
+              <view class="flex flex-row justify-between items-center leading-5">
+                <view class="flex flex-row items-center w-full justify-between ">
+                  <text class="text-sm text-white/60">{{
                     item.moneylog_ext.split("_")[0] +
                     "：" +
                     item.moneylog_ext.split("_")[1]
-                  }}</text>
-                  <text class="text-lg font-bold mt-[8rpx]">{{
+                    }}</text>
+                  <text class="text-sm font-bold mt-[8rpx] text-white">{{
                     "基础收益：" + item.moneylog_ext.split("_")[2]
-                  }}</text>
+                    }}</text>
                 </view>
               </view>
             </template>
@@ -145,39 +130,37 @@
 
           <!-- 投资 -->
           <template v-else-if="item.danwei == '元'">
-            <view class="w-full h-[1rpx] bg-neutral-divider flex flex-row my-[16rpx]"></view>
+            <view class="w-full h-[1rpx] bg-[rgba(255,255,255,.25)] flex flex-row my-[16rpx]"></view>
 
-            <view class="flex flex-row justify-between items-center leading-5">
-              <view class="flex flex-col items-start">
-                <text class="text-base text-[#6E7B89]">原有投资金额</text>
-                <text class="text-lg font-bold mt-[8rpx] text-neutral-black">{{
+            <view class="flex flex-col justify-between items-center leading-5">
+              <view class="flex flex-row items-center w-full justify-between ">
+                <text class="text-sm text-white/60">原有投资金额</text>
+                <text class="text-sm font-bold mt-[8rpx] text-white">{{
                   item.moneylog_yuanamount
-                }}</text>
+                  }}</text>
               </view>
 
-              <view class="flex flex-col items-start">
-                <text class="text-base text-[#6E7B89]">现有投资金额</text>
-                <text class="text-lg font-bold mt-[8rpx] text-neutral-black">{{
+              <view class="flex flex-row items-center w-full justify-between ">
+                <text class="text-sm text-white/60">现有投资金额</text>
+                <text class="text-sm font-bold mt-[8rpx] text-white">{{
                   item.moneylog_houamount
-                }}</text>
+                  }}</text>
               </view>
             </view>
 
             <template v-if="item.isext == 1">
-              <view class="w-full h-[1rpx] bg-neutral-divider flex flex-row my-[16rpx]"></view>
+              <view class="w-full h-[1rpx] bg-[rgba(255,255,255,.25)] flex flex-row my-[16rpx]"></view>
 
-              <view
-                class="flex flex-row justify-between items-center leading-5"
-              >
-                <view class="flex flex-col items-start">
-                  <text class="text-lg font-bold mt-[8rpx]">{{
+              <view class="flex flex-row justify-between items-center leading-5">
+                <view class="flex flex-row items-center w-full justify-between ">
+                  <text class="text-sm font-bold mt-[8rpx] text-white">{{
                     "基础收益：" + item.moneylog_ext.split("_")[2]
-                  }}</text>
-                  <text class="text-base">{{
+                    }}</text>
+                  <text class="text-sm text-white/60">{{
                     item.moneylog_ext.split("_")[0] +
                     "：" +
                     item.moneylog_ext.split("_")[1]
-                  }}</text>
+                    }}</text>
                 </view>
               </view>
             </template>
@@ -185,58 +168,52 @@
 
           <!-- 投资 -->
           <template v-else-if="item.danwei == '现'">
-            <view class="w-full h-[1rpx] bg-neutral-divider flex flex-row my-[16rpx]"></view>
+            <view class="w-full h-[1rpx] bg-[rgba(255,255,255,.25)] flex flex-row my-[16rpx]"></view>
 
-            <view class="flex flex-row justify-between items-center leading-5">
-              <view class="flex flex-col items-start">
-                <text class="text-base text-[#6E7B89]">原有提现金额</text>
-                <text class="text-lg font-bold mt-[8rpx] text-neutral-black">{{
+            <view class="flex flex-col justify-between items-center leading-5">
+              <view class="flex flex-row items-center w-full justify-between ">
+                <text class="text-sm text-white/60">原有提现金额</text>
+                <text class="text-sm font-bold mt-[8rpx] text-white">{{
                   item.moneylog_yuanamount
-                }}</text>
+                  }}</text>
               </view>
 
-              <view class="flex flex-col items-start">
-                <text class="text-base text-[#6E7B89]">现有提现金额</text>
-                <text class="text-lg font-bold mt-[8rpx] text-neutral-black">{{
+              <view class="flex flex-row items-center w-full justify-between ">
+                <text class="text-sm text-white/60">现有提现金额</text>
+                <text class="text-sm font-bold mt-[8rpx] text-white">{{
                   item.moneylog_houamount
-                }}</text>
+                  }}</text>
               </view>
             </view>
 
             <template v-if="item.isext == 1">
-              <view class="w-full h-[1rpx] bg-neutral-divider flex flex-row my-[16rpx]"></view>
+              <view class="w-full h-[1rpx] bg-[rgba(255,255,255,.25)] flex flex-row my-[16rpx]"></view>
 
-              <view
-                class="flex flex-row justify-between items-center leading-5"
-              >
-                <view class="flex flex-col items-start">
-                  <text class="text-base text-neutral-regular">{{
+              <view class="flex flex-row justify-between items-center leading-5">
+                <view class="flex flex-row items-center w-full justify-between ">
+                  <text class="text-sm text-white/60">{{
                     item.moneylog_ext.split("_")[0] +
                     "：" +
                     item.moneylog_ext.split("_")[1]
-                  }}</text>
-                  <text class="text-lg font-bold mt-[8rpx]">{{
+                    }}</text>
+                  <text class="text-sm font-bold mt-[8rpx] text-white">{{
                     "基础收益：" + item.moneylog_ext.split("_")[2]
-                  }}</text>
+                    }}</text>
                 </view>
               </view>
             </template>
 
-            <template
-              v-if="item.isext == 1 && item.moneylog_ext.split('_').length > 2"
-            >
-            <view class="w-full h-[1rpx] bg-neutral-divider flex flex-row my-[16rpx]"></view>
+            <template v-if="item.isext == 1 && item.moneylog_ext.split('_').length > 2">
+              <view class="w-full h-[1rpx] bg-[rgba(255,255,255,.25)] flex flex-row my-[16rpx]"></view>
 
-              <view
-                class="flex flex-row justify-between items-center leading-5"
-              >
-                <view class="flex flex-col items-start">
-                  <text class="text-base text-neutral-regular">{{
+              <view class="flex flex-row justify-between items-center leading-5">
+                <view class="flex flex-row items-center w-full justify-between ">
+                  <text class="text-sm text-white/60">{{
                     item.moneylog_ext.split("_")[1].split(":")[0] +
                     "：" +
                     item.moneylog_ext.split("_")[1].split(":")[1]
-                  }}</text>
-                  <text class="text-lg font-bold mt-[8rpx]"></text>
+                    }}</text>
+                  <text class="text-sm font-bold mt-[8rpx] text-white"></text>
                 </view>
               </view>
             </template>
@@ -244,45 +221,43 @@
 
           <!-- 投资 -->
           <template v-else-if="item.danwei == '利'">
-            <view class="w-full h-[1rpx] bg-neutral-divider flex flex-row my-[16rpx]"></view>
+            <view class="w-full h-[1rpx] bg-[rgba(255,255,255,.25)] flex flex-row my-[16rpx]"></view>
 
             <view class="flex flex-row justify-between items-center leading-5">
-              <view class="flex flex-col items-start">
-                <text class="text-base text-[#6E7B89]">原有提现金额</text>
-                <text class="text-lg font-bold mt-[8rpx] text-neutral-black">{{
+              <view class="flex flex-row items-center w-full justify-between ">
+              <text class="text-sm text-white/60">原有提现金额</text>
+                <text class="text-sm font-bold mt-[8rpx] text-white">{{
                   item.moneylog_yuanamount
-                }}</text>
+                  }}</text>
               </view>
 
-              <view class="flex flex-col items-start">
-                <text class="text-base text-[#6E7B89]">现有提现金额</text>
-                <text class="text-lg font-bold mt-[8rpx] text-neutral-black">{{
+              <view class="flex flex-row items-center w-full justify-between ">
+                <text class="text-sm text-white/60">现有提现金额</text>
+                <text class="text-sm font-bold mt-[8rpx] text-white">{{
                   item.moneylog_houamount
-                }}</text>
+                  }}</text>
               </view>
             </view>
 
             <template v-if="item.isext == 1">
-              <view class="w-full h-[1rpx] bg-neutral-divider flex flex-row my-[16rpx]"></view>
+              <view class="w-full h-[1rpx] bg-[rgba(255,255,255,.25)] flex flex-row my-[16rpx]"></view>
 
-              <view
-                class="flex flex-row justify-between items-center leading-5"
-              >
-                <view class="flex flex-col items-start">
-                  <text class="text-base text-neutral-regular">{{
+              <view class="flex flex-row justify-between items-center leading-5">
+                <view class="flex flex-row items-center w-full justify-between ">
+                  <text class="text-sm text-white/60">{{
                     item.moneylog_ext.split("_")[0] +
                     "：" +
                     item.moneylog_ext.split("_")[1]
-                  }}</text>
-                  <text class="text-lg font-bold mt-[8rpx]">{{
+                    }}</text>
+                  <text class="text-sm font-bold mt-[8rpx] text-white">{{
                     "基础收益：" + item.moneylog_ext.split("_")[2]
-                  }}</text>
-                  
+                    }}</text>
+
                 </view>
               </view>
             </template>
           </template>
-        </wk-stroke-bg>
+        </view>
       </view>
       <!-- end 列表 -->
     </view>
@@ -344,7 +319,7 @@ onReachBottom(() => {
 
 const getPaginationList = () => {
   if (loadFinish.value) return;
-  if (lock.value) return ;
+  if (lock.value) return;
   pullType.value = "up";
 
   console.log("up");
@@ -355,7 +330,7 @@ const getPaginationList = () => {
 };
 
 const getLogList = async (showLoading = true) => {
-  if (lock.value) return ;
+  if (lock.value) return;
   lock.value = true;
   if (showLoading) {
     loading.value = true;
@@ -400,7 +375,7 @@ const getLogList = async (showLoading = true) => {
 </script>
 
 <style lang="scss">
-.linegradient_text{
+.linegradient_text {
   background: linear-gradient(110deg, #FFF 6.48%, #FFDABD 83.04%);
   background-clip: text;
   -webkit-background-clip: text;

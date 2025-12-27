@@ -106,8 +106,8 @@ const startCountdown = () => {
 };
 
 onLoad(() => {
-  checkNetwork()
-  startCountdown()
+  // checkNetwork()
+  // startCountdown()
 });
 
 onUnload(() => {

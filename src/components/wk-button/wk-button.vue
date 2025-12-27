@@ -95,8 +95,31 @@ const TYPE_PRESETS = {
     border: "transparent",
     shadow: "0 4rpx 16rpx rgba(234, 88, 12, 0.4)",
   },
+  "gradient-pure":{
+    background: "linear-gradient(270deg, #AD6EFF 0%, #1A4CFF 95.42%)",
+    color: "#fff",
+    border: "transparent",
+  },
   "img-primary": {
     bgImage: "/static/images/index/btn_primary.png",
+    color: "#fff",
+    border: "transparent",
+    shadow: "none",
+  },
+  "large":{
+    bgImage: "/static/images/component/button/btn_large.png",
+    color: "#fff",
+    border: "transparent",
+    shadow: "none",
+  },
+  "medium":{
+    bgImage: "/static/images/component/button/btn_medium.png",
+    color: "#fff",
+    border: "transparent",
+    shadow: "none",
+  },
+  "small":{
+    bgImage: "/static/images/component/button/btn_small.png",
     color: "#fff",
     border: "transparent",
     shadow: "none",

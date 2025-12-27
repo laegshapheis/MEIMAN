@@ -15,40 +15,40 @@
         src="/static/images/index/checkin_title.png"
         mode="widthFix"
       ></image> -->
-      <view
-        class="mx-[32rpx] z-10 absolute top-[60rpx] left-[66rpx] checkin-bg flex flex-row items-center justify-center">
-      </view>
-      <view class="qd-bg pt-[48rpx] relative z-20">
-        <view class="flex flex-col items-center rounded-[48rpx] p-[32rpx] w-[436rpx] h-[456rpx] mx-auto box-border" style="
+      <view class="checkin-bg "></view>
+      <view class="qd-bg relative z-20">
+        <view
+          class="flex flex-col items-center rounded-[48rpx] pt-[16rpx] pb-[32rpx] w-[320rpx] h-[320rpx] mx-auto box-border"
+          style="
             background-image:url(/static/images/checkin/calendar.png);background-size: 100% 100%; background-repeat: no-repeat; background-position: center;
           ">
-          <text class="text-black text-base font-medium">已经签到</text>
+          <text class="text-[#020202] text-sm font-medium mt-[122rpx]">已经签到</text>
           <view class="flex flex-row items-end justify-center mt-[8rpx]">
-            <text class="text-black text-[length:96rpx] font-bold mr-[16rpx]">{{
-              data.yiqiandao
+            <text class="text-[#1A4CFF] text-[length:96rpx] leading-[96rpx] font-bold mr-[16rpx]">{{ data.yiqiandao
               }}</text>
-            <text class="text-black text-base mb-[16rpx]">天</text>
+            <text class="text-[#1A4CFF] text-base mb-[8rpx] font-medium">天</text>
           </view>
-          <view class="mt-[16rpx] w-full">
-            <wk-button class="" backgroundColor="transparent"
-              style="background: linear-gradient(93deg, #AE91FC 2.34%, #636EFF 58.39%, #2BBFF1 112.31%);border-radius: 48rpx;"
-              color="#FFFFFF" @submit="() => signToday()" v-if="!isSigned(data.selDay)">立即签到</wk-button>
 
-            <wk-button v-else style="background: rgba(0, 0, 0, 0.20);border-radius: 48rpx;"
-              backgroundColor="transparent" color="rgba(255, 255, 255, 0.60)" @submit="() => { }">已签到</wk-button>
+        </view>
+        <view class="mt-[32rpx] w-full">
+          <view class="w-[260rpx] mx-[auto]">
+            <wk-button type="gradient-pure" height="80rpx" @submit="() => signToday()"
+              v-if="!isSigned(data.selDay)">立即签到</wk-button>
+
+            <wk-button type="gradient-pure" v-else @submit="() => { }">已签到</wk-button>
           </view>
+
         </view>
       </view>
-      <view class="text-black text-xl font-semibold mt-[52rpx] text-center">{{
-        data.date
-        }}</view>
-      <view class="text-[#868B90] text-base mt-[16rpx] text-center">未签到日期可点击对应日历补签</view>
-      <view class="relative z-20 qd-tab-box mt-[16rpx]">
-        <view class="qd-item-box">
-          <view v-for="day in data.days" :key="day" :class="[
-            'flex flex-col items-center justify-center p-[8rpx] text-lg py-[0rpx]',
-          ]" :style="{ ...getDayStyle(day), height: '112rpx' }" @click="handleDay(day)">
-            <!-- <image
+      <view class="px-[16rpx] py-[32rpx] rounded-[24rpx] bg-white/10 mt-[52rpx]">
+        <view class="text-white text-xl font-semibold  text-center py-[16rpx]">{{ data.date }}</view>
+        <view class="text-white/50 text-base mb-[16rpx] text-center">未签到日期可点击对应日历补签</view>
+        <view class="relative z-20 qd-tab-box mt-[16rpx]">
+          <view class="qd-item-box">
+            <view v-for="day in data.days" :key="day" :class="[
+              'flex flex-col items-center justify-center p-[8rpx] text-lg py-[0rpx] box-border',
+            ]" :style="{ ...getDayStyle(day), height: '104rpx' }" @click="handleDay(day)">
+              <!-- <image
               v-if="isSigned(day)"
               class="w-[56rpx] h-[56rpx] mb-[10rpx]"
               src="/static/images/index/qd-xing-xing.svg"
@@ -60,11 +60,14 @@
               src="/static/images/index/star_gray.svg"
               mode="widthFix"
             ></image> -->
-            <view :class="['text-black font-bold']">{{ day }}</view>
-            <image src="/static/images/index/check.svg" mode="widthFix" class="w-[24rpx] h-[24rpx] mt-[4rpx]"
-              v-if="isSigned(day)">
-            </image>
-            <!-- <image
+              <view :class="[
+                'font-bold',
+                canResign(day) ? 'text-[#B676FF]' : 'text-white'
+              ]">{{ day }}</view>
+              <image src="/static/images/index/check.svg" mode="widthFix" class="w-[32rpx] h-[32rpx] mt-[4rpx]"
+                v-if="isSigned(day)">
+              </image>
+              <!-- <image
               src="/static/images/index/buqian.svg"
               mode="widthFix"
               class="w-[48rpx] h-[48rpx]"
@@ -77,27 +80,27 @@
               "
             >
               </image> -->
-            <text class="text-sm font-bold text-[#E53935]" v-if="
-              data.finish &&
-              day >= data.resign_from_day &&
-              day < data.selDay &&
-              !isSigned(day) &&
-              data.member_resign_switch == 1
-            ">补签</text>
+              <text class="text-sm font-bold text-[#B676FF] mt-[0rpx]" v-if="
+                data.finish &&
+                day >= data.resign_from_day &&
+                day < data.selDay &&
+                !isSigned(day) &&
+                data.member_resign_switch == 1
+              ">补签</text>
+            </view>
           </view>
+
         </view>
-
       </view>
-
-      <view class="mt-[32rpx] bg-white rounded-[24rpx] p-[24rpx]"
+      <view class="mt-[32rpx] bg-[rgba(255,255,255,0.05)] rounded-[32rpx] p-[32rpx]"
         v-if="data.lxqiandao == 0 && data.dayarr.length !== 0">
         <template v-if="data.member_resign_switch == 1">
-          <view class="flex flex-row" @click="alertTips"><text
-              class="mr-[8rpx] font-medium text-black text-lg">补签规则</text>
-            <uv-icon size="32rpx" color="#6E7B89" name="question-circle"></uv-icon>
+          <view class="flex flex-row " @click="alertTips"><text
+              class="mr-[8rpx] font-medium text-white text-lg">补签规则</text>
+            <uv-icon size="32rpx" color="rgba(84, 147, 255, 1)" name="question-circle"></uv-icon>
           </view>
-          <view class="w-full h-[1rpx] bg-[transparent] mt-[16rpx]"></view>
-          <view class="text-[#6E7B89] text-base mt-[16rpx]">
+          <!-- <view class="w-full h-[1rpx] bg-[transparent] mt-[16rpx]"></view> -->
+          <view class="text-white text-base mt-[32rpx]">
             当前账号累计可以补签{{ data.resign_times }}次(每月最多补签{{
               data.max_resign_times
             }}次)
@@ -105,11 +108,11 @@
         </template>
       </view>
 
-      <view class="mt-[32rpx] rounded-[24rpx] py-[24rpx] bg-white"
+      <view class="mt-[32rpx] rounded-[32rpx] p-[32rpx] bg-[rgba(255,255,255,0.05)]"
         v-if="data.lxqiandao == 0 && data.dayarr.length !== 0">
         <template v-if="data.member_resign_switch == 1">
-          <view class="flex flex-row px-[24rpx]" @click="alertTips"><text
-              class="mr-[8rpx] font-medium text-black text-lg">连续签到奖励</text>
+          <view class="flex flex-row" @click="alertTips"><text
+              class="mr-[8rpx] font-medium text-white text-lg">连续签到奖励</text>
           </view>
           <view class="w-full h-[1rpx] bg-[transparent] mt-[16rpx]"></view>
         </template>
@@ -117,21 +120,42 @@
         <scroll-view :scroll-y="true">
           <view class="grid grid-cols-1 gap-[16rpx]">
             <view v-for="(item, index) in data.dayarr" :key="index"
-              class="flex flex-row items-center pl-[24rpx] py-[16rpx] mx-[16rpx] font-semibold"
-              style="border-bottom: 1rpx solid rgba(255, 255, 255, 0.40);">
+              class="flex flex-row items-start py-[16rpx] px-[24rpx] font-semibold bg-[rgba(255,255,255,0.10)] rounded-[24rpx]">
               <view class="flex flex-row items-center">
                 <image src="/static/images/user/qiandao_rewards.svg" mode="widthFix"
-                  class="w-[48rpx] h-[48rpx] mr-[16rpx]" />
+                  class="w-[64rpx] h-[64rpx] mr-[16rpx]" />
               </view>
-              <view>
-                <view class="text-black text-sm font-medium">连签 {{ item.days }} 天</view>
+              <view class="w-full">
+                <view class="text-[#B676FF] text-base font-medium relative mt-[4rpx]">
+                  <text class="text-base">连续签到</text>
+                  <view class="absolute top-[-4rpx] right-0">
+                    <text class="text-lg">x</text>
+                    <text class="text-2xl font-bold ml-[4rpx]">{{ item.days }}</text>
+                  </view>
+                </view>
+                <view class="text-sm flex" v-if="item.sort == 1">
+                  <text class="text-white/50 mr-[8rpx]">投资奖励:</text>
+                  <text class="text-white">{{ item.reward }} {{ symbolStore.code }} </text>
+                </view>
+                <view class="text-sm flex" v-if="item.sort == 2">
+                  <text class="text-white/50 mr-[8rpx]">股权:</text>
+                  <text class="text-white">{{ item.reward }}</text>
+                </view>
+                <view class="text-sm flex" v-if="item.sort == 3">
+                  <text class="text-white/50 mr-[8rpx]">提现奖励:</text>
+                  <text class="text-white">{{ item.reward }} {{ symbolStore.code }}</text>
+                </view>
+                <view class="text-sm flex" v-if="item.sort == 4">
+                  <text class="text-white/50 mr-[8rpx]">积分:</text>
+                  <text class="text-white">{{ item.reward }}</text>
+                </view>
+                <view class="text-sm flex" v-if="item.sort == 5">
+                  <text class="text-white">{{ item.reward }}</text>
+                </view>
+                <view class="text-sm flex" v-if="item.sort == 6">
+                  <text class="text-white">{{ item.reward }}</text>
+                </view>
                 <view class="text-sm font-bold ml-[8rpx] text-neutral-theme">
-                  <text v-if="item.sort == 1">+{{ item.reward }} {{ symbolStore.code }} 投资奖励</text>
-                  <text v-if="item.sort == 2">+{{ item.reward }} 股权</text>
-                  <text v-if="item.sort == 3">+{{ item.reward }} {{ symbolStore.code }} 提现奖励</text>
-                  <text v-if="item.sort == 4">+{{ item.reward }} 积分</text>
-                  <text v-if="item.sort == 5">+{{ item.sort_name }}</text>
-                  <text v-if="item.sort == 6">+{{ item.sort_name }}</text>
                   <!-- {{ item.sort == 2 ? " 股权" : " " + symbolStore.code }} -->
 
                   <template v-if="item.additional == 1">
@@ -154,29 +178,32 @@
     </view>
     <!-- 签到成功弹窗 -->
     <uv-overlay :show="showModal" class="px-[60rpx] box-border flex flex-col items-center justify-center">
-      <view class="flex flex-col relative bg-[#050505] rounded-[48rpx] p-[48rpx] w-full box-border"
-        style="background: linear-gradient(144deg, rgba(224, 213, 255, 0.50) 5.38%, rgba(212, 247, 255, 0.50) 90.45%), linear-gradient(180deg, #F4ECFF 0%, #FFF 51.44%, #D6EEFF 95.67%)">
-        <view class="left-0 w-full flex flex-row justify-center">
+      <view class="flex flex-col relative pt-[222rpx] px-[20rpx] w-[630rpx] h-[710rpx] box-border "
+        style="background-image: url(/static/images/checkin/checkin_modal_bg.png);background-size: 100% 100%; background-repeat: no-repeat; background-position: center;">
+        <!-- <view class="left-0 w-full flex flex-row justify-center">
           <image class="w-[160rpx] h-[160rpx] absolute top-[-100rpx]" src="/static/images/index/checkin_coin.png"
             mode="widthFix"></image>
+        </view> -->
+        <view class="flex flex-col items-center justify-center p-[32rpx]">
+          <view class="flex flex-col items-center justify-center">
+            <text class="text-2xl bg-gradient-checkin bg-clip-text text-transparent font-bold" >签到成功</text>
+          </view>
+          <view class="flex">
+            <text class="text-5xl text-white mt-[10rpx]">{{data.qian_dao_msg}}</text>
+          </view>
+          <view class="w-[282rpx] h-88rpx mt-[20rpx]">
+            <wk-button type="small" height="88rpx" @submit="showModal = false">我知道了 </wk-button>
+          </view>
+          
         </view>
-        <view class="flex flex-col items-center justify-center mt-[40rpx] mb-[40rpx]">
-          <text class="text-2xl text-black">签到成功</text>
-          <text class="text-2xl text-[#FF6135] mt-[10rpx]">{{
-            data.qian_dao_msg
-            }}</text>
-        </view>
-        <wk-button @submit="showModal = false"
-          backgroundColor="linear-gradient(90deg, #AE91FC 0%, #636EFF 49.52%, #2BBFF1 96.63%)"
-          style="background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), linear-gradient(110deg, #7D5A44 6.48%, #D5AD8D 83.04%);border-radius: 48rpx;">
-          我知道了 </wk-button>
+
       </view>
     </uv-overlay>
 
     <!-- 规则弹出层 -->
     <wk-modal ref="wkPopupRef" title="说明" :showClose="false" borderRadius="32rpx">
       <uv-parse :show-img-menu="false" :content="strings"
-        container-style="white-space: pre-wrap;color: #010101;border:none;padding:0;"></uv-parse>
+        container-style="white-space: pre-wrap;color: #fff;border:none;padding:0;"></uv-parse>
       <view class="flex flex-row justify-center pt-[32rpx] px-[32rpx]">
         <wk-button class="w-full" color="#FFFFFF" @submit="wkPopupRef.close()">
           确认
@@ -318,8 +345,8 @@ const getDayStyle = (day) => {
     // 已签到样式
     return {
       borderRadius: 'var(--radius-card-m, 12px)',
-      border: '1px solid var(--color-text-default-disabled, rgba(37, 44, 47, 0.30))',
-      background: 'linear-gradient(180deg, #FBF3FF 0%, #EBF5FD 100%)',
+      // border: '1px solid var(--color-text-default-disabled, rgba(37, 44, 47, 0.30))',
+      background: 'linear-gradient(180deg, #214CBD 4.03%, #1C0D89 51.09%, #6E23A6 100%)',
       boxShadow: '0 4px 4px 0 rgba(255, 255, 255, 0.25) inset',
     };
   } else if (
@@ -332,14 +359,14 @@ const getDayStyle = (day) => {
     // 补签样式
     return {
       borderRadius: 'var(--radius-card-m, 12px)',
-      border: '1px dashed #E53935',
-      background: 'rgba(255, 255, 255, 0.50)',
+      border: '1px dashed #B676FF',
+      background: '#1F197D',
     };
   } else {
     // 未签到样式
     return {
       borderRadius: 'var(--radius-card-m, 12px)',
-      background: 'rgba(0, 0, 0, 0.10)',
+      background: 'rgba(0, 0, 0, 0.20)',
     };
   }
 };
@@ -395,10 +422,14 @@ const alertTips = () => {
 
 <style lang="scss">
 .checkin-bg {
-  width: 484rpx;
-  height: 364rpx;
-  background-image: url(/static/images/index/checkin_bg.png);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 750rpx;
+  height: 454rpx;
+  background-image: url(/static/images/checkin/bg.png);
   background-size: 100% 100%;
+  // background-position: center;
   background-repeat: no-repeat;
 }
 
