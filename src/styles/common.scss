@@ -64,7 +64,10 @@
   background-size: 100% 100%;
   // box-shadow: 0 8px 0 0 #C5FFFC inset;
 }
-
+.bg-card4{
+  background-image: url('@/static/images/component/card/card6.png');
+  background-size: 100% 100%;
+}
 .bg-card {
   background: linear-gradient(180deg, #3A250F 0%, #1D140B 100%);
 }
