@@ -76,7 +76,7 @@
   <!-- 规则弹出框 -->
   <wk-modal ref="wkPopupRef" title="说明">
     <uv-parse :show-img-menu="false" :content="strings"
-      container-style="white-space: pre-wrap;color: #010101;"></uv-parse>
+      container-style="white-space: pre-wrap;color: #fff;"></uv-parse>
   </wk-modal>
 
   <!-- 密码重置 -->

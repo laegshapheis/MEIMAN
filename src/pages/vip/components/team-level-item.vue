@@ -11,7 +11,7 @@
       <view class="flex flex-row items-center justify-between border-white/15 border-solid border-b-[0.5px] border-t-[0.5px] border-l-0 border-r-0">
         <view class="flex flex-col items-start justify-between px-[32rpx] py-[16rpx] flex-1">
           <text class="text-base text-white mb-[8rpx]">升级要求({{ unit }})</text>
-          <text class="text-lg font-bold text-[#5493FF]">{{ levelReq }}</text>
+          <text class="text-lg font-bold text-[#5493FF]">{{ levelReq || '-'}}</text>
         </view>
         <!-- 升级差距行 -->
         <view class="flex flex-col items-start justify-between px-[32rpx] py-[16rpx] flex-1">

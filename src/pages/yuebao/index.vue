@@ -186,7 +186,7 @@ const handleRefresh = () => {
 };
 
 const handelBack = () => {
-  uni.switchTab({
+  uni.navigateTo({
     url: routes.profile,
   });
 };

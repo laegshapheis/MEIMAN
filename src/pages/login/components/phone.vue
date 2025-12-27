@@ -35,6 +35,7 @@
         <view class="flex-1 w-full">
           <wk-button
             v-if="hasPermission('miyao_switch')"
+            type="large"
             class="mb-[28rpx]"
             @click="toPage(routes.forgot)"
           >
