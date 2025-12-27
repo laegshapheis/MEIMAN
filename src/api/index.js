@@ -312,3 +312,38 @@ export const getJfproductApi = (data) => {
     data
   });
 }
+
+
+// 获取每日答题配置信息
+export const getQuizConfig = () => {
+  return requestApi({
+    url: "/api/v2/questions/config",
+    method: "GET",
+  });
+}
+
+// 获取每日答题题目列表
+export const getQuizQuestions = () => {
+  return requestApi({
+    url: "/api/v2/questions/list",
+    method: "GET",
+  });
+}
+
+// 提交每日答题答案
+export const submitQuizAnswers = (data) => {
+  return requestApi({
+    url: "/api/v2/questions/submit",
+    method: "POST",
+    data
+  });
+}
+
+// 获取奖励记录
+export const getRewardRecords = (params) => {
+  return requestApi({
+    url: "/api/v2/questions/quiz",
+    method: "GET",
+    params
+  });
+}

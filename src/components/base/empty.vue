@@ -3,11 +3,10 @@
     :class="['flex flex-col items-center justify-center h-full', `mt-[${top}]`]"
   >
     <image
-      class="w-[200rpx] h-[200rpx]"
-      src="/static/images/empty_icon.png"
+      :src="image"
+      :style="{ width: width, height: height }"
       mode="widthFix"
     />
-
     <view class="flex flex-row justify-center items-center mt-2" :style="{ fontSize, lineHeight: '1.5', textAlign: 'justify', color: color }">
       <text>{{ title }}</text>
     </view>
@@ -29,6 +28,15 @@ export default {
     },
     top : {
       default: "30vh",
+    },
+    image: {
+      default: "/static/images/empty_icon.png",
+    },
+    width: {
+      default: "200rpx",
+    },
+    height: {
+      default: "200rpx",
     }
   },
 };

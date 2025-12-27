@@ -303,6 +303,24 @@
         "navigationBarTextStyle": "white"
       }
     },
+    {
+      "path": "pages/daily_quiz/index",
+      "style": {
+        "navigationBarTitleText": "每日答题",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "black"
+      }
+    },
+    {
+      "path": "pages/daily_quiz/reward_record",
+      "style": {
+        "navigationBarTitleText": "奖励记录",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "black"
+      }
+    },
     // {
     //   "path": "pages/vip/vip_card_purchase",
     //   "style": {

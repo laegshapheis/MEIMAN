@@ -64,6 +64,7 @@ module.exports = {
         '4xl': '56rpx',
         '5xl': '64rpx',
         '6xl': '72rpx',
+        '7xl': '96rpx',
       },
       padding : {
         'page-x' : '32rpx', //页左右边距
@@ -77,6 +78,7 @@ module.exports = {
         'gradient-vip': 'linear-gradient(180deg, #1A2195 0%, #205AF4 100%)',
         'gradient-reward': 'linear-gradient(84deg, #2E97FF 5.92%, #356EFF 101.92%)',
         'gradient-checkin': 'linear-gradient(46deg, #E5EFFF 30%, #D6B3FF 75.25%)',
+        'gradient-quiz': 'linear-gradient(180deg, #44D3E9 0%, #04AD9C 100%)',
       }
     }
   },

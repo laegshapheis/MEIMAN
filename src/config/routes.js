@@ -250,4 +250,8 @@ export const routes = {
   guessNumberDetail: "/pages/guess_number/detail",
   // 猜数字游戏投注记录页面
   guessNumberRecords: "/pages/guess_number/records",
+  // 每日答题页面
+  dailyQuiz: '/pages/daily_quiz/index',
+  // 奖励记录页面
+  rewardRecord: '/pages/daily_quiz/reward_record',
 };

@@ -68,6 +68,14 @@
   background-image: url('@/static/images/component/card/card6.png');
   background-size: 100% 100%;
 }
+
+.bg-question {
+  background-image: url('@/static/images/bg/question_bg.png');
+  background-size: 100% ;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .bg-card {
   background: linear-gradient(180deg, #3A250F 0%, #1D140B 100%);
 }
@@ -199,11 +207,6 @@
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-position: center;
-  }
-
-  .uv-popup view[name="content"]{
-    // background-color: transparent !important;
-
   }
 
   .keyboard-wrap view[name="content"] {

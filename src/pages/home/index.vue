@@ -195,7 +195,7 @@ const groupMenuItems = ref([
   {
     icon: "/static/images/home/icon-10.png",
     title: "答题奖励",
-    path: '',
+    path: routes.dailyQuiz,
     positionClass: "top-[360rpx] left-1/2 transform -translate-x-1/2 animate-top-in",
   },
   {
