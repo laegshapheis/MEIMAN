@@ -27,11 +27,11 @@
     ref="verifyElement"
   ></slider-verify>
   <!-- 规则弹出层 -->
-  <wk-modal ref="wkPopupRef" :title="popuptitle">
+  <wk-modal ref="wkPopupRef" :title="popuptitle" bgColor="transparent">
     <uv-parse
       :show-img-menu="false"
         space="nbsp"
-        style="white-space: pre-wrap"
+        style="white-space: pre-wrap;background-color: transparent;"
         :content="strings"
       ></uv-parse>
   </wk-modal>

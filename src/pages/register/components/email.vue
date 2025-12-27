@@ -84,7 +84,7 @@
       <uv-parse
         :show-img-menu="false"
         space="nbsp"
-        style="white-space: pre-wrap"
+        style="white-space: pre-wrap;background-color: transparent;"
         :content="strings"
       ></uv-parse>
     </wk-modal>

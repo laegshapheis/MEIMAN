@@ -11,7 +11,7 @@
 <script setup>
 import { defineProps, computed, ref, onBeforeUnmount, onMounted, nextTick } from 'vue';
 import lottieData from '@/static/lottie/bg.json';
-import lottieDataEasy from '@/static/lottie/bg_easy.json';
+import lottieDataEasy from '@/static/lottie/main.json';
 import teamLevelLottieData from '@/static/lottie/team_vip_bg.json';
 import bgImage from '@/static/gif/bg.png';
 

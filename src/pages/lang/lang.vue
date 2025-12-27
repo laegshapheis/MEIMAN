@@ -1,6 +1,6 @@
 <template>
   <layout navTitle="语言设置" bgType="bg-main">
-    <view class="bg-[#FFFFFF] flex flex-col mx-[32rpx] h-[calc(100vh-240rpx)] rounded-[48rpx]">
+    <view class="bg-[#1F197D] flex flex-col mx-[32rpx] h-[calc(100vh-240rpx)] rounded-[48rpx]">
       <uv-radio-group v-model="lang" placement="column" iconPlacement="right">
         <view class="flex flex-col w-full">
           <template v-for="item in languages" :key="item.code">
@@ -16,7 +16,7 @@
                 activeColor="#06F"
                 inactiveColor="#010101"
                 iconColor="#ffffff"
-                labelColor="#010101"
+                labelColor="#fff"
                 backgroundColor=""
                 :customStyle="{
                   marginRight: '0',

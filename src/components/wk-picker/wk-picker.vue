@@ -126,7 +126,7 @@ defineExpose({
 <style scoped lang="scss">
 ::v-deep {
   .uv-popup__content {
-    background: theme('colors.neutral.modalBg') !important;
+    background: #1F197D !important;
     border:none !important;
   }
   .uv-popup__content .uni-picker-view-mask {
