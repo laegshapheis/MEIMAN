@@ -1,13 +1,22 @@
 <template>
   <layout
     ref="layoutRef"
-    navTitle="商品详情"
-    bgType="bg-main"
-    navBgColor="#FFFFFF"
+    :isNav="false"
+    navTitle=""
     :refresher="true"
     @onRefresh="handleRefresh"
   >
-    <view class="min-h-[500rpx]">
+    <view class="min-h-[500rpx] relative">
+      <view class="flex items-center px-[20rpx] absolute top-0 left-0 right-0 z-10">
+        <!-- 返回按钮 -->
+        <view @click="handleBack" class="flex-shrink-0 mr-[20rpx]">
+          <image
+            class="w-[80rpx] h-[80rpx]"
+            src="/static/images/common/back.svg"
+            mode="widthFix"
+          />
+        </view>
+      </view>
       <swiper
         v-if="ispoto == 1"
         class="h-[100vw]"
@@ -38,7 +47,8 @@
       mode="widthFix"
     ></image>
     <view class="p-[32rpx] pb-[150rpx]">
-      <wk-stroke-bg shadow class="flex flex-col rounded-[32rpx] p-[16rpx]">
+      <wk-stroke-bg shadow class="flex flex-col rounded-[32rpx] p-[16rpx]" mode="img-card3-big">
+        <view class="text-xl text-neutral font-medium mt-[33rpx] line-clamp-2">{{ product_name }}</view>
         
         <view class="flex flex-row justify-between items-center">
           <view class="flex flex-row items-center">
@@ -53,10 +63,9 @@
             >我的积分：{{ my_points }}</view
           >
         </view>
-
-        <view class="text-xl text-neutral font-medium mt-[33rpx]">{{ product_name }}</view>
       </wk-stroke-bg>
       <wk-stroke-bg shadow
+        mode="img-card3-big"
         class="bg-white flex flex-row justify-between items-center p-[16rpx] mt-[24rpx] rounded-[32rpx]"
       >
         <view class="">兑换数量</view>
@@ -99,7 +108,8 @@
     </view>
 
     <view
-      class="bg-neutral-bottomBtnBg fixed bottom-0 left-0 right-0 px-[32rpx] py-[16rpx]"
+      class="fixed bottom-0 left-0 right-0 px-[32rpx] py-[16rpx]"
+      :style="{ background: neutral.bottomBtnBg }"
     >
       <wk-button @submit="jumpToExchange"> 立即兑换 </wk-button>
     </view>
@@ -112,6 +122,7 @@ import { ref } from "vue";
 import { onLoad } from "@dcloudio/uni-app";
 import { getJfproductApi, getExchangelog as getExchangelogApi } from "@/api/index";
 import { cacheManager } from "@/utils/cacheManager";
+import { neutral } from "@/config/colors";
 const product_img = ref("");
 const ruleArea = ref("");
 const strings = ref(``);
@@ -137,6 +148,11 @@ onLoad((option) => {
   getJfproduct(product_id.value);
   getExchangelog();
 });
+
+// 返回
+const handleBack = () => {
+  uni.navigateBack();
+};
 
 // 刷新
 const handleRefresh = () => {
@@ -218,4 +234,13 @@ const count = (str) => {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+</style>

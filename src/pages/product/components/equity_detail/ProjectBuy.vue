@@ -1,5 +1,5 @@
 <template>
-  <wk-stroke-bg class="mt-[24rpx]">
+  <wk-stroke-bg class="mt-[24rpx]" mode="img-card3-big">
     <!-- 添加购买数量部分 -->
     <view class="flex items-center justify-between">
       <view class="text-lg font-medium text-neutral">认购份数</view>

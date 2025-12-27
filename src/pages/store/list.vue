@@ -10,7 +10,7 @@
     <template v-slot:navRight>
       <view class="flex flex-row items-center rounded-full px-[16rpx] py-[8rpx]">
         <!-- <uv-icon name="error-circle" color="#fff" size="12"></uv-icon> -->
-        <text class="text-sm text-black ml-[5rpx]" @click="jumpLogs">兑换记录</text>
+        <text class="text-sm text-white ml-[5rpx]" @click="jumpLogs">兑换记录</text>
         <view> </view>
       </view>
     </template>
@@ -18,58 +18,23 @@
       v-if="authStatus == 1"
       class="absolute top-0 left-0 right-0 bottom-0 flex flex-col h-full mt-[24rpx]"
     >
-      <view class="flex flex-col px-[32rpx]">
-        <!-- <view class="flex flex-row justify-between items-center">
-          <view class="flex flex-row items-center">
-            <image
-              src="/static/images/store/jifen_icon.svg"
-              mode="widthFix"
-              class="w-[48rpx] h-[48rpx]"
-            ></image>
-            <text class="ml-[10rpx] text-5xl text-white font-medium">{{
-              integral
-            }}</text>
-          </view>
-          <image
-            class="w-[152rpx] h-[160rpx]"
-            src="/static/images/store/icon.png"
-            mode="scaleToFill"
-          />
-        </view> -->
-
-        <view class="flex flex-row items-center justify-between py-[32rpx]">
-            <!-- <text class="text-lg font-medium mb-[10rpx] text-neutral">当前积分</text> -->
-            <view class="flex flex-row items-center">
-              <image
-                    src="/static/images/store/jifen_icon.svg"
-                    mode="widthFix"
-                    class="w-[48rpx] h-[48rpx]"
-                  ></image>
-              <text class="text-6xl text-neutral-theme font-bold">{{ integral }}</text>
-            </view>
-
-            <image 
-              src="/static/images/store/icon.png"
-              mode="widthFix"
-              class="w-[152rpx] h-[160rpx]"
-            />
-        </view>
+      <view class="flex flex-col px-[32rpx] bg-[#5493FF]">
         <view
           v-if="IsPoint == 1"
-          class="bg-[#FFFFFF] rounded-[32rpx] p-[24rpx] mb-[32rpx] flex flex-row justify-between items-center"
+          class="rounded-[32rpx] py-[24rpx] flex flex-row justify-between items-center"
         >
           <view class="flex flex-row items-center">
-            <image
+            <!-- <image
               class="w-[80rpx] h-[80rpx] mr-[24rpx]"
               src="/static/images/store/icon_cash.png"
               mode="scaleToFill"
-            ></image>
+            ></image> -->
             <view class="flex flex-col">
               <view class="flex flex-row items-center leading-6">
                 <text class="text-xl font-medium mb-[10rpx] text-neutral"
                   >积分兑换现金</text
                 >
-                <!-- <view class="flex flex-row items-center ml-[10rpx]">
+                <view class="flex flex-row items-center ml-[10rpx] -mt-[10rpx]">
                   <image
                     src="/static/images/store/jifen_icon.svg"
                     mode="widthFix"
@@ -78,27 +43,34 @@
                   <text class="ml-[10rpx] text-lg text-neutral font-medium">{{
                     integral
                   }}</text>
-                </view> -->
+                </view>
               </view>
               <text class="text-sm text-neutral-secondary"
-                >Points redemption cash</text
-              >
+                >每{{ pointsRatio }}积分可兑换1{{ symbolStore.code }}</text>
             </view>
           </view>
-          <wk-button
-            class="w-[160rpx] h-[72rpx] flex items-center justify-center"
-            @click="jumpExchange"
-          >
-            <text class="text-white text-base">去兑换</text>
-          </wk-button>
+          <view>
+            <wk-button
+                size="mini"
+                @click="jumpExchange"
+                :customStyle="{
+                  background: 'url(/static/images/product/pintuan_btn1.png) center/100% 100% no-repeat'
+                }"
+              >
+                <text class="text-white text-base">去兑换</text>
+              </wk-button>
+          </view>
         </view>
       </view>
-      <view class="flex-1 w-full rounded-t-[32rpx] px-[32rpx] box-border bg-white">
-        <view class="flex flex-row items-center py-[24rpx]">
+      <view class="flex-1 w-full px-[32rpx] box-border">
+        <view class="text-white text-xl py-[24rpx]">
+          <text >精选商品</text>
+        </view>
+        <view class="flex flex-row items-center py-[24rpx] pt-0">
           <wk-tabs
             @change="changefenlei"
             :list="tabs"
-            :isButton="true"
+            mode="button"
           ></wk-tabs>
         </view>
         <view
@@ -111,7 +83,7 @@
               class="rounded-[16rpx] overflow-hidden"
             >
               <image
-                class="w-full h-[331rpx] bg-black/10 rounded-[16rpx] overflow-hidden"
+                class="w-full h-[331rpx] bg-white/10 rounded-[16rpx] overflow-hidden"
                 :src="item.image"
                 mode="aspectFit"
               ></image>
@@ -149,12 +121,15 @@ import {
   getCategory as getCategoryApi,
   getJifenList as getJifenListApi,
   getExchangelog as getExchangelogApi,
+  getMyjifen,
 } from "@/api/index";
 import { routes } from "@/config/routes";
 import { useAuth } from "@/hooks/useAuth";
+import { useSymbolStore } from "@/stores/symbolStore";
 import { cacheManager } from "@/utils/cacheManager";
 const cacheData = cacheManager.getCache("storeList");
 const cacheCategory = cacheManager.getCache("storeCategory");
+const symbolStore = useSymbolStore();
 const integral = ref(0); // 积分
 const shopList = ref([]); // 商城列表
 const page = ref(1); // 页码
@@ -169,6 +144,7 @@ const layoutRef = ref(null);
 const { authStatus, checkAuth } = useAuth();
 const loading = ref(false);
 const loadingText = ref("");
+const pointsRatio = ref(100); // 积分兑换比例
 const jumpExchange = () => {
   uni.navigateTo({
     url: routes.exchangeMoney,
@@ -182,6 +158,7 @@ const handleRefresh = async () => {
   cz.value = "下拉刷新";
   await getJifen(); // 加载商品
   await getEexchangelog(); // 加载积分
+  await getPointsRatio(); // 获取积分兑换比例
   layoutRef.value.complete();
 };
 
@@ -209,6 +186,7 @@ onLoad(() => {
   }
   getCategory(); // 获取新闻分类
   getEexchangelog(); // 获取积分
+  getPointsRatio(); // 获取积分兑换比例
 });
 // 获取分类
 const handleCategory = (res) => {
@@ -255,6 +233,18 @@ const getEexchangelog = async () => {
   console.log(res);
   integral.value = res.integral;
   loading.value = false;
+};
+
+// 获取积分兑换比例
+const getPointsRatio = async () => {
+  try {
+    const res = await getMyjifen({});
+    if (res.status == 0 && res.data) {
+      pointsRatio.value = res.data.Pointsratio || 100;
+    }
+  } catch (error) {
+    console.error("获取积分兑换比例失败:", error);
+  }
 };
 
 const handleList = (res) => {

@@ -1,16 +1,17 @@
 <template>
   <view
-    class="fixed bottom-0 left-0 right-0 flex flex-col items-center justify-center"
+    class="fixed -bottom-[16rpx] left-0 right-0 flex flex-col items-center justify-center"
   >
     <view
-      class="bg-[#000] py-[16rpx] px-[32rpx] box-border rounded-t-[48rpx] flex flex-col w-full items-center justify-center"
+      class="py-[16rpx] px-[32rpx] box-border flex flex-col w-full items-center justify-center"
       v-if="productview.ismake == 1 && productview.ismake2 == 1"
+      :style="{ background: neutral.bottomBtnBg }"
       >
       <view
         class="flex flex-row w-full h-[100rpx] items-center justify-center bg-transparent rounded-[720rpx]"
         v-if="productview.presale == 0"
       >
-        <view class="flex flex-col items-center text-sm justify-center text-[#FFFFFF]">
+        <view class="flex flex-col items-center text-sm justify-center text-[#0C052F]">
           开放倒计时
           <uv-count-down
             :customStyle="{
@@ -28,21 +29,21 @@
                   class="date-bg font-bold text-lg rounded-[8rpx] w-[52rpx] h-[48rpx] flex items-center justify-center"
                   >{{ timeData.days }}</view
                 >
-                <text class="text-white text-base ml-[10rpx]">天</text>
+                <text class="text-[#0C052F] text-base ml-[10rpx]">天</text>
               </view>
               <view class="mr-[10rpx] flex flex-row items-center">
                 <view
                   class="date-bg font-bold text-lg rounded-[8rpx] w-[52rpx] h-[48rpx] flex items-center justify-center"
                   >{{ timeData.hours }}</view
                 >
-                <text class="text-white text-3xl font-bold ml-[10rpx]">:</text>
+                <text class="text-[#0C052F] text-3xl font-bold ml-[10rpx]">:</text>
               </view>
               <view class="mr-[10rpx] flex flex-row items-center">
                 <view
                   class="date-bg font-bold text-lg rounded-[8rpx] w-[52rpx] h-[48rpx] flex items-center justify-center"
                   >{{ timeData.minutes }}</view
                 >
-                <text class="text-white text-3xl font-bold ml-[10rpx]">:</text>
+                <text class="text-[#0C052F] text-3xl font-bold ml-[10rpx]">:</text>
               </view>
               <view class="mr-[10rpx] flex flex-row items-center">
                 <view
@@ -57,13 +58,13 @@
     </view>
     <view v-else class="py-[16rpx] pt-[0] w-full box-border overflow-hidden">
       <view
-        class="text-[#000] text-base text-center bg-[#98EDFB] w-full h-[76rpx] rounded-t-[48rpx]"
+        class="text-white text-base text-center bg-[#B676FF] w-full h-[76rpx]"
         style="line-height: 76rpx;"
         v-if="type == 'apply'"
       >
         参与成功即可奖励投资金额的 {{ productview.joining }}%
       </view>
-      <view class="px-[32rpx] pt-[16rpx] bg-neutral-bottomBtnBg">
+      <view class="px-[32rpx] py-[16rpx]" :style="{ background: neutral.bottomBtnBg }">
         <wk-button
           @submit="$emit('submit')"
           :fontSize="btnText && btnText.length > 20 ? '24rpx' : '32rpx'"
@@ -80,6 +81,7 @@
 
 <script setup>
 import { ref } from "vue";
+import { neutral } from "@/config/colors";
 
 const timeData = ref({});
 defineProps({
@@ -110,7 +112,7 @@ const onFinish = () => {
 <style scoped>
 .date-bg {
   /* border: 1px solid #000; */
-  background: #FFFFFF;
-  color: #06F;
+  background: #0C052F;
+  color: #5493FF;
 }
 </style>

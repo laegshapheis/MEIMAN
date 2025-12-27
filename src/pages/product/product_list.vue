@@ -6,7 +6,6 @@
     :refresher="true"
     @onRefresh="handleRefresh"
     bgType="bg-product"
-    :isLottie="false"
     @reachBottom="handleReachBottom"
   >
     <template #exp>
@@ -67,9 +66,6 @@
             mode="button"
             @change="handleSubTabChange"
             :defaultIndex="subCurrent"
-            :inactiveStyle="{
-              border: 'none',
-            }"
           />
         </view>
       </view>

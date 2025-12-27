@@ -7,7 +7,7 @@
               ></image>
      </view>
 
-    <wk-stroke-bg shadow class="mt-[24rpx]">
+    <wk-stroke-bg shadow class="mt-[24rpx]" mode="img-card3-big">
       <view>
         <view
             class="flex-1 whitespace-pre-wrap text-lg text-neutral line-clamp-2 font-bold"

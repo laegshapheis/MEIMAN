@@ -10,8 +10,8 @@
   >
     <view class="px-[32rpx] mt-[24rpx]">
       <view class="flex-1" v-if="list.length > 0">
-        <wk-stroke-bg shadow borderRadius="24rpx"
-          class="min-h-[300rpx]  box-border mb-[24rpx]"
+        <view
+          class="exchange-card min-h-[300rpx] box-border mb-[24rpx] p-[32rpx]"
           v-for="(item) in list"
           :key="item.id"
         >
@@ -22,8 +22,8 @@
                 class="text-2xl font-bold"
                 :class="
                   item.moneylog_status === '+'
-                    ? 'text-neutral-theme'
-                    : 'text-neutral-theme'
+                    ? 'text-[#B676FF]'
+                    : 'text-[#B676FF]'
                 "
                 >{{ item.moneylog_status + "" + item.moneylog_money }}</text
               >
@@ -34,7 +34,7 @@
               }}</text>
             </view>
             <view class="bg-neutral-divider my-[16rpx] h-[1rpx]"></view>
-            <view class="px-[24rpx] py-[16rpx] flex flex-col justify-between bg-[#F5F8FD] rounded-[24rpx]">
+            <view class="px-[24rpx] py-[16rpx] flex flex-col justify-between rounded-[24rpx]">
               <view class="flex flex-row justify-between">
                 <view class="text-neutral-regular text-base">原有积分</view>
                 <view class="text-neutral text-lg font-bold py-[8rpx]">{{
@@ -52,7 +52,7 @@
           </view>
           <!-- <view class="bg-neutral-divider my-[32rpx] h-[1rpx]"></view> -->
 
-        </wk-stroke-bg>
+        </view>
       </view>
       <Empty title="暂无数据" v-else />
     </view>
@@ -159,5 +159,11 @@ export default {
 
 .line-bg {
   background: linear-gradient(90deg, #0358ad 0%, #1DC86F 50%, #0358ad 100%);
+}
+
+.exchange-card {
+  border-radius: var(--radius-card-l, 16px);
+  background: #000;
+  box-shadow: 0 0 16px 0 #266AFF inset;
 }
 </style>

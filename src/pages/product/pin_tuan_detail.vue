@@ -7,9 +7,9 @@
     @onRefresh="handleRefresh"
   >
     <template #navRight>
-      <view @click="showModal" class="flex flex-row items-center bg-white/20 rounded-full px-[16rpx] py-[8rpx] pt-[5rpx]">
+      <view @click="showModal" class="flex flex-row items-center px-[16rpx] py-[8rpx] pt-[5rpx]">
         <!-- <uv-icon name="error-circle" color="#010101" size="12"></uv-icon> -->
-        <text class="text-black text-sm whitespace-nowrap ml-[5rpx]">拼团规则</text>
+        <text class="text-white text-sm whitespace-nowrap ml-[5rpx]">拼团规则</text>
       </view>
     </template>
     <!-- 拼团规则 -->

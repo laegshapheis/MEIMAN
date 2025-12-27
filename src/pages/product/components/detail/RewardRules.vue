@@ -1,5 +1,5 @@
 <template>
-  <wk-stroke-bg shadow class="my-[24rpx]">
+  <wk-stroke-bg shadow class="my-[24rpx]" mode="img-card3-big">
     <view class="text-xl font-bold text-neutral mb-[20rpx]">奖励规则</view>
     <view v-if="type == 'apply'" class="text-neutral-regular text-base">
       拼团成功奖励投资金额的<text class="text-neutral-theme ml-[10rpx] text-base"

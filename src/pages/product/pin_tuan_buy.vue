@@ -1,9 +1,9 @@
 <template>
 	<layout ref="layoutRef" navTitle="我要投资" bgType="bg-main" :refresher="true" @onRefresh="handleRefresh">
     <template #navRight>
-      <view @click="handleRuleShow" class="bg-white/20 flex flex-row items-center rounded-full px-[16rpx] py-[8rpx] pt-[5rpx]">
+      <view @click="handleRuleShow" class="flex flex-row items-center px-[16rpx] py-[8rpx] pt-[5rpx]">
         <!-- <uv-icon name="error-circle" color="#010101" size="12"></uv-icon> -->
-        <text class="text-black text-sm ml-[5rpx]">拼团规则</text>
+        <text class="text-white text-sm ml-[5rpx]">拼团规则</text>
       </view>
     </template>
 		<productBuy ref="productBuyRef" :productId="id" :type="type" @onSubmit="handleSubmit"/>

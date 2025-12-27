@@ -1,7 +1,7 @@
 <template>
   <layout
     ref="layoutRef"
-    navTitle="获得记录"
+    navTitle="兑换记录"
     bgType="bg-main"
     @reachBottom="handleReachBottom"
     :refresher="true"
@@ -19,6 +19,7 @@
       <view>
         <template v-if="list.length !== 0">
           <wk-stroke-bg shadow borderRadius="24rpx"
+          mode="img-card3-big"
             class="p-[32rpx] flex flex-col mt-[24rpx]"
             v-for="(item, idx) in list"
             :key="idx"
