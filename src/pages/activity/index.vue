@@ -71,7 +71,7 @@
           grabCursor
           slidesPerView="auto"
           centeredSlides
-          :spaceBetween="-20"
+          :spaceBetween="-25"
           style="height: 822rpx"
           v-model="cards"
           @slideChange="onChange"
@@ -81,14 +81,29 @@
             :key="index"
             :custom-style="{ width: '566rpx', height: '822rpx' }"
           >
-            <view class="flex justify-center items-center">
+            <view class="flex justify-center items-center relative">
+              <c-lottie
+                :ref="`cardLottie${index}`"
+                class="absolute inset-0"
+                :class="[
+                  index === activeIndex ? 'active-card' : 'inactive-card',
+                ]"
+                renderer="svg"
+                :data="jikaCardBgLottieData"
+                :loop="true"
+                :autoPlay="index === activeIndex"
+                width="566rpx"
+                height="822rpx"
+                style="z-index: 0;"
+              ></c-lottie>
               <image
-                class="w-[566rpx] h-[822rpx]"
+                class="w-[388rpx] h-[668rpx] relative"
                 :class="[
                   index === activeIndex ? 'active-card' : 'inactive-card',
                 ]"
                 :src="item.image"
                 mode="aspectFit"
+                style="z-index: 1;"
               >
               </image>
             </view>
@@ -154,6 +169,7 @@
 import { getCardListApi } from "@/api/activity";
 import { routes } from "@/config/routes";
 import jikaLottieData from "@/static/lottie/jika.json";
+import jikaCardBgLottieData from "@/static/lottie/jika_card_bg.json";
 export default {
   data() {
     return {
@@ -162,6 +178,7 @@ export default {
       activeIndex: 0,
       fucard_mode_type: 0,
       jikaLottieData: jikaLottieData,
+      jikaCardBgLottieData: jikaCardBgLottieData,
     };
   },
   onShow() {
@@ -174,7 +191,24 @@ export default {
       });
     },
     onChange(swiper) {
-      this.activeIndex = swiper.activeIndex;
+      const newActiveIndex = swiper.activeIndex;
+      // 停止所有动画
+      this.cards.forEach((item, index) => {
+        const lottieRef = this.$refs[`cardLottie${index}`];
+        if (lottieRef && lottieRef.length > 0) {
+          lottieRef[0].call('pause');
+        } else if (lottieRef) {
+          lottieRef.call('pause');
+        }
+      });
+      // 播放当前激活的动画
+      const activeLottieRef = this.$refs[`cardLottie${newActiveIndex}`];
+      if (activeLottieRef && activeLottieRef.length > 0) {
+        activeLottieRef[0].call('play');
+      } else if (activeLottieRef) {
+        activeLottieRef.call('play');
+      }
+      this.activeIndex = newActiveIndex;
     },
     goToCardRecord() {
       uni.navigateTo({
@@ -201,6 +235,15 @@ export default {
           this.cards = res.data;
           this.title = res.fucard_title;
           this.fucard_mode_type = res.fucard_mode_type;
+          // 确保第一个动画开始播放
+          this.$nextTick(() => {
+            const firstLottieRef = this.$refs[`cardLottie0`];
+            if (firstLottieRef && firstLottieRef.length > 0) {
+              firstLottieRef[0].call('play');
+            } else if (firstLottieRef) {
+              firstLottieRef.call('play');
+            }
+          });
         } else {
           uni.showToast({
             title: res.msg,
