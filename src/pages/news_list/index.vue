@@ -5,26 +5,38 @@
     @onRefresh="handleRefresh"
     :navTitle="title"
     bgType="bg-main"
+    @onScroll="handleScroll"
   >
+  <!-- 视频卡片 -->
+    <video-card
+        ref="videoCardRef"
+        v-if="isVideo == 1"
+        :videoUrl="videoUrl"
+        :posterUrl="posterUrl"
+        class="my-[32rpx]"
+      />
     <view
       class="px-[32rpx] pt-[28rpx] pb-[30rpx] box-border w-full flex flex-col"
     >
+      
+      
       <view class="flex flex-col">
-        <wk-stroke-bg
-          shadow
-          size="small"
+        <view class="flex items-center justify-center mb-[24rpx]">
+          <text class="text-xl font-medium">最新公告</text>
+        </view>
+        <view
           v-for="(item, index) in dataList"
           :key="index"
           @click="navTo(item)"
-          class="flex flex-row items-center mb-[24rpx] relative"
+          class="news-item flex flex-row items-start mb-[24rpx] relative"
         >
-          <view class="flex flex-row">
+          <view class="flex flex-col">
             <view
-              class="flex flex-col items-center justify-center w-[140rpx] h-[140rpx] bg-[length:100%_100%] bg-no-repeat"
+              class="w-[96rpx] h-[96rpx] "
             >
               <image
-                class="w-[100%] h-[100%] rounded-[16rpx]"
-                :src="item.image"
+                class="w-[100%] h-[100%] rounded-full"
+                src="/static/images/news_logo.png"
                 mode="aspectFit"
               ></image>
             </view>
@@ -40,7 +52,7 @@
               item.created_at
             }}</text>
           </view>
-        </wk-stroke-bg>
+        </view>
       </view>
     </view>
     <wk-loading v-if="loading" :loadingText="loadingText" />
@@ -51,11 +63,12 @@
 import { ref, reactive, watch } from "vue";
 import { onLoad, onReachBottom } from "@dcloudio/uni-app";
 import { routes } from "@/config/routes";
-import { getNewsList as getNewsListApi } from "@/api/index";
+import { getNewsList as getNewsListApi, getIndexData } from "@/api/index";
 import Empty from "@/components/base/empty";
 import { useI18n } from "vue-i18n";
 const { t: $t } = useI18n();
 import { cacheManager } from "@/utils/cacheManager";
+import videoCard from "@/pages/index/components/index/video_card.vue";
 
 const cacheNewsList = cacheManager.getCache("newsList");
 
@@ -66,6 +79,10 @@ const pullType = ref("");
 const id = ref(54);
 const title = ref($t("news.title"));
 const loading = ref(false);
+const isVideo = ref(0);
+const videoUrl = ref("");
+const posterUrl = ref("");
+const videoCardRef = ref(null);
 
 onLoad((options) => {
   id.value = options.id;
@@ -73,13 +90,32 @@ onLoad((options) => {
   if (cacheNewsList) {
     handleResList(cacheNewsList);
   }
+  getVideoData();
   getList();
 });
 
 const handleRefresh = () => {
   pullType.value = "down";
   page.value = 1;
+  getVideoData();
+  if (videoCardRef.value) {
+    videoCardRef.value.pauseVideo();
+  }
   getList();
+};
+
+const handleScroll = () => {
+  if (videoCardRef.value) {
+    videoCardRef.value.pauseVideo();
+  }
+};
+
+const getVideoData = () => {
+  getIndexData().then((res) => {
+    isVideo.value = res.isvideo;
+    videoUrl.value = res.videourl;
+    posterUrl.value = res.voidpic;
+  });
 };
 
 // 上拉加载
@@ -147,4 +183,12 @@ const navTo = (item) => {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.news-item {
+  border-radius: var(--radius-card-xl, 24px);
+  border: 0.5px solid #5255FF;
+  background: radial-gradient(29.86% 44.56% at 2.69% 0%, rgba(41, 244, 255, 0.33) 0%, rgba(35, 189, 255, 0.00) 100%), radial-gradient(74.52% 105.46% at 16.43% -5.45%, rgba(35, 189, 255, 0.41) 0%, rgba(35, 189, 255, 0.00) 100%), radial-gradient(80.68% 149.35% at 2.97% 6.36%, rgba(0, 89, 255, 0.69) 0%, rgba(26, 0, 137, 0.00) 100%), radial-gradient(100% 100% at 50% 0%, #1A0089 0%, #120058 70.06%, #15006B 100%);
+  padding: 24rpx;
+  box-sizing: border-box;
+}
+</style>

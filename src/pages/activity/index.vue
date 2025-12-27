@@ -71,7 +71,7 @@
           grabCursor
           slidesPerView="auto"
           centeredSlides
-          :spaceBetween="-20"
+          :spaceBetween="-25"
           style="height: 822rpx"
           v-model="cards"
           @slideChange="onChange"
@@ -81,14 +81,29 @@
             :key="index"
             :custom-style="{ width: '566rpx', height: '822rpx' }"
           >
-            <view class="flex justify-center items-center">
+            <view class="flex justify-center items-center relative">
+              <c-lottie
+                :ref="`cardLottie${index}`"
+                class="absolute inset-0"
+                :class="[
+                  index === activeIndex ? 'active-card' : 'inactive-card',
+                ]"
+                renderer="svg"
+                :data="jikaCardBgLottieData"
+                :loop="true"
+                :autoPlay="index === activeIndex"
+                width="566rpx"
+                height="822rpx"
+                style="z-index: 0;"
+              ></c-lottie>
               <image
-                class="w-[566rpx] h-[822rpx]"
+                class="w-[388rpx] h-[668rpx] relative"
                 :class="[
                   index === activeIndex ? 'active-card' : 'inactive-card',
                 ]"
                 :src="item.image"
                 mode="aspectFit"
+                style="z-index: 1;"
               >
               </image>
             </view>
@@ -105,9 +120,22 @@
       </view>
       <!-- 抽奖 -->
       <view class="flex justify-center items-center">
-        <wk-button class="w-[362rpx] h-[72rpx] my-1" backgroundColor="linear-gradient(21deg, #003DA0 4.25%, #8A5BFF 58.07%, #8A5BFF 97.54%)" @click="goToLottery">
-          <text class="text-white text-base">{{ fucard_mode_type == 1 ? '已集齐四卡 去抽奖' : '集齐四卡 去抽奖' }}</text>
-        </wk-button>
+        <view
+          class="my-1 relative flex justify-center items-center"
+          style="width: 212px; height: 54px;"
+          @click="goToLottery"
+        >
+          <c-lottie
+            renderer="svg"
+            :data="jikaLottieData"
+            :loop="true"
+            :autoPlay="true"
+            width="212px"
+            height="54px"
+            style="position: absolute; top: 0; left: 0;"
+          ></c-lottie>
+          <text class="text-black text-base relative z-10">{{ fucard_mode_type == 1 ? '已集齐四卡 去抽奖' : '集齐四卡 去抽奖' }}</text>
+        </view>
       </view>
       <!-- 小卡片 -->
       <view class="flex flex-row justify-center items-center gap-[24rpx] mt-[32rpx]">
@@ -140,6 +168,8 @@
 <script>
 import { getCardListApi } from "@/api/activity";
 import { routes } from "@/config/routes";
+import jikaLottieData from "@/static/lottie/jika.json";
+import jikaCardBgLottieData from "@/static/lottie/jika_card_bg.json";
 export default {
   data() {
     return {
@@ -147,6 +177,8 @@ export default {
       title: "",
       activeIndex: 0,
       fucard_mode_type: 0,
+      jikaLottieData: jikaLottieData,
+      jikaCardBgLottieData: jikaCardBgLottieData,
     };
   },
   onShow() {
@@ -159,7 +191,24 @@ export default {
       });
     },
     onChange(swiper) {
-      this.activeIndex = swiper.activeIndex;
+      const newActiveIndex = swiper.activeIndex;
+      // 停止所有动画
+      this.cards.forEach((item, index) => {
+        const lottieRef = this.$refs[`cardLottie${index}`];
+        if (lottieRef && lottieRef.length > 0) {
+          lottieRef[0].call('pause');
+        } else if (lottieRef) {
+          lottieRef.call('pause');
+        }
+      });
+      // 播放当前激活的动画
+      const activeLottieRef = this.$refs[`cardLottie${newActiveIndex}`];
+      if (activeLottieRef && activeLottieRef.length > 0) {
+        activeLottieRef[0].call('play');
+      } else if (activeLottieRef) {
+        activeLottieRef.call('play');
+      }
+      this.activeIndex = newActiveIndex;
     },
     goToCardRecord() {
       uni.navigateTo({
@@ -186,6 +235,15 @@ export default {
           this.cards = res.data;
           this.title = res.fucard_title;
           this.fucard_mode_type = res.fucard_mode_type;
+          // 确保第一个动画开始播放
+          this.$nextTick(() => {
+            const firstLottieRef = this.$refs[`cardLottie0`];
+            if (firstLottieRef && firstLottieRef.length > 0) {
+              firstLottieRef[0].call('play');
+            } else if (firstLottieRef) {
+              firstLottieRef.call('play');
+            }
+          });
         } else {
           uni.showToast({
             title: res.msg,

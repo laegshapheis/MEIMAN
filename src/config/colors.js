@@ -18,7 +18,7 @@ export const neutral = {
   secondaryColor: '#B676FF',
   inputBg2: '#130D08',
   // 底部按钮背景
-  bottomBtnBg: 'linear-gradient(90deg, #4EB2FE 0%, #0479FE 100%)',
+  bottomBtnBg: 'linear-gradient(0deg, rgba(7, 5, 67, 0.49) 0%, rgba(7, 5, 67, 0.49) 100%), linear-gradient(90deg, #3A7BFF 0%, #0479FE 100%)',
   // 输入框
   inputBg: '#FFFFFF',
   inputBorder: 'transparent',

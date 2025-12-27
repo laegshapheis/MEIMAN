@@ -174,7 +174,7 @@ const menuItems = ref([
     isAuth: true,
     icon: "/static/images/home/icon-4.png",
     title: "关于美满",
-    path: routes.about,
+    path: "/pages/news_list/index?id=65&title=关于美满",
     positionClass: "top-[650rpx] right-[0rpx] animate-right-in",
   },
   {
